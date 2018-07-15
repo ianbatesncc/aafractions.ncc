@@ -52,9 +52,12 @@ The tables presented here are taken from online publically available sources.  T
 
 PHE (2017), "Local Alcohol Profiles for England 2017 user guide", URL: https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf
 
-NHSD HES DD (2015), "HES Alcohol Fractions", URL: https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx
+NHSD HES DD (2015), "HES Alcohol Fractions"
+, URL: https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx
 
-L. Jones, M. Bellis (2014), "Updating England-Specific Alcohol-Attributable Fractions", URL: http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf
+L. Jones, M. Bellis (2014), "Updating England-Specific Alcohol-Attributable Fractions"
+, URL: http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf
 
-L. Jones, M. Bellis et. al. (2008), "Alcohol attributable fractions for England", URL: http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf
+L. Jones, M. Bellis et. al. (2008), "Alcohol attributable fractions for England"
+, URL: http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf
 
