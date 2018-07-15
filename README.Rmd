@@ -20,7 +20,7 @@ Alcohol Attributable Fractions Lookup Tables
 
 Provides lookup tables for use with alcohol attributable fractions analyses
 
-## Example
+# Example
 
 This is a basic example which shows you how to solve a common problem:
 
