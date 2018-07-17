@@ -43,8 +43,7 @@ main__extract <- function(
 
     # combine tables
 
-    lus <- wss %>% bind_rows() %>%
-        mutate_if(is.character, as.factor)
+    lus <- wss %>% bind_rows()
 
     # add condition id number
     #
@@ -55,6 +54,7 @@ main__extract <- function(
 
     lus <- lus %>%
         filter(!grepl("^§", desc)) %>%
+        mutate_if(is.character, as.factor) %>%
         mutate(condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)) %>%
         arrange(sortkey, codes, desc(Version)) %>%
         mutate(
