@@ -8,6 +8,7 @@
 #'
 #' @param this_version table version to reconstruct
 #' @param this_analysistype specify analysis type: either morbidity or mortality
+#' @param verbose show messages about which table is being reconstructed
 #'
 #' @import dplyr
 #' @importFrom data.table dcast
@@ -17,13 +18,16 @@
 reconstruct <- function(
     this_version = c("aaf_2017_phe", "aaf_2014_ljucph", "aaf_2008_ljucph", "aaf_2007_ni39")
     , this_analysistype = c("morbidity", "mortality")
+    , verbose = TRUE
 ) {
     this_version <- match.arg(this_version)
     this_analysistype <- match.arg(this_analysistype)
 
-    cat("INFO: reconstruct: (version, analysis_type) = ("
-        , paste(this_version, this_analysistype, sep = ", "), ")"
-        , "\n")
+    if (verbose) {
+        cat("INFO: reconstruct: (version, analysis_type) = ("
+            , paste(this_version, this_analysistype, sep = ", "), ")"
+            , "\n")
+    }
 
     this_table <- aafractions.ncc::lu_versions %>%
         filter(Version == this_version) %>%
