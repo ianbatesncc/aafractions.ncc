@@ -97,7 +97,7 @@ main__extract <- function(
         ) %>%
         .[, c("aa_ageband", "sex") := data.table::tstrsplit(variable, ":")] %>%
         select(-variable) %>%
-        data.table::dcast(... ~ analysis_type, value.var = "aaf", fun = sum, fill = NA) %>%
+        data.table::dcast.data.table(... ~ analysis_type, value.var = "aaf", fun = sum, fill = NA) %>%
         .[!is.na(all), `:=`(morbidity = all, mortality = all)] %>%
         select(-all) %>%
         data.table::melt(
