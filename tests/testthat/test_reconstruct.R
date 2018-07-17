@@ -37,6 +37,21 @@ test_that("reconstruct all versions and types", {
 
     expect_length(t2, length(these_versions) * length(these_analysistypes))
 
+})
 
+
+test_that("reconstruct can return molten data", {
+
+    t1_cast <- reconstruct(molten = FALSE, verbose = FALSE)
+    t1_molten <- reconstruct(molten = TRUE, verbose = FALSE)
+
+    d1_cast <- dim(t1_cast)
+    d1_molten <- dim(t1_molten)
+
+    # More rows in molten
+    # fewer columns in molten
+
+    expect_gt(d1_molten[1], d1_cast[1])
+    expect_lt(d1_molten[2], d1_cast[2])
 
 })
