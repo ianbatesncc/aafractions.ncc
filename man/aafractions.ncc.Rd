@@ -8,8 +8,9 @@
 \description{
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
-\section{Foo functions}{
+\section{Functions}{
 
-The foo functions ...
+
+\code{\link{reconstruct}}
 }
 
