@@ -8,8 +8,7 @@
 #' @param molten boolean to indicate cast or molten on (sex, ageband)
 #'
 #' @import dplyr
-#' @importFrom data.table dcast
-# @import data.table
+#' @importFrom data.table setDT dcast.data.table
 #'
 #' @export
 #'
@@ -42,7 +41,9 @@ reconstruct <- function(
 
     if (!molten) {
         this_table <- this_table %>%
-            data.table::dcast(... ~ aa_ageband + sex, value.var = "aaf", fun = sum)
+            data.table::setDT() %>%
+            data.table::dcast.data.table(... ~ aa_ageband + sex, value.var = "aaf", fun = sum) %>%
+            as.data.frame()
     }
 
     invisible(this_table)
