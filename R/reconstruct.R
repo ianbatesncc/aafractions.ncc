@@ -9,6 +9,7 @@
 #' @param this_version table version to reconstruct
 #' @param this_analysistype specify analysis type: either morbidity or mortality
 #'
+#' @import dplyr
 #' @importFrom data.table dcast
 #'
 #' @export
