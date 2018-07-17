@@ -7,9 +7,10 @@ library("aafractions.ncc")
 
 test_that("reconstruct works", {
 
-    t1 <- reconstruct()
+    t1 <- reconstruct(verbose = FALSE)
 
-    expect_true("data.frame" %in% class(t1))
+    expect_is(t1, "data.frame")
+
 
     t2 <- purrr::cross(list(
         x = c("aaf_2017_phe", "aaf_2014_ljucph", "aaf_2008_ljucph", "aaf_2007_ni39")
