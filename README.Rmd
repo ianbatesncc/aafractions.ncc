@@ -22,7 +22,7 @@ Provides lookup tables for use with alcohol attributable fractions analyses
 
 # Example
 
-```{r example}
+```
 ## reconstruct current aaf lookup for hospital admissions
 
 t1 <- reconstruct("aaf_2017_phe", "morbidity")
