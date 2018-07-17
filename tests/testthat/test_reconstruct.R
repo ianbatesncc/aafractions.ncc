@@ -5,6 +5,9 @@
 context("reconstruct")
 library("aafractions.ncc")
 
+# dodge some dplyr related bindrcpp warnings
+suppressWarnings(library("bindrcpp"))
+
 test_that("reconstruct works", {
 
     t1 <- reconstruct(verbose = FALSE)
