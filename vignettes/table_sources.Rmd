@@ -1,0 +1,63 @@
+---
+title: "Alcohol attributable fraction lookup table sources"
+author: "Ian Bates"
+date: "`r Sys.Date()`"
+output:
+    rmarkdown::html_vignette:
+        #css: mystyle.css
+vignette: >
+  %\VignetteIndexEntry{Alcohol attributable fraction lookup table sources}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+The tables presented here are taken from online publically available sources.  These sources are listed here.
+
+## Alcohol attributable fraction lookup table sources
+
+### Current
+
+[Local Alcohol Profiles for England 2017 user guide (.pdf)](https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf)
+
+* Appendix 1. - Updated alcohol-attributable fractions
+
+[Supporting documents (page)](https://fingertips.phe.org.uk/profile/local-alcohol-profiles/supporting-information/supporting-documents)
+
+### Previous
+
+[Updating England-Specific Alcohol-Attributable Fractions (.pdf)](http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf)
+
+* Appendix 2. - Updated alcohol-attributable fractions
+    
+[Alcohol attributable fractions for England (.pdf)](http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf)
+
+* Table 17. - Alcohol-attributable fractions by age and sex
+* Table 20. - AAFs used by the Strategy Unit/Cabinet Office (2003)
+* Table 21. - AAFs used to calculate the national indicator for alcohol, NI 39 (provisional figures produced in November 2007)
+
+[HES Alcohol Fractions (.xlsx)](https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx)
+
+* Worksheet `\Alcohol Fractions/`.
+
+## References
+
+PHE (2017), "Local Alcohol Profiles for England 2017 user guide", URL: https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf
+
+NHSD HES DD (2015), "HES Alcohol Fractions"
+, URL: https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx
+
+L. Jones, M. Bellis (2014), "Updating England-Specific Alcohol-Attributable Fractions"
+, URL: http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf
+
+L. Jones, M. Bellis et. al. (2008), "Alcohol attributable fractions for England"
+, URL: http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf
+

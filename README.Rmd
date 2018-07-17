@@ -20,10 +20,11 @@ Alcohol Attributable Fractions Lookup Tables
 
 Provides lookup tables for use with alcohol attributable fractions analyses
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+# Example
 
 ```{r example}
-## basic example code
+## reconstruct current aaf lookup for hospital admissions
+
+t1 <- reconstruct("aaf_2017_phe", "morbidity")
+
 ```

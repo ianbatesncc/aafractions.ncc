@@ -1,0 +1,27 @@
+MILESTONES
+
+
+0.1.0
+
+Extract tables and be able to reconstruct lus
+
+
+0.2.0
+
+Construct diagnosis to condition tables
+
+
+0.3.0
+
+Add SQL to process HES
+
+
+1.0.0
+
+First release
+
+
+1.1.0
+
+Add some processing e.g. DSRs
+
