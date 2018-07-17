@@ -6,7 +6,7 @@
 #'
 #' Provides lookup tables for use with alcohol attributable fractions analyses.
 #'
-#' @format data frame with 221 rows and 10 fields
+#' @format data frame with 69 rows and 8 fields
 #'
 #' \preformatted{
 #' 'data.frame':	69 obs. of  8 variables:
@@ -21,6 +21,7 @@
 #' }
 #'
 #' @examples
+#' require("dplyr")
 #' lu_conditions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_"), -codes, -desc) %>%
@@ -33,7 +34,7 @@
 #'
 #' Provides lookup tables for use with alcohol attributable fractions analyses.
 #'
-#' @format data frame with 221 rows and 10 fields
+#' @format data frame with 213 rows and 3 fields
 #'
 #' \preformatted{
 #' 'data.frame':	213 obs. of  3 variables:
@@ -43,9 +44,10 @@
 #' }
 #'
 #' @examples
+#' require("dplyr")
 #' lu_versions %>%
 #'     mutate_if(is.character, as.factor) %>%
-#'     select(-starts_with("condition_") %>%
+#'     select(-starts_with("condition_")) %>%
 #'     summary(16)
 #'
 "lu_versions"
@@ -55,7 +57,7 @@
 #'
 #' Provides lookup tables for use with alcohol attributable fractions analyses.
 #'
-#' @format data frame with 221 rows and 10 fields
+#' @format data frame with 5,920 rows and 7 fields
 #'
 #' \preformatted{
 #' 'data.frame':	5920 obs. of  7 variables:
@@ -66,10 +68,10 @@
 #' $ sex           : chr  "F" "F" "F" "F" ...
 #' $ analysis_type : chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
 #' $ aaf           : num  1 1 1 1 1 1 1 1 1 1 ...
-#' - attr(*, ".internal.selfref")=<externalptr>
 #' }
 #'
 #' @examples
+#' require("dplyr")
 #' lu_fractions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_")) %>%

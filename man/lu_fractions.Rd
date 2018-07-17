@@ -4,7 +4,7 @@
 \name{lu_fractions}
 \alias{lu_fractions}
 \title{List of alcohol attributable fractions by condition, age and sex}
-\format{data frame with 221 rows and 10 fields
+\format{data frame with 5,920 rows and 7 fields
 
 \preformatted{
 'data.frame':	5920 obs. of  7 variables:
@@ -15,7 +15,6 @@ $ aa_ageband    : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
 $ sex           : chr  "F" "F" "F" "F" ...
 $ analysis_type : chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
 $ aaf           : num  1 1 1 1 1 1 1 1 1 1 ...
-- attr(*, ".internal.selfref")=<externalptr>
 }}
 \usage{
 lu_fractions
@@ -24,6 +23,7 @@ lu_fractions
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
 \examples{
+require("dplyr")
 lu_fractions \%>\%
     mutate_if(is.character, as.factor) \%>\%
     select(-starts_with("condition_")) \%>\%

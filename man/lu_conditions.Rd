@@ -4,7 +4,7 @@
 \name{lu_conditions}
 \alias{lu_conditions}
 \title{List of alcohol attributable conditions}
-\format{data frame with 221 rows and 10 fields
+\format{data frame with 69 rows and 8 fields
 
 \preformatted{
 'data.frame':	69 obs. of  8 variables:
@@ -24,6 +24,7 @@ lu_conditions
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
 \examples{
+require("dplyr")
 lu_conditions \%>\%
     mutate_if(is.character, as.factor) \%>\%
     select(-starts_with("condition_"), -codes, -desc) \%>\%

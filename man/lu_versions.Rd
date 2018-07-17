@@ -4,7 +4,7 @@
 \name{lu_versions}
 \alias{lu_versions}
 \title{List of alcohol attributable fractions by condition, age and sex}
-\format{data frame with 221 rows and 10 fields
+\format{data frame with 213 rows and 3 fields
 
 \preformatted{
 'data.frame':	213 obs. of  3 variables:
@@ -19,9 +19,10 @@ lu_versions
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
 \examples{
+require("dplyr")
 lu_versions \%>\%
     mutate_if(is.character, as.factor) \%>\%
-    select(-starts_with("condition_") \%>\%
+    select(-starts_with("condition_")) \%>\%
     summary(16)
 
 }
