@@ -1,3 +1,8 @@
+# Workaround for R CMD check and field names
+Version = NULL
+condition_uid = NULL
+
+
 #' Reconstruct lu tables
 #'
 #' Reconstruct alcohol attributable fractions table for given version and analysis type.
