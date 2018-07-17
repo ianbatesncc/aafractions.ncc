@@ -1,8 +1,4 @@
-#
-#
-#
-
-#' Reconstruct tables
+#' Reconstruct lu tables
 #'
 #' Reconstruct alcohol attributable fractions table for given version and analysis type.
 #'
@@ -13,6 +9,7 @@
 #'
 #' @import dplyr
 #' @importFrom data.table dcast
+# @import data.table
 #'
 #' @export
 #'
