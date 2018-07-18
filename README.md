@@ -6,6 +6,16 @@ Alcohol Attributable Fractions Lookup Tables
 
 Provides lookup tables for use with alcohol attributable fractions analyses
 
+Installation
+------------
+
+You can install aafractions.ncc from github with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ianbatesncc/aafractions.ncc")
+```
+
 Example
 =======
 
