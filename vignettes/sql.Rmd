@@ -1,0 +1,156 @@
+---
+title: "AAF SQL Analysis"
+author: "Ian Bates"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{AAF SQL Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  , comment = "#>"
+  , cache = TRUE
+)
+```
+
+## Introduction
+
+Description of `SQL` used in local AAF calculations.
+
+The analysis goes through separate stages.  
+
+The initial stage is to filter for relevant records (episode status and patient classification).  An additional period filter is also applied to limit the scope of the records.
+
+The next stage sets about processing the diagnosis codes by 'melting' each event record into multiple records one for each of the ICD10 diagnosis codes in the original event record.  Each record is identified by `GRID` field.  Each record in the molten table is identified by `GRID` and `pos` fields where `pos` relates to the position of the diagnosis code.  This stage also involves a lookup to a prepared table `dbo.tmpIB__AA__lu__uid_icd` that relates diagnosis codes to Alcohol Attributable conditions.
+
+The second stage 
+
+## Methods
+
+These scripts do these things and should be called in the suggested order:
+
+### T2208 AAF ADM 11 TagAFInspect 20180303
+
+Create lookup table of relevant records (af NOT populated at this stage)
+
+* `[dbo].tmpIB__PHIT_IP__melt`
+
+* Filtered for relevant records
+    * Finished consultant episodes
+    * Ordinary admissions, day cases and mothers and babies 
+    
+* UNPIVOT on `IP.Diagnosis_ICD_1 + ';' + Diagnosis_ICD_Concatenated_D`
+
+* INNER JOINED on `[ucs-bisqldev].[PHIIT].[dbo].[tmpIB__lu__uid_icd]`
+
+
+### T2208 AAF ADM 12 TagAF 20180305
+
+Tag on AF to the `[dbo].tmpIB__PHIT_IP__melt` lookup table
+
+* AGE using `Age_at_Start_of_Episode_D` or `Age_On_Admission` (> 7000 -> 0)
+
+* AGEBAND from `[Shared_Reference].[dbo].[Age_Bands_Public_Health].[Alcohol_Fraction_AgeBand]`
+
+* GENDER using adminCode lookup from `IP.Gender`
+
+
+### T2208 AAF ADM 20 ConstructMethods 20180301
+
+Create record level results table
+
+* Populate with records satisfying :
+
+	* `alcohol-related (broad)`
+	* `alcohol-related (narrow) pos1override`
+	* `alcohol-related (narrow) phe`
+	* `alcohol-specific`
+
+
+### T2208 AAF ADM 30 ApplyMethods 20180301
+
+### T2208 AAF ADM 31 ApplyMethods LSOA 20180305
+
+
+### T2208 AAF ADM AR NARROW records
+
+### T2208 AAF ADM AS records 20180227
+
+### T2208 AAF ADM AS records
+
+
+# Appendices
+
+## `tmpIB__AA__PHIT_IP__melt`
+
+```
+CREATE TABLE [dbo].tmpIB__AA__PHIT_IP__melt(
+	[GRID]          [bigint]        NULL,
+	[icd10]         [varchar](4)    NULL,
+	[pos]           [smallint]      NULL,
+	[aa_uid]        [smallint]      NULL,
+	[aa_gender]     [varchar](4)    NULL,
+	[aa_agesyoa]    [smallint]      NULL,
+	[aa_ageband]    [varchar](8)    NULL,
+	[af]            [decimal](10,2) NULL
+)
+```
+
+
+## `tmpIB__PHIT_IP__aamethod`
+
+```
+CREATE TABLE [dbo].tmpIB__PHIT_IP__aamethod(
+	[aa_method]     [varchar](32)   NULL,
+	[GRID]          [bigint]        NULL,
+	[icd10]         [varchar](4)    NULL,
+	[pos]           [smallint]      NULL,
+	[aa_uid]        [smallint]      NULL,
+	[aa_gender]     [varchar](4)    NULL,
+	[aa_agesyoa]    [smallint]      NULL,
+	[aa_ageband]    [varchar](8)    NULL,
+	[af]            [decimal](10,2) NULL,
+)
+```
+
+## `tmpIB__lu__uid_icd`
+
+```
+CREATE TABLE [dbo].tmpIB__lu__uid_icd(
+	[uid]   [bigint]        NULL,
+	[codes] [varchar](4)    NULL
+)
+
+```
+
+## `[Age_Bands_Public_Health`
+
+```
+CREATE TABLE [dbo].[Age_Bands_Public_Health](
+	[Age_Years]                 [tinyint]       NULL,
+	[ESP_Year]                  [int]           NULL, -- 1976 or 2013
+	[All_AgeBand]               [varchar](6)    NULL,
+	[AgeBand_ESP]               [varchar](6)    NULL,
+	[Alcohol_Fraction_AgeBand]  [varchar](6)    NULL, -- axxyy/a75+
+	[Premature_Death_AgeBand]   [varchar](6)    NULL,
+)
+```
+
+## `tmpIB__AA__aaf_ag`
+
+```
+CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
+	[condition uid]     [bigint]        NULL,
+	[analysis type]     [varchar](4)    NULL, -- any/mort/morb
+	[cause basis]       [varchar](10)   NULL, -- individual/external
+	[af]                [float]         NULL, -- (0,1]
+	[gender]            [varchar](1)    NULL, -- M/F
+	[ageband aa]        [varchar](6)    NULL, -- xx-yy/75+
+	[ageband aa alt]    [varchar](6)    NULL, -- axxyy/a75+
+)
+
+
