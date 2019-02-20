@@ -65,7 +65,7 @@ AS (
 		* -- [GRID], [icd10], [pos], [aa_uid], aa_gender, aa_agesyoa, aa_ageband, [af]
 	FROM [PHIIT].[dbo].[tmpIB__AA__PHIT_IP__melt]
 	WHERE (af > 0)
- 
+
 ) -- /cte_filter
 ,
 cte_rank -- ([GRID], [icd10], [pos], [aa_uid], aa_gender, aa_agesyoa, aa_ageband, [af], [aa_rank_1_highest])
@@ -110,7 +110,7 @@ GO
 -- narrow pos1override:
 -- rank by af then pos, promote pos 1 to rank 1 and re-rank.
 --
--- Necessary as (pos == 1 cause) should override any (external cause pos > 1) 
+-- Necessary as (pos == 1 cause) should override any (external cause pos > 1)
 -- even if (external cause af) > (pos == 1 cause af).
 --
 -- narrow phe:
@@ -171,7 +171,7 @@ GO
 alcohol-specific
 
 - cte_filter
-- cte_rank 
+- cte_rank
 - SQL: INSERT INTO [dbo].[tmpib__AA__PHIT_IP__aamethod] ... WHERE [aa_rank_1_highest] = 1
 
 */
@@ -184,7 +184,7 @@ AS (
 	FROM [PHIIT].[dbo].[tmpib__AA__PHIT_IP__melt]
 --	WHERE (af = 1.0)
 	WHERE (af > 0.99)
- 
+
 ) -- /cte_filter
 ,
 cte_rank
@@ -192,7 +192,7 @@ AS (
 	SELECT *
 		, ROW_NUMBER() OVER(PARTITION BY GRID ORDER BY af DESC, pos ASC) AS [aa_rank_1_highest]
 		FROM cte_filter
- 
+
 ) -- /cte_rank
 INSERT INTO [dbo].[tmpib__AA__PHIT_IP__aamethod]
 SELECT
@@ -233,7 +233,7 @@ SELECT
 	) as sourcet
 	PIVOT
 	(
-		--max([icd10]) 
+		--max([icd10])
 		max([af])
 		for [aa_method] in ([alcohol-related (broad)], [alcohol-related (narrow) phe], [alcohol-related (narrow) pos1override], [alcohol-specific])
 	) as pvt
@@ -242,7 +242,7 @@ SELECT
 		([alcohol-related (narrow) phe] <> [alcohol-related (narrow) pos1override])
 	)
 ;
-GO	
+GO
 
 
 
@@ -256,7 +256,7 @@ alcohol-related (narrow) orig
 
  - Consider priamry code as princicpal unless there is a secondary code.  That is select primary over secondary.
  - IF there is BOTH a priamy ar condaiton AND a secondary external condition, take PRIMARY as principal.
-  
+
  alcohol-related (narrow) liberal
 
  - Consider priamry code as princicpal unless there is a secondary code.
@@ -323,7 +323,7 @@ AS (
 	FROM [ucs-bisqldev].[PHIIT].[dbo].[tmpib__AA__PHIT_IP__201516]		AS PHIT_IP
 		INNER JOIN cte_prefilter
 			ON (PHIT_IP.GRID = cte_prefilter.GRID)
- 
+
 ) -- /cte_filter
 ,
 cte_rank -- () -- GRID, icd10, pos, uid, af, [cause basis], aa_rank_1_highest
@@ -331,7 +331,7 @@ AS (
 	SELECT *
 		, ROW_NUMBER() OVER(PARTITION BY GRID ORDER BY af DESC, pos ASC) AS [aa_rank_1_highest]
 		FROM cte_filter
- 
+
 ) -- /cte_rank
 INSERT INTO [dbo].[tmpib__AA__PHIT_IP__aamethod]
 SELECT
