@@ -120,8 +120,12 @@ WITH
 cte_filter -- (GRID, icd10, pos, aa_uid, aa_gender, aa_agesyoa, aa_ageband, af)
 AS (
 	SELECT * --[GRID], [icd10], [pos], [aa_uid], aa_gender, aa_agesyoa, aa_ageband, [af]
-			FROM [PHIIT].[dbo].[tmpib__AA__PHIT_IP__melt]
-			WHERE ( (af > 0) AND ((pos = 1) OR (icd10 like '[VWXY]%')) )
+	    FROM [PHIIT].[dbo].[tmpib__AA__PHIT_IP__melt]
+	    WHERE
+	        (af > 0) AND
+	        (
+	            (pos = 1) OR /* ((pos > 1) AND */ (icd10 like '[VWXY]%') /* ) */
+	        )
 ) -- /cte_filter
 ,
 cte_sort_rank --(GRID, icd10, pos, aa_uid, aa_gender, aa_agesyoa, aa_ageband, af, [aa_rank_1_highest])
