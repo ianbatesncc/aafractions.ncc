@@ -1,9 +1,8 @@
 #
 # Script to extract tables from .xlsx
 #
-#
 
-#' extract data from xl
+#' Extract data from xl
 #'
 #' Pull in tables from worksheets.
 #' Split each table into
@@ -13,6 +12,9 @@
 #' Save as data
 #'
 #' @param bWriteCSV Flag to indicate to write data to file
+#'
+#' Each worksheet contains a table, one row for each condition (with metadata)
+#' and (age, sex) specific attributable fractions in additional column fields.
 #'
 #' @return list(lu_conditions, lu_versions, lu_fractions)
 #'
@@ -27,7 +29,7 @@ main__extract <- function(
 
     # load tables as list of tables
 
-    this_wb = "./data-raw/aafraction_lus.xlsx"
+    this_wb = devtools::package_file("./data-raw/aafraction_lus.xlsx")
 
     these_wss <- readxl::excel_sheets(path = this_wb)
 
@@ -55,10 +57,16 @@ main__extract <- function(
     lus <- lus %>%
         filter(!grepl("^§", desc)) %>%
         mutate_if(is.character, as.factor) %>%
-        mutate(condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)) %>%
+        mutate(
+            condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)
+        ) %>%
         arrange(sortkey, codes, desc(Version)) %>%
         mutate(
-            condition_fuid = factor(condition_fuid, levels = unique(condition_fuid), ordered = TRUE)
+            condition_fuid = factor(
+                condition_fuid
+                , levels = unique(condition_fuid)
+                , ordered = TRUE
+            )
             , condition_uid = as.integer(condition_fuid)
         )
 
@@ -70,26 +78,43 @@ main__extract <- function(
     # fractions: KEY:(version, gucid, gender, sex) VALUES: (aaf)
 
     # list of conditions
-    # drops Version, analysis_type, sortkey
-
-    lu_conditions <- lus %>%
-        select(-dplyr::matches(":[MF]")) %>%
-        select(-Version, -analysis_type, -sortkey) %>% unique()
-
-    # conditions
+    #
     # unique on cat1, cat2, description, codes
     # Can be mapped to more than one version
     #
+    # Keep categories and codes
+    # Drop Version, analysis_type, sortkey, aafs
 
-    lu_versions <- lus %>%
-        select(Version, condition_fuid, condition_uid) %>%
-        arrange(desc(Version), condition_fuid)
+    aa_conditions <- lus %>%
+        select(-dplyr::matches(":[MF]")) %>%
+        select(-Version, -analysis_type, -sortkey, -condition_fuid) %>%
+        unique()
+
+    # versions
+    #
+    # Keep Version, condition_uid
+    # Drop analysis_type
+
+    aa_versions <- lus %>%
+        select(Version, condition_uid) %>%
+        unique() %>%
+        arrange(desc(Version), condition_uid)
 
     # list of fractions
-    # Includes Version
+    #
+    # Keep Version, condition_uid, ageband, sex, analysis_type and aaf
+    # Need to do some work to melt ageband_sex fields
+    # ... and do something clever to get 'all' mapped to the other analysis
+    # types
 
-    lu_fractions <- lus %>%
-        select(Version, condition_fuid, condition_uid, analysis_type, dplyr::matches(":[MF]")) %>%
+    aa_fractions <- lus %>%
+        select(
+            Version
+            , condition_uid
+            , analysis_type
+            , dplyr::matches(":[MF]")
+        ) %>%
+        # melt the af fields
         data.table::setDT() %>%
         data.table::melt(
             measure.vars = patterns(":[MF]")
@@ -97,7 +122,13 @@ main__extract <- function(
         ) %>%
         .[, c("aa_ageband", "sex") := data.table::tstrsplit(variable, ":")] %>%
         select(-variable) %>%
-        data.table::dcast.data.table(... ~ analysis_type, value.var = "aaf", fun = sum, fill = NA) %>%
+        data.table::dcast.data.table(
+            ... ~ analysis_type
+            , value.var = "aaf"
+            , fun = sum
+            , fill = NA
+        ) %>%
+        # deal "all" out to other analysis types
         .[!is.na(all), `:=`(morbidity = all, mortality = all)] %>%
         select(-all) %>%
         data.table::melt(
@@ -106,34 +137,34 @@ main__extract <- function(
             , variable.name = "analysis_type", variable.factor = FALSE
         )
 
-    # save
+    # store
 
-    lu_conditions <- lu_conditions %>%
-        arrange(condition_fuid)
+    aa_conditions <- aa_conditions %>%
+        arrange(condition_uid)
 
-    lu_versions <- lu_versions %>%
-        arrange(Version, condition_fuid)
+    aa_versions <- aa_versions %>%
+        arrange(Version, condition_uid)
 
-    lu_fractions <- lu_fractions %>%
-        arrange(Version, condition_fuid, analysis_type, sex, aa_ageband)
+    aa_fractions <- aa_fractions %>%
+        arrange(Version, condition_uid, analysis_type, sex, aa_ageband)
 
     # save
 
     if (bWriteCSV) {
-        data.table::fwrite(lu_conditions, "./data-raw/lu_conditions.csv")
-        devtools::use_data(lu_conditions, overwrite = TRUE)
+        data.table::fwrite(aa_conditions, "./data-raw/aa_conditions.csv")
+        usethis::use_data(aa_conditions, overwrite = TRUE)
 
-        data.table::fwrite(lu_versions, "./data-raw/lu_versions.csv")
-        devtools::use_data(lu_versions, overwrite = TRUE)
+        data.table::fwrite(aa_versions, "./data-raw/aa_versions.csv")
+        usethis::use_data(aa_versions, overwrite = TRUE)
 
-        data.table::fwrite(lu_fractions, "./data-raw/lu_fractions.csv")
-        devtools::use_data(lu_fractions, overwrite = TRUE)
+        data.table::fwrite(aa_fractions, "./data-raw/aa_fractions.csv")
+        usethis::use_data(aa_fractions, overwrite = TRUE)
     }
 
     invisible(list(
-        lu_conditions = lu_conditions
-        , lu_versions = lu_versions
-        , lu_fractions = lu_fractions
+        aa_conditions = aa_conditions
+        , aa_versions = aa_versions
+        , aa_fractions = aa_fractions
     ))
 }
 

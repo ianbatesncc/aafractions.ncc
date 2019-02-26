@@ -32,12 +32,9 @@ reconstruct <- function(
             , "\n")
     }
 
-    this_table <- aafractions.ncc::lu_versions %>%
+    this_table <- aafractions.ncc::aa_versions %>%
         filter(Version == this_version) %>%
-        merge(
-            aafractions.ncc::lu_conditions %>% select(-condition_uid)
-            , by = "condition_fuid"
-        ) %>%
+        merge(aafractions.ncc::aa_conditions, by = "condition_uid") %>%
         mutate(analysis_type = this_analysistype) %>%
         merge(
             aafractions.ncc::lu_fractions %>% select(-condition_uid)

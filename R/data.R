@@ -22,12 +22,12 @@
 #'
 #' @examples
 #' require("dplyr")
-#' lu_conditions %>%
+#' aa_conditions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_"), -codes, -desc) %>%
 #'     summary(16)
 #'
-"lu_conditions"
+"aa_conditions"
 
 
 #' List of alcohol attributable fractions by condition, age and sex
@@ -45,12 +45,12 @@
 #'
 #' @examples
 #' require("dplyr")
-#' lu_versions %>%
+#' aa_versions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_")) %>%
 #'     summary(16)
 #'
-"lu_versions"
+"aa_versions"
 
 
 #' List of alcohol attributable fractions by condition, age and sex
@@ -72,9 +72,9 @@
 #'
 #' @examples
 #' require("dplyr")
-#' lu_fractions %>%
+#' aa_fractions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_")) %>%
 #'     summary(16)
 #'
-"lu_fractions"
+"aa_fractions"
