@@ -65,7 +65,7 @@ main
 ;
 WITH
 /*
-Select fields of relevance from HES IP and filter on record status re: 
+Select fields of relevance from HES IP and filter on record status re:
 patient classification and episode status
 */
 cte_adjustage
@@ -87,7 +87,7 @@ SELECT
 Spatial filter - local LAD residents only
 
  - RECORD level
- 
+
 */
 cte_filter(data_source, date_start, date_end
 	, [aa method]
@@ -119,28 +119,28 @@ SELECT
 	-- where
 	, IP.Local_Authority_District		AS [LADCD]
 	, IP.GIS_LSOA_2011_D				AS [LSOA11CD]
-	
-	FROM 
+
+	FROM
 		--[Public_Health].[dbo].[HES_IP]											AS IP
 		cte_adjustage															AS IP
-		
+
 			INNER JOIN [ucs-bisqldev].PHIIT.dbo.tmpIB__PHIT_IP__aamethod		AS PHIT_IP
 				ON (
 					(PHIT_IP.[aa method] = @analysismethod) AND
 -- NO ...			(PHIT_IP.[aa method] in ('alcohol-specific', 'alcohol-related (narrow) phe', 'alcohol-related (narrow) phe')) AND
 					(PHIT_IP.[GRID] = IP.Generated_Record_Identifier)
 				)
-		
+
 			LEFT JOIN [Shared_Reference].[dbo].[Age_Bands_Public_Health]		AS ABPH
 				ON (
 					(ABPH.[ESP_Year] = '2013') AND
 					(IP.Age_at_Start_of_Episode_D__adj = ABPH.Age_Years)
 				)
-				
+
 			LEFT JOIN [Shared_Reference].[dbo].[Administrative_Codes]			AS ACGENDER
 				ON (ACGENDER.Field_Name = 'gender' AND ACGENDER.Code = IP.Gender)
-				
-				
+
+
 	WHERE
 		(
 			-- When - Events between dates specified
@@ -171,14 +171,14 @@ cte_tag_u18(data_source, date_start, date_end, [aa method]
 	, LADCD, LSOA11CD
 	)
 AS (
-SELECT 
+SELECT
 	data_source, date_start, date_end, [aa method], GenderC
 	, '0: Under 18 (5.02) (specific)' as [AgeBand_ESP]
 	, af, [condition uid]
 	, LADCD, LSOA11CD
 	FROM cte_filter
 	WHERE ([AGE_SYOA] between 0 AND 17) -- OR (AGE_SYOA > 7000)
-	
+
 ) -- /cte_tag_u18
 --SELECT top 100 * from cte_tag_u18 ;
 ,
@@ -203,7 +203,7 @@ SELECT
 
 	, COUNT(*) as nRecords
 	, SUM(af) as nAttributable
-	
+
 	FROM (
 		-- All ages, all conditions
 		SELECT data_source, date_start, date_end
@@ -212,15 +212,15 @@ SELECT
 			, af, [condition uid]
 			, LADCD, LSOA11CD
 			FROM cte_filter
-	
+
 		UNION ALL
-		
+
 		-- broad age bands
 		SELECT * FROM cte_tag_u18 t_u18
-		
+
 		-- Don't forget the individual ESP agebands
 		UNION ALL
-		
+
 		SELECT
 			data_source, date_start, date_end
 			, [aa method]
@@ -230,7 +230,7 @@ SELECT
 			FROM cte_filter
 
 	) u
-	
+
 	GROUP BY
 		data_source, date_start, date_end
 		, [aa method]
@@ -260,7 +260,7 @@ AS (
 		, LADCD, LSOA11CD
 		, nRecords, nAttributable
 		FROM cte_aggegate_over__ageband
-		
+
 	UNION ALL
 
 	SELECT
@@ -277,7 +277,7 @@ AS (
 			, AgeBand_ESP
 			, [condition uid]
 			, LADCD, LSOA11CD
-		
+
 ) -- /cte_sump
 -- SELECT /*TOP 1000*/ * FROM cte_sump ;
 ,
@@ -302,9 +302,9 @@ AS (
 		, LADCD, LSOA11CD
 		, sum(nRecords) as nRecords
 		, sum(nAttributable) as nAttributable
-		
+
 		FROM cte_sump										AS previous_cte
-		
+
 			LEFT JOIN [ucs-bisqldev].PHIIT.dbo.tmpIB__aac	AS AAC
 				ON (AAC.[condition uid] = previous_cte.[condition uid])
 

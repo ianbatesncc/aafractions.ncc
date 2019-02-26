@@ -1,12 +1,17 @@
 ---
-title: "AAF SQL Analysis"
+title: "AAF SQL Implementation"
 author: "Ian Bates"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+    rmarkdown::html_vignette:
+        number_sections: yes
+        toc: yes
 vignette: >
   %\VignetteIndexEntry{AAF SQL Analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
+fontsize: 10pt
 ---
 
 ```{r setup, include = FALSE}
@@ -17,25 +22,67 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction
+# Introduction
 
 Description of `SQL` used in local AAF calculations.
 
 The analysis goes through separate stages.  
 
-The initial stage is to filter for relevant records (episode status and patient classification).  An additional period filter is also applied to limit the scope of the records.
+## Stage 1 {-}
 
-The next stage sets about processing the diagnosis codes by 'melting' each event record into multiple records one for each of the ICD10 diagnosis codes in the original event record.  Each record is identified by `GRID` field.  Each record in the molten table is identified by `GRID` and `pos` fields where `pos` relates to the position of the diagnosis code.  This stage also involves a lookup to a prepared table `dbo.tmpIB__AA__lu__uid_icd` that relates diagnosis codes to Alcohol Attributable conditions.
+The initial stage is to filter for relevant records (episode status and patient classification).  An additional period filter is also applied to limit the time span of the records.
 
-The second stage 
+## Stage 2 {-}
 
-## Methods
+The second stage sets about processing the diagnosis codes by 'melting' each event record into multiple records one for each of the ICD10 diagnosis codes in the original event record.  
+
+Each record is identified by `GRID` field.  Each record in the molten table is identified by `GRID` and `pos` fields where `pos` relates to the position of the diagnosis code.  
+
+This stage also involves a lookup to a prepared table `dbo.tmpIB__AA__lu__uid_icd` that relates diagnosis codes to Alcohol Attributable conditions which also acts as a filter to retain only the alcohol attributable conditions.  
+
+The results are stored in a table `dbo.tmpIB__AA__PHIT_IP__melt`.
+
+*TODO: describe construction of AA lookup tables*
+
+## Stage 3 {-}
+
+The third stage assigns an alcohol attributable fraction to each of the diagnosis codes.  
+
+The attributable fraction is condition, age and gender specific.  Condition has been determined earlier, the age and gender values have to be determined from the underlying event record.  
+
+An element of data cleaning may be required for a number of reasons including how age is encoded for young people.  For transparency these age and gender values are recorded in the same table `dbo.tmpIB__AA__PHIT_IP__melt`.
+
+## Stage 4 {-}
+
+The fourth stage sets about starting to assemble indicators.  
+
+There are a number of different indicators that differ in their definition about how event records are selected.  
+
+In all cases any selected event records will have just one _principal_ alcohol attributable condition (and therefore attributable fraction).  
+
+The analysis methods include:
+
+* alcohol-related (broad)
+* alcohol-related (narrow) (phe and pos1override)
+* alcohol-specific
+
+## Stage 5 {-}
+
+The fifth section continues assembling the indicators.  
+
+It brings in additional attributes for the alcohol attributable conditions to group by.  It brings in attributes from the underlying events table to group by.
+
+
+
+# Methods
 
 These scripts do these things and should be called in the suggested order:
 
-### T2208 AAF ADM 11 TagAFInspect 20180303
+## Stages 1 and 2 {-}
 
-Create lookup table of relevant records (af NOT populated at this stage)
+Create 'skinny' lookup table of relevant records (af NOT populated at this stage)
+
+### T2208 AAF ADM 11 TagAFInspect 20180303 {-}
 
 * `[dbo].tmpIB__PHIT_IP__melt`
 
@@ -48,9 +95,11 @@ Create lookup table of relevant records (af NOT populated at this stage)
 * INNER JOINED on `[ucs-bisqldev].[PHIIT].[dbo].[tmpIB__lu__uid_icd]`
 
 
-### T2208 AAF ADM 12 TagAF 20180305
+## Stage 3 {-}
 
 Tag on AF to the `[dbo].tmpIB__PHIT_IP__melt` lookup table
+
+### T2208 AAF ADM 12 TagAF 20180305 {-}
 
 * AGE using `Age_at_Start_of_Episode_D` or `Age_On_Admission` (> 7000 -> 0)
 
@@ -59,33 +108,77 @@ Tag on AF to the `[dbo].tmpIB__PHIT_IP__melt` lookup table
 * GENDER using adminCode lookup from `IP.Gender`
 
 
-### T2208 AAF ADM 20 ConstructMethods 20180301
+## Stage 4 {-}
 
-Create record level results table
+Assemble events by analysis method.
+
+### T2208 AAF ADM 20 ConstructMethods 20180301 {-}
 
 * Populate with records satisfying :
 
 	* `alcohol-related (broad)`
-	* `alcohol-related (narrow) pos1override`
-	* `alcohol-related (narrow) phe`
 	* `alcohol-specific`
+	* `alcohol-related (narrow) phe`
+	* `alcohol-related (narrow) pos1override`
+	
+### alcohol-related (broad)
+
+All alcohol attributable conditions are considered and the condition selected is the one with the highest attributable fraction.  
+
+If more than one condition is selected by this criteria then the condition corresponding to the diagnosis code that appears earliest in the record is selected over the others.
+
+* Consider all molten records with af > 0
+* Rank each molten record by (af descending, position value increasing)
+* Choose (rank == 1)
 
 
-### T2208 AAF ADM 30 ApplyMethods 20180301
+### alcohol-specific
 
-### T2208 AAF ADM 31 ApplyMethods LSOA 20180305
+Only consider alcohol attributable conditions that are considered specifically related to alcohol.  
+
+Similar approach to the above alcohol-related broad method, however consider only conditions that are considered specifically attributable to alcohol (i.e. have an attributable fraction == 1).
+
+* Filter molten records for (af > 0.99) (to dodge precision, no partial <= 0.99)
+* Rank each molten record by (af descending, position value increasing)
+* Choose (rank == 1)
 
 
-### T2208 AAF ADM AR NARROW records
+### alcohol-related (narrow)
 
-### T2208 AAF ADM AS records 20180227
+This is a more subtle analysis.  Events are considered that either have an alcohol attributable condition as the primary diagnosis or an _external_ alcohol attributable condition in any of the secondary diagnosis codes.
 
-### T2208 AAF ADM AS records
+The method apparently used by PHE is described below.  There is a variant that is also described that is plausible under the definition but is not the method used by PHE.
+
+#### PHE {-}
+
+This method corresponds to the one PHE appear to use.
+
+* Consider all molten records with af > 0
+    * keep if position == 1
+    * otherwise keep if the attributable condition is an external cause (ICD10 code starts with any of {V,W,X,Y})
+* Rank each molten record by (af descending, position value increasing)
+* Choose (rank == 1)
+
+#### pos1override {-}
+
+This interpretation differs slightly from the PHE method but is not explicitly ruled out as a possible analysis method.
+
+* Consider all molten records with af > 0
+    * keep if position == 1
+    * otherwise keep if the attributable condition is an external cause (ICD10 code starts with any of {V,W,X,Y})
+* Rank each molten record by (af descending, position value increasing) **promoting position == 1 to the front**
+* Choose (rank == 1)
+
+# Stage 5 {-}
+
+## T2208 AAF ADM ApplyMethods Generic 20180621
 
 
-# Appendices
+# Appendices - table structure {-}
 
-## `tmpIB__AA__PHIT_IP__melt`
+## `tmpIB__AA__PHIT_IP__melt` {-}
+
+Unconditional all codes all causes list.
 
 ```
 CREATE TABLE [dbo].tmpIB__AA__PHIT_IP__melt(
@@ -100,8 +193,51 @@ CREATE TABLE [dbo].tmpIB__AA__PHIT_IP__melt(
 )
 ```
 
+## `tmpIB__lu__uid_icd` {-}
 
-## `tmpIB__PHIT_IP__aamethod`
+Relates ICD10 diagnosis codes with alcohol attributable causes.
+
+```
+CREATE TABLE [dbo].tmpIB__lu__uid_icd(
+	[uid]   [bigint]        NULL,
+	[codes] [varchar](4)    NULL
+)
+```
+
+## `[Age_Bands_Public_Health` {-}
+
+Relates single year of age to alcohol attributable ageband.
+
+```
+CREATE TABLE [dbo].[Age_Bands_Public_Health](
+	[Age_Years]                 [tinyint]       NULL,
+	[ESP_Year]                  [int]           NULL, -- 1976 or 2013
+	[All_AgeBand]               [varchar](6)    NULL,
+	[AgeBand_ESP]               [varchar](6)    NULL,
+	[Alcohol_Fraction_AgeBand]  [varchar](6)    NULL, -- axxyy/a75+
+	[Premature_Death_AgeBand]   [varchar](6)    NULL,
+)
+```
+
+## `tmpIB__AA__aaf_ag` {-}
+
+Alcohol attributable fractions broken down by age gender and alcohol attributable condition.
+
+```
+CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
+	[condition uid]     [bigint]        NULL,
+	[analysis type]     [varchar](4)    NULL, -- any/mort/morb
+	[cause basis]       [varchar](10)   NULL, -- individual/external
+	[af]                [float]         NULL, -- (0,1]
+	[gender]            [varchar](1)    NULL, -- M/F
+	[ageband aa]        [varchar](6)    NULL, -- xx-yy/75+
+	[ageband aa alt]    [varchar](6)    NULL, -- axxyy/a75+
+)
+```
+
+## `tmpIB__PHIT_IP__aamethod` {-}
+
+Selected considered filter records that are relevant for each analysis method.
 
 ```
 CREATE TABLE [dbo].tmpIB__PHIT_IP__aamethod(
@@ -117,40 +253,83 @@ CREATE TABLE [dbo].tmpIB__PHIT_IP__aamethod(
 )
 ```
 
-## `tmpIB__lu__uid_icd`
-
-```
-CREATE TABLE [dbo].tmpIB__lu__uid_icd(
-	[uid]   [bigint]        NULL,
-	[codes] [varchar](4)    NULL
-)
-
-```
-
-## `[Age_Bands_Public_Health`
-
-```
-CREATE TABLE [dbo].[Age_Bands_Public_Health](
-	[Age_Years]                 [tinyint]       NULL,
-	[ESP_Year]                  [int]           NULL, -- 1976 or 2013
-	[All_AgeBand]               [varchar](6)    NULL,
-	[AgeBand_ESP]               [varchar](6)    NULL,
-	[Alcohol_Fraction_AgeBand]  [varchar](6)    NULL, -- axxyy/a75+
-	[Premature_Death_AgeBand]   [varchar](6)    NULL,
-)
-```
-
-## `tmpIB__AA__aaf_ag`
+## `dbo.tmpIB__aac` {-}
 
 ```
 CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
-	[condition uid]     [bigint]        NULL,
-	[analysis type]     [varchar](4)    NULL, -- any/mort/morb
-	[cause basis]       [varchar](10)   NULL, -- individual/external
-	[af]                [float]         NULL, -- (0,1]
-	[gender]            [varchar](1)    NULL, -- M/F
-	[ageband aa]        [varchar](6)    NULL, -- xx-yy/75+
-	[ageband aa alt]    [varchar](6)    NULL, -- axxyy/a75+
+	[condition uid]         [bigint]        NULL,
+	[condition cat1]        [varchar](54)   NULL, -- whole/partial{chronic,acute}
+	[condition cat2]        [varchar](33)   NULL, -- one of 12
+	[condition desc]        [varchar](67)   NULL,
+	[condition attribution] [varchar](7)    NULL, -- whole/partial
+	[cause basis]           [varchar](10)   NULL, -- individual/external
+	[icd codes]             [varchar](27)   NULL
 )
+```
 
+# Appendices - SQL detail {-}
 
+## T2208 AAF ADM 11 TagAFInspect 20180303.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 11 TagAFInspect 20180303.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM 12 TagAF 20180305.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 12 TagAF 20180305.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM 20 ConstructMethods 20180301.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 20 ConstructMethods 20180301.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+)), collapse = '\n')`
+```
+
+# Appendices - possibly obsolete {-}
+
+## T2208 AAF ADM 30 ApplyMethods 20180301.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 30 ApplyMethods 20180301.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+)), collapse = '\n')`
+```
+
+## T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql {-}
+```sql
+`r paste(readLines(devtools::package_file(
+    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql"
+)), collapse = '\n')`
+```
