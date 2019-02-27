@@ -78,3 +78,20 @@
 #'     summary(16)
 #'
 "aa_fractions"
+
+#' Lookup between alcohol attributable conditions and icd10 codes
+#'
+#' Provides lookup tables for use with alcohol attributable fractions analyses.
+#'
+#' @format data frame with 69 rows and 7 fields
+#'
+#' @examples
+#' require("dplyr")
+#'
+#' merge(lu_aac_icd10, aa_versions, by = "condition_uid") %>%
+#'   dcast(
+#'     ... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|"
+#'   ) %>%
+#'   arrange(icd10)
+#'
+"lu_aac_icd10"
