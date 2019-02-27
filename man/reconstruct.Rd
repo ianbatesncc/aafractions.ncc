@@ -18,5 +18,16 @@ reconstruct(this_version = c("aaf_2017_phe", "aaf_2014_ljucph",
 \item{molten}{boolean to indicate cast or molten on (sex, ageband)}
 }
 \description{
-Reconstruct alcohol attributable fractions table for given version and analysis type.
+Reconstruct alcohol attributable fractions table for given version and
+analysis type.
+}
+\examples{
+
+t1 <- reconstruct("aaf_2017_phe", "morbidity")
+str(t1)
+
+t2 <- reconstruct("aaf_2017_phe", "morbidity", molten = TRUE)
+str(t2)
+
+
 }
