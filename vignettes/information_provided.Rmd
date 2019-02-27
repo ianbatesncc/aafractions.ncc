@@ -82,7 +82,7 @@ There are in addition two levels of further categorisation to indicate the natur
 require("dplyr", warn.conflicts = FALSE)
 set.seed(20180219) ; invisible(sample(32))
 knitr::kable(
-    caption = "Random rows"
+    caption = "lu_conditions (pseudo-random rows)"
     , sample_n(lu_conditions, 4)
 )
 
@@ -108,8 +108,14 @@ list("aa_ageband", "sex", "analysis_type", "Version") %>%
 
 `lu_versions` is a data.frame object that summarises which conditions are used in each version of the lookup tables.
 
-```{r}
-knitr::kable(data.table::dcast(lu_versions, ... ~ Version, value.var = "condition_uid", fun = function(x){any(as.logical(x))}))
+```{r echo = FALSE}
+#knitr::kable(data.table::dcast(lu_versions, ... ~ Version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
+
+knitr::kable(
+    caption = "`lu_conditions` (pseudo-random rows)"
+    , sample_n(lu_versions, 6)
+)
+
 
 ```
 
