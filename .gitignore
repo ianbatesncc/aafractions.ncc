@@ -1,8 +1,14 @@
+Meta
+doc
 .Rproj.user
 .Rhistory
 .RData
 inst/doc
-# vignette cache
-vignettes/*_cache/*
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
+# Include subdirectiires e.g. vignettes
+*/*_cache/
+*/cache/
 # xl backups
 data-raw/~*

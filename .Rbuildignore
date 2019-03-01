@@ -1,6 +1,11 @@
+^Meta$
+^doc$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
 ^data-raw$
 ^MILESTONES
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
