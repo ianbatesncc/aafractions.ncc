@@ -6,6 +6,11 @@
 
 require("dplyr")
 
+#' Expand icd10 codes
+#'
+#' Expand a list of codes to individual rows.  Can be separated by semicolons,
+#' specified by range, lenght 3 or length 4, with exclusions applied
+#'
 main_create_table <- function(
     bWriteCSV = FALSE
 ) {
