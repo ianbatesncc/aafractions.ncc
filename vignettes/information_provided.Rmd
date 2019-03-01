@@ -64,14 +64,14 @@ library("aafractions.ncc")
 
 Three datasets are now available.
 
-`lu_conditions`, `lu_versions` and `lu_fractions`.
+`aa_conditions`, `aa_versions` and `aa_fractions`.
 
 ## Conditions
 
-`lu_conditions` is a data.frame object that lists all the alcohol attributable conditions that are present in the lookup tables.  
+`aa_conditions` is a data.frame object that lists all the alcohol attributable conditions that are present in the lookup tables.  
 
 ```{r}
-glimpse(lu_conditions)
+glimpse(aa_conditions)
 ```
 
 For each condition there is a unique identifier, `condition_uid`, by which that condition is referenced.  Each condition has textual description (the `desc` field) and a definition in terms of ICD10 diagnosis codes (the `codes` field).  This allows a condition to be derived from an ICD10 code.
@@ -82,8 +82,8 @@ There are in addition two levels of further categorisation to indicate the natur
 require("dplyr", warn.conflicts = FALSE)
 set.seed(20180219) ; invisible(sample(32))
 knitr::kable(
-    caption = "lu_conditions (pseudo-random rows)"
-    , sample_n(lu_conditions, 4)
+    caption = "aa_conditions (pseudo-random rows)"
+    , sample_n(aa_conditions, 4)
 )
 
 ```
@@ -91,29 +91,29 @@ knitr::kable(
 
 ## Fractions
 
-`lu_fractions` is a data.frame object that lists all the alcohol attributable fractions for each of the alcohol attributable conditions.
+`aa_fractions` is a data.frame object that lists all the alcohol attributable fractions for each of the alcohol attributable conditions.
 
 ```{r}
-glimpse(lu_fractions)
+glimpse(aa_fractions)
 ```
 
 ```{r}
 list("aa_ageband", "sex", "analysis_type", "Version") %>% 
-    lapply(function(x, y){unique(select(y, x))}, y = lu_fractions) %>% 
+    lapply(function(x, y){unique(select(y, x))}, y = aa_fractions) %>% 
     knitr::kable(row.names = FALSE)
 
 ```
 
 ## Versions
 
-`lu_versions` is a data.frame object that summarises which conditions are used in each version of the lookup tables.
+`aa_versions` is a data.frame object that summarises which conditions are used in each version of the lookup tables.
 
 ```{r echo = FALSE}
-#knitr::kable(data.table::dcast(lu_versions, ... ~ Version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
+#knitr::kable(data.table::dcast(aa_versions, ... ~ Version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
 
 knitr::kable(
-    caption = "`lu_conditions` (pseudo-random rows)"
-    , sample_n(lu_versions, 6)
+    caption = "aa_versions (pseudo-random rows)"
+    , sample_n(aa_versions, 6)
 )
 
 
