@@ -1,0 +1,361 @@
+---
+title: "Counting Alcohol Attributable Events"
+author: "Ian Bates"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Counting Alcohol Attributable Events}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  , comment = "#>"
+  #, echo = FALSE
+)
+```
+
+```{r global, include = FALSE}
+library("aafractions.ncc")
+library("kableExtra")
+source(devtools::package_file("./data-raw/create_dummy_hesip.R"))
+
+set.seed(20180228) ; invisible(sample(40))
+
+```
+
+```{css echo = FALSE}
+.tight {padding: 0px ; margin: 0px ;}
+h5, h6 {margin-bottom: 2ex ;}
+th {color: black;}
+```
+
+# Introduction
+
+This document describes a method of counting alcohol attributable events.
+
+The context will be around HES inpatient admissions.
+
+The method was originally developed in SQL (and the underlying dataset is on a remote remote datawarehouse running MS SQL Server) so methods and terminology may refer to that legacy however the fundamental steps are readily transferable to `R`.
+
+## Alcohol Attributable Fractions
+
+Assigning activity to a risk factor is not easy as risk has differing strength effects for differing conditions and at a population level also depends on the exposure to the risk factor.  The method of attributable fractions is one approach.  See the [PHE Local Alcohol Profile for England User Guide, Section 3](https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf) for more information.
+
+### Conditions
+
+For alcohol as a risk factor there are a number of conditions considered related to alcohol.  A selection are shown below.
+
+##### Table: Alcohol Attributable Conditions
+```{r echo = FALSE, class.source = "tight"}
+c1 <- aa_conditions %>%
+    merge(aa_versions %>% filter(Version == "aaf_2017_phe"), by = "condition_uid") %>%
+    select(-cat2, -attribution, -cause) %>%
+    sample_n(6) %>%
+    arrange(condition_uid) %>%
+    select_at(vars("desc", "cat1", "condition_uid", "Version"))
+
+    knitr::kable(c1) %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+
+Each of these conditions are defined in terms of ICD10 diagnosis codes.  This will be returned to later.
+
+### Fractions
+
+The strength of the alcohol attribution for each condition differs by age and gender as shown below for one of the above conditions.
+
+##### Table: Alcohol Attributable Fractions
+```{r echo = FALSE}
+aa_fractions %>%
+    filter(Version == "aaf_2017_phe", condition_uid == max(c1$condition_uid)) %>% 
+    dcast(... ~ aa_ageband, value.var = "aaf", fun = sum) %>% 
+    merge(aa_conditions %>% select(condition_uid, desc)) %>% 
+    arrange(analysis_type) %>%
+    select_at(vars(
+        c("desc", "analysis_type", "sex")
+        , ends_with("Yrs")
+        , c("condition_uid", "Version"))
+    ) %>%
+    knitr::kable() %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+
+The attributable fractions range between 0 and 1 with 1 indicating all events for that condition are considered related to the risk factor and fractions less than 1 indicate the proportion of events that are considered attributable to the risk factor.
+
+This table also illustrates that the strength may differ by event type i.e. when considering people living with a condition (morbidity) or dying from that condition (mortality) the strength of the attribution may be different.
+
+
+### Conditions and Diagnosis codes
+
+Alcohol attributable conditions are defined in terms of ICD10 codes.  The actual definition varies from an individual code (e.g. `G62.1`) to a simple range of codes (e.g. `C00-C14`) to a complex collection of multiple codes (e.g. `I63-I66, I69.3-I69.4`).
+
+The problem of matching diagnosis codes with conditions can be solved in more than one way.  The general approach shown here is a lookup table between icd10 codes and alcohol attributable conditions with each record containing and icd10 code and its corresponding condition.  Extracts from this table are shown below.
+
+##### Table: Alcohol Attributable Conditions and Diagnosis code lookups
+```{r echo = FALSE}
+invisible(sample(4))
+
+lu_aac_icd10 %>% 
+    filter(condition_uid %in% c1$condition_uid) %>%
+    arrange(condition_uid, icd10) %>% 
+    split(.$condition_uid) %>% 
+    tail(5) %>%
+    #{ .[sample.int(length(.))] } %>% 
+    #{ .[order(names(.))] } %>%
+    lapply(head, n = 12) %>%
+    knitr::kable(row.names = FALSE) %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+The tables are split by condition and are truncated to show the first 12 icd10 codes.
+
+### Versions
+
+The alcohol attributable fractions have been revised over time.  Both the conditions and their definitions along with their attributable fractions can differ between versions.  The versions are retained for historic interest and those available are shown in the table below.
+
+##### Table: Alcohol Attributable Versions of Conditions and Fractions
+```{r echo = FALSE}
+aa_fractions %>% select(Version) %>%
+    unique() %>% arrange(desc(Version)) %>%
+    knitr::kable() %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+```
+
+The latest version is that used by PHE as described in their 2017 guidance is denoted `aaf_2017_phe`.  They are identical to those denoted `aaf_2014_ljucph`.  See the [PHE LAPE Further Resources Section](https://fingertips.phe.org.uk/profile/local-alcohol-profiles/supporting-information/further-resources) for more information.
+
+
+# Method
+
+The underlying events table is a dummy HES inpatients table.  Only fields relevant to this analysis are presented.
+
+```{r}
+ip <- create__dummy_hesip(n = 1024)
+glimpse(ip)
+```
+
+Some analysis decisions to make about reducing the problem space but still getting the job done.
+
+The first problem is to consider how to process the diagnosis fields.  This approach splits the concatenated diagnoses field into individual diagnosis codes.  This is an expensive resource operation but only needs to be done once.
+
+The problem space can be reduced as only a subset of events/records are relevant to the analysis, namely those satisfying all of:
+
+* First admission episodes 
+* Finished Consultant Episodes
+* Ordinary Admissions, Day Cases, and Mother and Babies (excluded are regular routine admissions, possibly)
+
+```{r}
+library("aafractions.ncc")
+
+tbl__AA__PHIT_IP__melt <- ip %>%
+    filter(
+        Consultant_Episode_Number == 1
+        , Episode_Status == 3
+        , Patient_Classification %in% c(1, 2, 5)
+    ) %>%
+    select(
+        GRID = Generated_Record_Identifier
+        , Diag_Concat_adj = Diagnosis_ICD_Concatenated_D
+    ) %>%
+    split(.$GRID) %>%
+    purrr::map_dfr(function(x) {
+        these_codes <- strsplit(x$Diag_Concat_adj, ";")
+        data.frame(
+            GRID = x$GRID
+            , icd10 = these_codes[[1]]
+            , pos = seq_along(these_codes[[1]])
+            , stringsAsFactors = FALSE
+        )
+    })
+
+glimpse(tbl__AA__PHIT_IP__melt)
+```
+
+This keeps `GRID` as the record identifier and splits out the `Diag_Concat_adj` field into the icd10 code and its position in the record are recorded.
+
+Will track a few records through the analysis.
+
+```{r}
+these_grids <- sample(tbl__AA__PHIT_IP__melt$GRID, 4)
+
+tbl__AA__PHIT_IP__melt %>%
+    filter(GRID %in% these_grids) %>%
+    select_at(vars(c("GRID", "icd10", "pos"), everything())) %>%
+    split(.$GRID) %>%
+    knitr::kable(row.names = FALSE) %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+
+The next problem is to convert these diagnoses codes into the language of alcohol attributable fractions.  The first step is to match each of these icd10 diagnosis code to an alcohol attributable condition and the second step is to assign an attributable fraction after determining age and sex from the relevant HES IP record.
+
+The lookup table `lu_aac_icd10`  has been created quasi-automatically from the list of icd10 codes defining each alcohol attributable condition.
+
+```{r}
+glimpse(aafractions.ncc::lu_aac_icd10)
+```
+
+Match diagnosis code to alcohol attributable condition:
+
+```{r}
+tbl__AA__PHIT_IP__melt <- tbl__AA__PHIT_IP__melt %>%
+    merge(
+        lu_aac_icd10 %>%
+            merge(
+                aa_versions %>% filter(Version == "aaf_2017_phe")
+                , by = "condition_uid"
+            )
+        , by.x = "icd10", by.y = "icd10"
+        , all.x = FALSE, all.y = FALSE
+    ) %>%
+    arrange(GRID, pos, icd10)
+
+glimpse(tbl__AA__PHIT_IP__melt)
+
+tbl__AA__PHIT_IP__melt %>%
+    filter(GRID %in% these_grids) %>%
+    select_at(vars(c("GRID", "icd10", "pos", "condition_uid"), everything())) %>%
+    split(.$GRID) %>%
+    head(2) %>%
+    knitr::kable() %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+
+Tag on attributable fraction:
+
+```{r}
+lu_ageband <- create_lu_ageband()
+glimpse(lu_ageband)
+
+lu_sex <- create_lu_gender()
+glimpse(lu_sex)
+
+tbl__AA__PHIT_IP__melt <- ip %>%
+    filter(
+        Generated_Record_Identifier %in% unique(tbl__AA__PHIT_IP__melt$GRID)
+    ) %>%
+    merge(
+        lu_ageband
+        , by.x = "Age_at_Start_of_Episode_D"
+        , by.y = "age"
+    ) %>%
+    merge(
+        lu_sex
+        , by.x = "Gender"
+        , by.y = "gender"
+    ) %>%
+    select(
+        GRID = Generated_Record_Identifier
+        , GenderC = genderC
+        , AgeBand_AA = ab_aaf
+    ) %>%
+    merge(
+        tbl__AA__PHIT_IP__melt
+        , by = "GRID"
+        , all.x = TRUE, all.y = FALSE
+    ) %>%
+    merge(
+        aa_fractions %>% filter(analysis_type == "morbidity")
+        , by.x = c("Version", "condition_uid", "AgeBand_AA", "GenderC")
+        , by.y = c("Version", "condition_uid", "aa_ageband", "sex")
+        , all.x = TRUE, all.y = FALSE
+    )
+
+glimpse(tbl__AA__PHIT_IP__melt)
+
+tbl__AA__PHIT_IP__melt %>%
+    filter(GRID %in% these_grids) %>%
+    select_at(vars(
+        c("GRID", "icd10", "pos", "condition_uid", "GenderC", "AgeBand_AA", "aaf")
+        , everything()
+    )) %>%
+    split(.$GRID) %>%
+    .[2] %>%
+    knitr::kable() %>%
+    kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+
+```
+
+So every record with an alcohol attributable condition has now been assigned an attributable fraction.  Note that one record can have multiple alcohol attributable conditions.  The next stage concerns how to count all these the attributable fractions sensibly.
+
+There are a number of methods PHE use in producing their statistics all based on determining one alcohol attributable condition for each event but differing in how that condition is selected.
+
+**alcohol-related (broad)** considers all alcohol attributable conditions and selects the condition with the highest attributable fraction value.
+
+**alcohol-specific** considers only alcohol attributable conditions that are specific to alcohol i.e. having an attributable fraction equal to one.
+
+**alcohol-related (narrow)** considers any alcohol attributable condition with a diagnosis code only in the first position and only external cause conditions occurring in any other diagnosis position.  Of these the condition with the highest attributable fraction value is selected.
+
+For all methods ties are broken by the position of the corresponding diagnosis code (earlier positions preferred over later positions).
+
+```{r}
+methods__broad <- tbl__AA__PHIT_IP__melt %>%
+    filter(aaf > 0) %>%
+    group_by(GRID) %>%
+    mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+    ungroup() %>%
+    filter(aa_rank_1_highest == 1) %>%
+    mutate(method = "alcohol-related (broad)")
+
+methods__narrow <- tbl__AA__PHIT_IP__melt %>%
+    filter(
+        (aaf > 0)
+        , (pos == 1) | (icd10 %like% "^[VWXY]")
+    ) %>%
+    group_by(GRID) %>%
+    mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+    ungroup() %>%
+    filter(aa_rank_1_highest == 1) %>%
+    mutate(method = "alcohol-related (narrow)")
+
+methods__specific <- tbl__AA__PHIT_IP__melt %>%
+    filter(aaf > 0.99) %>%
+    group_by(GRID) %>%
+    mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+    ungroup() %>%
+    filter(aa_rank_1_highest == 1) %>%
+    mutate(method = "alcohol-specific")
+
+aa_methods <- bind_rows(
+    methods__broad
+    , methods__narrow
+    , methods__specific
+) %>% select(-aa_rank_1_highest)
+
+glimpse(aa_methods)
+
+```
+
+```{r results = "asis"}
+select_colorder <- function(x, tofront, toback = NULL, middle = TRUE) {
+    nms <- names(x)
+    nms_front <- intersect(tofront, nms)
+    nms_back <- intersect(toback, nms)
+    nms_middle <- NULL
+    if (middle == TRUE)
+        nms_middle <- setdiff(nms, c(nms_front, nms_back))
+    
+    select_at(x, vars(c(nms_front, nms_middle, nms_back)))
+}
+
+aa_methods %>%
+    select_colorder(c("method", "GRID"), "Version") %>%
+    split(.$method) %>%
+    lapply(sample_n, 6) %>%
+    lapply(arrange_at, "GRID") %>%
+    lapply(function(x) {
+        knitr::kable(x) %>%
+            kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
+    }) %>% 
+    lapply(cat, sep = "\n") %>%
+    invisible()
+
+```
+
+# Results
+
