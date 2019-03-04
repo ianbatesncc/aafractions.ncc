@@ -1,98 +1,113 @@
-#
-# Create dummy HES table
-#
+#' Generate icd code space
+#'
+#' Generate all possible (valid and invalid) icd10 codes of the form
+#' [A-Z][0-9]{nn} where nn is either two or three digits in length (or both).
+#'
+#' @param len Overall length of code.  3 corresponds to Xnn, 4 to Xnnn, 34 to both.
+#'
+#' @return (character vector) All possible codes
+#'
+gen_codes <- function(len = c("len3", "len4", "len34")) {
+    len <- match.arg(len)
 
-library("dplyr", warn.conflicts = FALSE)
-library("data.table", warn.conflicts = FALSE)
+    if (len == "34") {
+        c3 <- gen_codes("len3")
+        c4 <- gen_codes("len4")
 
-create__dummy_hesip <- function(
+        retval <- c(c3, c4)
+    } else {
+
+    len <- as.numeric(substr(len, 4, 1))
+
+    retval <- list(c = LETTERS, nn = seq(0, 10^(len - 1) - 1)) %>%
+        purrr::cross() %>%
+        purrr::map_chr(function(x) {
+            paste0(x$c, formatC(x$nn, flag = "0", width = len))
+        })
+    }
+
+    retval
+}
+
+#' Return a random icd10 code.
+#'
+#' @param n (integer) number of records to return
+#' @param mix_type (character) Specify code mix - len3:all Xnn, len4:all Xnnn,
+#'   len34:any Xnn/Xnnn, aa_only:only alcohol attributable related, or
+#'   5050aalen34mix a 50/50 mix of aa_only and len34
+#' @param nmultiple (integer) return up to this many codes separated by ";" in
+#'   each record.  Default 1 (and no ";").
+#'
+#' Sampling from generated code space used, however for 50/50 mix due to problme
+#' space the icd10 codesa re generated randomly on-the-fly rather than sampled
+#' from full generated pattern space.  Still random but might not be the same
+#' random ... but probably is.
+#'
+#' @return (character vector) n records of 1 to nmultiple (varying) icd10-like
+#'   codes.
+#'
+ricd10 <- function(
     n = 1024
-    , bWriteCSV = TRUE
+    , mix_type = c("5050aalen34mix", "len3", "len4", "len34", "aa_only")
+    , nmultiple = 1
 ) {
 
-    #' Return a random icd10 code.
-    #'
-    #' @param nmultiple (integer) return up to this many codes separated by ";"
-    #'
-    #' @value (character)
-    #'
-    #'
-    ricd10 <- function(
-        n = 1024
-        , mix_type = c("5050aalen34mix", "len3", "len4", "len34", "aa_only")
-        , nmultiple = 1
-    ) {
+    mix_type <- match.arg(mix_type)
 
-        mix_type <- match.arg(mix_type)
+    codes <- NULL
 
-        #' generate icd code space
-        #'
-        #' @param len Xnn or Xnnn
-        #'
-        #' @value (character vector) All possible codes
-        #'
-        gen_codes <- function(len = c("3", "4", "34")) {
-            len <- match.arg(len)
-            len <- as.numeric(len)
-            list(c = LETTERS, nn = seq(0, 10^(len - 1) - 1)) %>%
-                purrr::cross() %>%
-                purrr::map_chr(function(x) {
-                    paste0(x$c, formatC(x$nn, flag = "0", width = len))
-                })
-        }
-
-        codes <- NULL
-
-        if (mix_type == "aa_only") {
-            codes <- unique(lu_aac_icd10$icd10)
-        } else if (mix_type == "len3") {
-            codes <- gen_codes(len = 3)
-        } else if (mix_type == "len4") {
-            codes <- gen_codes(len = 4)
-        } else if (mix_type == "len34") {
-            codes <- c(gen_codes(len = 3), gen_codes(len = 4))
-        } else {
-            # also for 5050mix
-            codes <- unique(lu_aac_icd10$icd10)
-        }
-
-        # return n character strings ...
-
-        if (nmultiple == 1) {
-
-            # ... each containing one icd10 code
-
-            if (!(mix_type == "5050aalen34mix")) {
-                retval <- sample(codes, n, replace = TRUE)
-            } else {
-                retval <- c(
-                    sample(codes, round(n / 2), replace = TRUE)
-                    # faster 3/4 selection
-                    , paste0(
-                        # n letters A-Z
-                        sample(LETTERS, n, replace = TRUE)
-                        # n numbers, [x]xx, zero padded
-                        , formatC(
-                            sample(seq.int(1e3) - 1, n, replace = TRUE)
-                            , flag = "0", width = "2"
-                        )
-                    )
-                )[sample(seq.int(n), n)]
-            }
-
-        } else {
-
-            # ... each containing up to nmultiple icd10 codes ...
-
-            retval <- replicate(
-                n
-                , paste(ricd10(sample.int(nmultiple, 1)), collapse = ";")
-            )
-
-        }
-
-        retval
+    if (mix_type %in% c("len3", "len4", "len34")) {
+        codes <- gen_codes(len = mix_type)
+    } else {
+        # aa_only, 5050mix
+        codes <- unique(aafractions.ncc::lu_aac_icd10$icd10)
     }
+
+    # return n character strings ...
+
+    if (nmultiple == 1) {
+        # ... each containing one icd10 code
+
+        if (!(mix_type == "5050aalen34mix")) {
+            retval <- sample(codes, n, replace = TRUE)
+        } else {
+            retval <- c(
+                sample(codes, round(n / 2), replace = TRUE)
+                # faster 3/4 selection
+                # - n letters A-Z ; n numbers, [x]xx, zero padded
+                , paste0(
+                    sample(LETTERS, n, replace = TRUE)
+                    , formatC(
+                        sample(seq.int(1e3) - 1, n, replace = TRUE)
+                        , flag = "0", width = "2"
+                    )
+                )
+            )[sample(seq.int(n), n)]
+        }
+
+    } else {
+        # ... each containing up to nmultiple icd10 codes ...
+
+        retval <- replicate(
+            n, paste(ricd10(sample.int(nmultiple, 1)), collapse = ";")
+        )
+    }
+
+    retval
+}
+
+#' Create dummy HES table
+#'
+#' Generate a psudo random HES IP table good enough to put any analysis through
+#' its paces.
+#'
+#' @param n (integer) length of table
+#' @param bWriteCSV (bool) save to disk .. or not
+#'
+create__dummy_hesip <- function(
+    n = 1024
+    , bWriteCSV = FALSE
+) {
 
     ip <- data.frame(
         Generated_Record_Identifier = 1e6 + seq(1, n)
@@ -150,7 +165,7 @@ create__dummy_hesip <- function(
         , stringsAsFactors = FALSE
     ) %>%
         mutate(
-            Diagnosis_ICD_1 = tstrsplit(
+            Diagnosis_ICD_1 = data.table::tstrsplit(
                 Diagnosis_ICD_Concatenated_D, ";", keep = 1
             ) %>% unlist()
             , Age_On_Admission = Age_at_Start_of_Episode_D
@@ -165,28 +180,43 @@ create__dummy_hesip <- function(
     ip
 }
 
+#' Create ageband labels
+#'
+#' Given breaks construct ageband labels of the form "xx-yy Yrs" and "zz+
+#' Yrs"
+#'
+#' @param breaks (integer vector) breaks
+#'
+#' @return (character vector) labels
+#'
+ab_labels_from_breaks <- function(breaks) {
+    nlabs <- length(breaks)
+    dlabs <- data.frame(
+        from = breaks[seq(1, nlabs - 1)]
+        , to = breaks[seq(2, nlabs)]
+    ) %>%
+        mutate(
+            lab = formatC(from, flag = "0", width = 2)
+            , lab = ifelse(
+                to == max(breaks)
+                , paste0(lab, "+")
+                , paste0(lab, "-", formatC(to - 1, flag = "0", width = 2))
+            )
+            , lab = paste0(lab, " Yrs")
+        )
+    dlabs$lab
+}
+
 #' Create age band looks for aa and esp
 #'
+#' @return (data.frame) with fields
+#'
+#' @examples
+#' require("dplyr")
+#' aafractions.ncc:::create_lu_ageband() %>% mutate_if(is.character, as.factor) %>% summary(20)
+#' aafractions.ncc:::create_lu_ageband() %>% select(starts_with("ab_")) %>% unique()
 #'
 create_lu_ageband <- function() {
-
-    ab_labels_from_breaks <- function(breaks) {
-        nlabs <- length(breaks)
-        dlabs <- data.frame(
-            from = breaks[seq(1, nlabs - 1)]
-            , to = breaks[seq(2, nlabs)]
-        ) %>%
-            mutate(
-                lab = formatC(from, flag = "0", width = 2)
-                , lab = ifelse(
-                    to == max(breaks)
-                    , paste0(lab, "+")
-                    , paste0(lab, "-", formatC(to - 1, flag = "0", width = 2))
-                )
-                , lab = paste0(lab, " Yrs")
-            )
-        dlabs$lab
-    }
 
     breaks_esp <- c(seq(0, 95, 5), 120)
     breaks_aa <- c(0, 16, 25, 35, 45, 55, 65, 75, 120)
@@ -257,9 +287,10 @@ example_analysis <- function(
             )
         }) %>%
         merge(
-            lu_aac_icd10 %>%
+            aafractions.ncc::lu_aac_icd10 %>%
                 merge(
-                    aa_versions %>% filter(Version == "aaf_2017_phe")
+                    aafractions.ncc::aa_versions %>%
+                        filter(Version == "aaf_2017_phe")
                     , by = "condition_uid"
                 )
             , by.x = "icd10", by.y = "icd10"
@@ -297,7 +328,8 @@ example_analysis <- function(
             , all.x = TRUE, all.y = FALSE
         ) %>%
         merge(
-            aa_fractions %>% filter(analysis_type == "morbidity")
+            aafractions.ncc::aa_fractions %>%
+                filter(analysis_type == "morbidity")
             , by.x = c("Version", "condition_uid", "AgeBand_AA", "GenderC")
             , by.y = c("Version", "condition_uid", "aa_ageband", "sex")
             , all.x = TRUE, all.y = FALSE
@@ -316,7 +348,7 @@ example_analysis <- function(
     methods__narrow <- tbl__AA__PHIT_IP__melt %>%
         filter(
             (aaf > 0)
-            , (pos == 1) | (icd10 %like% "^[VWXY]")
+            , (pos == 1) | (data.table::like(icd10, "^[VWXY]"))
         ) %>%
         group_by(GRID) %>%
         mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
@@ -332,10 +364,10 @@ example_analysis <- function(
         filter(aa_rank_1_highest == 1) %>%
         mutate(method = "alcohol-specific")
 
-    methods <- bind_rows(
+    aa_methods <- bind_rows(
         methods__broad
         , methods__narrow
         , methods__specific
-    )
+    ) %>% select(-aa_rank_1_highest)
 
 }
