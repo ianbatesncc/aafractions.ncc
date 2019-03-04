@@ -271,29 +271,33 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 
 ## T2208 AAF ADM 11 TagAFInspect 20180303.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 11 TagAFInspect 20180303.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 11 TagAFInspect 20180303.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM 12 TagAF 20180305.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 12 TagAF 20180305.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 12 TagAF 20180305.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM 20 ConstructMethods 20180301.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 20 ConstructMethods 20180301.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 20 ConstructMethods 20180301.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
@@ -301,35 +305,40 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 
 ## T2208 AAF ADM 30 ApplyMethods 20180301.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 30 ApplyMethods 20180301.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 30 ApplyMethods 20180301.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
 
 ## T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql {-}
 ```sql
-`r paste(readLines(devtools::package_file(
-    "./data-raw/aafsql/T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql"
+`r paste(readLines(system.file(
+    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql"
+    , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
