@@ -12,13 +12,15 @@ lu_aac_icd10
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
 \examples{
-require("dplyr")
+if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+  require("dplyr")
+  require("reshape2")
 
-merge(lu_aac_icd10, aa_versions, by = "condition_uid") \%>\%
-  dcast(
-    ... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|"
-  ) \%>\%
-  arrange(icd10)
-
+  aafractions.ncc::lu_aac_icd10 \%>\%
+    merge(aafractions.ncc::aa_versions, by = "condition_uid", allow.cartesian = TRUE) \%>\%
+    dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
+    arrange(icd10) \%>\%
+    head(16)
+}
 }
 \keyword{datasets}

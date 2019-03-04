@@ -21,11 +21,14 @@
 #' }
 #'
 #' @examples
-#' require("dplyr")
-#' aa_conditions %>%
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::aa_conditions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_"), -codes, -desc) %>%
 #'     summary(16)
+#' }
 #'
 "aa_conditions"
 
@@ -44,11 +47,14 @@
 #' }
 #'
 #' @examples
-#' require("dplyr")
-#' aa_versions %>%
-#'     mutate_if(is.character, as.factor) %>%
-#'     select(-starts_with("condition_")) %>%
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::aa_versions %>%
+#'     dplyr::mutate_if(is.character, as.factor) %>%
+#'     dplyr::select(-starts_with("condition_")) %>%
 #'     summary(16)
+#' }
 #'
 "aa_versions"
 
@@ -71,11 +77,14 @@
 #' }
 #'
 #' @examples
-#' require("dplyr")
-#' aa_fractions %>%
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::aa_fractions %>%
 #'     mutate_if(is.character, as.factor) %>%
 #'     select(-starts_with("condition_")) %>%
 #'     summary(16)
+#' }
 #'
 "aa_fractions"
 
@@ -86,12 +95,14 @@
 #' @format data frame with 69 rows and 7 fields
 #'
 #' @examples
-#' require("dplyr")
+#' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+#'   require("dplyr")
+#'   require("reshape2")
 #'
-#' merge(lu_aac_icd10, aa_versions, by = "condition_uid") %>%
-#'   dcast(
-#'     ... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|"
-#'   ) %>%
-#'   arrange(icd10)
-#'
+#'   aafractions.ncc::lu_aac_icd10 %>%
+#'     merge(aafractions.ncc::aa_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
+#'     dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
+#'     arrange(icd10) %>%
+#'     head(16)
+#' }
 "lu_aac_icd10"

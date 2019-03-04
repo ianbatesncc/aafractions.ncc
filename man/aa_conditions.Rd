@@ -24,11 +24,14 @@ aa_conditions
 Provides lookup tables for use with alcohol attributable fractions analyses.
 }
 \examples{
-require("dplyr")
-aa_conditions \%>\%
+if (isNamespaceLoaded("dplyr")) {
+  require("dplyr")
+
+  aafractions.ncc::aa_conditions \%>\%
     mutate_if(is.character, as.factor) \%>\%
     select(-starts_with("condition_"), -codes, -desc) \%>\%
     summary(16)
+}
 
 }
 \keyword{datasets}
