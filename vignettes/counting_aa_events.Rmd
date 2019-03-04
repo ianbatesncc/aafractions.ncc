@@ -18,7 +18,11 @@ knitr::opts_chunk$set(
 ```
 
 ```{r global, include = FALSE}
+library("dplyr")
+library("data.table")
+
 library("aafractions.ncc")
+
 library("kableExtra")
 
 set.seed(20180228) ; invisible(sample(40))
@@ -49,8 +53,12 @@ For alcohol as a risk factor there are a number of conditions considered related
 
 ##### Table: Alcohol Attributable Conditions
 ```{r echo = FALSE, class.source = "tight"}
-c1 <- aa_conditions %>%
-    merge(aa_versions %>% filter(Version == "aaf_2017_phe"), by = "condition_uid") %>%
+c1 <- aafractions.ncc::aa_conditions %>%
+    merge(
+        aafractions.ncc::aa_versions %>% 
+            filter(Version == "aaf_2017_phe")
+        , by = "condition_uid"
+    ) %>%
     select(-cat2, -attribution, -cause) %>%
     sample_n(6) %>%
     arrange(condition_uid) %>%
@@ -69,10 +77,10 @@ The strength of the alcohol attribution for each condition differs by age and ge
 
 ##### Table: Alcohol Attributable Fractions
 ```{r echo = FALSE}
-aa_fractions %>%
+aafractions.ncc::aa_fractions %>%
     filter(Version == "aaf_2017_phe", condition_uid == max(c1$condition_uid)) %>% 
     dcast(... ~ aa_ageband, value.var = "aaf", fun = sum) %>% 
-    merge(aa_conditions %>% select(condition_uid, desc)) %>% 
+    merge(aafractions.ncc::aa_conditions %>% select(condition_uid, desc)) %>% 
     arrange(analysis_type) %>%
     select_at(vars(
         c("desc", "analysis_type", "sex")
@@ -99,7 +107,7 @@ The problem of matching diagnosis codes with conditions can be solved in more th
 ```{r echo = FALSE}
 invisible(sample(4))
 
-lu_aac_icd10 %>% 
+aafractions.ncc::lu_aac_icd10 %>% 
     filter(condition_uid %in% c1$condition_uid) %>%
     arrange(condition_uid, icd10) %>% 
     split(.$condition_uid) %>% 
@@ -119,7 +127,8 @@ The alcohol attributable fractions have been revised over time.  Both the condit
 
 ##### Table: Alcohol Attributable Versions of Conditions and Fractions
 ```{r echo = FALSE}
-aa_fractions %>% select(Version) %>%
+aafractions.ncc::aa_fractions %>% 
+    select(Version) %>%
     unique() %>% arrange(desc(Version)) %>%
     knitr::kable() %>%
     kableExtra::kable_styling(bootstrap_options = "condensed", font_size = 12)
@@ -133,7 +142,7 @@ The latest version is that used by PHE as described in their 2017 guidance is de
 The underlying events table is a dummy HES inpatients table.  Only fields relevant to this analysis are presented.
 
 ```{r}
-ip <- create__dummy_hesip(n = 1024)
+ip <- aafractions.ncc:::create__dummy_hesip(n = 1024)
 glimpse(ip)
 ```
 
@@ -228,10 +237,10 @@ tbl__AA__PHIT_IP__melt %>%
 Tag on attributable fraction:
 
 ```{r}
-lu_ageband <- create_lu_ageband()
+lu_ageband <- aafractions.ncc:::create_lu_ageband()
 glimpse(lu_ageband)
 
-lu_sex <- create_lu_gender()
+lu_sex <- aafractions.ncc:::create_lu_gender()
 glimpse(lu_sex)
 
 tbl__AA__PHIT_IP__melt <- ip %>%

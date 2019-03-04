@@ -16,13 +16,17 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE
   , comment = "#>"
-  , cache = TRUE
 )
 
 options(knitr.kable.NA = "")
 
 ```
 
+```{r global, include = FALSE}
+library("aafractions.ncc")
+library("dplyr")
+
+```
 
 # Executive Summary
 

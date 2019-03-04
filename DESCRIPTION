@@ -13,8 +13,10 @@ Imports:
     , magrittr
 Suggests:
     knitr
+    , kableExtra
     , purrr
     , rmarkdown
+    , reshape2
     , testthat
     , readxl
 VignetteBuilder: knitr

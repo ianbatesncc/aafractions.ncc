@@ -18,6 +18,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r global, include = FALSE}
+library("aafractions.ncc")
+```
+
 ## Introduction
 
 The tables presented here are taken from online publically available sources.  These sources are listed here.
@@ -26,7 +30,7 @@ The tables presented here are taken from online publically available sources.  T
 
 ### Current
 
-[Local Alcohol Profiles for England 2017 user guide (.pdf)](https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf)
+[Local Alcohol Profiles for England 2017 user guide (.pdf)](https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf) ([local link](`r system.file("aa_documentation", "LAPE_2017_User_Guide_071117.pdf", package = "aafractions.ncc")`))
 
 * Appendix 1. - Updated alcohol-attributable fractions
 
@@ -34,17 +38,17 @@ The tables presented here are taken from online publically available sources.  T
 
 ### Previous
 
-[Updating England-Specific Alcohol-Attributable Fractions (.pdf)](http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf)
+[Updating England-Specific Alcohol-Attributable Fractions (.pdf)](http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf) ([local link](`r system.file("aa_documentation", "24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf", package = "aafractions.ncc")`))
 
 * Appendix 2. - Updated alcohol-attributable fractions
     
-[Alcohol attributable fractions for England (.pdf)](http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf)
+[Alcohol attributable fractions for England (.pdf)](http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf) ([local link](`r system.file("aa_documentation", "alcoholattributablefractions.pdf", package = "aafractions.ncc")`))
 
 * Table 17. - Alcohol-attributable fractions by age and sex
 * Table 20. - AAFs used by the Strategy Unit/Cabinet Office (2003)
 * Table 21. - AAFs used to calculate the national indicator for alcohol, NI 39 (provisional figures produced in November 2007)
 
-[HES Alcohol Fractions (.xlsx)](https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx)
+[HES Alcohol Fractions (.xlsx)](https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx) ([local link](`r system.file("aa_documentation", "hes_apc_data_dictionary_-_supplementary_table.xlsx", package = "aafractions.ncc")`))
 
 * Worksheet `\Alcohol Fractions/`.
 
