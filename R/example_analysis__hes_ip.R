@@ -1,3 +1,9 @@
+#' Example analysis
+#'
+#' @family examples_of_analysis
+#'
+NULL
+
 #' Generate icd code space
 #'
 #' Generate all possible (valid and invalid) icd10 codes of the form
@@ -6,6 +12,8 @@
 #' @param len Overall length of code.  3 corresponds to Xnn, 4 to Xnnn, 34 to both.
 #'
 #' @return (character vector) All possible codes
+#'
+#' @family examples_of_analysis
 #'
 gen_codes <- function(len = c("len3", "len4", "len34")) {
     len <- match.arg(len)
@@ -45,6 +53,8 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
 #'
 #' @return (character vector) n records of 1 to nmultiple (varying) icd10-like
 #'   codes.
+#'
+#' @family examples_of_analysis
 #'
 ricd10 <- function(
     n = 1024
@@ -103,6 +113,10 @@ ricd10 <- function(
 #'
 #' @param n (integer) length of table
 #' @param bWriteCSV (bool) save to disk .. or not
+#'
+#' @return (data.frame) dummy HES table
+#'
+#' @family examples_of_analysis
 #'
 create__dummy_hesip <- function(
     n = 1024
@@ -189,6 +203,8 @@ create__dummy_hesip <- function(
 #'
 #' @return (character vector) labels
 #'
+#' @family examples_of_analysis
+#'
 ab_labels_from_breaks <- function(breaks) {
     nlabs <- length(breaks)
     dlabs <- data.frame(
@@ -215,6 +231,8 @@ ab_labels_from_breaks <- function(breaks) {
 #' require("dplyr")
 #' aafractions.ncc:::create_lu_ageband() %>% mutate_if(is.character, as.factor) %>% summary(20)
 #' aafractions.ncc:::create_lu_ageband() %>% select(starts_with("ab_")) %>% unique()
+#'
+#' @family examples_of_analysis
 #'
 create_lu_ageband <- function() {
 
@@ -246,6 +264,9 @@ create_lu_ageband <- function() {
 #' Create age band looks for aa and esp
 #'
 #'
+#'
+#' @family examples_of_analysis
+#'
 create_lu_gender <- function() {
     data.table::fread(text = "
 gender,genderC,genderName
@@ -260,7 +281,10 @@ gender,genderC,genderName
 #'
 #' - suitable for vignette
 #'
-example_analysis <- function(
+#'
+#' @family examples_of_analysis
+#'
+main__example_analysis__hes_ip <- function(
 ) {
     ip <- create__dummy_hesip()
 
@@ -370,4 +394,5 @@ example_analysis <- function(
         , methods__specific
     ) %>% select(-aa_rank_1_highest)
 
+    aa_methods
 }
