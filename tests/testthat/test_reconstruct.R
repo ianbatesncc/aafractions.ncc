@@ -5,8 +5,6 @@
 context("reconstruct")
 library("aafractions.ncc")
 
-# dodge some dplyr related bindrcpp warnings
-suppressWarnings(library("bindrcpp"))
 
 test_that("reconstruct works", {
 
@@ -23,16 +21,13 @@ test_that("reconstruct all versions and types", {
     these_analysistypes <- eval(formals(reconstruct)[[2]])
     # c("morbidity", "mortality")
 
-    t2 <- merge(
-        data.frame(
+    t2 <- purrr::cross_df(
+        list(
             this_version = these_versions
-            , stringsAsFactors = FALSE
+            , this_analysistype = these_analysistypes
         )
-        , data.frame(
-            this_analysistype = these_analysistypes
-            , stringsAsFactors = FALSE
-        )
-    ) %>% mutate(tname = paste(this_version, this_analysistype, sep = "__")) %>%
+    ) %>%
+        mutate(tname = paste(this_version, this_analysistype, sep = "__")) %>%
     {mapply(
         function(v0, v1, v2){list(reconstruct(v1, v2, verbose = FALSE))}
         , .$tname, .$this_version, .$this_analysistype

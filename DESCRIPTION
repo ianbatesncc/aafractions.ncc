@@ -1,17 +1,23 @@
 Package: aafractions.ncc
 Title: Alcohol Attributable Fractions Lookup Tables
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: person("Ian", "Bates", email = "ian.bates@nottscc.gov.uk", role = c("aut", "cre"))
 Description: Provides lookup tables for use with alcohol attributable fractions analyses.
 Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: data.table,
-    dplyr
-Suggests: knitr,
-    rmarkdown,
-    testthat,
-    readxl
+Imports:
+    data.table
+    , dplyr
+    , magrittr
+Suggests:
+    knitr
+    , kableExtra
+    , purrr
+    , rmarkdown
+    , reshape2
+    , testthat
+    , readxl
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
