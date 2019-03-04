@@ -14,3 +14,38 @@
 #' @name aafractions.ncc
 #'
 NULL
+
+# TO keep check happy for field names
+globalVariables(c(
+    # create__dummy_hesip
+    "Diagnosis_ICD_Concatenated_D"
+    , "Age_at_Start_of_Episode_D"
+    , "Consultant_Episode_End_Date"
+    , "Episode_Duration_from_Grouper"
+    , "Local_Authority_District"
+    , "GIS_LSOA_2011_D"
+    # create_lu_ageband : ab_labels_from_breaks
+    , "from"
+    , "to"
+    , "lab"
+    # create_lu_ageband
+    , "age"
+    # example_analysis
+    , "Episode_Status"
+    , "Patient_Classification"
+    , "Generated_Record_Identifier"
+    , "."
+    #, "lu_aac_icd10"
+    #, "aa_versions"
+    , "GRID"
+    , "pos"
+    , "icd10"
+    , "genderC"
+    , "ab_aaf"
+    #, "aa_fractions"
+    , "analysis_type"
+    , "aaf"
+    , "aa_rank_1_highest"
+    , "Consultant_Episode_Number"
+    , "aa_aa_rank_1_highest"
+))
