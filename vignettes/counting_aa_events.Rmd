@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 ```{r global, include = FALSE}
 library("aafractions.ncc")
 library("kableExtra")
-source(devtools::package_file("./data-raw/create_dummy_hesip.R"))
 
 set.seed(20180228) ; invisible(sample(40))
 

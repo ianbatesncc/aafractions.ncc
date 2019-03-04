@@ -272,7 +272,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 11 TagAFInspect 20180303.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 11 TagAFInspect 20180303.sql"
+    "sql", "aaf", "T2208_AAF_ADM_11_TagAFInspect_20180303.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -280,7 +280,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 12 TagAF 20180305.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 12 TagAF 20180305.sql"
+    "sql", "aaf", "T2208_AAF_ADM_12_TagAF_20180305.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -288,7 +288,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 20 ConstructMethods 20180301.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 20 ConstructMethods 20180301.sql"
+    "sql", "aaf", "T2208_AAF_ADM_20_ConstructMethods_20180301.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -296,7 +296,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+    "sql", "aaf", "T2208_AAF_ADM_ApplyMethods_Generic_20180621.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -306,7 +306,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 30 ApplyMethods 20180301.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 30 ApplyMethods 20180301.sql"
+    "sql", "aaf", "T2208_AAF_ADM_30_ApplyMethods_20180301.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -314,7 +314,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 31 ApplyMethods LSOA 20180305.sql"
+    "sql", "aaf", "T2208_AAF_ADM_31_ApplyMethods_LSOA_20180305.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -322,7 +322,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM 31 ApplyMethods LSOA Condition 20180305.sql"
+    "sql", "aaf", "T2208_AAF_ADM_31_ApplyMethods_LSOA_Condition_20180305.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -330,7 +330,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM ApplyMethods Generic 20180621.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic 20180621.sql"
+    "sql", "aaf", "T2208_AAF_ADM_ApplyMethods_Generic_20180621.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
@@ -338,7 +338,7 @@ CREATE TABLE [dbo].[tmpIB__AA__aaf_ag](
 ## T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql {-}
 ```sql
 `r paste(readLines(system.file(
-    "sql", "aaf", "T2208 AAF ADM ApplyMethods Generic Readm 20180417.sql"
+    "sql", "aaf", "T2208_AAF_ADM_ApplyMethods_Generic_Readm_20180417.sql"
     , package = "aafractions.ncc"
 )), collapse = '\n')`
 ```
