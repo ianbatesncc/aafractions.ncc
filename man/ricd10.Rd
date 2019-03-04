@@ -33,7 +33,9 @@ Return a random icd10 code.
 Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{create__dummy_hesip}},
   \code{\link{create_lu_ageband}},
-  \code{\link{create_lu_gender}}, \code{\link{gen_codes}},
+  \code{\link{create_lu_gender}},
+  \code{\link{examples_of_analysis}},
+  \code{\link{gen_codes}},
   \code{\link{main__example_analysis__hes_ip}}
 }
 \concept{examples_of_analysis}

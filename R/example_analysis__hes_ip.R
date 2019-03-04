@@ -1,5 +1,6 @@
 #' Example analysis
 #'
+#' @name examples_of_analysis
 #' @family examples_of_analysis
 #'
 NULL
