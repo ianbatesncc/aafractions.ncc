@@ -1,0 +1,126 @@
+---
+title: "Information Provided"
+author: "Ian Bates"
+date: "`r Sys.Date()`"
+output:
+    rmarkdown::html_vignette:
+        toc: true
+        toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Information Provided}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  , comment = "#>"
+)
+
+options(knitr.kable.NA = "")
+
+```
+
+```{r global, include = FALSE}
+library("aafractions.ncc")
+library("dplyr")
+
+```
+
+# Executive Summary
+
+## Aims and Objectives
+
+* Describe data items in this package
+
+* Describe how this package can be used in Alcohol Attributable Fractions calculations
+
+* Describe various Alcohol Attributable Fraction analyses
+
+## Methods
+
+## Results
+
+### Package Outputs
+
+## Discussion
+
+# Introduction
+
+Underlying the Alcohol Attributable Fractions calculations are the lookup tables relating alcohol conditions to ICD10 diagnosis codes and those conditions to their respective (age, sex) specific attributable fractions.
+
+There have been a number of revisions to initial lookup tables.  This package provides a number of recent lookup tables in a machine readable and processable format for use in local alcohol attributable fraction calculations.
+
+# Methods
+
+The original lookup tables are available in a number of formats including .pdf documents and .xlsx spreadsheets.  Their extraction is (to be) described in another document.
+
+This document shows how theses tables are to be accessed and queried.
+
+# Results
+
+Load package with:
+
+```{r}
+library("aafractions.ncc")
+```
+
+Three datasets are now available.
+
+`aa_conditions`, `aa_versions` and `aa_fractions`.
+
+## Conditions
+
+`aa_conditions` is a data.frame object that lists all the alcohol attributable conditions that are present in the lookup tables.  
+
+```{r}
+glimpse(aa_conditions)
+```
+
+For each condition there is a unique identifier, `condition_uid`, by which that condition is referenced.  Each condition has textual description (the `desc` field) and a definition in terms of ICD10 diagnosis codes (the `codes` field).  This allows a condition to be derived from an ICD10 code.
+
+There are in addition two levels of further categorisation to indicate the nature of the condition which is of use in later analysis.  `cat1` indicates wholly attributable, or partially attributable - chronic or partially attributable - acute.  `cat2` indicates wholly attributable or one of eleven other conditions.
+
+```{r echo = FALSE}
+require("dplyr", warn.conflicts = FALSE)
+set.seed(20180219) ; invisible(sample(32))
+knitr::kable(
+    caption = "aa_conditions (pseudo-random rows)"
+    , sample_n(aa_conditions, 4)
+)
+
+```
+
+
+## Fractions
+
+`aa_fractions` is a data.frame object that lists all the alcohol attributable fractions for each of the alcohol attributable conditions.
+
+```{r}
+glimpse(aa_fractions)
+```
+
+```{r}
+list("aa_ageband", "sex", "analysis_type", "Version") %>% 
+    lapply(function(x, y){unique(select(y, x))}, y = aa_fractions) %>% 
+    knitr::kable(row.names = FALSE)
+
+```
+
+## Versions
+
+`aa_versions` is a data.frame object that summarises which conditions are used in each version of the lookup tables.
+
+```{r echo = FALSE}
+#knitr::kable(data.table::dcast(aa_versions, ... ~ Version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
+
+knitr::kable(
+    caption = "aa_versions (pseudo-random rows)"
+    , sample_n(aa_versions, 6)
+)
+
+
+```
+
+# Discussion

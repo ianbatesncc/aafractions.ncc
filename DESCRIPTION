@@ -7,11 +7,17 @@ Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: data.table,
-    dplyr
-Suggests: knitr,
-    rmarkdown,
-    testthat,
-    readxl
+Imports:
+    data.table
+    , dplyr
+    , magrittr
+Suggests:
+    knitr
+    , kableExtra
+    , purrr
+    , rmarkdown
+    , reshape2
+    , testthat
+    , readxl
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
