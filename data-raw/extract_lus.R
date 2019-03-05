@@ -240,7 +240,7 @@ extract_sa <- function(
     # conditions
 
     sa_conditions <- lu1 %>%
-        select(-contains("en_"), -"age") %>%
+        select(-contains("en_"), -"age", -"condition_fuid") %>%
         unique()
 
     # fractions
