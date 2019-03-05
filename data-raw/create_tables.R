@@ -100,7 +100,7 @@ seq_icd10 <- function(i1, i2, len = 3) {
 #' Expand icd10 codes
 #'
 #' Expand a list of codes to individual rows.  Can be separated by semicolons,
-#' specified by range, lenght 3 or length 4, with exclusions applied
+#' specified by range, length 3 or length 4, with exclusions applied
 #'
 main_create_table <- function(
     bWriteCSV = FALSE
