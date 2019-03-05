@@ -4,6 +4,7 @@
 
 # Create the lu__uid_cid table
 
+require("aafractions.ncc")
 require("dplyr")
 
 #' expand len3 icd10
@@ -114,7 +115,7 @@ seq_icd10 <- function(i1, i2, len = 3) {
 #'
 #' @return (data.frame) diagnosis code to condition_uid lookup
 #'
-main__expand_diagnoses <- function(
+expand_diagnoses <- function(
     x
     , name = "lu_uid_icd"
     , suffix = NULL
@@ -292,10 +293,27 @@ main__expand_diagnoses <- function(
     t4
 }
 
+#' Do the business
 
-main__expand_diagnoses(
-    aa_conditions %>% select(condition_uid, codes)
-    , name = "lu_aac_icd10"
-    , suffix = NULL
-    , bWriteCSV = TRUE
-)
+main__expand_diagnoses <- function(
+    bWriteCSV = TRUE
+) {
+    # bWriteCSV <- FALSE
+
+    lu_aac_icd10 <- expand_diagnoses(
+        aafractions.ncc::aa_conditions %>%
+            select(condition_uid, codes)
+        , name = "lu_aac_icd10"
+        , suffix = NULL
+        , bWriteCSV = bWriteCSV
+    )
+
+    lu_sac_icd10 <- expand_diagnoses(
+        aafractions.ncc::sa_conditions %>%
+            select(condition_uid, icd_10_code)
+        , name = "lu_sac_icd10"
+        , suffix = NULL
+        , bWriteCSV = bWriteCSV
+    )
+}
+

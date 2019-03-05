@@ -19,7 +19,7 @@
 #' @return list(lu_conditions, lu_versions, lu_fractions)
 #'
 
-main__extract_aa <- function(
+extract_aa <- function(
     bWriteCSV = FALSE
 ) {
 
@@ -178,7 +178,7 @@ main__extract_aa <- function(
 #' 2.
 #'
 #'
-main__extract_sa <- function(
+extract_sa <- function(
     bWriteCSV = FALSE
 ) {
     require("readxl")
@@ -268,7 +268,14 @@ main__extract_sa <- function(
 
 }
 
-# do the business
+#' do the business
 
-#main__extract_aa(TRUE)
-main__extract_sa(TRUE) -> rv
+main__extract_lus <- function(
+    bWriteCSV = TRUE
+) {
+    # bWriteCSV = FALSE
+    rv_aa <- extract_aa(bWriteCSV = bWriteCSV)
+    rv_sa <- extract_sa(bWriteCSV = bWriteCSV)
+
+    invisible(list(aa = rv_aa, sa = rv_sa))
+}
