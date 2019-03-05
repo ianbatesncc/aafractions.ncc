@@ -102,14 +102,32 @@ seq_icd10 <- function(i1, i2, len = 3) {
 #' Expand a list of codes to individual rows.  Can be separated by semicolons,
 #' specified by range, length 3 or length 4, with exclusions applied
 #'
-main_create_table <- function(
-    bWriteCSV = FALSE
+#' @param x (data.frame) condition_uid and compact_icd columns
+#' @param name (character) start of file/variable name
+#' @param suffix (character) suffix to add to variable
+#' @param bWriteCSV (bool) if TRUE then save .csv and pacakge .rda
+#'
+#' @details
+#'
+#' The final variable name is \code{name_suffix}, or just \code{name} if
+#' \code{suffix} is \code{NULL}.
+#'
+#' @return (data.frame) diagnosis code to condition_uid lookup
+#'
+main__expand_diagnoses <- function(
+    x
+    , name = "lu_uid_icd"
+    , suffix = NULL
+    , bWriteCSV = FALSE
 ) {
+    if (!is.data.frame(x))
+        stop("Expecting data.frame")
+
+    names(x) <- c("condition_uid", "codes")
 
     # Clean the codes string for later parsing
 
-    t2 <- aa_conditions %>%
-        select(condition_uid, codes) %>%
+    t2 <- x %>%
         mutate(
             # ", " separators to ";"
             c2 = gsub(", {1,}([A-Z])", ";\\1", codes)
@@ -238,16 +256,46 @@ main_create_table <- function(
                 select(condition_uid, icd10)
         })
 
-    lu_aac_icd10 <- t4
-
     # save
 
     if (bWriteCSV) {
-        data.table::fwrite(lu_aac_icd10, "./data-raw/lu_aac_icd10.csv")
-        usethis::use_data(lu_aac_icd10, overwrite = TRUE)
+        this_stub <- paste(c(name, suffix), collapse = "_")
+        this_csv <- paste0("./data-raw/", this_stub, ".csv")
+
+        #' Wrapper to use_data to save variable with given name
+        #'
+        #' @param x (R object)
+        #' @param varname (character) name to save the variable as
+        #'
+        #' @return invisible()
+        #'
+        use_data2 <- function(x, varname) {
+            assign(varname, x)
+            eval(parse(text = paste0(
+                "usethis::use_data("
+                , varname
+                , ", overwrite = TRUE"
+                , ")"
+            )))
+            rm(list = varname)
+            invisible()
+        }
+
+        cat("INFO: saving", this_csv, "...", "\n")
+        data.table::fwrite(t4, this_csv)
+
+        #usethis::use_data(lu_aac_icd10, overwrite = TRUE)
+        use_data2(t4, this_stub)
+
     }
 
-    lu_aac_icd10
+    t4
 }
 
-main_create_table(bWriteCSV = TRUE)
+
+main__expand_diagnoses(
+    aa_conditions %>% select(condition_uid, codes)
+    , name = "lu_aac_icd10"
+    , suffix = NULL
+    , bWriteCSV = TRUE
+)
