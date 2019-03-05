@@ -19,7 +19,7 @@
 #' @return list(lu_conditions, lu_versions, lu_fractions)
 #'
 
-main__extract <- function(
+main__extract_aa <- function(
     bWriteCSV = FALSE
 ) {
 
@@ -53,6 +53,8 @@ main__extract <- function(
     # (cat1, cat2, desc, codes) as key
     # fucid - factor
     # gucid - numeric
+    #
+    # generate key, sort, reorder key
 
     lus <- lus %>%
         filter(!grepl("^§", desc)) %>%
@@ -168,4 +170,105 @@ main__extract <- function(
     ))
 }
 
-main__extract(TRUE)
+#' Extract the data into R objects
+#'
+#' Smoking attributable fractions tables
+#'
+#' 1. compact table of conditions, codes, and relative risk
+#' 2.
+#'
+#'
+main__extract_sa <- function(
+    bWriteCSV = FALSE
+) {
+    require("readxl")
+    require("dplyr")
+    require("tidyr")
+    #require("data.table")
+    require("janitor")
+
+    # load worksheets
+
+    this_xl <- devtools::package_file("./data-raw/srelrisk_lus.xlsx")
+
+    these_wss <- excel_sheets(this_xl)
+
+    these_sheets <- intersect(these_wss, c("B1", "B2", "ab_sa_explode"))
+
+    wss <- these_sheets %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: reading sheet", x, "...", "\n")
+                this_skip = 6
+                readxl::read_excel(
+                    path = y, sheet = x, skip = this_skip, col_names = TRUE
+                )
+            }, this_xl
+        )
+
+    names(wss) <- these_sheets
+
+    # clean
+    #
+    # generate key, sort, reorder key
+
+    lu1 <- wss[["B2"]] %>%
+        #
+        # clean
+        #
+        janitor::clean_names() %>%
+        select(-"footnote") %>%
+        filter(!is.na(icd_10_code)) %>%
+        #
+        # generate UID
+        #
+        mutate_if(is.character, as.factor) %>%
+        mutate(
+            condition_fuid = interaction(
+                cat1, disease_category, icd_10_code, drop = TRUE
+            )
+        ) %>%
+        mutate(
+            condition_fuid = factor(
+                condition_fuid
+                , levels = unique(condition_fuid)
+                , ordered = TRUE
+            )
+            , condition_uid = as.integer(condition_fuid)
+        )
+
+    # conditions
+
+    sa_conditions <- lu1 %>%
+        select(-contains("en_"), -"age") %>%
+        unique()
+
+    # fractions
+
+    sa_fractions <- lu1 %>%
+        gather(contains("en_"), key = "gss", value = "srr") %>%
+        mutate(gss = sub("en_", "en;", gss)) %>%
+        separate(gss, into = c("sex", "smoking_status"), sep = ";") %>%
+        select_at(vars("condition_uid", "age", "sex", "smoking_status", "srr"))
+
+    # save
+
+    if (bWriteCSV) {
+        data.table::fwrite(sa_conditions, "./data-raw/sa_conditions.csv")
+        usethis::use_data(sa_conditions, overwrite = TRUE)
+
+        data.table::fwrite(sa_fractions, "./data-raw/sa_fractions.csv")
+        usethis::use_data(sa_fractions, overwrite = TRUE)
+    }
+
+    invisible(list(
+        sa_conditions = sa_conditions
+        , sa_fractions = sa_fractions
+    ))
+
+}
+
+# do the business
+
+#main__extract_aa(TRUE)
+main__extract_sa(TRUE) -> rv
