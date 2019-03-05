@@ -200,16 +200,18 @@ main_create_table <- function(
                     gsub("^\\.", "", .) %>%
                     as.numeric()
 
-                this_op <- data.table::`%between%` # for range
-                if (grepl(", ", this_icd10))
-                    this_op = `%in%` # for set
+                if (!grepl(", ", this_icd10))
+                    # range NOT set
+                    these_subcodes <- seq(
+                        min(these_subcodes), max(these_subcodes)
+                    )
 
                 these_codes <- seq_icd10(
                     substr(this_icd10, 1, 3), substr(this_icd10, 5, 7)
                 ) %>%
                     purrr::map(expand_icd10) %>%
                     unlist() %>%
-                    .[substr(., 4, 4) %>% this_op(these_subcodes)]
+                    .[substr(., 4, 4) %in% these_subcodes]
 
             } else {
                 cat("WARNING: unhandled case:", this_cuid, this_icd10, "\n")
