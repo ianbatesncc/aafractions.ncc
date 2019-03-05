@@ -6,6 +6,97 @@
 
 require("dplyr")
 
+#' expand len3 icd10
+#'
+#' @param x (character) of the form Axx
+#'
+#' @return (character vector) expand Axx{, 0, 1, ..., 9, X}
+#'
+expand_icd10 <- function(x) {
+    if (!grepl("^[A-Z][0-9]{2}$", x))
+        stop("x not of expected format ^[A-Z][0-9]{2}$")
+    paste0(x, c(seq(0, 9), "X", ""))
+}
+
+#' Generate sequence of icd10 codes
+#'
+#' Enumerate a sequence of icd10 codes given a start and and end range.
+#'
+#' @param i1 (character) Axx[x]
+#' @param i2 (character) Byy[y]
+#' @param len (integer)
+#'
+#' @details
+#'
+#' When endpoints are different, or
+#'
+#' @return (character string) sequence of icd10 codes
+#'
+#' @examples
+#' seq_icd10("A00", "A01")
+#' seq_icd10("A00", "A01", len = 4)
+#'
+seq_icd10 <- function(i1, i2, len = 3) {
+    chr2asc <- function(x) {as.numeric(charToRaw(x))}
+    asc2chr <- function(x) {rawToChar(as.raw(x))}
+
+    ij <- sort(c(i1, i2))
+    i1 <- ij[1]
+    i2 <- ij[2]
+
+    ncj <- nchar(ij)
+
+    len_default <- 3
+    len_auto <- max(ncj)
+
+    if (missing(len))
+        len <- max(len_default, len_auto)
+
+    if (any(ncj < len) | any(diff(ncj) != 0))
+        cat(
+            "WARNING: seq_icd10: "
+            , "sequence end points different lengths to specified len "
+            , "... odd results may occur"
+            , "\n"
+        )
+
+    vmin <- 0
+    vmax <- 10^(len - 1) - 1 # 99 or 999
+
+
+    if (ncj[1] < len)
+        i1 <- paste0(i1, rep("0", len - ncj[1]))
+
+    if (ncj[2] < len)
+        i2 <- paste0(i2, rep("9", len - ncj[2]))
+
+    v1 <- as.numeric(substr(i1, 2, len))
+    v2 <- as.numeric(substr(i2, 2, len))
+
+    c1 <- chr2asc(substr(i1, 1, 1))
+    c2 <- chr2asc(substr(i2, 1, 1))
+    cs <- seq(c1, c2)
+
+    purrr::cross_df(
+        list(c = cs, n = seq(vmin, vmax))
+    ) %>%
+        mutate(
+            todrop = (
+                (c == c1) & (n < v1)
+            ) | (
+                (c == c2) & (n > v2)
+            )
+        ) %>%
+        filter(!todrop) %>%
+        arrange(c, n) %>%
+        mutate(
+            cc = sapply(c, asc2chr)
+            , nn = formatC(n, flag = 0, width = len - 1)
+            , icd10 = paste0(cc, nn)
+        ) %>%
+        .$icd10
+}
+
 #' Expand icd10 codes
 #'
 #' Expand a list of codes to individual rows.  Can be separated by semicolons,
@@ -60,48 +151,6 @@ main_create_table <- function(
             # loop through further cases
 
             these_codes <- this_icd10
-
-            # expand len3 icd10
-            expand_icd10 <- function(x) {
-                if (!grepl("^[A-Z][0-9]{2}$", x))
-                    stop("x not of expected format ^[A-Z][0-9]{2}$")
-                paste0(x, c(seq(0, 9), "X", ""))
-            }
-
-            # generate sequence of icd10 codes
-            seq_icd10 <- function(i1, i2, len = 3) {
-                chr2asc <- function(x) {as.numeric(charToRaw(x))}
-                asc2chr <- function(x) {rawToChar(as.raw(x))}
-
-                vmin <- 0
-                vmax <- 10^(len - 1) - 1 # 99 or 999
-
-                v1 <- as.numeric(substr(i1, 2, len))
-                v2 <- as.numeric(substr(i2, 2, len))
-
-                c1 <- substr(i1, 1, 1) %>% chr2asc()
-                c2 <- substr(i2, 1, 1) %>% chr2asc()
-                cs <- seq(c1, c2)
-
-                purrr::cross_df(
-                    list(c = cs, n = seq(vmin, vmax))
-                ) %>%
-                    mutate(
-                        todrop = (
-                            (c == c1) & (n < v1)
-                        ) | (
-                            (c == c2) & (n > v2)
-                        )
-                    ) %>%
-                    filter(!todrop) %>%
-                    arrange(c, n) %>%
-                    mutate(
-                        cc = sapply(c, asc2chr)
-                        , nn = formatC(n, flag = 0, width = len - 1)
-                        , icd10 = paste0(cc, nn)
-                    ) %>%
-                    .$icd10
-            }
 
             torm = FALSE
 
