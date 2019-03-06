@@ -106,6 +106,7 @@ extract_aa <- function(
     #
     # Keep Version, condition_uid, ageband, sex, analysis_type and aaf
     # Need to do some work to melt ageband_sex fields
+    #
     # ... and do something clever to get 'all' mapped to the other analysis
     # types
 
@@ -243,13 +244,37 @@ extract_sa <- function(
         select(-contains("en_"), -"age", -"condition_fuid") %>%
         unique()
 
-    # fractions
+    # age bands
 
-    sa_fractions <- lu1 %>%
+    lu2 <- wss[["ab_sa_explode"]] %>%
+        # missing arg to use default value
+        gather(key = "ab_sa_explode", , -ab_sa, na.rm = TRUE) %>%
+        select(-value)
+
+    # relative risk
+    #
+    # ... and do something clever to get analysis_type 'all' mapped to the other
+    # analysis types
+
+    sa_relrisk <- lu1 %>%
         gather(contains("en_"), key = "gss", value = "srr") %>%
         mutate(gss = sub("en_", "en;", gss)) %>%
         separate(gss, into = c("sex", "smoking_status"), sep = ";") %>%
-        select_at(vars("condition_uid", "age", "sex", "smoking_status", "srr"))
+        select_at(vars(
+            "analysis_type", "condition_uid", "age", "sex", "smoking_status", "srr"
+        )) %>%
+        merge(lu2, by.x = "age", by.y = "ab_sa", all.x = TRUE, all.y = FALSE) %>%
+        arrange(condition_uid, sex, age, ab_sa_explode, smoking_status) %>%
+        #
+        # analysis_type == "all" -> morbidity and mortality
+        #
+        spread(key = "analysis_type", "srr") %>%
+        mutate(
+            mortality = all
+            , morbidity = ifelse(is.na(morbidity), mortality, morbidity)
+        ) %>%
+        select(-all) %>%
+        gather(key = "analysis_type", value = "srr", starts_with("mor"))
 
     # save
 
@@ -257,13 +282,13 @@ extract_sa <- function(
         data.table::fwrite(sa_conditions, "./data-raw/sa_conditions.csv")
         usethis::use_data(sa_conditions, overwrite = TRUE)
 
-        data.table::fwrite(sa_fractions, "./data-raw/sa_fractions.csv")
-        usethis::use_data(sa_fractions, overwrite = TRUE)
+        data.table::fwrite(sa_relrisk, "./data-raw/sa_relrisk.csv")
+        usethis::use_data(sa_relrisk, overwrite = TRUE)
     }
 
     invisible(list(
         sa_conditions = sa_conditions
-        , sa_fractions = sa_fractions
+        , sa_relrisk = sa_relrisk
     ))
 
 }

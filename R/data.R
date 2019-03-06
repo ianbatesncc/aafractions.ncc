@@ -2,6 +2,12 @@
 # data.R
 #
 
+#' Smoking datasets
+#'
+#' @name smoking_datasets
+#' @family smoking datasets
+NULL
+
 #' List of alcohol attributable conditions
 #'
 #' Provides lookup tables for use with alcohol attributable fractions analyses.
@@ -106,3 +112,38 @@
 #'     head(16)
 #' }
 "lu_aac_icd10"
+
+#
+# Smoking
+#
+
+#' List of smoking relative risks by condition, age and sex
+#'
+#' Provides lookup tables for use with smoking attributable fractions analyses.
+#'
+#' @format data frame with 140 rows and 5 fields
+#'
+#' \preformatted{
+#' Observations: 140
+#' Variables: 5
+#' $ condition_uid  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 15, 16, 16, 16, 16, 17, 18, 18, 18, 1...
+#' $ age            <fct> 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35 - 64, 65+, 35+, 35 -...
+#' $ sex            <chr> "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men...
+#' $ smoking_status <chr> "current_smokers", "current_smokers", "current_smokers", "current_smokers", "current_smo...
+#' $ srr            <dbl> 23.26, 10.89, 6.76, 14.60, 1.00, 3.27, 2.50, 1.96, 2.31, 4.40, 1.80, 17.10, 10.58, 2.50,...
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::sa_relrisk %>%
+#'     mutate_if(is.character, as.factor) %>%
+#'     select(-starts_with("condition_")) %>%
+#'     summary(16)
+#' }
+#'
+#' @family smoking datasets
+#'
+"sa_relrisk"
+
