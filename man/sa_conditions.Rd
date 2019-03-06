@@ -12,7 +12,7 @@ sa_conditions
 Provides lookup tables for use with smoking attributable fractions analyses.
 }
 \details{
-# @format data frame with 69 rows and 8 fields
+# @format data frame with 26 rows and 4 fields
 
 \preformatted{
 Observations: 26
@@ -24,13 +24,11 @@ $ condition_uid    <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 
 }
 }
 \examples{
-if (isNamespaceLoaded("dplyr")) {
-  require("dplyr")
+if (isNamespaceLoaded("magrittr")) {
+  require("magrittr")
 
-  aafractions.ncc::aa_conditions \%>\%
-    mutate_if(is.character, as.factor) \%>\%
-    select(-starts_with("condition_"), -codes, -desc) \%>\%
-    summary(16)
+  aafractions.ncc::sa_conditions \%>\%
+    head(16)
 }
 
 }

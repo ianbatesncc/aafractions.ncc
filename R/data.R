@@ -57,7 +57,7 @@ NULL
 #' @format data frame with 185 rows and 2 fields
 #'
 #' \preformatted{
-#' Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	185 obs. of  2 variables:
+#' Class 'data.frame':	185 obs. of  2 variables:
 #' $ Version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
 #' $ condition_uid: int  1 2 3 4 5 6 7 10 13 14 ...
 #' }
@@ -113,7 +113,17 @@ NULL
 #'
 #' @format data frame with 69 rows and 7 fields
 #'
-#' @examples
+#' \preformatted{
+#' 'data.frame':	5920 obs. of  6 variables:
+#' $ Version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
+#' $ condition_uid: int  1 1 1 1 1 1 1 1 1 1 ...
+#' $ aa_ageband   : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
+#' $ sex          : chr  "F" "F" "F" "F" ...
+#' $ analysis_type: chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
+#' $ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
+#' }
+#'
+#' #' @examples
 #' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 #'   require("dplyr")
 #'   require("reshape2")

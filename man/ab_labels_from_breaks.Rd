@@ -4,10 +4,18 @@
 \alias{ab_labels_from_breaks}
 \title{Create ageband labels}
 \usage{
-ab_labels_from_breaks(breaks)
+ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic"),
+  flag = "0", width = 2)
 }
 \arguments{
 \item{breaks}{(integer vector) breaks}
+
+\item{style}{(character) choose style alcohol: "00-00 Yrs", smoking: "00 -
+00", generic: "a0000"}
+
+\item{flag}{(character) number formatting (see formatC)}
+
+\item{width}{(integer) number formatting (see formatC)}
 }
 \value{
 (character vector) labels

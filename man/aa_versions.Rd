@@ -4,13 +4,12 @@
 \name{aa_versions}
 \alias{aa_versions}
 \title{List of alcohol attributable fractions by condition, age and sex}
-\format{data frame with 213 rows and 3 fields
+\format{data frame with 185 rows and 2 fields
 
 \preformatted{
-'data.frame':	213 obs. of  3 variables:
-$ Version       : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
-$ condition_fuid: Ord.factor w/ 69 levels "Wholly attributable conditions.Wholly attributable conditions.Alcohol-induced pseudo-Cushing's syndrome.E24.4"<..: 1 2 3 4 5 6 7 10 13 14 ...
-$ condition_uid : int  1 2 3 4 5 6 7 10 13 14 ...
+Class 'data.frame':	185 obs. of  2 variables:
+$ Version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
+$ condition_uid: int  1 2 3 4 5 6 7 10 13 14 ...
 }}
 \usage{
 aa_versions

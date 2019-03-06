@@ -4,25 +4,34 @@
 \name{lu_aac_icd10}
 \alias{lu_aac_icd10}
 \title{Lookup between alcohol attributable conditions and icd10 codes}
-\format{data frame with 69 rows and 7 fields}
+\format{data frame with 69 rows and 7 fields
+
+\preformatted{
+'data.frame':	5920 obs. of  6 variables:
+$ Version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
+$ condition_uid: int  1 1 1 1 1 1 1 1 1 1 ...
+$ aa_ageband   : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
+$ sex          : chr  "F" "F" "F" "F" ...
+$ analysis_type: chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
+$ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
+}
+
+#' @examples
+if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+  require("dplyr")
+  require("reshape2")
+
+  aafractions.ncc::lu_aac_icd10 %>%
+    merge(aafractions.ncc::aa_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
+    dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
+    arrange(icd10) %>%
+    head(16)
+}}
 \usage{
 lu_aac_icd10
 }
 \description{
 Provides lookup tables for use with alcohol attributable fractions analyses.
-}
-\examples{
-if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
-  require("dplyr")
-  require("reshape2")
-
-  aafractions.ncc::lu_aac_icd10 \%>\%
-    merge(aafractions.ncc::aa_versions, by = "condition_uid", allow.cartesian = TRUE) \%>\%
-    dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
-    arrange(icd10) \%>\%
-    head(16)
-}
-
 }
 \seealso{
 Other alcohol datasets: \code{\link{aa_conditions}},
