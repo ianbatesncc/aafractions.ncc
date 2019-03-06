@@ -22,5 +22,12 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
     arrange(icd10) \%>\%
     head(16)
 }
+
 }
+\seealso{
+Other alcohol datasets: \code{\link{aa_conditions}},
+  \code{\link{aa_fractions}}, \code{\link{aa_versions}},
+  \code{\link{alcohol_datasets}}
+}
+\concept{alcohol datasets}
 \keyword{datasets}
