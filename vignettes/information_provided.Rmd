@@ -102,18 +102,18 @@ glimpse(aa_fractions)
 ```
 
 ```{r}
-list("aa_ageband", "sex", "analysis_type", "Version") %>% 
+list("aa_ageband", "sex", "analysis_type", "version") %>% 
     lapply(function(x, y){unique(select(y, x))}, y = aa_fractions) %>% 
     knitr::kable(row.names = FALSE)
 
 ```
 
-## Versions
+## versions
 
 `aa_versions` is a data.frame object that summarises which conditions are used in each version of the lookup tables.
 
 ```{r echo = FALSE}
-#knitr::kable(data.table::dcast(aa_versions, ... ~ Version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
+#knitr::kable(data.table::dcast(aa_versions, ... ~ version, value.var = "condition_fuid", fun = function(x){any(as.logical(x))}))
 
 knitr::kable(
     caption = "aa_versions (pseudo-random rows)"

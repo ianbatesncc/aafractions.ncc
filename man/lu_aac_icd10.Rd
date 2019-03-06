@@ -8,7 +8,7 @@
 
 \preformatted{
 'data.frame':	5920 obs. of  6 variables:
-$ Version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
+$ version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
 $ condition_uid: int  1 1 1 1 1 1 1 1 1 1 ...
 $ aa_ageband   : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
 $ sex          : chr  "F" "F" "F" "F" ...
@@ -23,7 +23,7 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 
   aafractions.ncc::lu_aac_icd10 %>%
     merge(aafractions.ncc::aa_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
-    dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
+    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
     arrange(icd10) %>%
     head(16)
 }}

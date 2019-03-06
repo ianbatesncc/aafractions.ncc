@@ -46,5 +46,5 @@ globalVariables(c(
     , "Consultant_Episode_Number"
     , "aa_aa_rank_1_highest"
     # vignettes : counting_aa_events
-    , "Version"
+    , "version"
 ))

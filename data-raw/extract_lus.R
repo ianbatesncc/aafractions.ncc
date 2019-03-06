@@ -45,7 +45,8 @@ extract_aa <- function(
 
     # combine tables
 
-    lus <- wss %>% bind_rows()
+    lus <- wss %>% bind_rows() %>%
+        rename(version = "Version")
 
     # add condition id number
     #
@@ -62,7 +63,7 @@ extract_aa <- function(
         mutate(
             condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)
         ) %>%
-        arrange(sortkey, codes, desc(Version)) %>%
+        arrange(sortkey, codes, desc(version)) %>%
         mutate(
             condition_fuid = factor(
                 condition_fuid
@@ -89,7 +90,7 @@ extract_aa <- function(
 
     aa_conditions <- lus %>%
         select(-dplyr::matches(":[MF]")) %>%
-        select(-Version, -analysis_type, -sortkey, -condition_fuid) %>%
+        select(-version, -analysis_type, -sortkey, -condition_fuid) %>%
         unique()
 
     # versions
@@ -98,13 +99,13 @@ extract_aa <- function(
     # Drop analysis_type
 
     aa_versions <- lus %>%
-        select(Version, condition_uid) %>%
+        select(version, condition_uid) %>%
         unique() %>%
-        arrange(desc(Version), condition_uid)
+        arrange(desc(version), condition_uid)
 
     # list of fractions
     #
-    # Keep Version, condition_uid, ageband, sex, analysis_type and aaf
+    # Keep version, condition_uid, ageband, sex, analysis_type and aaf
     # Need to do some work to melt ageband_sex fields
     #
     # ... and do something clever to get 'all' mapped to the other analysis
@@ -112,7 +113,7 @@ extract_aa <- function(
 
     aa_fractions <- lus %>%
         select(
-            Version
+            version
             , condition_uid
             , analysis_type
             , dplyr::matches(":[MF]")
@@ -146,10 +147,10 @@ extract_aa <- function(
         arrange(condition_uid)
 
     aa_versions <- aa_versions %>%
-        arrange(Version, condition_uid)
+        arrange(version, condition_uid)
 
     aa_fractions <- aa_fractions %>%
-        arrange(Version, condition_uid, analysis_type, sex, aa_ageband)
+        arrange(version, condition_uid, analysis_type, sex, aa_ageband)
 
     # save
 
@@ -274,7 +275,8 @@ extract_sa <- function(
             , morbidity = ifelse(is.na(morbidity), mortality, morbidity)
         ) %>%
         select(-all) %>%
-        gather(key = "analysis_type", value = "srr", starts_with("mor"))
+        gather(key = "analysis_type", value = "srr", starts_with("mor")) %>%
+        mutate(version = "nhsd_ss_2018")
 
     # save
 
@@ -290,6 +292,39 @@ extract_sa <- function(
         sa_conditions = sa_conditions
         , sa_relrisk = sa_relrisk
     ))
+
+}
+
+extract_sp <- function(
+    bWriteCSV = TRUE
+) {
+    require("dplyr")
+    require("data.table")
+
+    this_csv <- devtools::package_file("./data-raw/PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv")
+
+    #sp <- fread(this_csv) %>%
+    sp <- read.csv(this_csv, as.is = TRUE) %>%
+        janitor::clean_names() %>%
+        filter(
+            category_type == ""
+            , indicator_name %like% "adults - (current|ex).*APS"
+        ) %>%
+        mutate(indicator_name = sub(
+            "^Smoking Prevalence in adults - ", "", indicator_name)
+        ) %>%
+        select_at(vars(c(
+            "indicator_name"
+            , starts_with("area_")
+            , sex, age
+            , value
+        ))) %>%
+        mutate(
+            sex = substr(sex, 1, 1)
+            , indicator_name = tstrsplit(indicator_name, split = " ", keep = 1) %>% unlist()
+        ) %>%
+        rename(smoking_status = "indicator_name") %>%
+        mutate(version = "phe_ltcp_201903")
 
 }
 

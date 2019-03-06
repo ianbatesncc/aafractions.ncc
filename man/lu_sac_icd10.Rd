@@ -19,7 +19,7 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 
   aafractions.ncc::lu_sac_icd10 \%>\%
     merge(aafractions.ncc::sa_conditions, by = "condition_uid", allow.cartesian = TRUE) \%>\%
-    dcast(... ~ Version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
+    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
     arrange(icd10) \%>\%
     head(16)
 }

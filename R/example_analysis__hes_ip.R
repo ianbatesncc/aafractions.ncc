@@ -353,7 +353,7 @@ main__example_analysis__hes_ip <- function(
             aafractions.ncc::lu_aac_icd10 %>%
                 merge(
                     aafractions.ncc::aa_versions %>%
-                        filter(Version == "aaf_2017_phe")
+                        filter(version == "aaf_2017_phe")
                     , by = "condition_uid"
                 )
             , by.x = "icd10", by.y = "icd10"
@@ -394,8 +394,8 @@ main__example_analysis__hes_ip <- function(
         merge(
             aafractions.ncc::aa_fractions %>%
                 filter(analysis_type == "morbidity")
-            , by.x = c("Version", "condition_uid", "AgeBand_AA", "GenderC")
-            , by.y = c("Version", "condition_uid", "aa_ageband", "sex")
+            , by.x = c("version", "condition_uid", "AgeBand_AA", "GenderC")
+            , by.y = c("version", "condition_uid", "aa_ageband", "sex")
             , all.x = TRUE, all.y = FALSE
         )
 

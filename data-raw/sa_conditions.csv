@@ -1,27 +1,27 @@
-cat1,disease_category,icd_10_code,condition_uid
-Cancers which can be caused by smoking,"Trachea, Lung, Bronchus",C33-C34,1
-Cancers which can be caused by smoking,Upper respiratory sites,C00-C14,2
-Cancers which can be caused by smoking,Oesophagus,C15,3
-Cancers which can be caused by smoking,Larynx,C32,4
-Cancers which can be caused by smoking,Cervical,C53,5
-Cancers which can be caused by smoking,Bladder,C67,6
-Cancers which can be caused by smoking,Kidney and Renal Pelvis,"C64-C66,C68",7
-Cancers which can be caused by smoking,Stomach,C16,8
-Cancers which can be caused by smoking,Pancreas,C25,9
-Cancers which can be caused by smoking,Unspecified site,C80,10
-Cancers which can be caused by smoking,Myeloid leukaemia,C92,11
-Respiratory diseases which can be caused by smoking,Chronic obstructive lung disease,J40-J43,12
-Respiratory diseases which can be caused by smoking,Chronic Airway Obstruction,J44,13
-Respiratory diseases which can be caused by smoking,"Pneumonia, Influenza",J10-J18,14
-Circulatory diseases which can be caused by smoking,Other Heart Disease,"I00-I09, I26-I51",15
-Circulatory diseases which can be caused by smoking,Ischaemic heart disease,I20-I25,16
-Circulatory diseases which can be caused by smoking,Other arterial disease,I72-I78,17
-Circulatory diseases which can be caused by smoking,Cerebrovascular disease,I60-I69,18
-Circulatory diseases which can be caused by smoking,Aortic aneurysm,I71,19
-Circulatory diseases which can be caused by smoking,Atherosclerosis,I70,20
-Diseases of the digestive system which can be caused caused by smoking,Stomach / duodenal ulcer,K25-K27,21
-Diseases of the digestive system which can be caused caused by smoking,Crohns disease,K50,22
-Diseases of the digestive system which can be caused caused by smoking,Periodontal disease / Periodonitis,K05,23
-Other diseases which can be caused by smoking,Age related cataract,H25,24
-Other diseases which can be caused by smoking,Hip fracture,S72.0-S72.2,25
-Other diseases which can be caused by smoking,Spontaneous abortion,O03,26
+analysis_type,cat1,cat2,disease_category,icd_10_code,condition_uid
+all,fatal,Cancers which can be caused by smoking,"Trachea, Lung, Bronchus",C33-C34,1
+all,fatal,Cancers which can be caused by smoking,Upper respiratory sites,C00-C14,2
+all,fatal,Cancers which can be caused by smoking,Oesophagus,C15,3
+all,fatal,Cancers which can be caused by smoking,Larynx,C32,4
+all,fatal,Cancers which can be caused by smoking,Cervical,C53,5
+all,fatal,Cancers which can be caused by smoking,Bladder,C67,6
+all,fatal,Cancers which can be caused by smoking,Kidney and Renal Pelvis,"C64-C66,C68",7
+all,fatal,Cancers which can be caused by smoking,Stomach,C16,8
+all,fatal,Cancers which can be caused by smoking,Pancreas,C25,9
+all,fatal,Cancers which can be caused by smoking,Unspecified site,C80,10
+all,fatal,Cancers which can be caused by smoking,Myeloid leukaemia,C92,11
+all,fatal,Respiratory diseases which can be caused by smoking,Chronic obstructive lung disease,J40-J43,12
+all,fatal,Respiratory diseases which can be caused by smoking,Chronic Airway Obstruction,J44,13
+all,fatal,Respiratory diseases which can be caused by smoking,"Pneumonia, Influenza",J10-J18,14
+all,fatal,Circulatory diseases which can be caused by smoking,Other Heart Disease,"I00-I09, I26-I51",15
+all,fatal,Circulatory diseases which can be caused by smoking,Ischaemic heart disease,I20-I25,16
+all,fatal,Circulatory diseases which can be caused by smoking,Other arterial disease,I72-I78,17
+all,fatal,Circulatory diseases which can be caused by smoking,Cerebrovascular disease,I60-I69,18
+all,fatal,Circulatory diseases which can be caused by smoking,Aortic aneurysm,I71,19
+all,fatal,Circulatory diseases which can be caused by smoking,Atherosclerosis,I70,20
+all,fatal,Diseases of the digestive system which can be caused caused by smoking,Stomach / duodenal ulcer,K25-K27,21
+morbidity,non-fatal,Diseases of the digestive system which can be caused caused by smoking,Crohns disease,K50,22
+morbidity,non-fatal,Diseases of the digestive system which can be caused caused by smoking,Periodontal disease / Periodonitis,K05,23
+morbidity,non-fatal,Other diseases which can be caused by smoking,Age related cataract,H25,24
+morbidity,non-fatal,Other diseases which can be caused by smoking,Hip fracture,S72.0-S72.2,25
+morbidity,non-fatal,Other diseases which can be caused by smoking,Spontaneous abortion,O03,26
