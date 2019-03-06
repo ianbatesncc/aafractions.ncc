@@ -201,32 +201,53 @@ create__dummy_hesip <- function(
 #' Yrs"
 #'
 #' @param breaks (integer vector) breaks
+#' @param style (character) choose style alcohol: "00-00 Yrs", smoking: "00 -
+#'   00", generic: "a0000"
+#' @param flag (character) number formatting (see formatC)
+#' @param width (integer) number formatting (see formatC)
 #'
 #' @return (character vector) labels
 #'
 #' @family examples_of_analysis
 #'
-ab_labels_from_breaks <- function(breaks) {
+ab_labels_from_breaks <- function(
+    breaks
+    , style = c("alcohol", "smoking", "generic")
+    , flag = "0"
+    , width = 2
+){
+    style <- match.arg(style)
+
+    ab_prefix = switch(style, generic = "a", "")
+    ab_sep = switch(style, alcohol = "-", smoking = " - ", "")
+    ab_suffix = switch(style, alcohol = " Yrs", "")
+
     nlabs <- length(breaks)
     dlabs <- data.frame(
         from = breaks[seq(1, nlabs - 1)]
         , to = breaks[seq(2, nlabs)]
     ) %>%
         mutate(
-            lab = formatC(from, flag = "0", width = 2)
+            s_sta = formatC(from, flag = flag, width = width)
+            , s_end = formatC(to - 1, flag = flag, width = width)
             , lab = ifelse(
                 to == max(breaks)
-                , paste0(lab, "+")
-                , paste0(lab, "-", formatC(to - 1, flag = "0", width = 2))
+                , paste0(s_sta, "+")
+                , paste0(s_sta, ab_sep, s_end)
             )
-            , lab = paste0(lab, " Yrs")
+            , lab = paste0(ab_prefix, lab, ab_suffix)
         )
+
     dlabs$lab
 }
 
 #' Create age band looks for aa and esp
 #'
-#' @return (data.frame) with fields
+#' @param style (character) choose label foramtting and breaks (alcohol,
+#'   smoking, generic - 5 year agebands to 95+)
+#' @param name (character) choose field name
+#'
+#' @return (data.frame) with fields age, ab, ab_style ab optionally renamed)
 #'
 #' @examples
 #' require("dplyr")
@@ -235,10 +256,20 @@ ab_labels_from_breaks <- function(breaks) {
 #'
 #' @family examples_of_analysis
 #'
-create_lu_ageband <- function() {
+create_lu_ageband <- function(
+    style = c("alcohol", "smoking", "generic")
+    , name = NULL
+) {
+    style <- match.arg(style)
 
     breaks_esp <- c(seq(0, 95, 5), 120)
-    breaks_aa <- c(0, 16, 25, 35, 45, 55, 65, 75, 120)
+
+    these_breaks <- switch(
+        style
+        , alcohol = c(0, 16, 25, 35, 45, 55, 65, 75, 120)
+        , smoking = c(0, 35, 45, 55, 65, 75, 120)
+        , breaks_esp
+    )
 
     lu <- data.frame(
         age = seq(0, 120)
@@ -247,17 +278,24 @@ create_lu_ageband <- function() {
             ab_esp2013 = cut(
                 age
                 , breaks = breaks_esp
-                , labels = ab_labels_from_breaks(breaks_esp)
+                , labels = ab_labels_from_breaks(breaks_esp, style)
                 , right = FALSE, include.lowest = TRUE
             )
-            , ab_aaf = cut(
+            , ab = cut(
                 age
-                , breaks = breaks_aa
-                , labels = ab_labels_from_breaks(breaks_aa)
+                , breaks = these_breaks
+                , labels = ab_labels_from_breaks(these_breaks, style)
                 , right = FALSE, include.lowest = TRUE
             )
+            , ab_style = style
         ) %>%
         mutate_if(is.factor, as.character)
+
+    if (!is.null(name)) {
+        this_var <- "ab"
+        names(this_var) <- name
+        lu <- rename(lu, !!!this_var)
+    }
 
     lu
 }
@@ -325,7 +363,8 @@ main__example_analysis__hes_ip <- function(
 
     # Tag on attributable fraction
 
-    lu_ageband <- create_lu_ageband()
+    lu_ageband <- create_lu_ageband(style = "alcohol", name = "ab_aaf")
+
     lu_sex <- create_lu_gender()
 
     tbl__AA__PHIT_IP__melt <- ip %>%
