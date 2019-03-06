@@ -27,7 +27,8 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 }
 \seealso{
 Other smoking datasets: \code{\link{sa_conditions}},
-  \code{\link{sa_relrisk}}, \code{\link{smoking_datasets}}
+  \code{\link{sa_relrisk}}, \code{\link{smoking_datasets}},
+  \code{\link{sp}}
 }
 \concept{smoking datasets}
 \keyword{datasets}

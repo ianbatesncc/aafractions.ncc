@@ -35,7 +35,7 @@ if (isNamespaceLoaded("dplyr")) {
 \seealso{
 Other smoking datasets: \code{\link{lu_sac_icd10}},
   \code{\link{sa_conditions}},
-  \code{\link{smoking_datasets}}
+  \code{\link{smoking_datasets}}, \code{\link{sp}}
 }
 \concept{smoking datasets}
 \keyword{datasets}

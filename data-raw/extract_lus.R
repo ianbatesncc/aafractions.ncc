@@ -326,6 +326,12 @@ extract_sp <- function(
         rename(smoking_status = "indicator_name") %>%
         mutate(version = "phe_ltcp_201903")
 
+    if (bWriteCSV) {
+        data.table::fwrite(sp, "./data-raw/sp.csv")
+        usethis::use_data(sp, overwrite = TRUE)
+    }
+
+    sp
 }
 
 #' do the business

@@ -4,7 +4,7 @@
 \name{sa_conditions}
 \alias{sa_conditions}
 \title{List of smoking attributable conditions}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 26 rows and 4 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 26 rows and 6 columns.}
 \usage{
 sa_conditions
 }
@@ -34,7 +34,8 @@ if (isNamespaceLoaded("magrittr")) {
 }
 \seealso{
 Other smoking datasets: \code{\link{lu_sac_icd10}},
-  \code{\link{sa_relrisk}}, \code{\link{smoking_datasets}}
+  \code{\link{sa_relrisk}}, \code{\link{smoking_datasets}},
+  \code{\link{sp}}
 }
 \concept{smoking datasets}
 \keyword{datasets}

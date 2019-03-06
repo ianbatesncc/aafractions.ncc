@@ -8,6 +8,7 @@ Smoking datasets
 }
 \seealso{
 Other smoking datasets: \code{\link{lu_sac_icd10}},
-  \code{\link{sa_conditions}}, \code{\link{sa_relrisk}}
+  \code{\link{sa_conditions}}, \code{\link{sa_relrisk}},
+  \code{\link{sp}}
 }
 \concept{smoking datasets}

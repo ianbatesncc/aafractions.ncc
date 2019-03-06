@@ -224,3 +224,19 @@ NULL
 #' @family smoking datasets
 #'
 "lu_sac_icd10"
+
+
+#' Lookup for smoking prevalence
+#'
+#' To be combined with relative risk to arrive at attributable fraction
+#'
+#' @format data frame with 19.012 rows and 8 fields
+#'
+#' @examples
+#' head(sp)
+#'
+#' @family smoking datasets
+#'
+"sp"
+#'
+#'
