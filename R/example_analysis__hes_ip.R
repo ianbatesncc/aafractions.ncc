@@ -323,7 +323,7 @@ gender,genderC,genderName
 #'
 #' @family examples_of_analysis
 #'
-main__example_analysis__hes_ip <- function(
+main__example_analysis__aa_morbidity <- function(
 ) {
     ip <- create__dummy_hesip()
 
