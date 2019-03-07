@@ -28,6 +28,8 @@ globalVariables(c(
     , "from"
     , "to"
     , "lab"
+    , "s_sta"
+    , "s_end"
     # create_lu_ageband
     , "age"
     # example_analysis
