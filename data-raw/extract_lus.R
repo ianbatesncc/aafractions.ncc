@@ -321,7 +321,9 @@ extract_sp <- function(
         ))) %>%
         mutate(
             sex = substr(sex, 1, 1)
-            , indicator_name = tstrsplit(indicator_name, split = " ", keep = 1) %>% unlist()
+            , indicator_name = tstrsplit(
+                indicator_name, split = " ", keep = 1
+            ) %>% unlist()
         ) %>%
         rename(smoking_status = "indicator_name") %>%
         mutate(version = "phe_ltcp_201903")
