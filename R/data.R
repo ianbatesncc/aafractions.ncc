@@ -171,20 +171,50 @@ NULL
 "sa_conditions"
 
 
+#' List of smoking attributable conditions by version
+#'
+#' Provides lookup tables for use with alcohol attributable fractions analyses.
+#'
+#' @format data frame with 26 rows and 2 fields
+#'
+#' \preformatted{
+#' Observations: 26
+#' Variables: 2
+#' $ version       <chr> "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_...
+#' $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25...
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::sa_versions %>%
+#'     dplyr::mutate_if(is.character, as.factor) %>%
+#'     dplyr::select(-starts_with("condition_")) %>%
+#'     summary(16)
+#' }
+#'
+#' @family alcohol datasets
+#'
+"sa_versions"
+
 #' List of smoking relative risks by condition, age and sex
 #'
 #' Provides lookup tables for use with smoking attributable fractions analyses.
 #'
-#' @format data frame with 140 rows and 5 fields
+#' @format data frame with 1,016 rows and 8 fields
 #'
 #' \preformatted{
-#' Observations: 140
-#' Variables: 5
-#' $ condition_uid  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 15, 16, 16, 16, 16, 17, 18, 18, 18, 1...
-#' $ age            <fct> 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35+, 35 - 64, 65+, 35+, 35 -...
-#' $ sex            <chr> "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men", "men...
-#' $ smoking_status <chr> "current_smokers", "current_smokers", "current_smokers", "current_smokers", "current_smo...
-#' $ srr            <dbl> 23.26, 10.89, 6.76, 14.60, 1.00, 3.27, 2.50, 1.96, 2.31, 4.40, 1.80, 17.10, 10.58, 2.50,...
+#' Observations: 1,016
+#' Variables: 8
+#' $ age            <fct> 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54, 35 - 54...
+#' $ condition_uid  <int> 16, 16, 16, 16, 16, 16, 16, 16, 18, 18, 18, 18, 18, 18, 18, 18, 14, 14, 14, 14, 14, 14, ...
+#' $ sex            <chr> "men", "men", "men", "men", "women", "women", "women", "women", "men", "men", "men", "me...
+#' $ smoking_status <chr> "current", "current", "ex", "ex", "current", "current", "ex", "ex", "current", "current"...
+#' $ ab_sa_explode  <chr> "35 - 44", "45 - 54", "35 - 44", "45 - 54", "35 - 44", "45 - 54", "35 - 44", "45 - 54", ...
+#' $ analysis_type  <chr> "morbidity", "morbidity", "morbidity", "morbidity", "morbidity", "morbidity", "morbidity...
+#' $ srr            <dbl> 4.20, 4.20, 2.00, 2.00, 5.30, 5.30, 2.60, 2.60, 4.40, 4.40, 1.10, 1.10, 5.40, 5.40, 1.30...
+#' $ version        <chr> "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss_2018", "nhsd_ss...#'
 #' }
 #'
 #' @examples
@@ -230,7 +260,21 @@ NULL
 #'
 #' To be combined with relative risk to arrive at attributable fraction
 #'
-#' @format data frame with 19.012 rows and 8 fields
+#' @format data frame with 19,012 rows and 9 fields
+#'
+#' \preformatted{
+#' Observations: 19,012
+#' Variables: 9
+#' $ smoking_status <chr> "current", "current", "current", "current", "current", "current", "current", "current", ...
+#' $ calyear        <int> 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011...
+#' $ area_code      <chr> "E92000001", "E92000001", "E92000001", "E92000001", "E92000001", "E92000001", "E92000001...
+#' $ area_name      <chr> "England", "England", "England", "England", "England", "England", "England", "England", ...
+#' $ area_type      <chr> "England", "England", "England", "England", "England", "England", "England", "England", ...
+#' $ sex            <chr> "M", "F", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"...
+#' $ age            <chr> "18+ yrs", "18+ yrs", "25-29 yrs", "30-34 yrs", "35-39 yrs", "40-44 yrs", "45-49 yrs", "...
+#' $ value          <dbl> 22.1785, 17.6335, 27.1005, 24.1422, 23.3574, 22.5773, 21.5718, 20.1515, 19.4923, 16.2628...
+#' $ version        <chr> "phe_ltcp_201903", "phe_ltcp_201903", "phe_ltcp_201903", "phe_ltcp_201903", "phe_ltcp_20...
+#' }
 #'
 #' @examples
 #' head(sp)
@@ -238,5 +282,3 @@ NULL
 #' @family smoking datasets
 #'
 "sp"
-#'
-#'

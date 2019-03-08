@@ -93,9 +93,9 @@ extract_aa <- function(
         select(-version, -analysis_type, -sortkey, -condition_fuid) %>%
         unique()
 
-    # versions
+    # Versions
     #
-    # Keep Version, condition_uid
+    # Keep version, condition_uid
     # Drop analysis_type
 
     aa_versions <- lus %>%
@@ -262,27 +262,62 @@ extract_sa <- function(
         mutate(gss = sub("en_", "en;", gss)) %>%
         separate(gss, into = c("sex", "smoking_status"), sep = ";") %>%
         select_at(vars(
-            "analysis_type", "condition_uid", "age", "sex", "smoking_status", "srr"
+            "analysis_type", "condition_uid"
+            , ab_sa = "age", "sex"
+            , "smoking_status", "srr"
         )) %>%
-        merge(lu2, by.x = "age", by.y = "ab_sa", all.x = TRUE, all.y = FALSE) %>%
-        arrange(condition_uid, sex, age, ab_sa_explode, smoking_status) %>%
+        # explode overlapping age bands
+        merge(
+            lu2
+            , by.x = "ab_sa", by.y = "ab_sa"
+            , all.x = TRUE, all.y = FALSE
+        ) %>%
+        # clean smoking_status (current/ex) and sex fields (men/women -> M/F)
+        mutate(
+            smoking_status = tstrsplit(
+                smoking_status, split = "_", keep = 1
+            ) %>% unlist()
+            , sex = substr(sex, 1, 1)
+            , sex = toupper(ifelse(sex == "w", "f", sex))
+        ) %>%
         #
         # analysis_type == "all" -> morbidity and mortality
+        # - missing values filled with 1 i.e. no change in risk
         #
-        spread(key = "analysis_type", "srr") %>%
+        spread(key = "analysis_type", "srr", fill = NA) %>%
         mutate(
-            mortality = all
-            , morbidity = ifelse(is.na(morbidity), mortality, morbidity)
+            # no-op - just to be clear that NA values exist in mortality field
+            mortality = ifelse(!is.na(all), all, all)
+            , morbidity = ifelse(is.na(morbidity), all, morbidity)
         ) %>%
         select(-all) %>%
         gather(key = "analysis_type", value = "srr", starts_with("mor")) %>%
-        mutate(version = "nhsd_ss_2018")
+        filter(!is.na(srr)) %>%
+        mutate(version = "nhsd_ss_2018") %>%
+        arrange(
+            analysis_type, condition_uid
+            , sex, ab_sa, ab_sa_explode
+            , smoking_status
+        )
+
+    # Versions
+    #
+    # Keep version, condition_uid
+    # Drop analysis_type
+
+    sa_versions <- sa_relrisk %>%
+        select(version, condition_uid) %>%
+        unique() %>%
+        arrange(desc(version), condition_uid)
 
     # save
 
     if (bWriteCSV) {
         data.table::fwrite(sa_conditions, "./data-raw/sa_conditions.csv")
         usethis::use_data(sa_conditions, overwrite = TRUE)
+
+        data.table::fwrite(sa_versions, "./data-raw/sa_versions.csv")
+        usethis::use_data(sa_versions, overwrite = TRUE)
 
         data.table::fwrite(sa_relrisk, "./data-raw/sa_relrisk.csv")
         usethis::use_data(sa_relrisk, overwrite = TRUE)
@@ -310,11 +345,15 @@ extract_sp <- function(
             category_type == ""
             , indicator_name %like% "adults - (current|ex).*APS"
         ) %>%
-        mutate(indicator_name = sub(
-            "^Smoking Prevalence in adults - ", "", indicator_name)
+        mutate(
+            indicator_name = sub(
+                "^Smoking Prevalence in adults - ", "", indicator_name
+            )
+            , calyear = as.integer(time_period)
         ) %>%
         select_at(vars(c(
             "indicator_name"
+            , calyear
             , starts_with("area_")
             , sex, age
             , value
@@ -326,7 +365,11 @@ extract_sp <- function(
             ) %>% unlist()
         ) %>%
         rename(smoking_status = "indicator_name") %>%
-        mutate(version = "phe_ltcp_201903")
+        mutate(
+            units = "percent"
+            , multiplier = 100
+            , version = "phe_ltcp_201903"
+        )
 
     if (bWriteCSV) {
         data.table::fwrite(sp, "./data-raw/sp.csv")
@@ -344,6 +387,7 @@ main__extract_lus <- function(
     # bWriteCSV = FALSE
     rv_aa <- extract_aa(bWriteCSV = bWriteCSV)
     rv_sa <- extract_sa(bWriteCSV = bWriteCSV)
+    rv_sp <- extract_sp(bWriteCSV = bWriteCSV)
 
-    invisible(list(aa = rv_aa, sa = rv_sa))
+    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp))
 }

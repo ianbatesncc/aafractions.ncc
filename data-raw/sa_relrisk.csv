@@ -1,1017 +1,914 @@
-age,condition_uid,sex,smoking_status,ab_sa_explode,analysis_type,srr,version
-35 - 54,16,men,current_smokers,35 - 44,morbidity,4.2,nhsd_ss_2018
-35 - 54,16,men,current_smokers,45 - 54,morbidity,4.2,nhsd_ss_2018
-35 - 54,16,men,ex_smokers,35 - 44,morbidity,2,nhsd_ss_2018
-35 - 54,16,men,ex_smokers,45 - 54,morbidity,2,nhsd_ss_2018
-35 - 54,16,women,current_smokers,35 - 44,morbidity,5.3,nhsd_ss_2018
-35 - 54,16,women,current_smokers,45 - 54,morbidity,5.3,nhsd_ss_2018
-35 - 54,16,women,ex_smokers,35 - 44,morbidity,2.6,nhsd_ss_2018
-35 - 54,16,women,ex_smokers,45 - 54,morbidity,2.6,nhsd_ss_2018
-35 - 54,18,men,current_smokers,35 - 44,morbidity,4.4,nhsd_ss_2018
-35 - 54,18,men,current_smokers,45 - 54,morbidity,4.4,nhsd_ss_2018
-35 - 54,18,men,ex_smokers,35 - 44,morbidity,1.1,nhsd_ss_2018
-35 - 54,18,men,ex_smokers,45 - 54,morbidity,1.1,nhsd_ss_2018
-35 - 54,18,women,current_smokers,35 - 44,morbidity,5.4,nhsd_ss_2018
-35 - 54,18,women,current_smokers,45 - 54,morbidity,5.4,nhsd_ss_2018
-35 - 54,18,women,ex_smokers,35 - 44,morbidity,1.3,nhsd_ss_2018
-35 - 54,18,women,ex_smokers,45 - 54,morbidity,1.3,nhsd_ss_2018
-35 - 64,14,men,current_smokers,35 - 44,morbidity,2.5,nhsd_ss_2018
-35 - 64,14,men,current_smokers,45 - 54,morbidity,2.5,nhsd_ss_2018
-35 - 64,14,men,current_smokers,55 - 64,morbidity,2.5,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,35 - 44,morbidity,1.4,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,45 - 54,morbidity,1.4,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,55 - 64,morbidity,1.4,nhsd_ss_2018
-35 - 64,14,women,current_smokers,35 - 44,morbidity,4.3,nhsd_ss_2018
-35 - 64,14,women,current_smokers,45 - 54,morbidity,4.3,nhsd_ss_2018
-35 - 64,14,women,current_smokers,55 - 64,morbidity,4.3,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,35 - 44,morbidity,1.1,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,45 - 54,morbidity,1.1,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,55 - 64,morbidity,1.1,nhsd_ss_2018
-35+,1,men,current_smokers,35 - 44,morbidity,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,45 - 54,morbidity,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,55 - 64,morbidity,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,65 - 74,morbidity,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,75+,morbidity,23.26,nhsd_ss_2018
-35+,1,men,ex_smokers,35 - 44,morbidity,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,45 - 54,morbidity,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,55 - 64,morbidity,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,65 - 74,morbidity,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,75+,morbidity,8.7,nhsd_ss_2018
-35+,1,women,current_smokers,35 - 44,morbidity,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,45 - 54,morbidity,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,55 - 64,morbidity,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,65 - 74,morbidity,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,75+,morbidity,12.69,nhsd_ss_2018
-35+,1,women,ex_smokers,35 - 44,morbidity,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,45 - 54,morbidity,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,55 - 64,morbidity,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,65 - 74,morbidity,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,75+,morbidity,4.53,nhsd_ss_2018
-35+,2,men,current_smokers,35 - 44,morbidity,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,45 - 54,morbidity,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,55 - 64,morbidity,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,65 - 74,morbidity,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,75+,morbidity,10.89,nhsd_ss_2018
-35+,2,men,ex_smokers,35 - 44,morbidity,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,45 - 54,morbidity,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,55 - 64,morbidity,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,65 - 74,morbidity,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,75+,morbidity,3.4,nhsd_ss_2018
-35+,2,women,current_smokers,35 - 44,morbidity,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,45 - 54,morbidity,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,55 - 64,morbidity,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,65 - 74,morbidity,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,75+,morbidity,5.08,nhsd_ss_2018
-35+,2,women,ex_smokers,35 - 44,morbidity,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,45 - 54,morbidity,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,55 - 64,morbidity,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,65 - 74,morbidity,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,75+,morbidity,2.29,nhsd_ss_2018
-35+,3,men,current_smokers,35 - 44,morbidity,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,45 - 54,morbidity,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,55 - 64,morbidity,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,65 - 74,morbidity,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,75+,morbidity,6.76,nhsd_ss_2018
-35+,3,men,ex_smokers,35 - 44,morbidity,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,45 - 54,morbidity,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,55 - 64,morbidity,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,65 - 74,morbidity,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,75+,morbidity,4.46,nhsd_ss_2018
-35+,3,women,current_smokers,35 - 44,morbidity,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,45 - 54,morbidity,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,55 - 64,morbidity,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,65 - 74,morbidity,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,75+,morbidity,7.75,nhsd_ss_2018
-35+,3,women,ex_smokers,35 - 44,morbidity,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,45 - 54,morbidity,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,55 - 64,morbidity,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,65 - 74,morbidity,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,75+,morbidity,2.79,nhsd_ss_2018
-35+,4,men,current_smokers,35 - 44,morbidity,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,45 - 54,morbidity,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,55 - 64,morbidity,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,65 - 74,morbidity,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,75+,morbidity,14.6,nhsd_ss_2018
-35+,4,men,ex_smokers,35 - 44,morbidity,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,45 - 54,morbidity,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,55 - 64,morbidity,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,65 - 74,morbidity,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,75+,morbidity,6.34,nhsd_ss_2018
-35+,4,women,current_smokers,35 - 44,morbidity,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,45 - 54,morbidity,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,55 - 64,morbidity,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,65 - 74,morbidity,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,75+,morbidity,13.02,nhsd_ss_2018
-35+,4,women,ex_smokers,35 - 44,morbidity,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,45 - 54,morbidity,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,55 - 64,morbidity,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,65 - 74,morbidity,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,75+,morbidity,5.16,nhsd_ss_2018
-35+,5,men,current_smokers,35 - 44,morbidity,1,nhsd_ss_2018
-35+,5,men,current_smokers,45 - 54,morbidity,1,nhsd_ss_2018
-35+,5,men,current_smokers,55 - 64,morbidity,1,nhsd_ss_2018
-35+,5,men,current_smokers,65 - 74,morbidity,1,nhsd_ss_2018
-35+,5,men,current_smokers,75+,morbidity,1,nhsd_ss_2018
-35+,5,men,ex_smokers,35 - 44,morbidity,1,nhsd_ss_2018
-35+,5,men,ex_smokers,45 - 54,morbidity,1,nhsd_ss_2018
-35+,5,men,ex_smokers,55 - 64,morbidity,1,nhsd_ss_2018
-35+,5,men,ex_smokers,65 - 74,morbidity,1,nhsd_ss_2018
-35+,5,men,ex_smokers,75+,morbidity,1,nhsd_ss_2018
-35+,5,women,current_smokers,35 - 44,morbidity,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,45 - 54,morbidity,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,55 - 64,morbidity,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,65 - 74,morbidity,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,75+,morbidity,1.59,nhsd_ss_2018
-35+,5,women,ex_smokers,35 - 44,morbidity,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,45 - 54,morbidity,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,55 - 64,morbidity,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,65 - 74,morbidity,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,75+,morbidity,1.14,nhsd_ss_2018
-35+,6,men,current_smokers,35 - 44,morbidity,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,45 - 54,morbidity,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,55 - 64,morbidity,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,65 - 74,morbidity,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,75+,morbidity,3.27,nhsd_ss_2018
-35+,6,men,ex_smokers,35 - 44,morbidity,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,45 - 54,morbidity,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,55 - 64,morbidity,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,65 - 74,morbidity,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,75+,morbidity,2.09,nhsd_ss_2018
-35+,6,women,current_smokers,35 - 44,morbidity,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,45 - 54,morbidity,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,55 - 64,morbidity,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,65 - 74,morbidity,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,75+,morbidity,2.22,nhsd_ss_2018
-35+,6,women,ex_smokers,35 - 44,morbidity,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,45 - 54,morbidity,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,55 - 64,morbidity,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,65 - 74,morbidity,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,75+,morbidity,1.89,nhsd_ss_2018
-35+,7,men,current_smokers,35 - 44,morbidity,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,45 - 54,morbidity,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,55 - 64,morbidity,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,65 - 74,morbidity,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,75+,morbidity,2.5,nhsd_ss_2018
-35+,7,men,ex_smokers,35 - 44,morbidity,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,45 - 54,morbidity,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,55 - 64,morbidity,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,65 - 74,morbidity,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,75+,morbidity,1.7,nhsd_ss_2018
-35+,7,women,current_smokers,35 - 44,morbidity,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,45 - 54,morbidity,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,55 - 64,morbidity,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,65 - 74,morbidity,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,75+,morbidity,1.4,nhsd_ss_2018
-35+,7,women,ex_smokers,35 - 44,morbidity,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,45 - 54,morbidity,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,55 - 64,morbidity,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,65 - 74,morbidity,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,75+,morbidity,1.1,nhsd_ss_2018
-35+,8,men,current_smokers,35 - 44,morbidity,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,45 - 54,morbidity,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,55 - 64,morbidity,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,65 - 74,morbidity,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,75+,morbidity,1.96,nhsd_ss_2018
-35+,8,men,ex_smokers,35 - 44,morbidity,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,45 - 54,morbidity,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,55 - 64,morbidity,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,65 - 74,morbidity,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,75+,morbidity,1.47,nhsd_ss_2018
-35+,8,women,current_smokers,35 - 44,morbidity,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,45 - 54,morbidity,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,55 - 64,morbidity,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,65 - 74,morbidity,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,75+,morbidity,1.36,nhsd_ss_2018
-35+,8,women,ex_smokers,35 - 44,morbidity,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,45 - 54,morbidity,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,55 - 64,morbidity,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,65 - 74,morbidity,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,75+,morbidity,1.32,nhsd_ss_2018
-35+,9,men,current_smokers,35 - 44,morbidity,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,45 - 54,morbidity,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,55 - 64,morbidity,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,65 - 74,morbidity,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,75+,morbidity,2.31,nhsd_ss_2018
-35+,9,men,ex_smokers,35 - 44,morbidity,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,45 - 54,morbidity,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,55 - 64,morbidity,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,65 - 74,morbidity,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,75+,morbidity,1.15,nhsd_ss_2018
-35+,9,women,current_smokers,35 - 44,morbidity,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,45 - 54,morbidity,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,55 - 64,morbidity,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,65 - 74,morbidity,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,75+,morbidity,2.25,nhsd_ss_2018
-35+,9,women,ex_smokers,35 - 44,morbidity,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,45 - 54,morbidity,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,55 - 64,morbidity,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,65 - 74,morbidity,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,75+,morbidity,1.55,nhsd_ss_2018
-35+,10,men,current_smokers,35 - 44,morbidity,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,45 - 54,morbidity,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,55 - 64,morbidity,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,65 - 74,morbidity,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,75+,morbidity,4.4,nhsd_ss_2018
-35+,10,men,ex_smokers,35 - 44,morbidity,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,45 - 54,morbidity,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,55 - 64,morbidity,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,65 - 74,morbidity,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,75+,morbidity,2.5,nhsd_ss_2018
-35+,10,women,current_smokers,35 - 44,morbidity,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,45 - 54,morbidity,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,55 - 64,morbidity,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,65 - 74,morbidity,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,75+,morbidity,2.2,nhsd_ss_2018
-35+,10,women,ex_smokers,35 - 44,morbidity,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,45 - 54,morbidity,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,55 - 64,morbidity,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,65 - 74,morbidity,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,75+,morbidity,1.3,nhsd_ss_2018
-35+,11,men,current_smokers,35 - 44,morbidity,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,45 - 54,morbidity,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,55 - 64,morbidity,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,65 - 74,morbidity,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,75+,morbidity,1.8,nhsd_ss_2018
-35+,11,men,ex_smokers,35 - 44,morbidity,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,45 - 54,morbidity,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,55 - 64,morbidity,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,65 - 74,morbidity,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,75+,morbidity,1.4,nhsd_ss_2018
-35+,11,women,current_smokers,35 - 44,morbidity,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,45 - 54,morbidity,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,55 - 64,morbidity,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,65 - 74,morbidity,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,75+,morbidity,1.2,nhsd_ss_2018
-35+,11,women,ex_smokers,35 - 44,morbidity,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,45 - 54,morbidity,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,55 - 64,morbidity,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,65 - 74,morbidity,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,75+,morbidity,1.3,nhsd_ss_2018
-35+,12,men,current_smokers,35 - 44,morbidity,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,45 - 54,morbidity,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,55 - 64,morbidity,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,65 - 74,morbidity,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,75+,morbidity,17.1,nhsd_ss_2018
-35+,12,men,ex_smokers,35 - 44,morbidity,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,45 - 54,morbidity,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,55 - 64,morbidity,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,65 - 74,morbidity,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,75+,morbidity,15.64,nhsd_ss_2018
-35+,12,women,current_smokers,35 - 44,morbidity,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,45 - 54,morbidity,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,55 - 64,morbidity,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,65 - 74,morbidity,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,75+,morbidity,12.04,nhsd_ss_2018
-35+,12,women,ex_smokers,35 - 44,morbidity,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,45 - 54,morbidity,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,55 - 64,morbidity,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,65 - 74,morbidity,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,75+,morbidity,11.77,nhsd_ss_2018
-35+,13,men,current_smokers,35 - 44,morbidity,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,45 - 54,morbidity,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,55 - 64,morbidity,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,65 - 74,morbidity,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,75+,morbidity,10.58,nhsd_ss_2018
-35+,13,men,ex_smokers,35 - 44,morbidity,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,45 - 54,morbidity,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,55 - 64,morbidity,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,65 - 74,morbidity,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,75+,morbidity,6.8,nhsd_ss_2018
-35+,13,women,current_smokers,35 - 44,morbidity,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,45 - 54,morbidity,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,55 - 64,morbidity,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,65 - 74,morbidity,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,75+,morbidity,13.08,nhsd_ss_2018
-35+,13,women,ex_smokers,35 - 44,morbidity,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,45 - 54,morbidity,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,55 - 64,morbidity,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,65 - 74,morbidity,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,75+,morbidity,6.78,nhsd_ss_2018
-35+,15,men,current_smokers,35 - 44,morbidity,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,45 - 54,morbidity,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,55 - 64,morbidity,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,65 - 74,morbidity,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,75+,morbidity,1.78,nhsd_ss_2018
-35+,15,men,ex_smokers,35 - 44,morbidity,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,45 - 54,morbidity,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,55 - 64,morbidity,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,65 - 74,morbidity,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,75+,morbidity,1.22,nhsd_ss_2018
-35+,15,women,current_smokers,35 - 44,morbidity,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,45 - 54,morbidity,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,55 - 64,morbidity,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,65 - 74,morbidity,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,75+,morbidity,1.49,nhsd_ss_2018
-35+,15,women,ex_smokers,35 - 44,morbidity,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,45 - 54,morbidity,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,55 - 64,morbidity,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,65 - 74,morbidity,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,75+,morbidity,1.14,nhsd_ss_2018
-35+,17,men,current_smokers,35 - 44,morbidity,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,45 - 54,morbidity,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,55 - 64,morbidity,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,65 - 74,morbidity,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,75+,morbidity,2.07,nhsd_ss_2018
-35+,17,men,ex_smokers,35 - 44,morbidity,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,45 - 54,morbidity,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,55 - 64,morbidity,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,65 - 74,morbidity,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,75+,morbidity,1.01,nhsd_ss_2018
-35+,17,women,current_smokers,35 - 44,morbidity,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,45 - 54,morbidity,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,55 - 64,morbidity,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,65 - 74,morbidity,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,75+,morbidity,2.17,nhsd_ss_2018
-35+,17,women,ex_smokers,35 - 44,morbidity,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,45 - 54,morbidity,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,55 - 64,morbidity,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,65 - 74,morbidity,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,75+,morbidity,1.12,nhsd_ss_2018
-35+,19,men,current_smokers,35 - 44,morbidity,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,45 - 54,morbidity,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,55 - 64,morbidity,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,65 - 74,morbidity,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,75+,morbidity,6.21,nhsd_ss_2018
-35+,19,men,ex_smokers,35 - 44,morbidity,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,45 - 54,morbidity,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,55 - 64,morbidity,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,65 - 74,morbidity,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,75+,morbidity,3.07,nhsd_ss_2018
-35+,19,women,current_smokers,35 - 44,morbidity,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,45 - 54,morbidity,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,55 - 64,morbidity,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,65 - 74,morbidity,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,75+,morbidity,7.07,nhsd_ss_2018
-35+,19,women,ex_smokers,35 - 44,morbidity,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,45 - 54,morbidity,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,55 - 64,morbidity,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,65 - 74,morbidity,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,75+,morbidity,2.07,nhsd_ss_2018
-35+,20,men,current_smokers,35 - 44,morbidity,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,45 - 54,morbidity,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,55 - 64,morbidity,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,65 - 74,morbidity,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,75+,morbidity,2.44,nhsd_ss_2018
-35+,20,men,ex_smokers,35 - 44,morbidity,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,45 - 54,morbidity,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,55 - 64,morbidity,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,65 - 74,morbidity,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,75+,morbidity,1.33,nhsd_ss_2018
-35+,20,women,current_smokers,35 - 44,morbidity,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,45 - 54,morbidity,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,55 - 64,morbidity,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,65 - 74,morbidity,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,75+,morbidity,1.83,nhsd_ss_2018
-35+,20,women,ex_smokers,35 - 44,morbidity,1,nhsd_ss_2018
-35+,20,women,ex_smokers,45 - 54,morbidity,1,nhsd_ss_2018
-35+,20,women,ex_smokers,55 - 64,morbidity,1,nhsd_ss_2018
-35+,20,women,ex_smokers,65 - 74,morbidity,1,nhsd_ss_2018
-35+,20,women,ex_smokers,75+,morbidity,1,nhsd_ss_2018
-35+,21,men,current_smokers,35 - 44,morbidity,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,45 - 54,morbidity,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,55 - 64,morbidity,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,65 - 74,morbidity,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,75+,morbidity,5.4,nhsd_ss_2018
-35+,21,men,ex_smokers,35 - 44,morbidity,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,45 - 54,morbidity,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,55 - 64,morbidity,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,65 - 74,morbidity,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,75+,morbidity,1.8,nhsd_ss_2018
-35+,21,women,current_smokers,35 - 44,morbidity,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,45 - 54,morbidity,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,55 - 64,morbidity,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,65 - 74,morbidity,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,75+,morbidity,5.5,nhsd_ss_2018
-35+,21,women,ex_smokers,35 - 44,morbidity,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,45 - 54,morbidity,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,55 - 64,morbidity,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,65 - 74,morbidity,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,75+,morbidity,1.4,nhsd_ss_2018
-35+,22,men,current_smokers,35 - 44,morbidity,2.1,nhsd_ss_2018
-35+,22,men,current_smokers,45 - 54,morbidity,2.1,nhsd_ss_2018
-35+,22,men,current_smokers,55 - 64,morbidity,2.1,nhsd_ss_2018
-35+,22,men,current_smokers,65 - 74,morbidity,2.1,nhsd_ss_2018
-35+,22,men,current_smokers,75+,morbidity,2.1,nhsd_ss_2018
-35+,22,men,ex_smokers,35 - 44,morbidity,1,nhsd_ss_2018
-35+,22,men,ex_smokers,45 - 54,morbidity,1,nhsd_ss_2018
-35+,22,men,ex_smokers,55 - 64,morbidity,1,nhsd_ss_2018
-35+,22,men,ex_smokers,65 - 74,morbidity,1,nhsd_ss_2018
-35+,22,men,ex_smokers,75+,morbidity,1,nhsd_ss_2018
-35+,22,women,current_smokers,35 - 44,morbidity,2.1,nhsd_ss_2018
-35+,22,women,current_smokers,45 - 54,morbidity,2.1,nhsd_ss_2018
-35+,22,women,current_smokers,55 - 64,morbidity,2.1,nhsd_ss_2018
-35+,22,women,current_smokers,65 - 74,morbidity,2.1,nhsd_ss_2018
-35+,22,women,current_smokers,75+,morbidity,2.1,nhsd_ss_2018
-35+,22,women,ex_smokers,35 - 44,morbidity,1,nhsd_ss_2018
-35+,22,women,ex_smokers,45 - 54,morbidity,1,nhsd_ss_2018
-35+,22,women,ex_smokers,55 - 64,morbidity,1,nhsd_ss_2018
-35+,22,women,ex_smokers,65 - 74,morbidity,1,nhsd_ss_2018
-35+,22,women,ex_smokers,75+,morbidity,1,nhsd_ss_2018
-35+,23,men,current_smokers,35 - 44,morbidity,3.97,nhsd_ss_2018
-35+,23,men,current_smokers,45 - 54,morbidity,3.97,nhsd_ss_2018
-35+,23,men,current_smokers,55 - 64,morbidity,3.97,nhsd_ss_2018
-35+,23,men,current_smokers,65 - 74,morbidity,3.97,nhsd_ss_2018
-35+,23,men,current_smokers,75+,morbidity,3.97,nhsd_ss_2018
-35+,23,men,ex_smokers,35 - 44,morbidity,1.68,nhsd_ss_2018
-35+,23,men,ex_smokers,45 - 54,morbidity,1.68,nhsd_ss_2018
-35+,23,men,ex_smokers,55 - 64,morbidity,1.68,nhsd_ss_2018
-35+,23,men,ex_smokers,65 - 74,morbidity,1.68,nhsd_ss_2018
-35+,23,men,ex_smokers,75+,morbidity,1.68,nhsd_ss_2018
-35+,23,women,current_smokers,35 - 44,morbidity,3.97,nhsd_ss_2018
-35+,23,women,current_smokers,45 - 54,morbidity,3.97,nhsd_ss_2018
-35+,23,women,current_smokers,55 - 64,morbidity,3.97,nhsd_ss_2018
-35+,23,women,current_smokers,65 - 74,morbidity,3.97,nhsd_ss_2018
-35+,23,women,current_smokers,75+,morbidity,3.97,nhsd_ss_2018
-35+,23,women,ex_smokers,35 - 44,morbidity,1.68,nhsd_ss_2018
-35+,23,women,ex_smokers,45 - 54,morbidity,1.68,nhsd_ss_2018
-35+,23,women,ex_smokers,55 - 64,morbidity,1.68,nhsd_ss_2018
-35+,23,women,ex_smokers,65 - 74,morbidity,1.68,nhsd_ss_2018
-35+,23,women,ex_smokers,75+,morbidity,1.68,nhsd_ss_2018
-35+,26,men,current_smokers,35 - 44,morbidity,,nhsd_ss_2018
-35+,26,men,current_smokers,45 - 54,morbidity,,nhsd_ss_2018
-35+,26,men,current_smokers,55 - 64,morbidity,,nhsd_ss_2018
-35+,26,men,current_smokers,65 - 74,morbidity,,nhsd_ss_2018
-35+,26,men,current_smokers,75+,morbidity,,nhsd_ss_2018
-35+,26,men,ex_smokers,35 - 44,morbidity,,nhsd_ss_2018
-35+,26,men,ex_smokers,45 - 54,morbidity,,nhsd_ss_2018
-35+,26,men,ex_smokers,55 - 64,morbidity,,nhsd_ss_2018
-35+,26,men,ex_smokers,65 - 74,morbidity,,nhsd_ss_2018
-35+,26,men,ex_smokers,75+,morbidity,,nhsd_ss_2018
-35+,26,women,current_smokers,35 - 44,morbidity,1.28,nhsd_ss_2018
-35+,26,women,current_smokers,45 - 54,morbidity,1.28,nhsd_ss_2018
-35+,26,women,current_smokers,55 - 64,morbidity,1.28,nhsd_ss_2018
-35+,26,women,current_smokers,65 - 74,morbidity,1.28,nhsd_ss_2018
-35+,26,women,current_smokers,75+,morbidity,1.28,nhsd_ss_2018
-35+,26,women,ex_smokers,35 - 44,morbidity,,nhsd_ss_2018
-35+,26,women,ex_smokers,45 - 54,morbidity,,nhsd_ss_2018
-35+,26,women,ex_smokers,55 - 64,morbidity,,nhsd_ss_2018
-35+,26,women,ex_smokers,65 - 74,morbidity,,nhsd_ss_2018
-35+,26,women,ex_smokers,75+,morbidity,,nhsd_ss_2018
-45+,24,men,current_smokers,45 - 54,morbidity,1.54,nhsd_ss_2018
-45+,24,men,current_smokers,55 - 64,morbidity,1.54,nhsd_ss_2018
-45+,24,men,current_smokers,65 - 74,morbidity,1.54,nhsd_ss_2018
-45+,24,men,current_smokers,75+,morbidity,1.54,nhsd_ss_2018
-45+,24,men,ex_smokers,45 - 54,morbidity,1.11,nhsd_ss_2018
-45+,24,men,ex_smokers,55 - 64,morbidity,1.11,nhsd_ss_2018
-45+,24,men,ex_smokers,65 - 74,morbidity,1.11,nhsd_ss_2018
-45+,24,men,ex_smokers,75+,morbidity,1.11,nhsd_ss_2018
-45+,24,women,current_smokers,45 - 54,morbidity,1.54,nhsd_ss_2018
-45+,24,women,current_smokers,55 - 64,morbidity,1.54,nhsd_ss_2018
-45+,24,women,current_smokers,65 - 74,morbidity,1.54,nhsd_ss_2018
-45+,24,women,current_smokers,75+,morbidity,1.54,nhsd_ss_2018
-45+,24,women,ex_smokers,45 - 54,morbidity,1.11,nhsd_ss_2018
-45+,24,women,ex_smokers,55 - 64,morbidity,1.11,nhsd_ss_2018
-45+,24,women,ex_smokers,65 - 74,morbidity,1.11,nhsd_ss_2018
-45+,24,women,ex_smokers,75+,morbidity,1.11,nhsd_ss_2018
-55 - 64,16,men,current_smokers,55 - 64,morbidity,2.5,nhsd_ss_2018
-55 - 64,16,men,ex_smokers,55 - 64,morbidity,1.6,nhsd_ss_2018
-55 - 64,16,women,current_smokers,55 - 64,morbidity,2.8,nhsd_ss_2018
-55 - 64,16,women,ex_smokers,55 - 64,morbidity,1.1,nhsd_ss_2018
-55 - 64,18,men,current_smokers,55 - 64,morbidity,3.1,nhsd_ss_2018
-55 - 64,18,men,ex_smokers,55 - 64,morbidity,1.1,nhsd_ss_2018
-55 - 64,18,women,current_smokers,55 - 64,morbidity,3.7,nhsd_ss_2018
-55 - 64,18,women,ex_smokers,55 - 64,morbidity,1.3,nhsd_ss_2018
-55 - 64,25,men,current_smokers,55 - 64,morbidity,1.17,nhsd_ss_2018
-55 - 64,25,men,ex_smokers,55 - 64,morbidity,1.02,nhsd_ss_2018
-55 - 64,25,women,current_smokers,55 - 64,morbidity,1.17,nhsd_ss_2018
-55 - 64,25,women,ex_smokers,55 - 64,morbidity,1.02,nhsd_ss_2018
-65 - 74,16,men,current_smokers,65 - 74,morbidity,1.8,nhsd_ss_2018
-65 - 74,16,men,ex_smokers,65 - 74,morbidity,1.3,nhsd_ss_2018
-65 - 74,16,women,current_smokers,65 - 74,morbidity,2.1,nhsd_ss_2018
-65 - 74,16,women,ex_smokers,65 - 74,morbidity,1.2,nhsd_ss_2018
-65 - 74,18,men,current_smokers,65 - 74,morbidity,2.2,nhsd_ss_2018
-65 - 74,18,men,ex_smokers,65 - 74,morbidity,1.1,nhsd_ss_2018
-65 - 74,18,women,current_smokers,65 - 74,morbidity,2.6,nhsd_ss_2018
-65 - 74,18,women,ex_smokers,65 - 74,morbidity,1.3,nhsd_ss_2018
-65 - 74,25,men,current_smokers,65 - 74,morbidity,1.41,nhsd_ss_2018
-65 - 74,25,men,ex_smokers,65 - 74,morbidity,1.08,nhsd_ss_2018
-65 - 74,25,women,current_smokers,65 - 74,morbidity,1.41,nhsd_ss_2018
-65 - 74,25,women,ex_smokers,65 - 74,morbidity,1.08,nhsd_ss_2018
-65+,14,men,current_smokers,65 - 74,morbidity,2,nhsd_ss_2018
-65+,14,men,current_smokers,75+,morbidity,2,nhsd_ss_2018
-65+,14,men,ex_smokers,65 - 74,morbidity,1.4,nhsd_ss_2018
-65+,14,men,ex_smokers,75+,morbidity,1.4,nhsd_ss_2018
-65+,14,women,current_smokers,65 - 74,morbidity,2.2,nhsd_ss_2018
-65+,14,women,current_smokers,75+,morbidity,2.2,nhsd_ss_2018
-65+,14,women,ex_smokers,65 - 74,morbidity,1.1,nhsd_ss_2018
-65+,14,women,ex_smokers,75+,morbidity,1.1,nhsd_ss_2018
-75+,16,men,current_smokers,75+,morbidity,1.4,nhsd_ss_2018
-75+,16,men,ex_smokers,75+,morbidity,1.1,nhsd_ss_2018
-75+,16,women,current_smokers,75+,morbidity,1.4,nhsd_ss_2018
-75+,16,women,ex_smokers,75+,morbidity,1.2,nhsd_ss_2018
-75+,18,men,current_smokers,75+,morbidity,1.6,nhsd_ss_2018
-75+,18,men,ex_smokers,75+,morbidity,1.1,nhsd_ss_2018
-75+,18,women,current_smokers,75+,morbidity,1.3,nhsd_ss_2018
-75+,18,women,ex_smokers,75+,morbidity,1,nhsd_ss_2018
-75+,25,men,current_smokers,75+,morbidity,1.76,nhsd_ss_2018
-75+,25,men,ex_smokers,75+,morbidity,1.14,nhsd_ss_2018
-75+,25,women,current_smokers,75+,morbidity,1.85,nhsd_ss_2018
-75+,25,women,ex_smokers,75+,morbidity,1.22,nhsd_ss_2018
-35 - 54,16,men,current_smokers,35 - 44,mortality,4.2,nhsd_ss_2018
-35 - 54,16,men,current_smokers,45 - 54,mortality,4.2,nhsd_ss_2018
-35 - 54,16,men,ex_smokers,35 - 44,mortality,2,nhsd_ss_2018
-35 - 54,16,men,ex_smokers,45 - 54,mortality,2,nhsd_ss_2018
-35 - 54,16,women,current_smokers,35 - 44,mortality,5.3,nhsd_ss_2018
-35 - 54,16,women,current_smokers,45 - 54,mortality,5.3,nhsd_ss_2018
-35 - 54,16,women,ex_smokers,35 - 44,mortality,2.6,nhsd_ss_2018
-35 - 54,16,women,ex_smokers,45 - 54,mortality,2.6,nhsd_ss_2018
-35 - 54,18,men,current_smokers,35 - 44,mortality,4.4,nhsd_ss_2018
-35 - 54,18,men,current_smokers,45 - 54,mortality,4.4,nhsd_ss_2018
-35 - 54,18,men,ex_smokers,35 - 44,mortality,1.1,nhsd_ss_2018
-35 - 54,18,men,ex_smokers,45 - 54,mortality,1.1,nhsd_ss_2018
-35 - 54,18,women,current_smokers,35 - 44,mortality,5.4,nhsd_ss_2018
-35 - 54,18,women,current_smokers,45 - 54,mortality,5.4,nhsd_ss_2018
-35 - 54,18,women,ex_smokers,35 - 44,mortality,1.3,nhsd_ss_2018
-35 - 54,18,women,ex_smokers,45 - 54,mortality,1.3,nhsd_ss_2018
-35 - 64,14,men,current_smokers,35 - 44,mortality,2.5,nhsd_ss_2018
-35 - 64,14,men,current_smokers,45 - 54,mortality,2.5,nhsd_ss_2018
-35 - 64,14,men,current_smokers,55 - 64,mortality,2.5,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,35 - 44,mortality,1.4,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,45 - 54,mortality,1.4,nhsd_ss_2018
-35 - 64,14,men,ex_smokers,55 - 64,mortality,1.4,nhsd_ss_2018
-35 - 64,14,women,current_smokers,35 - 44,mortality,4.3,nhsd_ss_2018
-35 - 64,14,women,current_smokers,45 - 54,mortality,4.3,nhsd_ss_2018
-35 - 64,14,women,current_smokers,55 - 64,mortality,4.3,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,35 - 44,mortality,1.1,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,45 - 54,mortality,1.1,nhsd_ss_2018
-35 - 64,14,women,ex_smokers,55 - 64,mortality,1.1,nhsd_ss_2018
-35+,1,men,current_smokers,35 - 44,mortality,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,45 - 54,mortality,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,55 - 64,mortality,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,65 - 74,mortality,23.26,nhsd_ss_2018
-35+,1,men,current_smokers,75+,mortality,23.26,nhsd_ss_2018
-35+,1,men,ex_smokers,35 - 44,mortality,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,45 - 54,mortality,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,55 - 64,mortality,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,65 - 74,mortality,8.7,nhsd_ss_2018
-35+,1,men,ex_smokers,75+,mortality,8.7,nhsd_ss_2018
-35+,1,women,current_smokers,35 - 44,mortality,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,45 - 54,mortality,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,55 - 64,mortality,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,65 - 74,mortality,12.69,nhsd_ss_2018
-35+,1,women,current_smokers,75+,mortality,12.69,nhsd_ss_2018
-35+,1,women,ex_smokers,35 - 44,mortality,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,45 - 54,mortality,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,55 - 64,mortality,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,65 - 74,mortality,4.53,nhsd_ss_2018
-35+,1,women,ex_smokers,75+,mortality,4.53,nhsd_ss_2018
-35+,2,men,current_smokers,35 - 44,mortality,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,45 - 54,mortality,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,55 - 64,mortality,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,65 - 74,mortality,10.89,nhsd_ss_2018
-35+,2,men,current_smokers,75+,mortality,10.89,nhsd_ss_2018
-35+,2,men,ex_smokers,35 - 44,mortality,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,45 - 54,mortality,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,55 - 64,mortality,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,65 - 74,mortality,3.4,nhsd_ss_2018
-35+,2,men,ex_smokers,75+,mortality,3.4,nhsd_ss_2018
-35+,2,women,current_smokers,35 - 44,mortality,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,45 - 54,mortality,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,55 - 64,mortality,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,65 - 74,mortality,5.08,nhsd_ss_2018
-35+,2,women,current_smokers,75+,mortality,5.08,nhsd_ss_2018
-35+,2,women,ex_smokers,35 - 44,mortality,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,45 - 54,mortality,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,55 - 64,mortality,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,65 - 74,mortality,2.29,nhsd_ss_2018
-35+,2,women,ex_smokers,75+,mortality,2.29,nhsd_ss_2018
-35+,3,men,current_smokers,35 - 44,mortality,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,45 - 54,mortality,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,55 - 64,mortality,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,65 - 74,mortality,6.76,nhsd_ss_2018
-35+,3,men,current_smokers,75+,mortality,6.76,nhsd_ss_2018
-35+,3,men,ex_smokers,35 - 44,mortality,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,45 - 54,mortality,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,55 - 64,mortality,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,65 - 74,mortality,4.46,nhsd_ss_2018
-35+,3,men,ex_smokers,75+,mortality,4.46,nhsd_ss_2018
-35+,3,women,current_smokers,35 - 44,mortality,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,45 - 54,mortality,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,55 - 64,mortality,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,65 - 74,mortality,7.75,nhsd_ss_2018
-35+,3,women,current_smokers,75+,mortality,7.75,nhsd_ss_2018
-35+,3,women,ex_smokers,35 - 44,mortality,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,45 - 54,mortality,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,55 - 64,mortality,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,65 - 74,mortality,2.79,nhsd_ss_2018
-35+,3,women,ex_smokers,75+,mortality,2.79,nhsd_ss_2018
-35+,4,men,current_smokers,35 - 44,mortality,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,45 - 54,mortality,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,55 - 64,mortality,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,65 - 74,mortality,14.6,nhsd_ss_2018
-35+,4,men,current_smokers,75+,mortality,14.6,nhsd_ss_2018
-35+,4,men,ex_smokers,35 - 44,mortality,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,45 - 54,mortality,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,55 - 64,mortality,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,65 - 74,mortality,6.34,nhsd_ss_2018
-35+,4,men,ex_smokers,75+,mortality,6.34,nhsd_ss_2018
-35+,4,women,current_smokers,35 - 44,mortality,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,45 - 54,mortality,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,55 - 64,mortality,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,65 - 74,mortality,13.02,nhsd_ss_2018
-35+,4,women,current_smokers,75+,mortality,13.02,nhsd_ss_2018
-35+,4,women,ex_smokers,35 - 44,mortality,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,45 - 54,mortality,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,55 - 64,mortality,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,65 - 74,mortality,5.16,nhsd_ss_2018
-35+,4,women,ex_smokers,75+,mortality,5.16,nhsd_ss_2018
-35+,5,men,current_smokers,35 - 44,mortality,1,nhsd_ss_2018
-35+,5,men,current_smokers,45 - 54,mortality,1,nhsd_ss_2018
-35+,5,men,current_smokers,55 - 64,mortality,1,nhsd_ss_2018
-35+,5,men,current_smokers,65 - 74,mortality,1,nhsd_ss_2018
-35+,5,men,current_smokers,75+,mortality,1,nhsd_ss_2018
-35+,5,men,ex_smokers,35 - 44,mortality,1,nhsd_ss_2018
-35+,5,men,ex_smokers,45 - 54,mortality,1,nhsd_ss_2018
-35+,5,men,ex_smokers,55 - 64,mortality,1,nhsd_ss_2018
-35+,5,men,ex_smokers,65 - 74,mortality,1,nhsd_ss_2018
-35+,5,men,ex_smokers,75+,mortality,1,nhsd_ss_2018
-35+,5,women,current_smokers,35 - 44,mortality,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,45 - 54,mortality,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,55 - 64,mortality,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,65 - 74,mortality,1.59,nhsd_ss_2018
-35+,5,women,current_smokers,75+,mortality,1.59,nhsd_ss_2018
-35+,5,women,ex_smokers,35 - 44,mortality,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,45 - 54,mortality,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,55 - 64,mortality,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,65 - 74,mortality,1.14,nhsd_ss_2018
-35+,5,women,ex_smokers,75+,mortality,1.14,nhsd_ss_2018
-35+,6,men,current_smokers,35 - 44,mortality,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,45 - 54,mortality,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,55 - 64,mortality,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,65 - 74,mortality,3.27,nhsd_ss_2018
-35+,6,men,current_smokers,75+,mortality,3.27,nhsd_ss_2018
-35+,6,men,ex_smokers,35 - 44,mortality,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,45 - 54,mortality,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,55 - 64,mortality,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,65 - 74,mortality,2.09,nhsd_ss_2018
-35+,6,men,ex_smokers,75+,mortality,2.09,nhsd_ss_2018
-35+,6,women,current_smokers,35 - 44,mortality,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,45 - 54,mortality,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,55 - 64,mortality,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,65 - 74,mortality,2.22,nhsd_ss_2018
-35+,6,women,current_smokers,75+,mortality,2.22,nhsd_ss_2018
-35+,6,women,ex_smokers,35 - 44,mortality,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,45 - 54,mortality,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,55 - 64,mortality,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,65 - 74,mortality,1.89,nhsd_ss_2018
-35+,6,women,ex_smokers,75+,mortality,1.89,nhsd_ss_2018
-35+,7,men,current_smokers,35 - 44,mortality,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,45 - 54,mortality,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,55 - 64,mortality,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,65 - 74,mortality,2.5,nhsd_ss_2018
-35+,7,men,current_smokers,75+,mortality,2.5,nhsd_ss_2018
-35+,7,men,ex_smokers,35 - 44,mortality,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,45 - 54,mortality,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,55 - 64,mortality,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,65 - 74,mortality,1.7,nhsd_ss_2018
-35+,7,men,ex_smokers,75+,mortality,1.7,nhsd_ss_2018
-35+,7,women,current_smokers,35 - 44,mortality,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,45 - 54,mortality,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,55 - 64,mortality,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,65 - 74,mortality,1.4,nhsd_ss_2018
-35+,7,women,current_smokers,75+,mortality,1.4,nhsd_ss_2018
-35+,7,women,ex_smokers,35 - 44,mortality,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,45 - 54,mortality,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,55 - 64,mortality,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,65 - 74,mortality,1.1,nhsd_ss_2018
-35+,7,women,ex_smokers,75+,mortality,1.1,nhsd_ss_2018
-35+,8,men,current_smokers,35 - 44,mortality,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,45 - 54,mortality,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,55 - 64,mortality,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,65 - 74,mortality,1.96,nhsd_ss_2018
-35+,8,men,current_smokers,75+,mortality,1.96,nhsd_ss_2018
-35+,8,men,ex_smokers,35 - 44,mortality,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,45 - 54,mortality,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,55 - 64,mortality,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,65 - 74,mortality,1.47,nhsd_ss_2018
-35+,8,men,ex_smokers,75+,mortality,1.47,nhsd_ss_2018
-35+,8,women,current_smokers,35 - 44,mortality,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,45 - 54,mortality,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,55 - 64,mortality,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,65 - 74,mortality,1.36,nhsd_ss_2018
-35+,8,women,current_smokers,75+,mortality,1.36,nhsd_ss_2018
-35+,8,women,ex_smokers,35 - 44,mortality,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,45 - 54,mortality,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,55 - 64,mortality,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,65 - 74,mortality,1.32,nhsd_ss_2018
-35+,8,women,ex_smokers,75+,mortality,1.32,nhsd_ss_2018
-35+,9,men,current_smokers,35 - 44,mortality,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,45 - 54,mortality,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,55 - 64,mortality,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,65 - 74,mortality,2.31,nhsd_ss_2018
-35+,9,men,current_smokers,75+,mortality,2.31,nhsd_ss_2018
-35+,9,men,ex_smokers,35 - 44,mortality,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,45 - 54,mortality,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,55 - 64,mortality,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,65 - 74,mortality,1.15,nhsd_ss_2018
-35+,9,men,ex_smokers,75+,mortality,1.15,nhsd_ss_2018
-35+,9,women,current_smokers,35 - 44,mortality,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,45 - 54,mortality,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,55 - 64,mortality,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,65 - 74,mortality,2.25,nhsd_ss_2018
-35+,9,women,current_smokers,75+,mortality,2.25,nhsd_ss_2018
-35+,9,women,ex_smokers,35 - 44,mortality,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,45 - 54,mortality,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,55 - 64,mortality,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,65 - 74,mortality,1.55,nhsd_ss_2018
-35+,9,women,ex_smokers,75+,mortality,1.55,nhsd_ss_2018
-35+,10,men,current_smokers,35 - 44,mortality,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,45 - 54,mortality,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,55 - 64,mortality,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,65 - 74,mortality,4.4,nhsd_ss_2018
-35+,10,men,current_smokers,75+,mortality,4.4,nhsd_ss_2018
-35+,10,men,ex_smokers,35 - 44,mortality,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,45 - 54,mortality,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,55 - 64,mortality,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,65 - 74,mortality,2.5,nhsd_ss_2018
-35+,10,men,ex_smokers,75+,mortality,2.5,nhsd_ss_2018
-35+,10,women,current_smokers,35 - 44,mortality,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,45 - 54,mortality,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,55 - 64,mortality,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,65 - 74,mortality,2.2,nhsd_ss_2018
-35+,10,women,current_smokers,75+,mortality,2.2,nhsd_ss_2018
-35+,10,women,ex_smokers,35 - 44,mortality,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,45 - 54,mortality,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,55 - 64,mortality,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,65 - 74,mortality,1.3,nhsd_ss_2018
-35+,10,women,ex_smokers,75+,mortality,1.3,nhsd_ss_2018
-35+,11,men,current_smokers,35 - 44,mortality,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,45 - 54,mortality,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,55 - 64,mortality,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,65 - 74,mortality,1.8,nhsd_ss_2018
-35+,11,men,current_smokers,75+,mortality,1.8,nhsd_ss_2018
-35+,11,men,ex_smokers,35 - 44,mortality,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,45 - 54,mortality,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,55 - 64,mortality,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,65 - 74,mortality,1.4,nhsd_ss_2018
-35+,11,men,ex_smokers,75+,mortality,1.4,nhsd_ss_2018
-35+,11,women,current_smokers,35 - 44,mortality,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,45 - 54,mortality,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,55 - 64,mortality,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,65 - 74,mortality,1.2,nhsd_ss_2018
-35+,11,women,current_smokers,75+,mortality,1.2,nhsd_ss_2018
-35+,11,women,ex_smokers,35 - 44,mortality,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,45 - 54,mortality,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,55 - 64,mortality,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,65 - 74,mortality,1.3,nhsd_ss_2018
-35+,11,women,ex_smokers,75+,mortality,1.3,nhsd_ss_2018
-35+,12,men,current_smokers,35 - 44,mortality,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,45 - 54,mortality,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,55 - 64,mortality,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,65 - 74,mortality,17.1,nhsd_ss_2018
-35+,12,men,current_smokers,75+,mortality,17.1,nhsd_ss_2018
-35+,12,men,ex_smokers,35 - 44,mortality,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,45 - 54,mortality,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,55 - 64,mortality,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,65 - 74,mortality,15.64,nhsd_ss_2018
-35+,12,men,ex_smokers,75+,mortality,15.64,nhsd_ss_2018
-35+,12,women,current_smokers,35 - 44,mortality,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,45 - 54,mortality,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,55 - 64,mortality,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,65 - 74,mortality,12.04,nhsd_ss_2018
-35+,12,women,current_smokers,75+,mortality,12.04,nhsd_ss_2018
-35+,12,women,ex_smokers,35 - 44,mortality,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,45 - 54,mortality,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,55 - 64,mortality,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,65 - 74,mortality,11.77,nhsd_ss_2018
-35+,12,women,ex_smokers,75+,mortality,11.77,nhsd_ss_2018
-35+,13,men,current_smokers,35 - 44,mortality,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,45 - 54,mortality,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,55 - 64,mortality,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,65 - 74,mortality,10.58,nhsd_ss_2018
-35+,13,men,current_smokers,75+,mortality,10.58,nhsd_ss_2018
-35+,13,men,ex_smokers,35 - 44,mortality,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,45 - 54,mortality,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,55 - 64,mortality,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,65 - 74,mortality,6.8,nhsd_ss_2018
-35+,13,men,ex_smokers,75+,mortality,6.8,nhsd_ss_2018
-35+,13,women,current_smokers,35 - 44,mortality,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,45 - 54,mortality,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,55 - 64,mortality,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,65 - 74,mortality,13.08,nhsd_ss_2018
-35+,13,women,current_smokers,75+,mortality,13.08,nhsd_ss_2018
-35+,13,women,ex_smokers,35 - 44,mortality,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,45 - 54,mortality,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,55 - 64,mortality,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,65 - 74,mortality,6.78,nhsd_ss_2018
-35+,13,women,ex_smokers,75+,mortality,6.78,nhsd_ss_2018
-35+,15,men,current_smokers,35 - 44,mortality,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,45 - 54,mortality,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,55 - 64,mortality,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,65 - 74,mortality,1.78,nhsd_ss_2018
-35+,15,men,current_smokers,75+,mortality,1.78,nhsd_ss_2018
-35+,15,men,ex_smokers,35 - 44,mortality,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,45 - 54,mortality,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,55 - 64,mortality,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,65 - 74,mortality,1.22,nhsd_ss_2018
-35+,15,men,ex_smokers,75+,mortality,1.22,nhsd_ss_2018
-35+,15,women,current_smokers,35 - 44,mortality,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,45 - 54,mortality,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,55 - 64,mortality,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,65 - 74,mortality,1.49,nhsd_ss_2018
-35+,15,women,current_smokers,75+,mortality,1.49,nhsd_ss_2018
-35+,15,women,ex_smokers,35 - 44,mortality,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,45 - 54,mortality,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,55 - 64,mortality,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,65 - 74,mortality,1.14,nhsd_ss_2018
-35+,15,women,ex_smokers,75+,mortality,1.14,nhsd_ss_2018
-35+,17,men,current_smokers,35 - 44,mortality,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,45 - 54,mortality,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,55 - 64,mortality,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,65 - 74,mortality,2.07,nhsd_ss_2018
-35+,17,men,current_smokers,75+,mortality,2.07,nhsd_ss_2018
-35+,17,men,ex_smokers,35 - 44,mortality,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,45 - 54,mortality,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,55 - 64,mortality,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,65 - 74,mortality,1.01,nhsd_ss_2018
-35+,17,men,ex_smokers,75+,mortality,1.01,nhsd_ss_2018
-35+,17,women,current_smokers,35 - 44,mortality,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,45 - 54,mortality,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,55 - 64,mortality,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,65 - 74,mortality,2.17,nhsd_ss_2018
-35+,17,women,current_smokers,75+,mortality,2.17,nhsd_ss_2018
-35+,17,women,ex_smokers,35 - 44,mortality,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,45 - 54,mortality,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,55 - 64,mortality,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,65 - 74,mortality,1.12,nhsd_ss_2018
-35+,17,women,ex_smokers,75+,mortality,1.12,nhsd_ss_2018
-35+,19,men,current_smokers,35 - 44,mortality,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,45 - 54,mortality,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,55 - 64,mortality,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,65 - 74,mortality,6.21,nhsd_ss_2018
-35+,19,men,current_smokers,75+,mortality,6.21,nhsd_ss_2018
-35+,19,men,ex_smokers,35 - 44,mortality,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,45 - 54,mortality,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,55 - 64,mortality,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,65 - 74,mortality,3.07,nhsd_ss_2018
-35+,19,men,ex_smokers,75+,mortality,3.07,nhsd_ss_2018
-35+,19,women,current_smokers,35 - 44,mortality,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,45 - 54,mortality,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,55 - 64,mortality,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,65 - 74,mortality,7.07,nhsd_ss_2018
-35+,19,women,current_smokers,75+,mortality,7.07,nhsd_ss_2018
-35+,19,women,ex_smokers,35 - 44,mortality,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,45 - 54,mortality,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,55 - 64,mortality,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,65 - 74,mortality,2.07,nhsd_ss_2018
-35+,19,women,ex_smokers,75+,mortality,2.07,nhsd_ss_2018
-35+,20,men,current_smokers,35 - 44,mortality,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,45 - 54,mortality,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,55 - 64,mortality,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,65 - 74,mortality,2.44,nhsd_ss_2018
-35+,20,men,current_smokers,75+,mortality,2.44,nhsd_ss_2018
-35+,20,men,ex_smokers,35 - 44,mortality,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,45 - 54,mortality,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,55 - 64,mortality,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,65 - 74,mortality,1.33,nhsd_ss_2018
-35+,20,men,ex_smokers,75+,mortality,1.33,nhsd_ss_2018
-35+,20,women,current_smokers,35 - 44,mortality,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,45 - 54,mortality,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,55 - 64,mortality,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,65 - 74,mortality,1.83,nhsd_ss_2018
-35+,20,women,current_smokers,75+,mortality,1.83,nhsd_ss_2018
-35+,20,women,ex_smokers,35 - 44,mortality,1,nhsd_ss_2018
-35+,20,women,ex_smokers,45 - 54,mortality,1,nhsd_ss_2018
-35+,20,women,ex_smokers,55 - 64,mortality,1,nhsd_ss_2018
-35+,20,women,ex_smokers,65 - 74,mortality,1,nhsd_ss_2018
-35+,20,women,ex_smokers,75+,mortality,1,nhsd_ss_2018
-35+,21,men,current_smokers,35 - 44,mortality,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,45 - 54,mortality,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,55 - 64,mortality,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,65 - 74,mortality,5.4,nhsd_ss_2018
-35+,21,men,current_smokers,75+,mortality,5.4,nhsd_ss_2018
-35+,21,men,ex_smokers,35 - 44,mortality,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,45 - 54,mortality,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,55 - 64,mortality,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,65 - 74,mortality,1.8,nhsd_ss_2018
-35+,21,men,ex_smokers,75+,mortality,1.8,nhsd_ss_2018
-35+,21,women,current_smokers,35 - 44,mortality,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,45 - 54,mortality,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,55 - 64,mortality,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,65 - 74,mortality,5.5,nhsd_ss_2018
-35+,21,women,current_smokers,75+,mortality,5.5,nhsd_ss_2018
-35+,21,women,ex_smokers,35 - 44,mortality,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,45 - 54,mortality,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,55 - 64,mortality,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,65 - 74,mortality,1.4,nhsd_ss_2018
-35+,21,women,ex_smokers,75+,mortality,1.4,nhsd_ss_2018
-35+,22,men,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,22,men,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,22,men,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,22,men,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,22,men,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,22,men,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,22,men,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,22,men,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,22,men,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,22,men,ex_smokers,75+,mortality,,nhsd_ss_2018
-35+,22,women,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,22,women,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,22,women,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,22,women,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,22,women,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,22,women,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,22,women,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,22,women,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,22,women,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,22,women,ex_smokers,75+,mortality,,nhsd_ss_2018
-35+,23,men,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,23,men,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,23,men,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,23,men,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,23,men,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,23,men,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,23,men,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,23,men,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,23,men,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,23,men,ex_smokers,75+,mortality,,nhsd_ss_2018
-35+,23,women,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,23,women,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,23,women,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,23,women,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,23,women,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,23,women,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,23,women,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,23,women,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,23,women,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,23,women,ex_smokers,75+,mortality,,nhsd_ss_2018
-35+,26,men,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,26,men,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,26,men,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,26,men,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,26,men,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,26,men,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,26,men,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,26,men,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,26,men,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,26,men,ex_smokers,75+,mortality,,nhsd_ss_2018
-35+,26,women,current_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,26,women,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,26,women,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,26,women,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,26,women,current_smokers,75+,mortality,,nhsd_ss_2018
-35+,26,women,ex_smokers,35 - 44,mortality,,nhsd_ss_2018
-35+,26,women,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-35+,26,women,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-35+,26,women,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-35+,26,women,ex_smokers,75+,mortality,,nhsd_ss_2018
-45+,24,men,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-45+,24,men,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-45+,24,men,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-45+,24,men,current_smokers,75+,mortality,,nhsd_ss_2018
-45+,24,men,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-45+,24,men,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-45+,24,men,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-45+,24,men,ex_smokers,75+,mortality,,nhsd_ss_2018
-45+,24,women,current_smokers,45 - 54,mortality,,nhsd_ss_2018
-45+,24,women,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-45+,24,women,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-45+,24,women,current_smokers,75+,mortality,,nhsd_ss_2018
-45+,24,women,ex_smokers,45 - 54,mortality,,nhsd_ss_2018
-45+,24,women,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-45+,24,women,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-45+,24,women,ex_smokers,75+,mortality,,nhsd_ss_2018
-55 - 64,16,men,current_smokers,55 - 64,mortality,2.5,nhsd_ss_2018
-55 - 64,16,men,ex_smokers,55 - 64,mortality,1.6,nhsd_ss_2018
-55 - 64,16,women,current_smokers,55 - 64,mortality,2.8,nhsd_ss_2018
-55 - 64,16,women,ex_smokers,55 - 64,mortality,1.1,nhsd_ss_2018
-55 - 64,18,men,current_smokers,55 - 64,mortality,3.1,nhsd_ss_2018
-55 - 64,18,men,ex_smokers,55 - 64,mortality,1.1,nhsd_ss_2018
-55 - 64,18,women,current_smokers,55 - 64,mortality,3.7,nhsd_ss_2018
-55 - 64,18,women,ex_smokers,55 - 64,mortality,1.3,nhsd_ss_2018
-55 - 64,25,men,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-55 - 64,25,men,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-55 - 64,25,women,current_smokers,55 - 64,mortality,,nhsd_ss_2018
-55 - 64,25,women,ex_smokers,55 - 64,mortality,,nhsd_ss_2018
-65 - 74,16,men,current_smokers,65 - 74,mortality,1.8,nhsd_ss_2018
-65 - 74,16,men,ex_smokers,65 - 74,mortality,1.3,nhsd_ss_2018
-65 - 74,16,women,current_smokers,65 - 74,mortality,2.1,nhsd_ss_2018
-65 - 74,16,women,ex_smokers,65 - 74,mortality,1.2,nhsd_ss_2018
-65 - 74,18,men,current_smokers,65 - 74,mortality,2.2,nhsd_ss_2018
-65 - 74,18,men,ex_smokers,65 - 74,mortality,1.1,nhsd_ss_2018
-65 - 74,18,women,current_smokers,65 - 74,mortality,2.6,nhsd_ss_2018
-65 - 74,18,women,ex_smokers,65 - 74,mortality,1.3,nhsd_ss_2018
-65 - 74,25,men,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-65 - 74,25,men,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-65 - 74,25,women,current_smokers,65 - 74,mortality,,nhsd_ss_2018
-65 - 74,25,women,ex_smokers,65 - 74,mortality,,nhsd_ss_2018
-65+,14,men,current_smokers,65 - 74,mortality,2,nhsd_ss_2018
-65+,14,men,current_smokers,75+,mortality,2,nhsd_ss_2018
-65+,14,men,ex_smokers,65 - 74,mortality,1.4,nhsd_ss_2018
-65+,14,men,ex_smokers,75+,mortality,1.4,nhsd_ss_2018
-65+,14,women,current_smokers,65 - 74,mortality,2.2,nhsd_ss_2018
-65+,14,women,current_smokers,75+,mortality,2.2,nhsd_ss_2018
-65+,14,women,ex_smokers,65 - 74,mortality,1.1,nhsd_ss_2018
-65+,14,women,ex_smokers,75+,mortality,1.1,nhsd_ss_2018
-75+,16,men,current_smokers,75+,mortality,1.4,nhsd_ss_2018
-75+,16,men,ex_smokers,75+,mortality,1.1,nhsd_ss_2018
-75+,16,women,current_smokers,75+,mortality,1.4,nhsd_ss_2018
-75+,16,women,ex_smokers,75+,mortality,1.2,nhsd_ss_2018
-75+,18,men,current_smokers,75+,mortality,1.6,nhsd_ss_2018
-75+,18,men,ex_smokers,75+,mortality,1.1,nhsd_ss_2018
-75+,18,women,current_smokers,75+,mortality,1.3,nhsd_ss_2018
-75+,18,women,ex_smokers,75+,mortality,1,nhsd_ss_2018
-75+,25,men,current_smokers,75+,mortality,,nhsd_ss_2018
-75+,25,men,ex_smokers,75+,mortality,,nhsd_ss_2018
-75+,25,women,current_smokers,75+,mortality,,nhsd_ss_2018
-75+,25,women,ex_smokers,75+,mortality,,nhsd_ss_2018
+ab_sa,condition_uid,sex,smoking_status,ab_sa_explode,analysis_type,srr,version
+35+,1,F,current,35 - 44,morbidity,12.69,nhsd_ss_2018
+35+,1,F,ex,35 - 44,morbidity,4.53,nhsd_ss_2018
+35+,1,F,current,45 - 54,morbidity,12.69,nhsd_ss_2018
+35+,1,F,ex,45 - 54,morbidity,4.53,nhsd_ss_2018
+35+,1,F,current,55 - 64,morbidity,12.69,nhsd_ss_2018
+35+,1,F,ex,55 - 64,morbidity,4.53,nhsd_ss_2018
+35+,1,F,current,65 - 74,morbidity,12.69,nhsd_ss_2018
+35+,1,F,ex,65 - 74,morbidity,4.53,nhsd_ss_2018
+35+,1,F,current,75+,morbidity,12.69,nhsd_ss_2018
+35+,1,F,ex,75+,morbidity,4.53,nhsd_ss_2018
+35+,1,M,current,35 - 44,morbidity,23.26,nhsd_ss_2018
+35+,1,M,ex,35 - 44,morbidity,8.7,nhsd_ss_2018
+35+,1,M,current,45 - 54,morbidity,23.26,nhsd_ss_2018
+35+,1,M,ex,45 - 54,morbidity,8.7,nhsd_ss_2018
+35+,1,M,current,55 - 64,morbidity,23.26,nhsd_ss_2018
+35+,1,M,ex,55 - 64,morbidity,8.7,nhsd_ss_2018
+35+,1,M,current,65 - 74,morbidity,23.26,nhsd_ss_2018
+35+,1,M,ex,65 - 74,morbidity,8.7,nhsd_ss_2018
+35+,1,M,current,75+,morbidity,23.26,nhsd_ss_2018
+35+,1,M,ex,75+,morbidity,8.7,nhsd_ss_2018
+35+,2,F,current,35 - 44,morbidity,5.08,nhsd_ss_2018
+35+,2,F,ex,35 - 44,morbidity,2.29,nhsd_ss_2018
+35+,2,F,current,45 - 54,morbidity,5.08,nhsd_ss_2018
+35+,2,F,ex,45 - 54,morbidity,2.29,nhsd_ss_2018
+35+,2,F,current,55 - 64,morbidity,5.08,nhsd_ss_2018
+35+,2,F,ex,55 - 64,morbidity,2.29,nhsd_ss_2018
+35+,2,F,current,65 - 74,morbidity,5.08,nhsd_ss_2018
+35+,2,F,ex,65 - 74,morbidity,2.29,nhsd_ss_2018
+35+,2,F,current,75+,morbidity,5.08,nhsd_ss_2018
+35+,2,F,ex,75+,morbidity,2.29,nhsd_ss_2018
+35+,2,M,current,35 - 44,morbidity,10.89,nhsd_ss_2018
+35+,2,M,ex,35 - 44,morbidity,3.4,nhsd_ss_2018
+35+,2,M,current,45 - 54,morbidity,10.89,nhsd_ss_2018
+35+,2,M,ex,45 - 54,morbidity,3.4,nhsd_ss_2018
+35+,2,M,current,55 - 64,morbidity,10.89,nhsd_ss_2018
+35+,2,M,ex,55 - 64,morbidity,3.4,nhsd_ss_2018
+35+,2,M,current,65 - 74,morbidity,10.89,nhsd_ss_2018
+35+,2,M,ex,65 - 74,morbidity,3.4,nhsd_ss_2018
+35+,2,M,current,75+,morbidity,10.89,nhsd_ss_2018
+35+,2,M,ex,75+,morbidity,3.4,nhsd_ss_2018
+35+,3,F,current,35 - 44,morbidity,7.75,nhsd_ss_2018
+35+,3,F,ex,35 - 44,morbidity,2.79,nhsd_ss_2018
+35+,3,F,current,45 - 54,morbidity,7.75,nhsd_ss_2018
+35+,3,F,ex,45 - 54,morbidity,2.79,nhsd_ss_2018
+35+,3,F,current,55 - 64,morbidity,7.75,nhsd_ss_2018
+35+,3,F,ex,55 - 64,morbidity,2.79,nhsd_ss_2018
+35+,3,F,current,65 - 74,morbidity,7.75,nhsd_ss_2018
+35+,3,F,ex,65 - 74,morbidity,2.79,nhsd_ss_2018
+35+,3,F,current,75+,morbidity,7.75,nhsd_ss_2018
+35+,3,F,ex,75+,morbidity,2.79,nhsd_ss_2018
+35+,3,M,current,35 - 44,morbidity,6.76,nhsd_ss_2018
+35+,3,M,ex,35 - 44,morbidity,4.46,nhsd_ss_2018
+35+,3,M,current,45 - 54,morbidity,6.76,nhsd_ss_2018
+35+,3,M,ex,45 - 54,morbidity,4.46,nhsd_ss_2018
+35+,3,M,current,55 - 64,morbidity,6.76,nhsd_ss_2018
+35+,3,M,ex,55 - 64,morbidity,4.46,nhsd_ss_2018
+35+,3,M,current,65 - 74,morbidity,6.76,nhsd_ss_2018
+35+,3,M,ex,65 - 74,morbidity,4.46,nhsd_ss_2018
+35+,3,M,current,75+,morbidity,6.76,nhsd_ss_2018
+35+,3,M,ex,75+,morbidity,4.46,nhsd_ss_2018
+35+,4,F,current,35 - 44,morbidity,13.02,nhsd_ss_2018
+35+,4,F,ex,35 - 44,morbidity,5.16,nhsd_ss_2018
+35+,4,F,current,45 - 54,morbidity,13.02,nhsd_ss_2018
+35+,4,F,ex,45 - 54,morbidity,5.16,nhsd_ss_2018
+35+,4,F,current,55 - 64,morbidity,13.02,nhsd_ss_2018
+35+,4,F,ex,55 - 64,morbidity,5.16,nhsd_ss_2018
+35+,4,F,current,65 - 74,morbidity,13.02,nhsd_ss_2018
+35+,4,F,ex,65 - 74,morbidity,5.16,nhsd_ss_2018
+35+,4,F,current,75+,morbidity,13.02,nhsd_ss_2018
+35+,4,F,ex,75+,morbidity,5.16,nhsd_ss_2018
+35+,4,M,current,35 - 44,morbidity,14.6,nhsd_ss_2018
+35+,4,M,ex,35 - 44,morbidity,6.34,nhsd_ss_2018
+35+,4,M,current,45 - 54,morbidity,14.6,nhsd_ss_2018
+35+,4,M,ex,45 - 54,morbidity,6.34,nhsd_ss_2018
+35+,4,M,current,55 - 64,morbidity,14.6,nhsd_ss_2018
+35+,4,M,ex,55 - 64,morbidity,6.34,nhsd_ss_2018
+35+,4,M,current,65 - 74,morbidity,14.6,nhsd_ss_2018
+35+,4,M,ex,65 - 74,morbidity,6.34,nhsd_ss_2018
+35+,4,M,current,75+,morbidity,14.6,nhsd_ss_2018
+35+,4,M,ex,75+,morbidity,6.34,nhsd_ss_2018
+35+,5,F,current,35 - 44,morbidity,1.59,nhsd_ss_2018
+35+,5,F,ex,35 - 44,morbidity,1.14,nhsd_ss_2018
+35+,5,F,current,45 - 54,morbidity,1.59,nhsd_ss_2018
+35+,5,F,ex,45 - 54,morbidity,1.14,nhsd_ss_2018
+35+,5,F,current,55 - 64,morbidity,1.59,nhsd_ss_2018
+35+,5,F,ex,55 - 64,morbidity,1.14,nhsd_ss_2018
+35+,5,F,current,65 - 74,morbidity,1.59,nhsd_ss_2018
+35+,5,F,ex,65 - 74,morbidity,1.14,nhsd_ss_2018
+35+,5,F,current,75+,morbidity,1.59,nhsd_ss_2018
+35+,5,F,ex,75+,morbidity,1.14,nhsd_ss_2018
+35+,5,M,current,35 - 44,morbidity,1,nhsd_ss_2018
+35+,5,M,ex,35 - 44,morbidity,1,nhsd_ss_2018
+35+,5,M,current,45 - 54,morbidity,1,nhsd_ss_2018
+35+,5,M,ex,45 - 54,morbidity,1,nhsd_ss_2018
+35+,5,M,current,55 - 64,morbidity,1,nhsd_ss_2018
+35+,5,M,ex,55 - 64,morbidity,1,nhsd_ss_2018
+35+,5,M,current,65 - 74,morbidity,1,nhsd_ss_2018
+35+,5,M,ex,65 - 74,morbidity,1,nhsd_ss_2018
+35+,5,M,current,75+,morbidity,1,nhsd_ss_2018
+35+,5,M,ex,75+,morbidity,1,nhsd_ss_2018
+35+,6,F,current,35 - 44,morbidity,2.22,nhsd_ss_2018
+35+,6,F,ex,35 - 44,morbidity,1.89,nhsd_ss_2018
+35+,6,F,current,45 - 54,morbidity,2.22,nhsd_ss_2018
+35+,6,F,ex,45 - 54,morbidity,1.89,nhsd_ss_2018
+35+,6,F,current,55 - 64,morbidity,2.22,nhsd_ss_2018
+35+,6,F,ex,55 - 64,morbidity,1.89,nhsd_ss_2018
+35+,6,F,current,65 - 74,morbidity,2.22,nhsd_ss_2018
+35+,6,F,ex,65 - 74,morbidity,1.89,nhsd_ss_2018
+35+,6,F,current,75+,morbidity,2.22,nhsd_ss_2018
+35+,6,F,ex,75+,morbidity,1.89,nhsd_ss_2018
+35+,6,M,current,35 - 44,morbidity,3.27,nhsd_ss_2018
+35+,6,M,ex,35 - 44,morbidity,2.09,nhsd_ss_2018
+35+,6,M,current,45 - 54,morbidity,3.27,nhsd_ss_2018
+35+,6,M,ex,45 - 54,morbidity,2.09,nhsd_ss_2018
+35+,6,M,current,55 - 64,morbidity,3.27,nhsd_ss_2018
+35+,6,M,ex,55 - 64,morbidity,2.09,nhsd_ss_2018
+35+,6,M,current,65 - 74,morbidity,3.27,nhsd_ss_2018
+35+,6,M,ex,65 - 74,morbidity,2.09,nhsd_ss_2018
+35+,6,M,current,75+,morbidity,3.27,nhsd_ss_2018
+35+,6,M,ex,75+,morbidity,2.09,nhsd_ss_2018
+35+,7,F,current,35 - 44,morbidity,1.4,nhsd_ss_2018
+35+,7,F,ex,35 - 44,morbidity,1.1,nhsd_ss_2018
+35+,7,F,current,45 - 54,morbidity,1.4,nhsd_ss_2018
+35+,7,F,ex,45 - 54,morbidity,1.1,nhsd_ss_2018
+35+,7,F,current,55 - 64,morbidity,1.4,nhsd_ss_2018
+35+,7,F,ex,55 - 64,morbidity,1.1,nhsd_ss_2018
+35+,7,F,current,65 - 74,morbidity,1.4,nhsd_ss_2018
+35+,7,F,ex,65 - 74,morbidity,1.1,nhsd_ss_2018
+35+,7,F,current,75+,morbidity,1.4,nhsd_ss_2018
+35+,7,F,ex,75+,morbidity,1.1,nhsd_ss_2018
+35+,7,M,current,35 - 44,morbidity,2.5,nhsd_ss_2018
+35+,7,M,ex,35 - 44,morbidity,1.7,nhsd_ss_2018
+35+,7,M,current,45 - 54,morbidity,2.5,nhsd_ss_2018
+35+,7,M,ex,45 - 54,morbidity,1.7,nhsd_ss_2018
+35+,7,M,current,55 - 64,morbidity,2.5,nhsd_ss_2018
+35+,7,M,ex,55 - 64,morbidity,1.7,nhsd_ss_2018
+35+,7,M,current,65 - 74,morbidity,2.5,nhsd_ss_2018
+35+,7,M,ex,65 - 74,morbidity,1.7,nhsd_ss_2018
+35+,7,M,current,75+,morbidity,2.5,nhsd_ss_2018
+35+,7,M,ex,75+,morbidity,1.7,nhsd_ss_2018
+35+,8,F,current,35 - 44,morbidity,1.36,nhsd_ss_2018
+35+,8,F,ex,35 - 44,morbidity,1.32,nhsd_ss_2018
+35+,8,F,current,45 - 54,morbidity,1.36,nhsd_ss_2018
+35+,8,F,ex,45 - 54,morbidity,1.32,nhsd_ss_2018
+35+,8,F,current,55 - 64,morbidity,1.36,nhsd_ss_2018
+35+,8,F,ex,55 - 64,morbidity,1.32,nhsd_ss_2018
+35+,8,F,current,65 - 74,morbidity,1.36,nhsd_ss_2018
+35+,8,F,ex,65 - 74,morbidity,1.32,nhsd_ss_2018
+35+,8,F,current,75+,morbidity,1.36,nhsd_ss_2018
+35+,8,F,ex,75+,morbidity,1.32,nhsd_ss_2018
+35+,8,M,current,35 - 44,morbidity,1.96,nhsd_ss_2018
+35+,8,M,ex,35 - 44,morbidity,1.47,nhsd_ss_2018
+35+,8,M,current,45 - 54,morbidity,1.96,nhsd_ss_2018
+35+,8,M,ex,45 - 54,morbidity,1.47,nhsd_ss_2018
+35+,8,M,current,55 - 64,morbidity,1.96,nhsd_ss_2018
+35+,8,M,ex,55 - 64,morbidity,1.47,nhsd_ss_2018
+35+,8,M,current,65 - 74,morbidity,1.96,nhsd_ss_2018
+35+,8,M,ex,65 - 74,morbidity,1.47,nhsd_ss_2018
+35+,8,M,current,75+,morbidity,1.96,nhsd_ss_2018
+35+,8,M,ex,75+,morbidity,1.47,nhsd_ss_2018
+35+,9,F,current,35 - 44,morbidity,2.25,nhsd_ss_2018
+35+,9,F,ex,35 - 44,morbidity,1.55,nhsd_ss_2018
+35+,9,F,current,45 - 54,morbidity,2.25,nhsd_ss_2018
+35+,9,F,ex,45 - 54,morbidity,1.55,nhsd_ss_2018
+35+,9,F,current,55 - 64,morbidity,2.25,nhsd_ss_2018
+35+,9,F,ex,55 - 64,morbidity,1.55,nhsd_ss_2018
+35+,9,F,current,65 - 74,morbidity,2.25,nhsd_ss_2018
+35+,9,F,ex,65 - 74,morbidity,1.55,nhsd_ss_2018
+35+,9,F,current,75+,morbidity,2.25,nhsd_ss_2018
+35+,9,F,ex,75+,morbidity,1.55,nhsd_ss_2018
+35+,9,M,current,35 - 44,morbidity,2.31,nhsd_ss_2018
+35+,9,M,ex,35 - 44,morbidity,1.15,nhsd_ss_2018
+35+,9,M,current,45 - 54,morbidity,2.31,nhsd_ss_2018
+35+,9,M,ex,45 - 54,morbidity,1.15,nhsd_ss_2018
+35+,9,M,current,55 - 64,morbidity,2.31,nhsd_ss_2018
+35+,9,M,ex,55 - 64,morbidity,1.15,nhsd_ss_2018
+35+,9,M,current,65 - 74,morbidity,2.31,nhsd_ss_2018
+35+,9,M,ex,65 - 74,morbidity,1.15,nhsd_ss_2018
+35+,9,M,current,75+,morbidity,2.31,nhsd_ss_2018
+35+,9,M,ex,75+,morbidity,1.15,nhsd_ss_2018
+35+,10,F,current,35 - 44,morbidity,2.2,nhsd_ss_2018
+35+,10,F,ex,35 - 44,morbidity,1.3,nhsd_ss_2018
+35+,10,F,current,45 - 54,morbidity,2.2,nhsd_ss_2018
+35+,10,F,ex,45 - 54,morbidity,1.3,nhsd_ss_2018
+35+,10,F,current,55 - 64,morbidity,2.2,nhsd_ss_2018
+35+,10,F,ex,55 - 64,morbidity,1.3,nhsd_ss_2018
+35+,10,F,current,65 - 74,morbidity,2.2,nhsd_ss_2018
+35+,10,F,ex,65 - 74,morbidity,1.3,nhsd_ss_2018
+35+,10,F,current,75+,morbidity,2.2,nhsd_ss_2018
+35+,10,F,ex,75+,morbidity,1.3,nhsd_ss_2018
+35+,10,M,current,35 - 44,morbidity,4.4,nhsd_ss_2018
+35+,10,M,ex,35 - 44,morbidity,2.5,nhsd_ss_2018
+35+,10,M,current,45 - 54,morbidity,4.4,nhsd_ss_2018
+35+,10,M,ex,45 - 54,morbidity,2.5,nhsd_ss_2018
+35+,10,M,current,55 - 64,morbidity,4.4,nhsd_ss_2018
+35+,10,M,ex,55 - 64,morbidity,2.5,nhsd_ss_2018
+35+,10,M,current,65 - 74,morbidity,4.4,nhsd_ss_2018
+35+,10,M,ex,65 - 74,morbidity,2.5,nhsd_ss_2018
+35+,10,M,current,75+,morbidity,4.4,nhsd_ss_2018
+35+,10,M,ex,75+,morbidity,2.5,nhsd_ss_2018
+35+,11,F,current,35 - 44,morbidity,1.2,nhsd_ss_2018
+35+,11,F,ex,35 - 44,morbidity,1.3,nhsd_ss_2018
+35+,11,F,current,45 - 54,morbidity,1.2,nhsd_ss_2018
+35+,11,F,ex,45 - 54,morbidity,1.3,nhsd_ss_2018
+35+,11,F,current,55 - 64,morbidity,1.2,nhsd_ss_2018
+35+,11,F,ex,55 - 64,morbidity,1.3,nhsd_ss_2018
+35+,11,F,current,65 - 74,morbidity,1.2,nhsd_ss_2018
+35+,11,F,ex,65 - 74,morbidity,1.3,nhsd_ss_2018
+35+,11,F,current,75+,morbidity,1.2,nhsd_ss_2018
+35+,11,F,ex,75+,morbidity,1.3,nhsd_ss_2018
+35+,11,M,current,35 - 44,morbidity,1.8,nhsd_ss_2018
+35+,11,M,ex,35 - 44,morbidity,1.4,nhsd_ss_2018
+35+,11,M,current,45 - 54,morbidity,1.8,nhsd_ss_2018
+35+,11,M,ex,45 - 54,morbidity,1.4,nhsd_ss_2018
+35+,11,M,current,55 - 64,morbidity,1.8,nhsd_ss_2018
+35+,11,M,ex,55 - 64,morbidity,1.4,nhsd_ss_2018
+35+,11,M,current,65 - 74,morbidity,1.8,nhsd_ss_2018
+35+,11,M,ex,65 - 74,morbidity,1.4,nhsd_ss_2018
+35+,11,M,current,75+,morbidity,1.8,nhsd_ss_2018
+35+,11,M,ex,75+,morbidity,1.4,nhsd_ss_2018
+35+,12,F,current,35 - 44,morbidity,12.04,nhsd_ss_2018
+35+,12,F,ex,35 - 44,morbidity,11.77,nhsd_ss_2018
+35+,12,F,current,45 - 54,morbidity,12.04,nhsd_ss_2018
+35+,12,F,ex,45 - 54,morbidity,11.77,nhsd_ss_2018
+35+,12,F,current,55 - 64,morbidity,12.04,nhsd_ss_2018
+35+,12,F,ex,55 - 64,morbidity,11.77,nhsd_ss_2018
+35+,12,F,current,65 - 74,morbidity,12.04,nhsd_ss_2018
+35+,12,F,ex,65 - 74,morbidity,11.77,nhsd_ss_2018
+35+,12,F,current,75+,morbidity,12.04,nhsd_ss_2018
+35+,12,F,ex,75+,morbidity,11.77,nhsd_ss_2018
+35+,12,M,current,35 - 44,morbidity,17.1,nhsd_ss_2018
+35+,12,M,ex,35 - 44,morbidity,15.64,nhsd_ss_2018
+35+,12,M,current,45 - 54,morbidity,17.1,nhsd_ss_2018
+35+,12,M,ex,45 - 54,morbidity,15.64,nhsd_ss_2018
+35+,12,M,current,55 - 64,morbidity,17.1,nhsd_ss_2018
+35+,12,M,ex,55 - 64,morbidity,15.64,nhsd_ss_2018
+35+,12,M,current,65 - 74,morbidity,17.1,nhsd_ss_2018
+35+,12,M,ex,65 - 74,morbidity,15.64,nhsd_ss_2018
+35+,12,M,current,75+,morbidity,17.1,nhsd_ss_2018
+35+,12,M,ex,75+,morbidity,15.64,nhsd_ss_2018
+35+,13,F,current,35 - 44,morbidity,13.08,nhsd_ss_2018
+35+,13,F,ex,35 - 44,morbidity,6.78,nhsd_ss_2018
+35+,13,F,current,45 - 54,morbidity,13.08,nhsd_ss_2018
+35+,13,F,ex,45 - 54,morbidity,6.78,nhsd_ss_2018
+35+,13,F,current,55 - 64,morbidity,13.08,nhsd_ss_2018
+35+,13,F,ex,55 - 64,morbidity,6.78,nhsd_ss_2018
+35+,13,F,current,65 - 74,morbidity,13.08,nhsd_ss_2018
+35+,13,F,ex,65 - 74,morbidity,6.78,nhsd_ss_2018
+35+,13,F,current,75+,morbidity,13.08,nhsd_ss_2018
+35+,13,F,ex,75+,morbidity,6.78,nhsd_ss_2018
+35+,13,M,current,35 - 44,morbidity,10.58,nhsd_ss_2018
+35+,13,M,ex,35 - 44,morbidity,6.8,nhsd_ss_2018
+35+,13,M,current,45 - 54,morbidity,10.58,nhsd_ss_2018
+35+,13,M,ex,45 - 54,morbidity,6.8,nhsd_ss_2018
+35+,13,M,current,55 - 64,morbidity,10.58,nhsd_ss_2018
+35+,13,M,ex,55 - 64,morbidity,6.8,nhsd_ss_2018
+35+,13,M,current,65 - 74,morbidity,10.58,nhsd_ss_2018
+35+,13,M,ex,65 - 74,morbidity,6.8,nhsd_ss_2018
+35+,13,M,current,75+,morbidity,10.58,nhsd_ss_2018
+35+,13,M,ex,75+,morbidity,6.8,nhsd_ss_2018
+35 - 64,14,F,current,35 - 44,morbidity,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,35 - 44,morbidity,1.1,nhsd_ss_2018
+35 - 64,14,F,current,45 - 54,morbidity,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,45 - 54,morbidity,1.1,nhsd_ss_2018
+35 - 64,14,F,current,55 - 64,morbidity,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,55 - 64,morbidity,1.1,nhsd_ss_2018
+65+,14,F,current,65 - 74,morbidity,2.2,nhsd_ss_2018
+65+,14,F,ex,65 - 74,morbidity,1.1,nhsd_ss_2018
+65+,14,F,current,75+,morbidity,2.2,nhsd_ss_2018
+65+,14,F,ex,75+,morbidity,1.1,nhsd_ss_2018
+35 - 64,14,M,current,35 - 44,morbidity,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,35 - 44,morbidity,1.4,nhsd_ss_2018
+35 - 64,14,M,current,45 - 54,morbidity,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,45 - 54,morbidity,1.4,nhsd_ss_2018
+35 - 64,14,M,current,55 - 64,morbidity,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,55 - 64,morbidity,1.4,nhsd_ss_2018
+65+,14,M,current,65 - 74,morbidity,2,nhsd_ss_2018
+65+,14,M,ex,65 - 74,morbidity,1.4,nhsd_ss_2018
+65+,14,M,current,75+,morbidity,2,nhsd_ss_2018
+65+,14,M,ex,75+,morbidity,1.4,nhsd_ss_2018
+35+,15,F,current,35 - 44,morbidity,1.49,nhsd_ss_2018
+35+,15,F,ex,35 - 44,morbidity,1.14,nhsd_ss_2018
+35+,15,F,current,45 - 54,morbidity,1.49,nhsd_ss_2018
+35+,15,F,ex,45 - 54,morbidity,1.14,nhsd_ss_2018
+35+,15,F,current,55 - 64,morbidity,1.49,nhsd_ss_2018
+35+,15,F,ex,55 - 64,morbidity,1.14,nhsd_ss_2018
+35+,15,F,current,65 - 74,morbidity,1.49,nhsd_ss_2018
+35+,15,F,ex,65 - 74,morbidity,1.14,nhsd_ss_2018
+35+,15,F,current,75+,morbidity,1.49,nhsd_ss_2018
+35+,15,F,ex,75+,morbidity,1.14,nhsd_ss_2018
+35+,15,M,current,35 - 44,morbidity,1.78,nhsd_ss_2018
+35+,15,M,ex,35 - 44,morbidity,1.22,nhsd_ss_2018
+35+,15,M,current,45 - 54,morbidity,1.78,nhsd_ss_2018
+35+,15,M,ex,45 - 54,morbidity,1.22,nhsd_ss_2018
+35+,15,M,current,55 - 64,morbidity,1.78,nhsd_ss_2018
+35+,15,M,ex,55 - 64,morbidity,1.22,nhsd_ss_2018
+35+,15,M,current,65 - 74,morbidity,1.78,nhsd_ss_2018
+35+,15,M,ex,65 - 74,morbidity,1.22,nhsd_ss_2018
+35+,15,M,current,75+,morbidity,1.78,nhsd_ss_2018
+35+,15,M,ex,75+,morbidity,1.22,nhsd_ss_2018
+35 - 54,16,F,current,35 - 44,morbidity,5.3,nhsd_ss_2018
+35 - 54,16,F,ex,35 - 44,morbidity,2.6,nhsd_ss_2018
+35 - 54,16,F,current,45 - 54,morbidity,5.3,nhsd_ss_2018
+35 - 54,16,F,ex,45 - 54,morbidity,2.6,nhsd_ss_2018
+55 - 64,16,F,current,55 - 64,morbidity,2.8,nhsd_ss_2018
+55 - 64,16,F,ex,55 - 64,morbidity,1.1,nhsd_ss_2018
+65 - 74,16,F,current,65 - 74,morbidity,2.1,nhsd_ss_2018
+65 - 74,16,F,ex,65 - 74,morbidity,1.2,nhsd_ss_2018
+75+,16,F,current,75+,morbidity,1.4,nhsd_ss_2018
+75+,16,F,ex,75+,morbidity,1.2,nhsd_ss_2018
+35 - 54,16,M,current,35 - 44,morbidity,4.2,nhsd_ss_2018
+35 - 54,16,M,ex,35 - 44,morbidity,2,nhsd_ss_2018
+35 - 54,16,M,current,45 - 54,morbidity,4.2,nhsd_ss_2018
+35 - 54,16,M,ex,45 - 54,morbidity,2,nhsd_ss_2018
+55 - 64,16,M,current,55 - 64,morbidity,2.5,nhsd_ss_2018
+55 - 64,16,M,ex,55 - 64,morbidity,1.6,nhsd_ss_2018
+65 - 74,16,M,current,65 - 74,morbidity,1.8,nhsd_ss_2018
+65 - 74,16,M,ex,65 - 74,morbidity,1.3,nhsd_ss_2018
+75+,16,M,current,75+,morbidity,1.4,nhsd_ss_2018
+75+,16,M,ex,75+,morbidity,1.1,nhsd_ss_2018
+35+,17,F,current,35 - 44,morbidity,2.17,nhsd_ss_2018
+35+,17,F,ex,35 - 44,morbidity,1.12,nhsd_ss_2018
+35+,17,F,current,45 - 54,morbidity,2.17,nhsd_ss_2018
+35+,17,F,ex,45 - 54,morbidity,1.12,nhsd_ss_2018
+35+,17,F,current,55 - 64,morbidity,2.17,nhsd_ss_2018
+35+,17,F,ex,55 - 64,morbidity,1.12,nhsd_ss_2018
+35+,17,F,current,65 - 74,morbidity,2.17,nhsd_ss_2018
+35+,17,F,ex,65 - 74,morbidity,1.12,nhsd_ss_2018
+35+,17,F,current,75+,morbidity,2.17,nhsd_ss_2018
+35+,17,F,ex,75+,morbidity,1.12,nhsd_ss_2018
+35+,17,M,current,35 - 44,morbidity,2.07,nhsd_ss_2018
+35+,17,M,ex,35 - 44,morbidity,1.01,nhsd_ss_2018
+35+,17,M,current,45 - 54,morbidity,2.07,nhsd_ss_2018
+35+,17,M,ex,45 - 54,morbidity,1.01,nhsd_ss_2018
+35+,17,M,current,55 - 64,morbidity,2.07,nhsd_ss_2018
+35+,17,M,ex,55 - 64,morbidity,1.01,nhsd_ss_2018
+35+,17,M,current,65 - 74,morbidity,2.07,nhsd_ss_2018
+35+,17,M,ex,65 - 74,morbidity,1.01,nhsd_ss_2018
+35+,17,M,current,75+,morbidity,2.07,nhsd_ss_2018
+35+,17,M,ex,75+,morbidity,1.01,nhsd_ss_2018
+35 - 54,18,F,current,35 - 44,morbidity,5.4,nhsd_ss_2018
+35 - 54,18,F,ex,35 - 44,morbidity,1.3,nhsd_ss_2018
+35 - 54,18,F,current,45 - 54,morbidity,5.4,nhsd_ss_2018
+35 - 54,18,F,ex,45 - 54,morbidity,1.3,nhsd_ss_2018
+55 - 64,18,F,current,55 - 64,morbidity,3.7,nhsd_ss_2018
+55 - 64,18,F,ex,55 - 64,morbidity,1.3,nhsd_ss_2018
+65 - 74,18,F,current,65 - 74,morbidity,2.6,nhsd_ss_2018
+65 - 74,18,F,ex,65 - 74,morbidity,1.3,nhsd_ss_2018
+75+,18,F,current,75+,morbidity,1.3,nhsd_ss_2018
+75+,18,F,ex,75+,morbidity,1,nhsd_ss_2018
+35 - 54,18,M,current,35 - 44,morbidity,4.4,nhsd_ss_2018
+35 - 54,18,M,ex,35 - 44,morbidity,1.1,nhsd_ss_2018
+35 - 54,18,M,current,45 - 54,morbidity,4.4,nhsd_ss_2018
+35 - 54,18,M,ex,45 - 54,morbidity,1.1,nhsd_ss_2018
+55 - 64,18,M,current,55 - 64,morbidity,3.1,nhsd_ss_2018
+55 - 64,18,M,ex,55 - 64,morbidity,1.1,nhsd_ss_2018
+65 - 74,18,M,current,65 - 74,morbidity,2.2,nhsd_ss_2018
+65 - 74,18,M,ex,65 - 74,morbidity,1.1,nhsd_ss_2018
+75+,18,M,current,75+,morbidity,1.6,nhsd_ss_2018
+75+,18,M,ex,75+,morbidity,1.1,nhsd_ss_2018
+35+,19,F,current,35 - 44,morbidity,7.07,nhsd_ss_2018
+35+,19,F,ex,35 - 44,morbidity,2.07,nhsd_ss_2018
+35+,19,F,current,45 - 54,morbidity,7.07,nhsd_ss_2018
+35+,19,F,ex,45 - 54,morbidity,2.07,nhsd_ss_2018
+35+,19,F,current,55 - 64,morbidity,7.07,nhsd_ss_2018
+35+,19,F,ex,55 - 64,morbidity,2.07,nhsd_ss_2018
+35+,19,F,current,65 - 74,morbidity,7.07,nhsd_ss_2018
+35+,19,F,ex,65 - 74,morbidity,2.07,nhsd_ss_2018
+35+,19,F,current,75+,morbidity,7.07,nhsd_ss_2018
+35+,19,F,ex,75+,morbidity,2.07,nhsd_ss_2018
+35+,19,M,current,35 - 44,morbidity,6.21,nhsd_ss_2018
+35+,19,M,ex,35 - 44,morbidity,3.07,nhsd_ss_2018
+35+,19,M,current,45 - 54,morbidity,6.21,nhsd_ss_2018
+35+,19,M,ex,45 - 54,morbidity,3.07,nhsd_ss_2018
+35+,19,M,current,55 - 64,morbidity,6.21,nhsd_ss_2018
+35+,19,M,ex,55 - 64,morbidity,3.07,nhsd_ss_2018
+35+,19,M,current,65 - 74,morbidity,6.21,nhsd_ss_2018
+35+,19,M,ex,65 - 74,morbidity,3.07,nhsd_ss_2018
+35+,19,M,current,75+,morbidity,6.21,nhsd_ss_2018
+35+,19,M,ex,75+,morbidity,3.07,nhsd_ss_2018
+35+,20,F,current,35 - 44,morbidity,1.83,nhsd_ss_2018
+35+,20,F,ex,35 - 44,morbidity,1,nhsd_ss_2018
+35+,20,F,current,45 - 54,morbidity,1.83,nhsd_ss_2018
+35+,20,F,ex,45 - 54,morbidity,1,nhsd_ss_2018
+35+,20,F,current,55 - 64,morbidity,1.83,nhsd_ss_2018
+35+,20,F,ex,55 - 64,morbidity,1,nhsd_ss_2018
+35+,20,F,current,65 - 74,morbidity,1.83,nhsd_ss_2018
+35+,20,F,ex,65 - 74,morbidity,1,nhsd_ss_2018
+35+,20,F,current,75+,morbidity,1.83,nhsd_ss_2018
+35+,20,F,ex,75+,morbidity,1,nhsd_ss_2018
+35+,20,M,current,35 - 44,morbidity,2.44,nhsd_ss_2018
+35+,20,M,ex,35 - 44,morbidity,1.33,nhsd_ss_2018
+35+,20,M,current,45 - 54,morbidity,2.44,nhsd_ss_2018
+35+,20,M,ex,45 - 54,morbidity,1.33,nhsd_ss_2018
+35+,20,M,current,55 - 64,morbidity,2.44,nhsd_ss_2018
+35+,20,M,ex,55 - 64,morbidity,1.33,nhsd_ss_2018
+35+,20,M,current,65 - 74,morbidity,2.44,nhsd_ss_2018
+35+,20,M,ex,65 - 74,morbidity,1.33,nhsd_ss_2018
+35+,20,M,current,75+,morbidity,2.44,nhsd_ss_2018
+35+,20,M,ex,75+,morbidity,1.33,nhsd_ss_2018
+35+,21,F,current,35 - 44,morbidity,5.5,nhsd_ss_2018
+35+,21,F,ex,35 - 44,morbidity,1.4,nhsd_ss_2018
+35+,21,F,current,45 - 54,morbidity,5.5,nhsd_ss_2018
+35+,21,F,ex,45 - 54,morbidity,1.4,nhsd_ss_2018
+35+,21,F,current,55 - 64,morbidity,5.5,nhsd_ss_2018
+35+,21,F,ex,55 - 64,morbidity,1.4,nhsd_ss_2018
+35+,21,F,current,65 - 74,morbidity,5.5,nhsd_ss_2018
+35+,21,F,ex,65 - 74,morbidity,1.4,nhsd_ss_2018
+35+,21,F,current,75+,morbidity,5.5,nhsd_ss_2018
+35+,21,F,ex,75+,morbidity,1.4,nhsd_ss_2018
+35+,21,M,current,35 - 44,morbidity,5.4,nhsd_ss_2018
+35+,21,M,ex,35 - 44,morbidity,1.8,nhsd_ss_2018
+35+,21,M,current,45 - 54,morbidity,5.4,nhsd_ss_2018
+35+,21,M,ex,45 - 54,morbidity,1.8,nhsd_ss_2018
+35+,21,M,current,55 - 64,morbidity,5.4,nhsd_ss_2018
+35+,21,M,ex,55 - 64,morbidity,1.8,nhsd_ss_2018
+35+,21,M,current,65 - 74,morbidity,5.4,nhsd_ss_2018
+35+,21,M,ex,65 - 74,morbidity,1.8,nhsd_ss_2018
+35+,21,M,current,75+,morbidity,5.4,nhsd_ss_2018
+35+,21,M,ex,75+,morbidity,1.8,nhsd_ss_2018
+35+,22,F,current,35 - 44,morbidity,2.1,nhsd_ss_2018
+35+,22,F,ex,35 - 44,morbidity,1,nhsd_ss_2018
+35+,22,F,current,45 - 54,morbidity,2.1,nhsd_ss_2018
+35+,22,F,ex,45 - 54,morbidity,1,nhsd_ss_2018
+35+,22,F,current,55 - 64,morbidity,2.1,nhsd_ss_2018
+35+,22,F,ex,55 - 64,morbidity,1,nhsd_ss_2018
+35+,22,F,current,65 - 74,morbidity,2.1,nhsd_ss_2018
+35+,22,F,ex,65 - 74,morbidity,1,nhsd_ss_2018
+35+,22,F,current,75+,morbidity,2.1,nhsd_ss_2018
+35+,22,F,ex,75+,morbidity,1,nhsd_ss_2018
+35+,22,M,current,35 - 44,morbidity,2.1,nhsd_ss_2018
+35+,22,M,ex,35 - 44,morbidity,1,nhsd_ss_2018
+35+,22,M,current,45 - 54,morbidity,2.1,nhsd_ss_2018
+35+,22,M,ex,45 - 54,morbidity,1,nhsd_ss_2018
+35+,22,M,current,55 - 64,morbidity,2.1,nhsd_ss_2018
+35+,22,M,ex,55 - 64,morbidity,1,nhsd_ss_2018
+35+,22,M,current,65 - 74,morbidity,2.1,nhsd_ss_2018
+35+,22,M,ex,65 - 74,morbidity,1,nhsd_ss_2018
+35+,22,M,current,75+,morbidity,2.1,nhsd_ss_2018
+35+,22,M,ex,75+,morbidity,1,nhsd_ss_2018
+35+,23,F,current,35 - 44,morbidity,3.97,nhsd_ss_2018
+35+,23,F,ex,35 - 44,morbidity,1.68,nhsd_ss_2018
+35+,23,F,current,45 - 54,morbidity,3.97,nhsd_ss_2018
+35+,23,F,ex,45 - 54,morbidity,1.68,nhsd_ss_2018
+35+,23,F,current,55 - 64,morbidity,3.97,nhsd_ss_2018
+35+,23,F,ex,55 - 64,morbidity,1.68,nhsd_ss_2018
+35+,23,F,current,65 - 74,morbidity,3.97,nhsd_ss_2018
+35+,23,F,ex,65 - 74,morbidity,1.68,nhsd_ss_2018
+35+,23,F,current,75+,morbidity,3.97,nhsd_ss_2018
+35+,23,F,ex,75+,morbidity,1.68,nhsd_ss_2018
+35+,23,M,current,35 - 44,morbidity,3.97,nhsd_ss_2018
+35+,23,M,ex,35 - 44,morbidity,1.68,nhsd_ss_2018
+35+,23,M,current,45 - 54,morbidity,3.97,nhsd_ss_2018
+35+,23,M,ex,45 - 54,morbidity,1.68,nhsd_ss_2018
+35+,23,M,current,55 - 64,morbidity,3.97,nhsd_ss_2018
+35+,23,M,ex,55 - 64,morbidity,1.68,nhsd_ss_2018
+35+,23,M,current,65 - 74,morbidity,3.97,nhsd_ss_2018
+35+,23,M,ex,65 - 74,morbidity,1.68,nhsd_ss_2018
+35+,23,M,current,75+,morbidity,3.97,nhsd_ss_2018
+35+,23,M,ex,75+,morbidity,1.68,nhsd_ss_2018
+45+,24,F,current,45 - 54,morbidity,1.54,nhsd_ss_2018
+45+,24,F,ex,45 - 54,morbidity,1.11,nhsd_ss_2018
+45+,24,F,current,55 - 64,morbidity,1.54,nhsd_ss_2018
+45+,24,F,ex,55 - 64,morbidity,1.11,nhsd_ss_2018
+45+,24,F,current,65 - 74,morbidity,1.54,nhsd_ss_2018
+45+,24,F,ex,65 - 74,morbidity,1.11,nhsd_ss_2018
+45+,24,F,current,75+,morbidity,1.54,nhsd_ss_2018
+45+,24,F,ex,75+,morbidity,1.11,nhsd_ss_2018
+45+,24,M,current,45 - 54,morbidity,1.54,nhsd_ss_2018
+45+,24,M,ex,45 - 54,morbidity,1.11,nhsd_ss_2018
+45+,24,M,current,55 - 64,morbidity,1.54,nhsd_ss_2018
+45+,24,M,ex,55 - 64,morbidity,1.11,nhsd_ss_2018
+45+,24,M,current,65 - 74,morbidity,1.54,nhsd_ss_2018
+45+,24,M,ex,65 - 74,morbidity,1.11,nhsd_ss_2018
+45+,24,M,current,75+,morbidity,1.54,nhsd_ss_2018
+45+,24,M,ex,75+,morbidity,1.11,nhsd_ss_2018
+55 - 64,25,F,current,55 - 64,morbidity,1.17,nhsd_ss_2018
+55 - 64,25,F,ex,55 - 64,morbidity,1.02,nhsd_ss_2018
+65 - 74,25,F,current,65 - 74,morbidity,1.41,nhsd_ss_2018
+65 - 74,25,F,ex,65 - 74,morbidity,1.08,nhsd_ss_2018
+75+,25,F,current,75+,morbidity,1.85,nhsd_ss_2018
+75+,25,F,ex,75+,morbidity,1.22,nhsd_ss_2018
+55 - 64,25,M,current,55 - 64,morbidity,1.17,nhsd_ss_2018
+55 - 64,25,M,ex,55 - 64,morbidity,1.02,nhsd_ss_2018
+65 - 74,25,M,current,65 - 74,morbidity,1.41,nhsd_ss_2018
+65 - 74,25,M,ex,65 - 74,morbidity,1.08,nhsd_ss_2018
+75+,25,M,current,75+,morbidity,1.76,nhsd_ss_2018
+75+,25,M,ex,75+,morbidity,1.14,nhsd_ss_2018
+35+,26,F,current,35 - 44,morbidity,1.28,nhsd_ss_2018
+35+,26,F,current,45 - 54,morbidity,1.28,nhsd_ss_2018
+35+,26,F,current,55 - 64,morbidity,1.28,nhsd_ss_2018
+35+,26,F,current,65 - 74,morbidity,1.28,nhsd_ss_2018
+35+,26,F,current,75+,morbidity,1.28,nhsd_ss_2018
+35+,1,F,current,35 - 44,mortality,12.69,nhsd_ss_2018
+35+,1,F,ex,35 - 44,mortality,4.53,nhsd_ss_2018
+35+,1,F,current,45 - 54,mortality,12.69,nhsd_ss_2018
+35+,1,F,ex,45 - 54,mortality,4.53,nhsd_ss_2018
+35+,1,F,current,55 - 64,mortality,12.69,nhsd_ss_2018
+35+,1,F,ex,55 - 64,mortality,4.53,nhsd_ss_2018
+35+,1,F,current,65 - 74,mortality,12.69,nhsd_ss_2018
+35+,1,F,ex,65 - 74,mortality,4.53,nhsd_ss_2018
+35+,1,F,current,75+,mortality,12.69,nhsd_ss_2018
+35+,1,F,ex,75+,mortality,4.53,nhsd_ss_2018
+35+,1,M,current,35 - 44,mortality,23.26,nhsd_ss_2018
+35+,1,M,ex,35 - 44,mortality,8.7,nhsd_ss_2018
+35+,1,M,current,45 - 54,mortality,23.26,nhsd_ss_2018
+35+,1,M,ex,45 - 54,mortality,8.7,nhsd_ss_2018
+35+,1,M,current,55 - 64,mortality,23.26,nhsd_ss_2018
+35+,1,M,ex,55 - 64,mortality,8.7,nhsd_ss_2018
+35+,1,M,current,65 - 74,mortality,23.26,nhsd_ss_2018
+35+,1,M,ex,65 - 74,mortality,8.7,nhsd_ss_2018
+35+,1,M,current,75+,mortality,23.26,nhsd_ss_2018
+35+,1,M,ex,75+,mortality,8.7,nhsd_ss_2018
+35+,2,F,current,35 - 44,mortality,5.08,nhsd_ss_2018
+35+,2,F,ex,35 - 44,mortality,2.29,nhsd_ss_2018
+35+,2,F,current,45 - 54,mortality,5.08,nhsd_ss_2018
+35+,2,F,ex,45 - 54,mortality,2.29,nhsd_ss_2018
+35+,2,F,current,55 - 64,mortality,5.08,nhsd_ss_2018
+35+,2,F,ex,55 - 64,mortality,2.29,nhsd_ss_2018
+35+,2,F,current,65 - 74,mortality,5.08,nhsd_ss_2018
+35+,2,F,ex,65 - 74,mortality,2.29,nhsd_ss_2018
+35+,2,F,current,75+,mortality,5.08,nhsd_ss_2018
+35+,2,F,ex,75+,mortality,2.29,nhsd_ss_2018
+35+,2,M,current,35 - 44,mortality,10.89,nhsd_ss_2018
+35+,2,M,ex,35 - 44,mortality,3.4,nhsd_ss_2018
+35+,2,M,current,45 - 54,mortality,10.89,nhsd_ss_2018
+35+,2,M,ex,45 - 54,mortality,3.4,nhsd_ss_2018
+35+,2,M,current,55 - 64,mortality,10.89,nhsd_ss_2018
+35+,2,M,ex,55 - 64,mortality,3.4,nhsd_ss_2018
+35+,2,M,current,65 - 74,mortality,10.89,nhsd_ss_2018
+35+,2,M,ex,65 - 74,mortality,3.4,nhsd_ss_2018
+35+,2,M,current,75+,mortality,10.89,nhsd_ss_2018
+35+,2,M,ex,75+,mortality,3.4,nhsd_ss_2018
+35+,3,F,current,35 - 44,mortality,7.75,nhsd_ss_2018
+35+,3,F,ex,35 - 44,mortality,2.79,nhsd_ss_2018
+35+,3,F,current,45 - 54,mortality,7.75,nhsd_ss_2018
+35+,3,F,ex,45 - 54,mortality,2.79,nhsd_ss_2018
+35+,3,F,current,55 - 64,mortality,7.75,nhsd_ss_2018
+35+,3,F,ex,55 - 64,mortality,2.79,nhsd_ss_2018
+35+,3,F,current,65 - 74,mortality,7.75,nhsd_ss_2018
+35+,3,F,ex,65 - 74,mortality,2.79,nhsd_ss_2018
+35+,3,F,current,75+,mortality,7.75,nhsd_ss_2018
+35+,3,F,ex,75+,mortality,2.79,nhsd_ss_2018
+35+,3,M,current,35 - 44,mortality,6.76,nhsd_ss_2018
+35+,3,M,ex,35 - 44,mortality,4.46,nhsd_ss_2018
+35+,3,M,current,45 - 54,mortality,6.76,nhsd_ss_2018
+35+,3,M,ex,45 - 54,mortality,4.46,nhsd_ss_2018
+35+,3,M,current,55 - 64,mortality,6.76,nhsd_ss_2018
+35+,3,M,ex,55 - 64,mortality,4.46,nhsd_ss_2018
+35+,3,M,current,65 - 74,mortality,6.76,nhsd_ss_2018
+35+,3,M,ex,65 - 74,mortality,4.46,nhsd_ss_2018
+35+,3,M,current,75+,mortality,6.76,nhsd_ss_2018
+35+,3,M,ex,75+,mortality,4.46,nhsd_ss_2018
+35+,4,F,current,35 - 44,mortality,13.02,nhsd_ss_2018
+35+,4,F,ex,35 - 44,mortality,5.16,nhsd_ss_2018
+35+,4,F,current,45 - 54,mortality,13.02,nhsd_ss_2018
+35+,4,F,ex,45 - 54,mortality,5.16,nhsd_ss_2018
+35+,4,F,current,55 - 64,mortality,13.02,nhsd_ss_2018
+35+,4,F,ex,55 - 64,mortality,5.16,nhsd_ss_2018
+35+,4,F,current,65 - 74,mortality,13.02,nhsd_ss_2018
+35+,4,F,ex,65 - 74,mortality,5.16,nhsd_ss_2018
+35+,4,F,current,75+,mortality,13.02,nhsd_ss_2018
+35+,4,F,ex,75+,mortality,5.16,nhsd_ss_2018
+35+,4,M,current,35 - 44,mortality,14.6,nhsd_ss_2018
+35+,4,M,ex,35 - 44,mortality,6.34,nhsd_ss_2018
+35+,4,M,current,45 - 54,mortality,14.6,nhsd_ss_2018
+35+,4,M,ex,45 - 54,mortality,6.34,nhsd_ss_2018
+35+,4,M,current,55 - 64,mortality,14.6,nhsd_ss_2018
+35+,4,M,ex,55 - 64,mortality,6.34,nhsd_ss_2018
+35+,4,M,current,65 - 74,mortality,14.6,nhsd_ss_2018
+35+,4,M,ex,65 - 74,mortality,6.34,nhsd_ss_2018
+35+,4,M,current,75+,mortality,14.6,nhsd_ss_2018
+35+,4,M,ex,75+,mortality,6.34,nhsd_ss_2018
+35+,5,F,current,35 - 44,mortality,1.59,nhsd_ss_2018
+35+,5,F,ex,35 - 44,mortality,1.14,nhsd_ss_2018
+35+,5,F,current,45 - 54,mortality,1.59,nhsd_ss_2018
+35+,5,F,ex,45 - 54,mortality,1.14,nhsd_ss_2018
+35+,5,F,current,55 - 64,mortality,1.59,nhsd_ss_2018
+35+,5,F,ex,55 - 64,mortality,1.14,nhsd_ss_2018
+35+,5,F,current,65 - 74,mortality,1.59,nhsd_ss_2018
+35+,5,F,ex,65 - 74,mortality,1.14,nhsd_ss_2018
+35+,5,F,current,75+,mortality,1.59,nhsd_ss_2018
+35+,5,F,ex,75+,mortality,1.14,nhsd_ss_2018
+35+,5,M,current,35 - 44,mortality,1,nhsd_ss_2018
+35+,5,M,ex,35 - 44,mortality,1,nhsd_ss_2018
+35+,5,M,current,45 - 54,mortality,1,nhsd_ss_2018
+35+,5,M,ex,45 - 54,mortality,1,nhsd_ss_2018
+35+,5,M,current,55 - 64,mortality,1,nhsd_ss_2018
+35+,5,M,ex,55 - 64,mortality,1,nhsd_ss_2018
+35+,5,M,current,65 - 74,mortality,1,nhsd_ss_2018
+35+,5,M,ex,65 - 74,mortality,1,nhsd_ss_2018
+35+,5,M,current,75+,mortality,1,nhsd_ss_2018
+35+,5,M,ex,75+,mortality,1,nhsd_ss_2018
+35+,6,F,current,35 - 44,mortality,2.22,nhsd_ss_2018
+35+,6,F,ex,35 - 44,mortality,1.89,nhsd_ss_2018
+35+,6,F,current,45 - 54,mortality,2.22,nhsd_ss_2018
+35+,6,F,ex,45 - 54,mortality,1.89,nhsd_ss_2018
+35+,6,F,current,55 - 64,mortality,2.22,nhsd_ss_2018
+35+,6,F,ex,55 - 64,mortality,1.89,nhsd_ss_2018
+35+,6,F,current,65 - 74,mortality,2.22,nhsd_ss_2018
+35+,6,F,ex,65 - 74,mortality,1.89,nhsd_ss_2018
+35+,6,F,current,75+,mortality,2.22,nhsd_ss_2018
+35+,6,F,ex,75+,mortality,1.89,nhsd_ss_2018
+35+,6,M,current,35 - 44,mortality,3.27,nhsd_ss_2018
+35+,6,M,ex,35 - 44,mortality,2.09,nhsd_ss_2018
+35+,6,M,current,45 - 54,mortality,3.27,nhsd_ss_2018
+35+,6,M,ex,45 - 54,mortality,2.09,nhsd_ss_2018
+35+,6,M,current,55 - 64,mortality,3.27,nhsd_ss_2018
+35+,6,M,ex,55 - 64,mortality,2.09,nhsd_ss_2018
+35+,6,M,current,65 - 74,mortality,3.27,nhsd_ss_2018
+35+,6,M,ex,65 - 74,mortality,2.09,nhsd_ss_2018
+35+,6,M,current,75+,mortality,3.27,nhsd_ss_2018
+35+,6,M,ex,75+,mortality,2.09,nhsd_ss_2018
+35+,7,F,current,35 - 44,mortality,1.4,nhsd_ss_2018
+35+,7,F,ex,35 - 44,mortality,1.1,nhsd_ss_2018
+35+,7,F,current,45 - 54,mortality,1.4,nhsd_ss_2018
+35+,7,F,ex,45 - 54,mortality,1.1,nhsd_ss_2018
+35+,7,F,current,55 - 64,mortality,1.4,nhsd_ss_2018
+35+,7,F,ex,55 - 64,mortality,1.1,nhsd_ss_2018
+35+,7,F,current,65 - 74,mortality,1.4,nhsd_ss_2018
+35+,7,F,ex,65 - 74,mortality,1.1,nhsd_ss_2018
+35+,7,F,current,75+,mortality,1.4,nhsd_ss_2018
+35+,7,F,ex,75+,mortality,1.1,nhsd_ss_2018
+35+,7,M,current,35 - 44,mortality,2.5,nhsd_ss_2018
+35+,7,M,ex,35 - 44,mortality,1.7,nhsd_ss_2018
+35+,7,M,current,45 - 54,mortality,2.5,nhsd_ss_2018
+35+,7,M,ex,45 - 54,mortality,1.7,nhsd_ss_2018
+35+,7,M,current,55 - 64,mortality,2.5,nhsd_ss_2018
+35+,7,M,ex,55 - 64,mortality,1.7,nhsd_ss_2018
+35+,7,M,current,65 - 74,mortality,2.5,nhsd_ss_2018
+35+,7,M,ex,65 - 74,mortality,1.7,nhsd_ss_2018
+35+,7,M,current,75+,mortality,2.5,nhsd_ss_2018
+35+,7,M,ex,75+,mortality,1.7,nhsd_ss_2018
+35+,8,F,current,35 - 44,mortality,1.36,nhsd_ss_2018
+35+,8,F,ex,35 - 44,mortality,1.32,nhsd_ss_2018
+35+,8,F,current,45 - 54,mortality,1.36,nhsd_ss_2018
+35+,8,F,ex,45 - 54,mortality,1.32,nhsd_ss_2018
+35+,8,F,current,55 - 64,mortality,1.36,nhsd_ss_2018
+35+,8,F,ex,55 - 64,mortality,1.32,nhsd_ss_2018
+35+,8,F,current,65 - 74,mortality,1.36,nhsd_ss_2018
+35+,8,F,ex,65 - 74,mortality,1.32,nhsd_ss_2018
+35+,8,F,current,75+,mortality,1.36,nhsd_ss_2018
+35+,8,F,ex,75+,mortality,1.32,nhsd_ss_2018
+35+,8,M,current,35 - 44,mortality,1.96,nhsd_ss_2018
+35+,8,M,ex,35 - 44,mortality,1.47,nhsd_ss_2018
+35+,8,M,current,45 - 54,mortality,1.96,nhsd_ss_2018
+35+,8,M,ex,45 - 54,mortality,1.47,nhsd_ss_2018
+35+,8,M,current,55 - 64,mortality,1.96,nhsd_ss_2018
+35+,8,M,ex,55 - 64,mortality,1.47,nhsd_ss_2018
+35+,8,M,current,65 - 74,mortality,1.96,nhsd_ss_2018
+35+,8,M,ex,65 - 74,mortality,1.47,nhsd_ss_2018
+35+,8,M,current,75+,mortality,1.96,nhsd_ss_2018
+35+,8,M,ex,75+,mortality,1.47,nhsd_ss_2018
+35+,9,F,current,35 - 44,mortality,2.25,nhsd_ss_2018
+35+,9,F,ex,35 - 44,mortality,1.55,nhsd_ss_2018
+35+,9,F,current,45 - 54,mortality,2.25,nhsd_ss_2018
+35+,9,F,ex,45 - 54,mortality,1.55,nhsd_ss_2018
+35+,9,F,current,55 - 64,mortality,2.25,nhsd_ss_2018
+35+,9,F,ex,55 - 64,mortality,1.55,nhsd_ss_2018
+35+,9,F,current,65 - 74,mortality,2.25,nhsd_ss_2018
+35+,9,F,ex,65 - 74,mortality,1.55,nhsd_ss_2018
+35+,9,F,current,75+,mortality,2.25,nhsd_ss_2018
+35+,9,F,ex,75+,mortality,1.55,nhsd_ss_2018
+35+,9,M,current,35 - 44,mortality,2.31,nhsd_ss_2018
+35+,9,M,ex,35 - 44,mortality,1.15,nhsd_ss_2018
+35+,9,M,current,45 - 54,mortality,2.31,nhsd_ss_2018
+35+,9,M,ex,45 - 54,mortality,1.15,nhsd_ss_2018
+35+,9,M,current,55 - 64,mortality,2.31,nhsd_ss_2018
+35+,9,M,ex,55 - 64,mortality,1.15,nhsd_ss_2018
+35+,9,M,current,65 - 74,mortality,2.31,nhsd_ss_2018
+35+,9,M,ex,65 - 74,mortality,1.15,nhsd_ss_2018
+35+,9,M,current,75+,mortality,2.31,nhsd_ss_2018
+35+,9,M,ex,75+,mortality,1.15,nhsd_ss_2018
+35+,10,F,current,35 - 44,mortality,2.2,nhsd_ss_2018
+35+,10,F,ex,35 - 44,mortality,1.3,nhsd_ss_2018
+35+,10,F,current,45 - 54,mortality,2.2,nhsd_ss_2018
+35+,10,F,ex,45 - 54,mortality,1.3,nhsd_ss_2018
+35+,10,F,current,55 - 64,mortality,2.2,nhsd_ss_2018
+35+,10,F,ex,55 - 64,mortality,1.3,nhsd_ss_2018
+35+,10,F,current,65 - 74,mortality,2.2,nhsd_ss_2018
+35+,10,F,ex,65 - 74,mortality,1.3,nhsd_ss_2018
+35+,10,F,current,75+,mortality,2.2,nhsd_ss_2018
+35+,10,F,ex,75+,mortality,1.3,nhsd_ss_2018
+35+,10,M,current,35 - 44,mortality,4.4,nhsd_ss_2018
+35+,10,M,ex,35 - 44,mortality,2.5,nhsd_ss_2018
+35+,10,M,current,45 - 54,mortality,4.4,nhsd_ss_2018
+35+,10,M,ex,45 - 54,mortality,2.5,nhsd_ss_2018
+35+,10,M,current,55 - 64,mortality,4.4,nhsd_ss_2018
+35+,10,M,ex,55 - 64,mortality,2.5,nhsd_ss_2018
+35+,10,M,current,65 - 74,mortality,4.4,nhsd_ss_2018
+35+,10,M,ex,65 - 74,mortality,2.5,nhsd_ss_2018
+35+,10,M,current,75+,mortality,4.4,nhsd_ss_2018
+35+,10,M,ex,75+,mortality,2.5,nhsd_ss_2018
+35+,11,F,current,35 - 44,mortality,1.2,nhsd_ss_2018
+35+,11,F,ex,35 - 44,mortality,1.3,nhsd_ss_2018
+35+,11,F,current,45 - 54,mortality,1.2,nhsd_ss_2018
+35+,11,F,ex,45 - 54,mortality,1.3,nhsd_ss_2018
+35+,11,F,current,55 - 64,mortality,1.2,nhsd_ss_2018
+35+,11,F,ex,55 - 64,mortality,1.3,nhsd_ss_2018
+35+,11,F,current,65 - 74,mortality,1.2,nhsd_ss_2018
+35+,11,F,ex,65 - 74,mortality,1.3,nhsd_ss_2018
+35+,11,F,current,75+,mortality,1.2,nhsd_ss_2018
+35+,11,F,ex,75+,mortality,1.3,nhsd_ss_2018
+35+,11,M,current,35 - 44,mortality,1.8,nhsd_ss_2018
+35+,11,M,ex,35 - 44,mortality,1.4,nhsd_ss_2018
+35+,11,M,current,45 - 54,mortality,1.8,nhsd_ss_2018
+35+,11,M,ex,45 - 54,mortality,1.4,nhsd_ss_2018
+35+,11,M,current,55 - 64,mortality,1.8,nhsd_ss_2018
+35+,11,M,ex,55 - 64,mortality,1.4,nhsd_ss_2018
+35+,11,M,current,65 - 74,mortality,1.8,nhsd_ss_2018
+35+,11,M,ex,65 - 74,mortality,1.4,nhsd_ss_2018
+35+,11,M,current,75+,mortality,1.8,nhsd_ss_2018
+35+,11,M,ex,75+,mortality,1.4,nhsd_ss_2018
+35+,12,F,current,35 - 44,mortality,12.04,nhsd_ss_2018
+35+,12,F,ex,35 - 44,mortality,11.77,nhsd_ss_2018
+35+,12,F,current,45 - 54,mortality,12.04,nhsd_ss_2018
+35+,12,F,ex,45 - 54,mortality,11.77,nhsd_ss_2018
+35+,12,F,current,55 - 64,mortality,12.04,nhsd_ss_2018
+35+,12,F,ex,55 - 64,mortality,11.77,nhsd_ss_2018
+35+,12,F,current,65 - 74,mortality,12.04,nhsd_ss_2018
+35+,12,F,ex,65 - 74,mortality,11.77,nhsd_ss_2018
+35+,12,F,current,75+,mortality,12.04,nhsd_ss_2018
+35+,12,F,ex,75+,mortality,11.77,nhsd_ss_2018
+35+,12,M,current,35 - 44,mortality,17.1,nhsd_ss_2018
+35+,12,M,ex,35 - 44,mortality,15.64,nhsd_ss_2018
+35+,12,M,current,45 - 54,mortality,17.1,nhsd_ss_2018
+35+,12,M,ex,45 - 54,mortality,15.64,nhsd_ss_2018
+35+,12,M,current,55 - 64,mortality,17.1,nhsd_ss_2018
+35+,12,M,ex,55 - 64,mortality,15.64,nhsd_ss_2018
+35+,12,M,current,65 - 74,mortality,17.1,nhsd_ss_2018
+35+,12,M,ex,65 - 74,mortality,15.64,nhsd_ss_2018
+35+,12,M,current,75+,mortality,17.1,nhsd_ss_2018
+35+,12,M,ex,75+,mortality,15.64,nhsd_ss_2018
+35+,13,F,current,35 - 44,mortality,13.08,nhsd_ss_2018
+35+,13,F,ex,35 - 44,mortality,6.78,nhsd_ss_2018
+35+,13,F,current,45 - 54,mortality,13.08,nhsd_ss_2018
+35+,13,F,ex,45 - 54,mortality,6.78,nhsd_ss_2018
+35+,13,F,current,55 - 64,mortality,13.08,nhsd_ss_2018
+35+,13,F,ex,55 - 64,mortality,6.78,nhsd_ss_2018
+35+,13,F,current,65 - 74,mortality,13.08,nhsd_ss_2018
+35+,13,F,ex,65 - 74,mortality,6.78,nhsd_ss_2018
+35+,13,F,current,75+,mortality,13.08,nhsd_ss_2018
+35+,13,F,ex,75+,mortality,6.78,nhsd_ss_2018
+35+,13,M,current,35 - 44,mortality,10.58,nhsd_ss_2018
+35+,13,M,ex,35 - 44,mortality,6.8,nhsd_ss_2018
+35+,13,M,current,45 - 54,mortality,10.58,nhsd_ss_2018
+35+,13,M,ex,45 - 54,mortality,6.8,nhsd_ss_2018
+35+,13,M,current,55 - 64,mortality,10.58,nhsd_ss_2018
+35+,13,M,ex,55 - 64,mortality,6.8,nhsd_ss_2018
+35+,13,M,current,65 - 74,mortality,10.58,nhsd_ss_2018
+35+,13,M,ex,65 - 74,mortality,6.8,nhsd_ss_2018
+35+,13,M,current,75+,mortality,10.58,nhsd_ss_2018
+35+,13,M,ex,75+,mortality,6.8,nhsd_ss_2018
+35 - 64,14,F,current,35 - 44,mortality,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,35 - 44,mortality,1.1,nhsd_ss_2018
+35 - 64,14,F,current,45 - 54,mortality,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,45 - 54,mortality,1.1,nhsd_ss_2018
+35 - 64,14,F,current,55 - 64,mortality,4.3,nhsd_ss_2018
+35 - 64,14,F,ex,55 - 64,mortality,1.1,nhsd_ss_2018
+65+,14,F,current,65 - 74,mortality,2.2,nhsd_ss_2018
+65+,14,F,ex,65 - 74,mortality,1.1,nhsd_ss_2018
+65+,14,F,current,75+,mortality,2.2,nhsd_ss_2018
+65+,14,F,ex,75+,mortality,1.1,nhsd_ss_2018
+35 - 64,14,M,current,35 - 44,mortality,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,35 - 44,mortality,1.4,nhsd_ss_2018
+35 - 64,14,M,current,45 - 54,mortality,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,45 - 54,mortality,1.4,nhsd_ss_2018
+35 - 64,14,M,current,55 - 64,mortality,2.5,nhsd_ss_2018
+35 - 64,14,M,ex,55 - 64,mortality,1.4,nhsd_ss_2018
+65+,14,M,current,65 - 74,mortality,2,nhsd_ss_2018
+65+,14,M,ex,65 - 74,mortality,1.4,nhsd_ss_2018
+65+,14,M,current,75+,mortality,2,nhsd_ss_2018
+65+,14,M,ex,75+,mortality,1.4,nhsd_ss_2018
+35+,15,F,current,35 - 44,mortality,1.49,nhsd_ss_2018
+35+,15,F,ex,35 - 44,mortality,1.14,nhsd_ss_2018
+35+,15,F,current,45 - 54,mortality,1.49,nhsd_ss_2018
+35+,15,F,ex,45 - 54,mortality,1.14,nhsd_ss_2018
+35+,15,F,current,55 - 64,mortality,1.49,nhsd_ss_2018
+35+,15,F,ex,55 - 64,mortality,1.14,nhsd_ss_2018
+35+,15,F,current,65 - 74,mortality,1.49,nhsd_ss_2018
+35+,15,F,ex,65 - 74,mortality,1.14,nhsd_ss_2018
+35+,15,F,current,75+,mortality,1.49,nhsd_ss_2018
+35+,15,F,ex,75+,mortality,1.14,nhsd_ss_2018
+35+,15,M,current,35 - 44,mortality,1.78,nhsd_ss_2018
+35+,15,M,ex,35 - 44,mortality,1.22,nhsd_ss_2018
+35+,15,M,current,45 - 54,mortality,1.78,nhsd_ss_2018
+35+,15,M,ex,45 - 54,mortality,1.22,nhsd_ss_2018
+35+,15,M,current,55 - 64,mortality,1.78,nhsd_ss_2018
+35+,15,M,ex,55 - 64,mortality,1.22,nhsd_ss_2018
+35+,15,M,current,65 - 74,mortality,1.78,nhsd_ss_2018
+35+,15,M,ex,65 - 74,mortality,1.22,nhsd_ss_2018
+35+,15,M,current,75+,mortality,1.78,nhsd_ss_2018
+35+,15,M,ex,75+,mortality,1.22,nhsd_ss_2018
+35 - 54,16,F,current,35 - 44,mortality,5.3,nhsd_ss_2018
+35 - 54,16,F,ex,35 - 44,mortality,2.6,nhsd_ss_2018
+35 - 54,16,F,current,45 - 54,mortality,5.3,nhsd_ss_2018
+35 - 54,16,F,ex,45 - 54,mortality,2.6,nhsd_ss_2018
+55 - 64,16,F,current,55 - 64,mortality,2.8,nhsd_ss_2018
+55 - 64,16,F,ex,55 - 64,mortality,1.1,nhsd_ss_2018
+65 - 74,16,F,current,65 - 74,mortality,2.1,nhsd_ss_2018
+65 - 74,16,F,ex,65 - 74,mortality,1.2,nhsd_ss_2018
+75+,16,F,current,75+,mortality,1.4,nhsd_ss_2018
+75+,16,F,ex,75+,mortality,1.2,nhsd_ss_2018
+35 - 54,16,M,current,35 - 44,mortality,4.2,nhsd_ss_2018
+35 - 54,16,M,ex,35 - 44,mortality,2,nhsd_ss_2018
+35 - 54,16,M,current,45 - 54,mortality,4.2,nhsd_ss_2018
+35 - 54,16,M,ex,45 - 54,mortality,2,nhsd_ss_2018
+55 - 64,16,M,current,55 - 64,mortality,2.5,nhsd_ss_2018
+55 - 64,16,M,ex,55 - 64,mortality,1.6,nhsd_ss_2018
+65 - 74,16,M,current,65 - 74,mortality,1.8,nhsd_ss_2018
+65 - 74,16,M,ex,65 - 74,mortality,1.3,nhsd_ss_2018
+75+,16,M,current,75+,mortality,1.4,nhsd_ss_2018
+75+,16,M,ex,75+,mortality,1.1,nhsd_ss_2018
+35+,17,F,current,35 - 44,mortality,2.17,nhsd_ss_2018
+35+,17,F,ex,35 - 44,mortality,1.12,nhsd_ss_2018
+35+,17,F,current,45 - 54,mortality,2.17,nhsd_ss_2018
+35+,17,F,ex,45 - 54,mortality,1.12,nhsd_ss_2018
+35+,17,F,current,55 - 64,mortality,2.17,nhsd_ss_2018
+35+,17,F,ex,55 - 64,mortality,1.12,nhsd_ss_2018
+35+,17,F,current,65 - 74,mortality,2.17,nhsd_ss_2018
+35+,17,F,ex,65 - 74,mortality,1.12,nhsd_ss_2018
+35+,17,F,current,75+,mortality,2.17,nhsd_ss_2018
+35+,17,F,ex,75+,mortality,1.12,nhsd_ss_2018
+35+,17,M,current,35 - 44,mortality,2.07,nhsd_ss_2018
+35+,17,M,ex,35 - 44,mortality,1.01,nhsd_ss_2018
+35+,17,M,current,45 - 54,mortality,2.07,nhsd_ss_2018
+35+,17,M,ex,45 - 54,mortality,1.01,nhsd_ss_2018
+35+,17,M,current,55 - 64,mortality,2.07,nhsd_ss_2018
+35+,17,M,ex,55 - 64,mortality,1.01,nhsd_ss_2018
+35+,17,M,current,65 - 74,mortality,2.07,nhsd_ss_2018
+35+,17,M,ex,65 - 74,mortality,1.01,nhsd_ss_2018
+35+,17,M,current,75+,mortality,2.07,nhsd_ss_2018
+35+,17,M,ex,75+,mortality,1.01,nhsd_ss_2018
+35 - 54,18,F,current,35 - 44,mortality,5.4,nhsd_ss_2018
+35 - 54,18,F,ex,35 - 44,mortality,1.3,nhsd_ss_2018
+35 - 54,18,F,current,45 - 54,mortality,5.4,nhsd_ss_2018
+35 - 54,18,F,ex,45 - 54,mortality,1.3,nhsd_ss_2018
+55 - 64,18,F,current,55 - 64,mortality,3.7,nhsd_ss_2018
+55 - 64,18,F,ex,55 - 64,mortality,1.3,nhsd_ss_2018
+65 - 74,18,F,current,65 - 74,mortality,2.6,nhsd_ss_2018
+65 - 74,18,F,ex,65 - 74,mortality,1.3,nhsd_ss_2018
+75+,18,F,current,75+,mortality,1.3,nhsd_ss_2018
+75+,18,F,ex,75+,mortality,1,nhsd_ss_2018
+35 - 54,18,M,current,35 - 44,mortality,4.4,nhsd_ss_2018
+35 - 54,18,M,ex,35 - 44,mortality,1.1,nhsd_ss_2018
+35 - 54,18,M,current,45 - 54,mortality,4.4,nhsd_ss_2018
+35 - 54,18,M,ex,45 - 54,mortality,1.1,nhsd_ss_2018
+55 - 64,18,M,current,55 - 64,mortality,3.1,nhsd_ss_2018
+55 - 64,18,M,ex,55 - 64,mortality,1.1,nhsd_ss_2018
+65 - 74,18,M,current,65 - 74,mortality,2.2,nhsd_ss_2018
+65 - 74,18,M,ex,65 - 74,mortality,1.1,nhsd_ss_2018
+75+,18,M,current,75+,mortality,1.6,nhsd_ss_2018
+75+,18,M,ex,75+,mortality,1.1,nhsd_ss_2018
+35+,19,F,current,35 - 44,mortality,7.07,nhsd_ss_2018
+35+,19,F,ex,35 - 44,mortality,2.07,nhsd_ss_2018
+35+,19,F,current,45 - 54,mortality,7.07,nhsd_ss_2018
+35+,19,F,ex,45 - 54,mortality,2.07,nhsd_ss_2018
+35+,19,F,current,55 - 64,mortality,7.07,nhsd_ss_2018
+35+,19,F,ex,55 - 64,mortality,2.07,nhsd_ss_2018
+35+,19,F,current,65 - 74,mortality,7.07,nhsd_ss_2018
+35+,19,F,ex,65 - 74,mortality,2.07,nhsd_ss_2018
+35+,19,F,current,75+,mortality,7.07,nhsd_ss_2018
+35+,19,F,ex,75+,mortality,2.07,nhsd_ss_2018
+35+,19,M,current,35 - 44,mortality,6.21,nhsd_ss_2018
+35+,19,M,ex,35 - 44,mortality,3.07,nhsd_ss_2018
+35+,19,M,current,45 - 54,mortality,6.21,nhsd_ss_2018
+35+,19,M,ex,45 - 54,mortality,3.07,nhsd_ss_2018
+35+,19,M,current,55 - 64,mortality,6.21,nhsd_ss_2018
+35+,19,M,ex,55 - 64,mortality,3.07,nhsd_ss_2018
+35+,19,M,current,65 - 74,mortality,6.21,nhsd_ss_2018
+35+,19,M,ex,65 - 74,mortality,3.07,nhsd_ss_2018
+35+,19,M,current,75+,mortality,6.21,nhsd_ss_2018
+35+,19,M,ex,75+,mortality,3.07,nhsd_ss_2018
+35+,20,F,current,35 - 44,mortality,1.83,nhsd_ss_2018
+35+,20,F,ex,35 - 44,mortality,1,nhsd_ss_2018
+35+,20,F,current,45 - 54,mortality,1.83,nhsd_ss_2018
+35+,20,F,ex,45 - 54,mortality,1,nhsd_ss_2018
+35+,20,F,current,55 - 64,mortality,1.83,nhsd_ss_2018
+35+,20,F,ex,55 - 64,mortality,1,nhsd_ss_2018
+35+,20,F,current,65 - 74,mortality,1.83,nhsd_ss_2018
+35+,20,F,ex,65 - 74,mortality,1,nhsd_ss_2018
+35+,20,F,current,75+,mortality,1.83,nhsd_ss_2018
+35+,20,F,ex,75+,mortality,1,nhsd_ss_2018
+35+,20,M,current,35 - 44,mortality,2.44,nhsd_ss_2018
+35+,20,M,ex,35 - 44,mortality,1.33,nhsd_ss_2018
+35+,20,M,current,45 - 54,mortality,2.44,nhsd_ss_2018
+35+,20,M,ex,45 - 54,mortality,1.33,nhsd_ss_2018
+35+,20,M,current,55 - 64,mortality,2.44,nhsd_ss_2018
+35+,20,M,ex,55 - 64,mortality,1.33,nhsd_ss_2018
+35+,20,M,current,65 - 74,mortality,2.44,nhsd_ss_2018
+35+,20,M,ex,65 - 74,mortality,1.33,nhsd_ss_2018
+35+,20,M,current,75+,mortality,2.44,nhsd_ss_2018
+35+,20,M,ex,75+,mortality,1.33,nhsd_ss_2018
+35+,21,F,current,35 - 44,mortality,5.5,nhsd_ss_2018
+35+,21,F,ex,35 - 44,mortality,1.4,nhsd_ss_2018
+35+,21,F,current,45 - 54,mortality,5.5,nhsd_ss_2018
+35+,21,F,ex,45 - 54,mortality,1.4,nhsd_ss_2018
+35+,21,F,current,55 - 64,mortality,5.5,nhsd_ss_2018
+35+,21,F,ex,55 - 64,mortality,1.4,nhsd_ss_2018
+35+,21,F,current,65 - 74,mortality,5.5,nhsd_ss_2018
+35+,21,F,ex,65 - 74,mortality,1.4,nhsd_ss_2018
+35+,21,F,current,75+,mortality,5.5,nhsd_ss_2018
+35+,21,F,ex,75+,mortality,1.4,nhsd_ss_2018
+35+,21,M,current,35 - 44,mortality,5.4,nhsd_ss_2018
+35+,21,M,ex,35 - 44,mortality,1.8,nhsd_ss_2018
+35+,21,M,current,45 - 54,mortality,5.4,nhsd_ss_2018
+35+,21,M,ex,45 - 54,mortality,1.8,nhsd_ss_2018
+35+,21,M,current,55 - 64,mortality,5.4,nhsd_ss_2018
+35+,21,M,ex,55 - 64,mortality,1.8,nhsd_ss_2018
+35+,21,M,current,65 - 74,mortality,5.4,nhsd_ss_2018
+35+,21,M,ex,65 - 74,mortality,1.8,nhsd_ss_2018
+35+,21,M,current,75+,mortality,5.4,nhsd_ss_2018
+35+,21,M,ex,75+,mortality,1.8,nhsd_ss_2018
