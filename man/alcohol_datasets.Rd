@@ -9,6 +9,6 @@ Alcohol datasets
 \seealso{
 Other alcohol datasets: \code{\link{aa_conditions}},
   \code{\link{aa_fractions}}, \code{\link{aa_versions}},
-  \code{\link{lu_aac_icd10}}
+  \code{\link{lu_aac_icd10}}, \code{\link{sa_versions}}
 }
 \concept{alcohol datasets}

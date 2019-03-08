@@ -36,7 +36,7 @@ if (isNamespaceLoaded("dplyr")) {
 Other alcohol datasets: \code{\link{aa_conditions}},
   \code{\link{aa_versions}},
   \code{\link{alcohol_datasets}},
-  \code{\link{lu_aac_icd10}}
+  \code{\link{lu_aac_icd10}}, \code{\link{sa_versions}}
 }
 \concept{alcohol datasets}
 \keyword{datasets}

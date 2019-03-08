@@ -36,7 +36,7 @@ Provides lookup tables for use with alcohol attributable fractions analyses.
 \seealso{
 Other alcohol datasets: \code{\link{aa_conditions}},
   \code{\link{aa_fractions}}, \code{\link{aa_versions}},
-  \code{\link{alcohol_datasets}}
+  \code{\link{alcohol_datasets}}, \code{\link{sa_versions}}
 }
 \concept{alcohol datasets}
 \keyword{datasets}
