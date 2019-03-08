@@ -50,7 +50,7 @@ NULL
 "aa_conditions"
 
 
-#' List of alcohol attributable fractions by condition, age and sex
+#' List of alcohol attributable conditions by version
 #'
 #' Provides lookup tables for use with alcohol attributable fractions analyses.
 #'
@@ -106,6 +106,7 @@ NULL
 #' @family alcohol datasets
 #'
 "aa_fractions"
+
 
 #' Lookup between alcohol attributable conditions and icd10 codes
 #'
