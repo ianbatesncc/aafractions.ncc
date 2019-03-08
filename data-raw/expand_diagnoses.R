@@ -315,5 +315,7 @@ main__expand_diagnoses <- function(
         , suffix = NULL
         , bWriteCSV = bWriteCSV
     )
+
+    invisible(list(aac = lu_aac_icd10, sac = lu_sac_icd10))
 }
 

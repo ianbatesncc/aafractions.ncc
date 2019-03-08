@@ -237,9 +237,16 @@ NULL
 #' Provides lookup tables for use with smoking relative risks / attributable
 #' fractions analyses.
 #'
-#' @format data frame with 69 rows and 7 fields
+#' @format data frame with 1,335 rows and 2 fields
 #'
-#' @examples
+#' \preformatted{
+#' Observations: 1,335
+#' Variables: 2
+#' $ condition_uid <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,...
+#' $ icd10         <chr> "C330", "C331", "C332", "C333", "C334", "C335", "C336", "C337", "C338", "C339", "C33X", "...
+#' }
+#'
+#' #' @examples
 #' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 #'   require("dplyr")
 #'   require("reshape2")
