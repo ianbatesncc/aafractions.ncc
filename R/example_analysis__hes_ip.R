@@ -59,7 +59,11 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
 #'
 ricd10 <- function(
     n = 1024
-    , mix_type = c("5050aalen34mix", "len3", "len4", "len34", "aa_only")
+    , mix_type = c(
+        "5050aalen34mix", "5050salen34mix"
+        , "len3", "len4", "len34"
+        , "aa_only", "sa_only"
+    )
     , nmultiple = 1
 ) {
 
@@ -69,9 +73,14 @@ ricd10 <- function(
 
     if (mix_type %in% c("len3", "len4", "len34")) {
         codes <- gen_codes(len = mix_type)
-    } else {
-        # aa_only, 5050mix
+    } else if (mix_type %like% "aa") {
+        # aa_only, 5050aamix
         codes <- unique(aafractions.ncc::lu_aac_icd10$icd10)
+    } else if (mix_type %like% "sa") {
+        # sa_only, 5050samix
+        codes <- unique(aafractions.ncc::lu_sac_icd10$icd10)
+    } else {
+        stop("Should not reach here: Unknown mix_type.")
     }
 
     # return n character strings ...
@@ -79,7 +88,7 @@ ricd10 <- function(
     if (nmultiple == 1) {
         # ... each containing one icd10 code
 
-        if (!(mix_type == "5050aalen34mix")) {
+        if (!(mix_type %like% "^5050[sa]alen34mix")) {
             retval <- sample(codes, n, replace = TRUE)
         } else {
             retval <- c(
@@ -100,7 +109,11 @@ ricd10 <- function(
         # ... each containing up to nmultiple icd10 codes ...
 
         retval <- replicate(
-            n, paste(ricd10(sample.int(nmultiple, 1)), collapse = ";")
+            n
+            , paste(
+                ricd10(sample.int(nmultiple, 1), mix_type = mix_type)
+                , collapse = ";"
+            )
         )
     }
 
@@ -113,7 +126,8 @@ ricd10 <- function(
 #' its paces.
 #'
 #' @param n (integer) length of table
-#' @param bWriteCSV (bool) save to disk .. or not
+#' @param mix_type (character) passed to ricd10 (random diagnosis code
+#'   generator)
 #'
 #' @return (data.frame) dummy HES table
 #'
@@ -121,13 +135,15 @@ ricd10 <- function(
 #'
 create__dummy_hesip <- function(
     n = 1024
-    , bWriteCSV = FALSE
+    , mix_type = NULL
 ) {
 
     ip <- data.frame(
         Generated_Record_Identifier = 1e6 + seq(1, n)
         , Diagnosis_ICD_1 = NA
-        , Diagnosis_ICD_Concatenated_D = ricd10(n, nmultiple = 20)
+        , Diagnosis_ICD_Concatenated_D = ricd10(
+            n, mix_type = mix_type, nmultiple = 20
+        )
 
         , Consultant_Episode_End_Date = as.POSIXct("2019/01/01")
         , Consultant_Episode_Number = sample(
@@ -318,14 +334,15 @@ gender,genderC,genderName
 
 #' Example analysis
 #'
-#' - suitable for vignette
+#' Alcohol morbidity
 #'
+#' - suitable for vignette
 #'
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
 ) {
-    ip <- create__dummy_hesip()
+    ip <- create__dummy_hesip(mix_type = "5050aa")
 
     # Split out diagnosis codes
 
@@ -435,4 +452,146 @@ main__example_analysis__aa_morbidity <- function(
     ) %>% select(-aa_rank_1_highest)
 
     aa_methods
+}
+
+#' Example analysis
+#'
+#' Smoking morbidity
+#'
+#' - suitable for vignette
+#'
+#' Methodology
+#'
+#' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
+#'
+#'
+#' @family examples_of_analysis
+#'
+main__example_analysis__sa_morbidity <- function(
+) {
+    ip <- create__dummy_hesip(mix_type = "5050sa")
+
+    # Split out diagnosis codes
+
+    tbl__SA__PHIT_IP__melt <- ip %>%
+        filter(
+            Consultant_Episode_Number == 1
+            , Episode_Status == 3
+            , Patient_Classification %in% c(1, 2, 5)
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , icd10 = Diagnosis_ICD_1
+        ) %>%
+        mutate(pos = 1) %>%
+        merge(
+            aafractions.ncc::lu_sac_icd10 %>%
+                merge(
+                    aafractions.ncc::sa_versions %>%
+                        filter(version == "nhsd_ss_2018")
+                    , by = "condition_uid"
+                )
+            , by.x = "icd10", by.y = "icd10"
+            , all.x = FALSE, all.y = FALSE
+        ) %>%
+        arrange(GRID, pos, icd10)
+
+    # Tag on relative risk
+    #
+    # meta: age, gender, LAD, CalYear
+    #
+
+    lu_ageband <- create_lu_ageband(style = "smoking", name = "ab_sa")
+
+    lu_sex <- create_lu_gender()
+
+    tbl__SA__PHIT_IP__melt <- ip %>%
+        filter(
+            Generated_Record_Identifier %in% unique(tbl__SA__PHIT_IP__melt$GRID)
+        ) %>%
+        #
+        # gather record meta data
+        #
+        merge(
+            lu_ageband
+            , by.x = "Age_at_Start_of_Episode_D", by.y = "age"
+        ) %>%
+        merge(
+            lu_sex
+            , by.x = "Gender", by.y = "gender"
+        ) %>%
+        mutate(
+            meta_calyear = as.integer(
+                lubridate::year(Consultant_Episode_End_Date)
+            )
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , GenderC = genderC
+            , AgeBand_SA = ab_sa
+            , meta_lad = Local_Authority_District
+            , meta_calyear
+        ) %>%
+        merge(
+            tbl__SA__PHIT_IP__melt
+            , by = "GRID"
+            , all.x = TRUE, all.y = FALSE
+        ) %>%
+        #
+        # tag on relative risk
+        #
+        # condition, age, gender
+        # - expand by smoking_status
+        #
+        merge(
+            aafractions.ncc::sa_relrisk %>%
+                filter(analysis_type == "morbidity")
+            , by.x = c("version", "condition_uid", "AgeBand_SA", "GenderC")
+            , by.y = c("version", "condition_uid", "ab_sa_explode", "sex")
+            , all.x = FALSE, all.y = FALSE
+        ) %>%
+        #
+        # tag on smoking prevalence
+        #
+        # age == 18+, gender, smoking_status
+        #
+        merge(
+            aafractions.ncc::sp %>%
+                select_at(vars(c(
+                    "smoking_status", "calyear", "area_code", "sex", "value", "multiplier"
+                ))) %>%
+                rename(sp = "value") %>%
+                mutate(sp = sp / multiplier) %>%
+                select(-multiplier) %>%
+                filter(calyear == 2017)
+            , by.x = c("GenderC", "smoking_status", "meta_lad") # , "meta_calyear")
+            , by.y  = c("sex", "smoking_status", "area_code") # , "calyear")
+            , all.x = TRUE, all.y = FALSE
+        ) %>%
+        #
+        # Calculate attributable fraction
+        #
+        group_by_at(vars(-"smoking_status", -"sp", -"srr", -"calyear")) %>%
+        summarise(saf = {
+            da = sum(sp * (srr - 1))
+            da / (1 + da)
+        }) %>%
+        ungroup()
+
+
+    # Construct methods
+
+    methods__specific <- tbl__SA__PHIT_IP__melt %>%
+        #filter(saf > 0.99) %>%
+        #group_by(GRID) %>%
+        #mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        #ungroup() %>%
+        #filter(aa_rank_1_highest == 1) %>%
+        mutate(method = "smoking-attributable")
+
+    sa_methods <- bind_rows(
+        methods__specific
+    )
+
+    sa_methods
 }
