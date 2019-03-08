@@ -66,7 +66,6 @@ ricd10 <- function(
     )
     , nmultiple = 1
 ) {
-
     mix_type <- match.arg(mix_type)
 
     codes <- NULL
@@ -140,7 +139,7 @@ create__dummy_hesip <- function(
 
     ip <- data.frame(
         Generated_Record_Identifier = 1e6 + seq(1, n)
-        , Diagnosis_ICD_1 = NA
+        , Diagnosis_ICD_1 = NA # aligned with concat later
         , Diagnosis_ICD_Concatenated_D = ricd10(
             n, mix_type = mix_type, nmultiple = 20
         )
