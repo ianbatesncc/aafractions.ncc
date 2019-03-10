@@ -1,8 +1,3 @@
-# Workaround for R CMD check and field names
-Version = NULL
-condition_uid = NULL
-
-
 #' Reconstruct lu tables
 #'
 #' Reconstruct alcohol attributable fractions table for given version and
@@ -50,12 +45,12 @@ reconstruct <- function(
     }
 
     this_table <- aafractions.ncc::aa_versions %>%
-        filter(Version == this_version) %>%
+        filter(version == this_version) %>%
         merge(aafractions.ncc::aa_conditions, by = "condition_uid") %>%
         mutate(analysis_type = this_analysistype) %>%
         merge(
             aafractions.ncc::aa_fractions
-            , by = c("Version", "analysis_type", "condition_uid")
+            , by = c("version", "analysis_type", "condition_uid")
         )
 
     if (!molten) {

@@ -4,10 +4,17 @@
 \alias{create_lu_ageband}
 \title{Create age band looks for aa and esp}
 \usage{
-create_lu_ageband()
+create_lu_ageband(style = c("alcohol", "smoking", "generic"),
+  name = NULL)
+}
+\arguments{
+\item{style}{(character) choose label foramtting and breaks (alcohol,
+smoking, generic - 5 year agebands to 95+)}
+
+\item{name}{(character) choose field name}
 }
 \value{
-(data.frame) with fields
+(data.frame) with fields age, ab, ab_style ab optionally renamed)
 }
 \description{
 Create age band looks for aa and esp
@@ -24,7 +31,8 @@ Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{create_lu_gender}},
   \code{\link{examples_of_analysis}},
   \code{\link{gen_codes}},
-  \code{\link{main__example_analysis__hes_ip}},
+  \code{\link{main__example_analysis__aa_morbidity}},
+  \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

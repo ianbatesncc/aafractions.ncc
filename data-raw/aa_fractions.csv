@@ -1,4 +1,4 @@
-Version,condition_uid,aa_ageband,sex,analysis_type,aaf
+version,condition_uid,aa_ageband,sex,analysis_type,aaf
 aaf_2007_ni39,1,00-15 Yrs,F,morbidity,1
 aaf_2007_ni39,1,16-24 Yrs,F,morbidity,1
 aaf_2007_ni39,1,25-34 Yrs,F,morbidity,1

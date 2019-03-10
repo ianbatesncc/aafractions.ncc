@@ -4,12 +4,13 @@
 \alias{create__dummy_hesip}
 \title{Create dummy HES table}
 \usage{
-create__dummy_hesip(n = 1024, bWriteCSV = FALSE)
+create__dummy_hesip(n = 1024, mix_type = NULL)
 }
 \arguments{
 \item{n}{(integer) length of table}
 
-\item{bWriteCSV}{(bool) save to disk .. or not}
+\item{mix_type}{(character) passed to ricd10 (random diagnosis code
+generator)}
 }
 \value{
 (data.frame) dummy HES table
@@ -24,7 +25,8 @@ Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{create_lu_gender}},
   \code{\link{examples_of_analysis}},
   \code{\link{gen_codes}},
-  \code{\link{main__example_analysis__hes_ip}},
+  \code{\link{main__example_analysis__aa_morbidity}},
+  \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

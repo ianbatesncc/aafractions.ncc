@@ -52,16 +52,51 @@ The tables presented here are taken from online publically available sources.  T
 
 * Worksheet `\Alcohol Fractions/`.
 
+
+## Smoking attributable fractions
+
+There are two parts: smoking relative risks and smoking prevalence
+
+### Data
+
+[NHS Digital Statistics on Smoking 2018 tables (.xlsx) ](https://files.digital.nhs.uk/5A/FC7B13/stat-smok-eng-2018-tab.xlsx) ([local link](`r system.file("aa_documentation", "stat-smok-eng-2018-tab.xlsx", package = "aafractions.ncc")`))
+
+* Tables in worksheet `\B2/`.
+
+[PHE Local Tobacco Control Profiles  (website)](https://fingertips.phe.org.uk/profile/tobacco-control/data#page/9/gid/1938132886/pat/6/par/E12000004/ati/101/are/E07000170) ([local link](`r system.file("data-raw", "PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv", package = "aafractions.ncc")`))
+
+* Datasets downloadable from [Downloads] section.
+
+### PHE and NHS Digital methodology
+
+#### Relative risk to Attributable Fraction conversion
+
+[NHS Digital Appendix (.pdf)](https://files.digital.nhs.uk/7A/870C29/stat-smok-eng-2018-app.pdf) ([local link](`r system.file("aa_documentation", "stat-smok-eng-2018-app.pdf", package = "aafractions.ncc")`))
+
+* Appendix section 1.2
+
+#### PHE methodology notes
+
+[PHE Morbidity (web)](https://fingertips.phe.org.uk/profile/tobacco-control/data#page/6/gid/1938132888/pat/6/par/E12000004/ati/102/are/E10000024/iid/1207/age/202/sex/4) ([local link](`r system.file("aa_documentation", "SAF_Admissions_20190304_Public_Health_Profiles.pdf", package = "aafractions.ncc")`))
+
+[PHE Mortality (web)](https://fingertips.phe.org.uk/profile/tobacco-control/data#page/6/gid/1938132887/pat/6/par/E12000004/ati/102/are/E10000024/iid/113/age/202/sex/4) ([local link](`r system.file("aa_documentation", "SAF_Mortality_20190304_Public_Health_Profiles.pdf", package = "aafractions.ncc")`))
+
+
+
 ## References
 
-PHE (2017), "Local Alcohol Profiles for England 2017 user guide", URL: https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf
+PHE (2017), "Local Alcohol Profiles for England 2017 user guide", URL: https://fingertips.phe.org.uk/documents/LAPE_2017_User_Guide_071117.pdf (last accessed 2019 March)
 
-NHSD HES DD (2015), "HES Alcohol Fractions"
-, URL: https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx
+NHS Digital, "Statistics on Smoking", URL: https://digital.nhs.uk/data-and-information/publications/statistical/statistics-on-smoking/ (last accessed 2019 March)
+
+NHS Digital, "Statistics on Smoking 2018", https://digital.nhs.uk/data-and-information/publications/statistical/statistics-on-smoking/statistics-on-smoking-england-2018 (last accessed March 2019)
+
+NHS Digital HES DD (2015), "HES Alcohol Fractions"
+, URL: https://digital.nhs.uk/binaries/content/assets/legacy/excel/5/9/hes_apc_data_dictionary_-_supplementary_table.xlsx (last accessed 2019 March)
 
 L. Jones, M. Bellis (2014), "Updating England-Specific Alcohol-Attributable Fractions"
-, URL: http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf
+, URL: http://www.cph.org.uk/wp-content/uploads/2014/03/24892-ALCOHOL-FRACTIONS-REPORT-A4-singles-24.3.14.pdf (last accessed 2019 March)
 
 L. Jones, M. Bellis et. al. (2008), "Alcohol attributable fractions for England"
-, URL: http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf
+, URL: http://nwph.net/nwpho/publications/alcoholattributablefractions.pdf (last accessed 2019 March)
 
