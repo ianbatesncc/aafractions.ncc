@@ -142,6 +142,8 @@ The latest version is that used by PHE as described in their 2017 guidance is de
 The underlying events table is a dummy HES inpatients table.  Only fields relevant to this analysis are presented.
 
 ```{r}
+library("aafractions.ncc")
+
 ip <- aafractions.ncc:::create__dummy_hesip(n = 1024)
 glimpse(ip)
 ```
@@ -156,9 +158,8 @@ The problem space can be reduced as only a subset of events/records are relevant
 * Finished Consultant Episodes
 * Ordinary Admissions, Day Cases, and Mother and Babies (excluded are regular routine admissions, possibly)
 
-```{r}
-library("aafractions.ncc")
 
+```{r}
 tbl__AA__PHIT_IP__melt <- ip %>%
     filter(
         Consultant_Episode_Number == 1
@@ -212,7 +213,7 @@ Match diagnosis code to alcohol attributable condition:
 ```{r}
 tbl__AA__PHIT_IP__melt <- tbl__AA__PHIT_IP__melt %>%
     merge(
-        lu_aac_icd10 %>%
+        aafractions.ncc::lu_aac_icd10 %>%
             merge(
                 aa_versions %>% filter(version == "aaf_2017_phe")
                 , by = "condition_uid"
@@ -237,7 +238,9 @@ tbl__AA__PHIT_IP__melt %>%
 Tag on attributable fraction:
 
 ```{r}
-lu_ageband <- aafractions.ncc:::create_lu_ageband()
+lu_ageband <- aafractions.ncc:::create_lu_ageband(
+    style = "alcohol", name = "ab_aaf"
+)
 glimpse(lu_ageband)
 
 lu_sex <- aafractions.ncc:::create_lu_gender()
@@ -268,7 +271,7 @@ tbl__AA__PHIT_IP__melt <- ip %>%
         , all.x = TRUE, all.y = FALSE
     ) %>%
     merge(
-        aa_fractions %>% filter(analysis_type == "morbidity")
+        aafractions.ncc::aa_fractions %>% filter(analysis_type == "morbidity")
         , by.x = c("version", "condition_uid", "AgeBand_AA", "GenderC")
         , by.y = c("version", "condition_uid", "aa_ageband", "sex")
         , all.x = TRUE, all.y = FALSE

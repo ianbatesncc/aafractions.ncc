@@ -4,12 +4,13 @@
 \alias{create__dummy_hesip}
 \title{Create dummy HES table}
 \usage{
-create__dummy_hesip(n = 1024, mix_type, bWriteCSV = FALSE)
+create__dummy_hesip(n = 1024, mix_type = NULL)
 }
 \arguments{
 \item{n}{(integer) length of table}
 
-\item{bWriteCSV}{(bool) save to disk .. or not}
+\item{mix_type}{(character) passed to ricd10 (random diagnosis code
+generator)}
 }
 \value{
 (data.frame) dummy HES table

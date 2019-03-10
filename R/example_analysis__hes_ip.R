@@ -68,14 +68,20 @@ ricd10 <- function(
 ) {
     mix_type <- match.arg(mix_type)
 
+    ilike <- function(vector, pattern) {
+        # based on data.table::like
+        grepl(pattern, vector, ignore.case = TRUE)
+    }
+    `%ilike%` <- ilike
+
     codes <- NULL
 
     if (mix_type %in% c("len3", "len4", "len34")) {
         codes <- gen_codes(len = mix_type)
-    } else if (mix_type %like% "aa") {
+    } else if (mix_type %ilike% "aa") {
         # aa_only, 5050aamix
         codes <- unique(aafractions.ncc::lu_aac_icd10$icd10)
-    } else if (mix_type %like% "sa") {
+    } else if (mix_type %ilike% "sa") {
         # sa_only, 5050samix
         codes <- unique(aafractions.ncc::lu_sac_icd10$icd10)
     } else {
@@ -87,7 +93,7 @@ ricd10 <- function(
     if (nmultiple == 1) {
         # ... each containing one icd10 code
 
-        if (!(mix_type %like% "^5050[sa]alen34mix")) {
+        if (!(mix_type %ilike% "^5050[sa]alen34mix")) {
             retval <- sample(codes, n, replace = TRUE)
         } else {
             retval <- c(
