@@ -28,6 +28,8 @@ globalVariables(c(
     , "from"
     , "to"
     , "lab"
+    , "s_sta"
+    , "s_end"
     # create_lu_ageband
     , "age"
     # example_analysis
@@ -46,5 +48,5 @@ globalVariables(c(
     , "Consultant_Episode_Number"
     , "aa_aa_rank_1_highest"
     # vignettes : counting_aa_events
-    , "Version"
+    , "version"
 ))
