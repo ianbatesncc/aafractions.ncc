@@ -21,7 +21,15 @@ GO
 
 /* Clear table or create
 */
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tmpIB__AA__PHIT_IP__melt]') AND type in (N'U'))
+IF EXISTS (
+    SELECT *
+        FROM
+            sys.objects
+        WHERE
+            object_id = OBJECT_ID(N'[dbo].[tmpIB__AA__PHIT_IP__melt]')
+            AND
+            type in (N'U')
+)
 	DELETE FROM [dbo].[tmpIB__AA__PHIT_IP__melt]
 ELSE
 	BEGIN
@@ -52,6 +60,10 @@ Set date range
 
 declare @datestart as datetime
 declare @dateend as datetime
+
+--
+-- Financial years
+--
 
 declare @fystart as varchar(4) ;
 declare @fyend as varchar(4) ;
@@ -178,6 +190,9 @@ AS (
     	) AS unpvt
 )
 ,
+/*
+join condition codes to diagnosis fields
+*/
 cte_inspect(GRID, icd10, pos, aa_uid)
 AS
 (
@@ -190,6 +205,9 @@ AS
     	WHERE
     		(NOT LU_UID_ICD.[uid] IS NULL)
 )
+/*
+store records in the dbo.tmpIB__AA__PHIT_IP__melt table
+*/
 INSERT INTO [PHIIT].dbo.tmpIB__AA__PHIT_IP__melt
 SELECT
 	GRID, icd10, pos, aa_uid, NULL, NULL, NULL, NULL

@@ -13,7 +13,15 @@ GO
 
 /* Clear table or create
 */
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tmpIB__AA__PHIT_IP__aamethod]') AND type in (N'U'))
+IF EXISTS (
+    SELECT *
+        FROM
+            sys.objects
+        WHERE
+            object_id = OBJECT_ID(N'[dbo].[tmpIB__AA__PHIT_IP__aamethod]')
+            AND
+            type in (N'U')
+)
 	DELETE FROM [dbo].[tmpIB__AA__PHIT_IP__aamethod]
 ELSE
 	BEGIN
@@ -192,11 +200,5 @@ SELECT
 	, GRID, icd10, pos, aa_uid, aa_gender, aa_agesyoa, aa_ageband, af
 	FROM cte_rank
 	WHERE ([aa_rank_1_highest] = 1)
-;
-GO
-
-/* inspect top 100 */
-
-SELECT top 10 * FROM [tmpib__AA__PHIT_IP__aamethod]
 ;
 GO
