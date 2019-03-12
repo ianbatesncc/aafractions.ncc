@@ -2,6 +2,13 @@
 # Script to extract tables from .xlsx
 #
 
+require("readxl", warn.conflicts = FALSE)
+require("dplyr", warn.conflicts = FALSE)
+require("data.table", warn.conflicts = FALSE)
+require("devtools", warn.conflicts = FALSE)
+require("tidyr", warn.conflicts = FALSE)
+require("janitor", warn.conflicts = FALSE)
+
 #' Extract data from xl
 #'
 #' Pull in tables from worksheets.
@@ -22,18 +29,15 @@
 extract_aa <- function(
     bWriteCSV = FALSE
 ) {
-
-    require("readxl")
-    require("dplyr")
-    require("data.table")
-
     # load tables as list of tables
 
     this_wb = devtools::package_file("./data-raw/aafraction_lus.xlsx")
 
     these_wss <- readxl::excel_sheets(path = this_wb)
 
-    wss <- setdiff(these_wss, "Tables") %>%
+    these_sheets <- setdiff(these_wss, "Tables")
+
+    wss <- these_sheets %>%
         lapply(
             function(x, y) {
                 cat("INFO: reading sheet", x, "...", "\n")
@@ -41,7 +45,7 @@ extract_aa <- function(
             }, this_wb
         )
 
-    names(wss) <- setdiff(these_wss, "Tables")
+    names(wss) <- these_sheets
 
     # combine tables
 
@@ -183,12 +187,6 @@ extract_aa <- function(
 extract_sa <- function(
     bWriteCSV = FALSE
 ) {
-    require("readxl")
-    require("dplyr")
-    require("tidyr")
-    #require("data.table")
-    require("janitor")
-
     # load worksheets
 
     this_xl <- devtools::package_file("./data-raw/srelrisk_lus.xlsx")
@@ -327,16 +325,14 @@ extract_sa <- function(
         sa_conditions = sa_conditions
         , sa_relrisk = sa_relrisk
     ))
-
 }
 
 extract_sp <- function(
     bWriteCSV = TRUE
 ) {
-    require("dplyr")
-    require("data.table")
-
-    this_csv <- devtools::package_file("./data-raw/PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv")
+    this_csv <- devtools::package_file(
+        "./data-raw/PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv"
+    )
 
     #sp <- fread(this_csv) %>%
     sp <- read.csv(this_csv, as.is = TRUE) %>%

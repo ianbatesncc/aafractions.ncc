@@ -227,6 +227,26 @@ create__dummy_hesip <- function(
 #' @param flag (character) number formatting (see formatC)
 #' @param width (integer) number formatting (see formatC)
 #'
+#' @details
+#'
+#' A general ageband has an age range, specfied by lower (incluseive) and upper
+#' (exclusive).
+#'
+#' An ageband label is of the general form:
+#'
+#' <prefix> <value lower> <separator> <value upper> <suffix>
+#'
+#' with the last age band of the form:
+#'
+#' <prefix> <value upper> "+" <suffix>
+#'
+#' Variations are tailored for specific lookup tables.
+#'
+#' * alcohol: 00-00 Yrs
+#' * smoking: 00 - 00
+#' * generic: a0000
+#' * ucs:     0 - 0 yrs
+#'
 #' @return (character vector) labels
 #'
 #' @family examples_of_analysis
