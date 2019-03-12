@@ -4,7 +4,7 @@
 \alias{create_lu_ageband}
 \title{Create age band looks for aa and esp}
 \usage{
-create_lu_ageband(style = c("alcohol", "smoking", "generic"),
+create_lu_ageband(style = c("alcohol", "smoking", "generic", "ucs"),
   name = NULL)
 }
 \arguments{

@@ -4,8 +4,8 @@
 \alias{ab_labels_from_breaks}
 \title{Create ageband labels}
 \usage{
-ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic"),
-  flag = "0", width = 2)
+ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic",
+  "ucs"), flag = "0", width = 2)
 }
 \arguments{
 \item{breaks}{(integer vector) breaks}
@@ -23,6 +23,25 @@ ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic"),
 \description{
 Given breaks construct ageband labels of the form "xx-yy Yrs" and "zz+
 Yrs"
+}
+\details{
+A general ageband has an age range, specfied by lower (incluseive) and upper
+(exclusive).
+
+An ageband label is of the general form:
+
+<prefix> <value lower> <separator> <value upper> <suffix>
+
+with the last age band of the form:
+
+<prefix> <value upper> "+" <suffix>
+
+Variations are tailored for specific lookup tables.
+
+* alcohol: 00-00 Yrs
+* smoking: 00 - 00
+* generic: a0000
+* ucs:     0 - 0 yrs
 }
 \seealso{
 Other examples_of_analysis: \code{\link{create__dummy_hesip}},

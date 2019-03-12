@@ -233,15 +233,42 @@ create__dummy_hesip <- function(
 #'
 ab_labels_from_breaks <- function(
     breaks
-    , style = c("alcohol", "smoking", "generic")
+    , style = c("alcohol", "smoking", "generic", "ucs")
     , flag = "0"
     , width = 2
 ){
     style <- match.arg(style)
 
-    ab_prefix = switch(style, generic = "a", "")
-    ab_sep = switch(style, alcohol = "-", smoking = " - ", "")
-    ab_suffix = switch(style, alcohol = " Yrs", "")
+    # Adjust style settings
+
+    if (missing(flag))
+        flag <- switch(style, ucs = "", "0")
+
+    if (missing(width))
+        width <- switch(style, ucs = -1, 2)
+
+    ab_prefix <- switch(
+        style
+        , generic = "a"
+        , ""
+    )
+
+    ab_sep <- switch(
+        style
+        , alcohol = "-"
+        , smoking = " - "
+        , ucs = " - "
+        , ""
+    )
+
+    ab_suffix <- switch(
+        style
+        , alcohol = " Yrs"
+        , ucs = " yrs"
+        , ""
+    )
+
+    # create the labels
 
     nlabs <- length(breaks)
     dlabs <- data.frame(
@@ -278,7 +305,7 @@ ab_labels_from_breaks <- function(
 #' @family examples_of_analysis
 #'
 create_lu_ageband <- function(
-    style = c("alcohol", "smoking", "generic")
+    style = c("alcohol", "smoking", "generic", "ucs")
     , name = NULL
 ) {
     style <- match.arg(style)
@@ -289,6 +316,7 @@ create_lu_ageband <- function(
         style
         , alcohol = c(0, 16, 25, 35, 45, 55, 65, 75, 120)
         , smoking = c(0, 35, 45, 55, 65, 75, 120)
+        , ucs = c(0, 6, 75, 120)
         , breaks_esp
     )
 
