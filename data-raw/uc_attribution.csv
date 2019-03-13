@@ -1,39 +1,39 @@
-age,condition_description,primary_diagnosis,primary_regex,condition_uid,version,ab_ucs_explode,ucs_af
-0 - 5 yrs,Pyrexial child,R50,R50,8,ccg_iaf_201617,0 - 5 yrs,1
-75+ yrs,Falls,W0; W1-W19,W[01][0-9],4,ccg_iaf_201617,75+ yrs,1
-All ages,COPD,J40; J41; J42; J43; J44,J4[0-4],1,ccg_iaf_201617,0 - 5 yrs,1
-All ages,COPD,J40; J41; J42; J43; J44,J4[0-4],1,ccg_iaf_201617,6 - 74 yrs,1
-All ages,COPD,J40; J41; J42; J43; J44,J4[0-4],1,ccg_iaf_201617,75+ yrs,1
-All ages,Acute mental health crisis,F,F,2,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Acute mental health crisis,F,F,2,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Acute mental health crisis,F,F,2,ccg_iaf_201617,75+ yrs,1
-All ages,Non-specific chest pain,R072; R073; R074,R07[2-4],3,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Non-specific chest pain,R072; R073; R074,R07[2-4],3,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Non-specific chest pain,R072; R073; R074,R07[2-4],3,ccg_iaf_201617,75+ yrs,1
-All ages,Angina,I20,I20,12,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Angina,I20,I20,12,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Angina,I20,I20,12,ccg_iaf_201617,75+ yrs,1
-All ages,Non-specific abdominal pain,R10,R10,5,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Non-specific abdominal pain,R10,R10,5,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Non-specific abdominal pain,R10,R10,5,ccg_iaf_201617,75+ yrs,1
-All ages,Deep vein thrombosis,I80; I81; I82,I8[0-2],6,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Deep vein thrombosis,I80; I81; I82,I8[0-2],6,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Deep vein thrombosis,I80; I81; I82,I8[0-2],6,ccg_iaf_201617,75+ yrs,1
-All ages,Cellulitis,L03,L03,7,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Cellulitis,L03,L03,7,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Cellulitis,L03,L03,7,ccg_iaf_201617,75+ yrs,1
-All ages,"Blocked tubes, catheters and feeding tubes",T830,T830,9,ccg_iaf_201617,0 - 5 yrs,1
-All ages,"Blocked tubes, catheters and feeding tubes",T830,T830,9,ccg_iaf_201617,6 - 74 yrs,1
-All ages,"Blocked tubes, catheters and feeding tubes",T830,T830,9,ccg_iaf_201617,75+ yrs,1
-All ages,Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,E1[0-5];E16[12],10,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,E1[0-5];E16[12],10,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,E1[0-5];E16[12],10,ccg_iaf_201617,75+ yrs,1
-All ages,Urinary tract infection,N390,N390,11,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Urinary tract infection,N390,N390,11,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Urinary tract infection,N390,N390,11,ccg_iaf_201617,75+ yrs,1
-All ages,Epileptic fit,G40; G41,G4[01],13,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Epileptic fit,G40; G41,G4[01],13,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Epileptic fit,G40; G41,G4[01],13,ccg_iaf_201617,75+ yrs,1
-All ages,Minor head injuries,S00,S00,14,ccg_iaf_201617,0 - 5 yrs,1
-All ages,Minor head injuries,S00,S00,14,ccg_iaf_201617,6 - 74 yrs,1
-All ages,Minor head injuries,S00,S00,14,ccg_iaf_201617,75+ yrs,1
+condition_uid,ab_ucs,ab_ucs_explode,version,ucs_af
+8,0 - 5 yrs,0 - 5 yrs,ccg_iaf_201617,1
+4,75+ yrs,75+ yrs,ccg_iaf_201617,1
+1,All ages,0 - 5 yrs,ccg_iaf_201617,1
+1,All ages,6 - 74 yrs,ccg_iaf_201617,1
+1,All ages,75+ yrs,ccg_iaf_201617,1
+2,All ages,0 - 5 yrs,ccg_iaf_201617,1
+2,All ages,6 - 74 yrs,ccg_iaf_201617,1
+2,All ages,75+ yrs,ccg_iaf_201617,1
+3,All ages,0 - 5 yrs,ccg_iaf_201617,1
+3,All ages,6 - 74 yrs,ccg_iaf_201617,1
+3,All ages,75+ yrs,ccg_iaf_201617,1
+12,All ages,0 - 5 yrs,ccg_iaf_201617,1
+12,All ages,6 - 74 yrs,ccg_iaf_201617,1
+12,All ages,75+ yrs,ccg_iaf_201617,1
+5,All ages,0 - 5 yrs,ccg_iaf_201617,1
+5,All ages,6 - 74 yrs,ccg_iaf_201617,1
+5,All ages,75+ yrs,ccg_iaf_201617,1
+6,All ages,0 - 5 yrs,ccg_iaf_201617,1
+6,All ages,6 - 74 yrs,ccg_iaf_201617,1
+6,All ages,75+ yrs,ccg_iaf_201617,1
+7,All ages,0 - 5 yrs,ccg_iaf_201617,1
+7,All ages,6 - 74 yrs,ccg_iaf_201617,1
+7,All ages,75+ yrs,ccg_iaf_201617,1
+9,All ages,0 - 5 yrs,ccg_iaf_201617,1
+9,All ages,6 - 74 yrs,ccg_iaf_201617,1
+9,All ages,75+ yrs,ccg_iaf_201617,1
+10,All ages,0 - 5 yrs,ccg_iaf_201617,1
+10,All ages,6 - 74 yrs,ccg_iaf_201617,1
+10,All ages,75+ yrs,ccg_iaf_201617,1
+11,All ages,0 - 5 yrs,ccg_iaf_201617,1
+11,All ages,6 - 74 yrs,ccg_iaf_201617,1
+11,All ages,75+ yrs,ccg_iaf_201617,1
+13,All ages,0 - 5 yrs,ccg_iaf_201617,1
+13,All ages,6 - 74 yrs,ccg_iaf_201617,1
+13,All ages,75+ yrs,ccg_iaf_201617,1
+14,All ages,0 - 5 yrs,ccg_iaf_201617,1
+14,All ages,6 - 74 yrs,ccg_iaf_201617,1
+14,All ages,75+ yrs,ccg_iaf_201617,1

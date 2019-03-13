@@ -38,6 +38,22 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
     retval
 }
 
+#' Case insensitive like
+#'
+#' @param vector (character) string to match
+#' @param pattern (character) passed to \code{grepl}
+#'
+#' @return (logical vector) indicate matches
+#'
+#' @details
+#'
+#' Inspiration from data.table \code{like}.
+#'
+ilike <- function(vector, pattern) {
+    grepl(pattern, vector, ignore.case = TRUE)
+}
+`%ilike%` <- ilike
+
 #' Return a random icd10 code.
 #'
 #' @param n (integer) number of records to return
@@ -60,19 +76,13 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
 ricd10 <- function(
     n = 1024
     , mix_type = c(
-        "5050aalen34mix", "5050salen34mix"
+        "5050aalen34mix", "5050salen34mix", "5050uclen34mix"
         , "len3", "len4", "len34"
-        , "aa_only", "sa_only"
+        , "aa_only", "sa_only", "uc_only"
     )
     , nmultiple = 1
 ) {
     mix_type <- match.arg(mix_type)
-
-    ilike <- function(vector, pattern) {
-        # based on data.table::like
-        grepl(pattern, vector, ignore.case = TRUE)
-    }
-    `%ilike%` <- ilike
 
     codes <- NULL
 
@@ -84,6 +94,9 @@ ricd10 <- function(
     } else if (mix_type %ilike% "sa") {
         # sa_only, 5050samix
         codes <- unique(aafractions.ncc::lu_sac_icd10$icd10)
+    } else if (mix_type %ilike% "uc") {
+        # uc_only, 5050ucmix
+        codes <- unique(aafractions.ncc::lu_ucc_icd10$icd10)
     } else {
         stop("Should not reach here: Unknown mix_type.")
     }
@@ -93,7 +106,7 @@ ricd10 <- function(
     if (nmultiple == 1) {
         # ... each containing one icd10 code
 
-        if (!(mix_type %ilike% "^5050[sa]alen34mix")) {
+        if (!(mix_type %ilike% "^5050[a-z]{1,}len34mix$")) {
             retval <- sample(codes, n, replace = TRUE)
         } else {
             retval <- c(
@@ -145,6 +158,11 @@ create__dummy_hesip <- function(
 
     ip <- data.frame(
         Generated_Record_Identifier = 1e6 + seq(1, n)
+
+        , Admission_Method_Code = sample(
+            c(10, 20), n, replace = TRUE
+        )
+
         , Diagnosis_ICD_1 = NA # aligned with concat later
         , Diagnosis_ICD_Concatenated_D = ricd10(
             n, mix_type = mix_type, nmultiple = 20
@@ -627,4 +645,116 @@ main__example_analysis__sa_morbidity <- function(
     )
 
     sa_methods
+}
+
+#' Example analysis
+#'
+#' Urgent care sensitive morbidity
+#'
+#' - suitable for vignette
+#'
+#' Methodology
+#'
+#' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
+#' Emergency admission - admeth %like% '^2'
+#'
+#'
+#' @family examples_of_analysis
+#'
+main__example_analysis__uc_morbidity <- function(
+) {
+    ip <- create__dummy_hesip(mix_type = "5050uc")
+
+    # Split out diagnosis codes
+
+    tbl__UC__PHIT_IP__melt <- ip %>%
+        #
+        # Finished admission episodes EMERGENCY method
+        #
+        filter(
+            Consultant_Episode_Number == 1
+            , Episode_Status == 3
+            , Patient_Classification %in% c(1, 2, 5)
+            , Admission_Method_Code %like% "^2"
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , icd10 = Diagnosis_ICD_1
+        ) %>%
+        mutate(pos = 1) %>%
+        merge(
+            aafractions.ncc::lu_ucc_icd10 %>%
+                merge(
+                    aafractions.ncc::uc_versions %>%
+                        filter(version == "ccg_iaf_201617")
+                    , by = "condition_uid"
+                )
+            , by.x = "icd10", by.y = "icd10"
+            , all.x = FALSE, all.y = FALSE
+        ) %>%
+        arrange(GRID, pos, icd10)
+
+    # Tag on attribution
+    #
+    # meta: age
+    #
+
+    lu_ageband <- create_lu_ageband(style = "ucs", name = "ab_uc")
+
+    lu_sex <- create_lu_gender()
+
+    tbl__UC__PHIT_IP__melt <- ip %>%
+        filter(
+            Generated_Record_Identifier %in% unique(tbl__UC__PHIT_IP__melt$GRID)
+        ) %>%
+        #
+        # gather record meta data
+        #
+        merge(
+            lu_ageband
+            , by.x = "Age_at_Start_of_Episode_D", by.y = "age"
+        ) %>%
+        merge(
+            lu_sex
+            , by.x = "Gender", by.y = "gender"
+        ) %>%
+        mutate(
+            meta_calyear = as.integer(
+                lubridate::year(Consultant_Episode_End_Date)
+            )
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , GenderC = genderC
+            , AgeBand_UC = ab_uc
+            , meta_lad = Local_Authority_District
+            , meta_calyear
+        ) %>%
+        merge(
+            tbl__UC__PHIT_IP__melt
+            , by = "GRID"
+            , all.x = TRUE, all.y = FALSE
+        ) %>%
+        #
+        # tag on attribution
+        #
+        # condition, age
+        #
+        merge(
+            aafractions.ncc::uc_attribution
+            , by.x = c("version", "condition_uid", "AgeBand_UC")
+            , by.y = c("version", "condition_uid", "ab_ucs_explode")
+            , all.x = FALSE, all.y = FALSE
+        )
+
+    # Construct methods
+
+    methods__all <- tbl__UC__PHIT_IP__melt %>%
+        mutate(method = "urgent-care-sensitive")
+
+    uc_methods <- bind_rows(
+        methods__all
+    )
+
+    uc_methods
 }

@@ -433,6 +433,7 @@ extract_uc <- function(
 
     uc_attribution <- uc_conditions %>%
         merge(lu, by.x = "age", by.y = "ab_ucs") %>%
+        select(contains("uid"), ab_ucs = age, ab_ucs_explode, version) %>%
         mutate(ucs_af = 1L)
 
     # save
