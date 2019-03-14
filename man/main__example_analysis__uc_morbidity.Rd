@@ -7,7 +7,7 @@
 main__example_analysis__uc_morbidity()
 }
 \description{
-Smoking morbidity
+Urgent care sensitive morbidity
 }
 \details{
 - suitable for vignette
@@ -15,6 +15,7 @@ Smoking morbidity
 Methodology
 
 Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
+Emergency admission - admeth %like% '^2'
 }
 \seealso{
 Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
