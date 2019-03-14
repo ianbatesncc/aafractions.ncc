@@ -195,11 +195,40 @@ expand_diagnoses <- function(
                     purrr::map(expand_icd10) %>%
                     unlist()
 
+            } else if (grepl("^[A-Z][0-9]{0,1}$", this_icd10)) {
+                # F -> F00-F99, W0 -> W00-W09
+                icd10_v <- seq(1, 2) %>%
+                    sapply(
+                        function(i, x, y) {
+                            paste0(c(x, rep(y[i], 2 - nchar(x) + 1)), collapse = "")
+                        }
+                        , x = this_icd10
+                        , y = c("0", "9")
+                    )
+
+                these_codes <- seq_icd10(icd10_v[1], icd10_v[2]) %>%
+                    purrr::map(expand_icd10) %>%
+                    unlist()
+
             } else if (grepl("^[A-Z][0-9]{3}-[A-Z][0-9]{3}$", this_icd10)) {
                 # I690-I692 -> {I690, ... I692}
-                these_codes <- seq_icd10(
-                    substr(this_icd10, 1, 4), substr(this_icd10, 6, 9), len = 4
-                )
+                icd10_v <- unlist(strsplit(this_icd10, split = "-"))
+                these_codes <- seq_icd10(icd10_v[1], icd10_v[2], len = 4)
+
+            } else if (grepl("^[A-Z][0-9]{0,2}-[A-Z][0-9]{0,2}$", this_icd10)) {
+                # W1-W19 -> W10-W19 (W10-W19 case caught above)
+                icd10_v <- seq(1, 2) %>%
+                    sapply(
+                        function(i, x, y) {
+                            paste0(c(x[i], rep(y[i], 2 - nchar(x[i]) + 1)), collapse = "")
+                        }
+                        , x = unlist(strsplit(this_icd10, split = "-"))
+                        , y = c("0", "9")
+                    )
+
+                these_codes <- seq_icd10(icd10_v[1], icd10_v[2]) %>%
+                    purrr::map(expand_icd10) %>%
+                    unlist()
 
             } else if (
                 grepl(
@@ -316,6 +345,18 @@ main__expand_diagnoses <- function(
         , bWriteCSV = bWriteCSV
     )
 
-    invisible(list(aac = lu_aac_icd10, sac = lu_sac_icd10))
+    lu_ucc_icd10 <- expand_diagnoses(
+        aafractions.ncc::uc_conditions %>%
+            select(condition_uid, primary_diagnosis)
+        , name = "lu_ucc_icd10"
+        , suffix = NULL
+        , bWriteCSV = bWriteCSV
+    )
+
+    invisible(list(
+        aac = lu_aac_icd10
+        , sac = lu_sac_icd10
+        , ucc = lu_ucc_icd10
+    ))
 }
 

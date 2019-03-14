@@ -14,6 +14,12 @@ NULL
 #' @family smoking datasets
 NULL
 
+#' Urgent care sensitive datasets
+#'
+#' @name ucs_datasets
+#' @family urgent care sensitive datasets
+NULL
+
 #
 # Alcohol
 #
@@ -290,3 +296,135 @@ NULL
 #' @family smoking datasets
 #'
 "sp"
+
+#
+# Urgent care sensitive
+#
+
+#' List of Urgent care sensitive conditions
+#'
+#' Provides lookup tables for use with Urgent care sensitive analyses.
+#'
+#' @format data frame with 14 rows and 6 fields
+#'
+#' \preformatted{
+#' Observations: 14
+#' Variables: 6
+#' $ condition_description <chr> "COPD", "Acute mental health crisis", "Non-specific chest pain", "Falls", "Non-specific abdomin...
+#' $ primary_diagnosis     <chr> "J40; J41; J42; J43; J44", "F", "R072; R073; R074", "W0; W1-W19", "R10", "I80; I81; I82", "L03"...
+#' $ age                   <chr> "All ages", "All ages", "All ages", "75+ yrs", "All ages", "All ages", "All ages", "0 - 5 yrs",...
+#' $ primary_regex         <chr> "J4[0-4]", "F", "R07[2-4]", "W[01][0-9]", "R10", "I8[0-2]", "L03", "R50", "T830", "E1[0-5];E16[...
+#' $ condition_uid         <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+#' $ version               <chr> "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_...
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::uc_conditions %>%
+#'     mutate_if(is.character, as.factor) %>%
+#'     select(-starts_with("condition_"), -starts_with("primary")) %>%
+#'     summary(16)
+#' }
+#'
+#' @family urgent care sensitive datasets
+#'
+"uc_conditions"
+
+
+#' List of Urgent care sensitive conditions by version
+#'
+#' Provides lookup tables for use with Urgent care sensitive analyses.
+#'
+#' @format data frame with 14 rows and 2 fields
+#'
+#' \preformatted{
+#' Observations: 14
+#' Variables: 2
+#' $ version       <chr> "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_2016...
+#' $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::uc_versions %>%
+#'     mutate_if(is.character, as.factor) %>%
+#'     select(-starts_with("condition_")) %>%
+#'     summary(16)
+#' }
+#'
+#' @family urgent care sensitive datasets
+#'
+"uc_versions"
+
+
+#' List of Urgent care sensitive fractions by condition and age
+#'
+#' Provides lookup tables for use with Urgent care sensitive analyses.
+#'
+#' @format data frame with 38 rows and 4 fields
+#'
+#' \preformatted{
+#' Observations: 38
+#' Variables: 8
+#' $ ab_ucs                <chr> "0 - 5 yrs", "75+ yrs", "All ages", "All ages", "All ages", "All ages", "All ages", "All ages",...
+#' $ condition_description <chr> "Pyrexial child", "Falls", "COPD", "COPD", "COPD", "Acute mental health crisis", "Acute mental ...
+#' $ primary_diagnosis     <chr> "R50", "W0; W1-W19", "J40; J41; J42; J43; J44", "J40; J41; J42; J43; J44", "J40; J41; J42; J43;...
+#' $ primary_regex         <chr> "R50", "W[01][0-9]", "J4[0-4]", "J4[0-4]", "J4[0-4]", "F", "F", "F", "R07[2-4]", "R07[2-4]", "R...
+#' $ condition_uid         <int> 8, 4, 1, 1, 1, 2, 2, 2, 3, 3, 3, 12, 12, 12, 5, 5, 5, 6, 6, 6, 7, 7, 7, 9, 9, 9, 10, 10, 10, 11...
+#' $ version               <chr> "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_...
+#' $ ab_ucs_explode        <chr> "0 - 5 yrs", "75+ yrs", "0 - 5 yrs", "6 - 74 yrs", "75+ yrs", "0 - 5 yrs", "6 - 74 yrs", "75+ y...
+#' $ ucs_af                <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+#' }
+#'
+#' @examples
+#' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+#'   require("dplyr", warn.conflicts = FALSE)
+#'   require("reshape2", warn.conflicts = FALSE)
+#'
+#'   uc_attribution %>%
+#'     dcast(
+#'       condition_uid + condition_description ~ ab_ucs_explode
+#'       , value.var = "ucs_af", fill = 0
+#'     )
+#' }
+#'
+#' @family urgent care sensitive datasets
+#'
+"uc_attribution"
+
+
+#' Lookup between Urgent care sensitive conditions and icd10 codes
+#'
+#' Provides lookup tables for use with Urgent care sensitive analyses.
+#'
+#' @format data frame with 69 rows and 7 fields
+#'
+#' \preformatted{
+#' 'data.frame':	5920 obs. of  6 variables:
+#' $ version      : Factor w/ 4 levels "aaf_2007_ni39",..: 1 1 1 1 1 1 1 1 1 1 ...
+#' $ condition_uid: int  1 1 1 1 1 1 1 1 1 1 ...
+#' $ aa_ageband   : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
+#' $ sex          : chr  "F" "F" "F" "F" ...
+#' $ analysis_type: chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
+#' $ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
+#' }
+#'
+#' #' @examples
+#' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+#'   require("dplyr", warn.conflicts = FALSE)
+#'   require("reshape2", warn.conflicts = FALSE)
+#'
+#'   aafractions.ncc::lu_ucc_icd10 %>%
+#'     merge(aafractions.ncc::uc_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
+#'     dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
+#'     arrange(icd10) %>%
+#'     head(16)
+#' }
+#'
+#' @family urgent care sensitive datasets
+#'
+"lu_ucc_icd10"

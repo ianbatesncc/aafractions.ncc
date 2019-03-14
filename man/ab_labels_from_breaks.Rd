@@ -4,8 +4,8 @@
 \alias{ab_labels_from_breaks}
 \title{Create ageband labels}
 \usage{
-ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic"),
-  flag = "0", width = 2)
+ab_labels_from_breaks(breaks, style = c("alcohol", "smoking", "generic",
+  "ucs"), flag = "0", width = 2)
 }
 \arguments{
 \item{breaks}{(integer vector) breaks}
@@ -32,6 +32,7 @@ Other examples_of_analysis: \code{\link{create__dummy_hesip}},
   \code{\link{gen_codes}},
   \code{\link{main__example_analysis__aa_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
+  \code{\link{main__example_analysis__uc_morbidity}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

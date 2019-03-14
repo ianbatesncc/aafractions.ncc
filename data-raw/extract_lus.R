@@ -375,6 +375,83 @@ extract_sp <- function(
     sp
 }
 
+#' Extract UCS
+#'
+extract_uc <- function(
+    bWriteCSV = FALSE
+) {
+    # load tables as list of tables
+
+    this_wb = devtools::package_file("./data-raw/ucs_lus.xlsx")
+
+    these_wss <- readxl::excel_sheets(path = this_wb)
+
+    these_sheets <- setdiff(these_wss, c("Overview", "UCS meta"))
+
+    wss <- these_sheets %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: reading sheet", x, "...", "\n")
+                readxl::read_excel(path = y, sheet = x, skip = 2, col_names = TRUE)
+            }, this_wb
+        )
+
+    names(wss) <- these_sheets
+
+    # conditions
+
+    uc_conditions <- lapply(
+        "ccg_iaf_201617"
+        , function(x, y) {
+            y[[x]] %>%
+                janitor::clean_names() %>%
+                mutate(
+                    condition_uid = row_number()
+                    , version = x
+                )
+        }
+        , y = wss
+    ) %>% bind_rows()
+
+    # age bands
+
+    lu <- wss[["ab_ucs_explode"]] %>%
+        # missing arg to use default value
+        gather(key = "ab_ucs_explode", , -ab_ucs, na.rm = TRUE) %>%
+        select(-value)
+
+    # versions
+
+    uc_versions <- uc_conditions %>%
+        select(version, condition_uid)
+
+    # attribution
+
+    uc_attribution <- uc_conditions %>%
+        merge(lu, by.x = "age", by.y = "ab_ucs") %>%
+        select(contains("uid"), ab_ucs = age, ab_ucs_explode, version) %>%
+        mutate(ucs_af = 1L)
+
+    # save
+
+    if (bWriteCSV) {
+        data.table::fwrite(uc_conditions, "./data-raw/uc_conditions.csv")
+        usethis::use_data(uc_conditions, overwrite = TRUE)
+
+        data.table::fwrite(uc_versions, "./data-raw/uc_versions.csv")
+        usethis::use_data(uc_versions, overwrite = TRUE)
+
+        data.table::fwrite(uc_attribution, "./data-raw/uc_attribution.csv")
+        usethis::use_data(uc_attribution, overwrite = TRUE)
+    }
+
+    invisible(list(
+        uc_conditions = uc_conditions
+        , uc_versions = uc_versions
+        , uc_attribution = uc_attribution
+    ))
+}
+
 #' do the business
 
 main__extract_lus <- function(
@@ -384,6 +461,7 @@ main__extract_lus <- function(
     rv_aa <- extract_aa(bWriteCSV = bWriteCSV)
     rv_sa <- extract_sa(bWriteCSV = bWriteCSV)
     rv_sp <- extract_sp(bWriteCSV = bWriteCSV)
+    rv_uc <- extract_uc(bWriteCSV = bWriteCSV)
 
-    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp))
+    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp, uc = rv_uc))
 }
