@@ -55,6 +55,9 @@ globalVariables(c(
     , "calyear"
     , "multiplier"
     , "srr"
+    # example_analysis: main__example_analysis__uc_morbidity
+    , "Admission_Method_Code"
+    , "ab_uc"
     # vignettes : counting_aa_events
     , "version"
 ))
