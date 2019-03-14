@@ -247,7 +247,7 @@ create__dummy_hesip <- function(
 #'
 #' @details
 #'
-#' A general ageband has an age range, specfied by lower (incluseive) and upper
+#' A general ageband has an age range, specfied by lower (inclusive) and upper
 #' (exclusive).
 #'
 #' An ageband label is of the general form:
@@ -695,7 +695,7 @@ main__example_analysis__uc_morbidity <- function(
             Consultant_Episode_Number == 1
             , Episode_Status == 3
             , Patient_Classification %in% c(1, 2, 5)
-            , Admission_Method_Code %like% "^2"
+            , data.table::like(Admission_Method_Code, "^2")
         ) %>%
         select(
             GRID = Generated_Record_Identifier
