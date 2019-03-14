@@ -1,0 +1,15 @@
+condition_description,primary_diagnosis,age,primary_regex,condition_uid,version
+COPD,J40; J41; J42; J43; J44,All ages,J4[0-4],1,ccg_iaf_201617
+Acute mental health crisis,F,All ages,F,2,ccg_iaf_201617
+Non-specific chest pain,R072; R073; R074,All ages,R07[2-4],3,ccg_iaf_201617
+Falls,W0; W1-W19,75+ yrs,W[01][0-9],4,ccg_iaf_201617
+Non-specific abdominal pain,R10,All ages,R10,5,ccg_iaf_201617
+Deep vein thrombosis,I80; I81; I82,All ages,I8[0-2],6,ccg_iaf_201617
+Cellulitis,L03,All ages,L03,7,ccg_iaf_201617
+Pyrexial child,R50,0 - 5 yrs,R50,8,ccg_iaf_201617
+"Blocked tubes, catheters and feeding tubes",T830,All ages,T830,9,ccg_iaf_201617
+Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,All ages,E1[0-5];E16[12],10,ccg_iaf_201617
+Urinary tract infection,N390,All ages,N390,11,ccg_iaf_201617
+Angina,I20,All ages,I20,12,ccg_iaf_201617
+Epileptic fit,G40; G41,All ages,G4[01],13,ccg_iaf_201617
+Minor head injuries,S00,All ages,S00,14,ccg_iaf_201617

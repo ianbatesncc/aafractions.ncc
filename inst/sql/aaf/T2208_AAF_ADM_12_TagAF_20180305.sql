@@ -53,6 +53,9 @@ AS (
 				ON (IP.Generated_Record_Identifier = cte_grid.GRID)
 )
 ,
+/*
+Align age to ageband and gender to attributable vocabulary
+*/
 cte_tag__age_gender(GRID, GenderC, Age_SYOA__adj, AgeBand_AA)
 AS (
     SELECT
@@ -132,7 +135,7 @@ AS (
 				)
 )
 /*
-Main - start the chain
+Update the records with teh attributable fractions and meta data
 */
 UPDATE tmpIB__AA__PHIT_IP__melt
 	SET
@@ -151,10 +154,3 @@ UPDATE tmpIB__AA__PHIT_IP__melt
 		)
 ;
 GO
-
-/* Missing age or gender - mostly gender
-*/
-
-select COUNT(*) as nAFNULL from tmpIB__AA__PHIT_IP__melt
-WHERE af is null
-;

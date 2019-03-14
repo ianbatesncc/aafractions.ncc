@@ -2,6 +2,13 @@
 # Script to extract tables from .xlsx
 #
 
+require("readxl", warn.conflicts = FALSE)
+require("dplyr", warn.conflicts = FALSE)
+require("data.table", warn.conflicts = FALSE)
+require("devtools", warn.conflicts = FALSE)
+require("tidyr", warn.conflicts = FALSE)
+require("janitor", warn.conflicts = FALSE)
+
 #' Extract data from xl
 #'
 #' Pull in tables from worksheets.
@@ -22,18 +29,15 @@
 extract_aa <- function(
     bWriteCSV = FALSE
 ) {
-
-    require("readxl")
-    require("dplyr")
-    require("data.table")
-
     # load tables as list of tables
 
     this_wb = devtools::package_file("./data-raw/aafraction_lus.xlsx")
 
     these_wss <- readxl::excel_sheets(path = this_wb)
 
-    wss <- setdiff(these_wss, "Tables") %>%
+    these_sheets <- setdiff(these_wss, "Tables")
+
+    wss <- these_sheets %>%
         lapply(
             function(x, y) {
                 cat("INFO: reading sheet", x, "...", "\n")
@@ -41,7 +45,7 @@ extract_aa <- function(
             }, this_wb
         )
 
-    names(wss) <- setdiff(these_wss, "Tables")
+    names(wss) <- these_sheets
 
     # combine tables
 
@@ -183,12 +187,6 @@ extract_aa <- function(
 extract_sa <- function(
     bWriteCSV = FALSE
 ) {
-    require("readxl")
-    require("dplyr")
-    require("tidyr")
-    #require("data.table")
-    require("janitor")
-
     # load worksheets
 
     this_xl <- devtools::package_file("./data-raw/srelrisk_lus.xlsx")
@@ -327,16 +325,14 @@ extract_sa <- function(
         sa_conditions = sa_conditions
         , sa_relrisk = sa_relrisk
     ))
-
 }
 
 extract_sp <- function(
     bWriteCSV = TRUE
 ) {
-    require("dplyr")
-    require("data.table")
-
-    this_csv <- devtools::package_file("./data-raw/PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv")
+    this_csv <- devtools::package_file(
+        "./data-raw/PHE_LTCP_SP_20190304_indicators-DistrictUA.data.csv"
+    )
 
     #sp <- fread(this_csv) %>%
     sp <- read.csv(this_csv, as.is = TRUE) %>%
@@ -379,6 +375,83 @@ extract_sp <- function(
     sp
 }
 
+#' Extract UCS
+#'
+extract_uc <- function(
+    bWriteCSV = FALSE
+) {
+    # load tables as list of tables
+
+    this_wb = devtools::package_file("./data-raw/ucs_lus.xlsx")
+
+    these_wss <- readxl::excel_sheets(path = this_wb)
+
+    these_sheets <- setdiff(these_wss, c("Overview", "UCS meta"))
+
+    wss <- these_sheets %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: reading sheet", x, "...", "\n")
+                readxl::read_excel(path = y, sheet = x, skip = 2, col_names = TRUE)
+            }, this_wb
+        )
+
+    names(wss) <- these_sheets
+
+    # conditions
+
+    uc_conditions <- lapply(
+        "ccg_iaf_201617"
+        , function(x, y) {
+            y[[x]] %>%
+                janitor::clean_names() %>%
+                mutate(
+                    condition_uid = row_number()
+                    , version = x
+                )
+        }
+        , y = wss
+    ) %>% bind_rows()
+
+    # age bands
+
+    lu <- wss[["ab_ucs_explode"]] %>%
+        # missing arg to use default value
+        gather(key = "ab_ucs_explode", , -ab_ucs, na.rm = TRUE) %>%
+        select(-value)
+
+    # versions
+
+    uc_versions <- uc_conditions %>%
+        select(version, condition_uid)
+
+    # attribution
+
+    uc_attribution <- uc_conditions %>%
+        merge(lu, by.x = "age", by.y = "ab_ucs") %>%
+        select(contains("uid"), ab_ucs = age, ab_ucs_explode, version) %>%
+        mutate(ucs_af = 1L)
+
+    # save
+
+    if (bWriteCSV) {
+        data.table::fwrite(uc_conditions, "./data-raw/uc_conditions.csv")
+        usethis::use_data(uc_conditions, overwrite = TRUE)
+
+        data.table::fwrite(uc_versions, "./data-raw/uc_versions.csv")
+        usethis::use_data(uc_versions, overwrite = TRUE)
+
+        data.table::fwrite(uc_attribution, "./data-raw/uc_attribution.csv")
+        usethis::use_data(uc_attribution, overwrite = TRUE)
+    }
+
+    invisible(list(
+        uc_conditions = uc_conditions
+        , uc_versions = uc_versions
+        , uc_attribution = uc_attribution
+    ))
+}
+
 #' do the business
 
 main__extract_lus <- function(
@@ -388,6 +461,7 @@ main__extract_lus <- function(
     rv_aa <- extract_aa(bWriteCSV = bWriteCSV)
     rv_sa <- extract_sa(bWriteCSV = bWriteCSV)
     rv_sp <- extract_sp(bWriteCSV = bWriteCSV)
+    rv_uc <- extract_uc(bWriteCSV = bWriteCSV)
 
-    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp))
+    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp, uc = rv_uc))
 }
