@@ -524,7 +524,7 @@ extract_ac <- function(
 #' do the business
 
 main__extract_lus <- function(
-    what = c("aa", "sa", "sp", "uc")
+    what = c("aa", "sa", "sp", "uc", "ac")
     , bWriteCSV = TRUE
 ) {
     what <- match.arg(what, several.ok = TRUE)
@@ -538,6 +538,7 @@ main__extract_lus <- function(
                 , sa = extract_sa
                 , sp = extract_sp
                 , uc = extract_uc
+                , ac = extract_ac
             )
             this_extract(y)
         }

@@ -541,9 +541,13 @@ NULL
 #' Provides lookup tables for use with Ambulatory care sensitive analyses.
 #' Primary condition: primary diagnosis codes.
 #'
-#' @format data frame with x rows and x fields
+#' @format data frame with 277 rows and 2 fields
 #'
 #' \preformatted{
+#' Observations: 277
+#' Variables: 2
+#' $ condition_uid <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,...
+#' $ icd10         <chr> "I480", "I481", "I482", "I483", "I484", "I485", "I486", "I487", "I488", "I489", "I48X", "I48", "I200", "...
 #' }
 #'
 #' @examples
