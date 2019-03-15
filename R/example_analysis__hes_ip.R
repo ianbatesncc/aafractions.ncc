@@ -76,9 +76,9 @@ ilike <- function(vector, pattern) {
 ricd10 <- function(
     n = 1024
     , mix_type = c(
-        "5050aalen34mix", "5050salen34mix", "5050uclen34mix"
+        "5050aalen34mix", "5050salen34mix", "5050uclen34mix", "5050aclen34mix"
         , "len3", "len4", "len34"
-        , "aa_only", "sa_only", "uc_only"
+        , "aa_only", "sa_only", "uc_only", "ac_only"
     )
     , nmultiple = 1
 ) {
@@ -97,6 +97,9 @@ ricd10 <- function(
     } else if (mix_type %ilike% "uc") {
         # uc_only, 5050ucmix
         codes <- unique(aafractions.ncc::lu_ucc_icd10$icd10)
+    } else if (mix_type %ilike% "ac") {
+        # uc_only, 5050acmix
+        codes <- unique(aafractions.ncc::lu_acc_icd10$icd10)
     } else {
         stop("Should not reach here: Unknown mix_type.")
     }
@@ -163,6 +166,12 @@ create__dummy_hesip <- function(
             c(10, 20), n, replace = TRUE
         )
 
+        , ADMISORC = sample(
+            c(19, 29, 39, 49, 50, 69, 79, 89, 99)
+            , prob = c(100, 2, 2, 2, 2, 2, 2, 2, 1)
+            , n, replace = TRUE
+        )
+
         , Diagnosis_ICD_1 = NA # aligned with concat later
         , Diagnosis_ICD_Concatenated_D = ricd10(
             n, mix_type = mix_type, nmultiple = 20
@@ -216,6 +225,11 @@ create__dummy_hesip <- function(
             )
         )
 
+        , Procedure_OPCS_1 = NA # aligned with concat later
+        , Procedure_OPCS_Concatenated_D = ricd10(
+            n, mix_type = "len3", nmultiple = 24
+        )
+
         , stringsAsFactors = FALSE
     ) %>%
         mutate(
@@ -229,6 +243,10 @@ create__dummy_hesip <- function(
             , GIS_LSOA_2011_D = ifelse(
                 Local_Authority_District == "E99999999", "E01999999", GIS_LSOA_2011_D
             )
+
+            , Procedure_OPCS_1 = data.table::tstrsplit(
+                Procedure_OPCS_Concatenated_D, ";", keep = 1
+            ) %>% unlist()
         )
 
     ip
@@ -777,4 +795,23 @@ main__example_analysis__uc_morbidity <- function(
     )
 
     uc_methods
+}
+
+#' Example analysis
+#'
+#' Urgent care sensitive morbidity
+#'
+#' - suitable for vignette
+#'
+#' Methodology
+#'
+#' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
+#' Emergency admission - admeth %like% '^2'
+#'
+#'
+#' @family examples_of_analysis
+#'
+main__example_analysis__ac_morbidity <- function(
+) {
+    ip <- create__dummy_hesip(mix_type = "5050aclen34mix")
 }
