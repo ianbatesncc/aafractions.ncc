@@ -62,7 +62,7 @@ extract_aa <- function(
     # generate key, sort, reorder key
 
     lus <- lus %>%
-        filter(!grepl("^§", desc)) %>%
+        filter(!grepl("§", desc)) %>%
         mutate_if(is.character, as.factor) %>%
         mutate(
             condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)
@@ -455,13 +455,26 @@ extract_uc <- function(
 #' do the business
 
 main__extract_lus <- function(
-    bWriteCSV = TRUE
+    what = c("aa", "sa", "sp", "uc")
+    , bWriteCSV = TRUE
 ) {
-    # bWriteCSV = FALSE
-    rv_aa <- extract_aa(bWriteCSV = bWriteCSV)
-    rv_sa <- extract_sa(bWriteCSV = bWriteCSV)
-    rv_sp <- extract_sp(bWriteCSV = bWriteCSV)
-    rv_uc <- extract_uc(bWriteCSV = bWriteCSV)
+    what <- match.arg(what, several.ok = TRUE)
 
-    invisible(list(aa = rv_aa, sa = rv_sa, sp = rv_sp, uc = rv_uc))
+    rv <- what %>% lapply(
+        function(x, y) {
+            cat("INFO: extracting", x, "...", "\n")
+            this_extract <- switch(
+                x
+                , aa = extract_aa
+                , sa = extract_sa
+                , sp = extract_sp
+                , uc = extract_uc
+            )
+            this_extract(y)
+        }
+        , y = bWriteCSV
+    )
+    names(rv) <- what
+
+    invisible(rv)
 }

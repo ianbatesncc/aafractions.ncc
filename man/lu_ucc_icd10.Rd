@@ -14,24 +14,25 @@ $ aa_ageband   : chr  "00-15 Yrs" "16-24 Yrs" "25-34 Yrs" "35-44 Yrs" ...
 $ sex          : chr  "F" "F" "F" "F" ...
 $ analysis_type: chr  "morbidity" "morbidity" "morbidity" "morbidity" ...
 $ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
-}
-
-#' @examples
-if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
-  require("dplyr", warn.conflicts = FALSE)
-  require("reshape2", warn.conflicts = FALSE)
-
-  aafractions.ncc::lu_ucc_icd10 %>%
-    merge(aafractions.ncc::uc_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
-    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
-    arrange(icd10) %>%
-    head(16)
 }}
 \usage{
 lu_ucc_icd10
 }
 \description{
 Provides lookup tables for use with Urgent care sensitive analyses.
+}
+\examples{
+if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+  require("dplyr", warn.conflicts = FALSE)
+  require("reshape2", warn.conflicts = FALSE)
+
+  aafractions.ncc::lu_ucc_icd10 \%>\%
+    merge(aafractions.ncc::uc_versions, by = "condition_uid", allow.cartesian = TRUE) \%>\%
+    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
+    arrange(icd10) \%>\%
+    head(16)
+}
+
 }
 \seealso{
 Other urgent care sensitive datasets: \code{\link{uc_attribution}},

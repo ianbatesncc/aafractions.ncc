@@ -26,13 +26,18 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
         retval <- c(c3, c4)
     } else {
 
-    len <- as.numeric(substr(len, 4, 1))
+        len <- as.numeric(substr(len, 4, 4)) - 1
 
-    retval <- list(c = LETTERS, nn = seq(0, 10^(len - 1) - 1)) %>%
-        purrr::cross() %>%
-        purrr::map_chr(function(x) {
-            paste0(x$c, formatC(x$nn, flag = "0", width = len))
-        })
+        seq_end <- 10^(len - 1) - 1
+
+        if (seq_end < 1)
+            stop("unusual sequence end limit.")
+
+        retval <- list(c = LETTERS, nn = seq(0, seq_end)) %>%
+            purrr::cross() %>%
+            purrr::map_chr(function(x) {
+                paste0(x$c, formatC(x$nn, flag = "0", width = len))
+            })
     }
 
     retval
@@ -160,7 +165,9 @@ create__dummy_hesip <- function(
         Generated_Record_Identifier = 1e6 + seq(1, n)
 
         , Admission_Method_Code = sample(
-            c(10, 20), n, replace = TRUE
+            c(11, 21, 31, 82, 99)
+            , prob = c(50, 50, 5, 2, 1)
+            , n, replace = TRUE
         )
 
         , Diagnosis_ICD_1 = NA # aligned with concat later
@@ -222,12 +229,17 @@ create__dummy_hesip <- function(
             Diagnosis_ICD_1 = data.table::tstrsplit(
                 Diagnosis_ICD_Concatenated_D, ";", keep = 1
             ) %>% unlist()
+
             , Age_On_Admission = Age_at_Start_of_Episode_D
+
             , Consultant_Episode_Start_Date =
                 Consultant_Episode_End_Date -
                 as.difftime(Episode_Duration_from_Grouper, units = "days")
+
             , GIS_LSOA_2011_D = ifelse(
-                Local_Authority_District == "E99999999", "E01999999", GIS_LSOA_2011_D
+                Local_Authority_District == "E99999999"
+                , "E01999999"
+                , GIS_LSOA_2011_D
             )
         )
 
