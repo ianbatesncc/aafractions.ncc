@@ -521,7 +521,13 @@ extract_ac <- function(
     ))
 }
 
-#' do the business
+#' Do the business
+#'
+#' @param what (character vector) what to process
+#' @param bWriteCSV (logical) to save or not
+#'
+#' @return (list) lookup tables
+#'
 
 main__extract_lus <- function(
     what = c("aa", "sa", "sp", "uc", "ac")

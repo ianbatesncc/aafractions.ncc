@@ -11,18 +11,6 @@ Observations: 1,335
 Variables: 2
 $ condition_uid <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,...
 $ icd10         <chr> "C330", "C331", "C332", "C333", "C334", "C335", "C336", "C337", "C338", "C339", "C33X", "...
-}
-
-#' @examples
-if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
-  require("dplyr")
-  require("reshape2")
-
-  aafractions.ncc::lu_sac_icd10 %>%
-    merge(aafractions.ncc::sa_conditions, by = "condition_uid", allow.cartesian = TRUE) %>%
-    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
-    arrange(icd10) %>%
-    head(16)
 }}
 \usage{
 lu_sac_icd10
@@ -30,6 +18,19 @@ lu_sac_icd10
 \description{
 Provides lookup tables for use with smoking relative risks / attributable
 fractions analyses.
+}
+\examples{
+if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+  require("dplyr")
+  require("reshape2")
+
+  aafractions.ncc::lu_sac_icd10 \%>\%
+    merge(aafractions.ncc::sa_conditions, by = "condition_uid", allow.cartesian = TRUE) \%>\%
+    dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") \%>\%
+    arrange(icd10) \%>\%
+    head(16)
+}
+
 }
 \seealso{
 Other smoking datasets: \code{\link{sa_conditions}},
