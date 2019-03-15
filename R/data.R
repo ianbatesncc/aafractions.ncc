@@ -136,7 +136,7 @@ NULL
 #' $ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
 #' }
 #'
-#' #' @examples
+#' @examples
 #' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 #'   require("dplyr")
 #'   require("reshape2")
@@ -259,7 +259,7 @@ NULL
 #' $ icd10         <chr> "C330", "C331", "C332", "C333", "C334", "C335", "C336", "C337", "C338", "C339", "C33X", "...
 #' }
 #'
-#' #' @examples
+#' @examples
 #' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 #'   require("dplyr")
 #'   require("reshape2")
@@ -419,7 +419,7 @@ NULL
 #' $ aaf          : num  1 1 1 1 1 1 1 1 1 1 ...
 #' }
 #'
-#' #' @examples
+#' @examples
 #' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 #'   require("dplyr", warn.conflicts = FALSE)
 #'   require("reshape2", warn.conflicts = FALSE)
