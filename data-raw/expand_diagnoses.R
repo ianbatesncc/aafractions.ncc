@@ -133,7 +133,11 @@ expand_diagnoses <- function(
             # ", " separators to ";"
             c2 = gsub(", {1,}([A-Z])", ";\\1", codes)
             # "..[0-9][, ][A-Z]" separators to ";"
-            , c2 = gsub("([0-9]),? *([A-Z])", "\\1;\\2", c2)
+            # ... care about e.g. J81X;
+            # Xnnn,Ynnn -> Xnnn;Ynnn
+            # Xnnn Ynnn -> Xnnn;Ynnn
+            , c2 = gsub("([0-9]), *([A-Z])", "\\1;\\2", c2)
+            , c2 = gsub("([0-9]) {1,}([A-Z])", "\\1;\\2", c2)
             # "[0-9]{2}.[0-9]" remove "."
             , c2 = gsub("([0-9]{2})\\.([0-9])", "\\1\\2", c2)
             # Trailing "." (end of sentence not part of icd code)
@@ -179,8 +183,8 @@ expand_diagnoses <- function(
                 this_icd10 <- sub("^-", "", this_icd10)
             }
 
-            if (grepl("^[A-Z][0-9]{3}$", this_icd10)) {
-                # E244
+            if (grepl("^[A-Z][0-9]{2}[0-9X]$", this_icd10)) {
+                # E244, J81X
                 these_codes <- this_icd10
 
             } else if (grepl("^[A-Z][0-9]{2}$", this_icd10)) {
@@ -266,7 +270,12 @@ expand_diagnoses <- function(
             }
 
             if (torm == TRUE)
-                cat("INFO: to REMOVE:", this_cuid, paste(these_codes, sep = ", "), "\n")
+                cat(
+                    "INFO: to REMOVE:"
+                    , this_cuid
+                    , ensure_max_len(paste(these_codes, collapse = ";"))
+                    , "\n"
+                )
 
             data.frame(
                 condition_uid = this_cuid
@@ -358,5 +367,28 @@ main__expand_diagnoses <- function(
         , sac = lu_sac_icd10
         , ucc = lu_ucc_icd10
     ))
+    rv <- list()
+
+        rv[["ac_pri"]] <- expand_diagnoses(
+            aafractions.ncc::ac_conditions %>%
+                select(condition_uid, primary_diagnosis)
+            , name = "lu_acc_icd10"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+        rv[["ac_sec"]] <- expand_diagnoses(
+            aafractions.ncc::ac_conditions %>%
+                select(condition_uid, secondary_diagnoses)
+            , name = "lu_acc_icd10_sec"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+        rv[["ac_proc"]] <- expand_diagnoses(
+            aafractions.ncc::ac_conditions %>%
+                select(condition_uid, procedures)
+            , name = "lu_acc_opcs"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
 }
 

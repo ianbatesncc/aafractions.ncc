@@ -1,0 +1,14 @@
+cat1,cat2,condition_description,age,primary_diagnosis,secondary_diagnoses,procedures,prim_diag_regexp,proc_regex,sec_diag_regex,condition_uid,version
+Cardiovascular diseases,Atrial Fibrillation,,All ages,I48,,,I48,,,1,ccg_ois_26
+Cardiovascular diseases,Angina,,All ages,I20,,-A-W;-X0-X5,I20,[A-W]|X[0-5],,2,ccg_ois_26
+Cardiovascular diseases,Chronic heart disease,,All ages,I25,,-A-W;-X0-X5,I25,[A-W]|X[0-5],,3,ccg_ois_26
+Cardiovascular diseases,Congestive heart failure,,All ages,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,K[0-4]|K5[025-7]|K6[016-9]|K7[134],,4,ccg_ois_26
+Cardiovascular diseases,Hypertension,,All ages,I10X;I11.9,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I10X|I119,K[0-4]|K5[025-7]|K6[016-9]|K7[134],,5,ccg_ois_26
+Diseases of the blood,Iron deficiency anaemia,,All ages,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,6,ccg_ois_26
+Infections,Chronic hepatitis B,,All ages,B18.0;B18.1,-D57,,B18[01],,-D57,7,ccg_ois_26
+Mental and behavioural disorders,Dementia,,All ages,F00-F03,,,F0[0123],,,8,ccg_ois_26
+Neurological disorders,Epilepsy,,All ages,G40-G41,,,G4[01],,,9,ccg_ois_26
+"Nutritional, endocrine and metabolic",Diabetes,,All ages,E10-E14,,,E1[01234],,,10,ccg_ois_26
+Respiratory diseases,Asthma,,All ages,J45;J46X,,,J45|J46X,,,11,ccg_ois_26
+Respiratory diseases,COPD (primary),,All ages,J20,J41-J44;J47,,J20,,J4[12347],12,ccg_ois_26
+Respiratory diseases,COPD (secondary),,All ages,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,13,ccg_ois_26

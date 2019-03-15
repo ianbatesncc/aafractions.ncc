@@ -20,6 +20,12 @@ NULL
 #' @family urgent care sensitive datasets
 NULL
 
+#' Ambulatory care sensitive Emergency datasets
+#'
+#' @name acs_datasets
+#' @family ambulatory care sensitive datasets
+NULL
+
 #
 # Alcohol
 #
@@ -428,3 +434,164 @@ NULL
 #' @family urgent care sensitive datasets
 #'
 "lu_ucc_icd10"
+
+#
+# Ambulatory care sensitive emergency
+#
+
+#' List of Ambulatory care sensitive conditions
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#'
+#' @format data frame with 13 rows and 12 fields
+#'
+#' \preformatted{
+#' Observations: 13
+#' Variables: 12
+#' $ cat1                  <chr> "Cardiovascular diseases", "Cardiovascular diseases", "Cardiovascular diseases", "Card...
+#' $ cat2                  <chr> "Atrial Fibrillation", "Angina", "Chronic heart disease", "Congestive heart failure", ...
+#' $ condition_description <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
+#' $ age                   <chr> "All ages", "All ages", "All ages", "All ages", "All ages", "All ages", "All ages", "A...
+#' $ primary_diagnosis     <chr> "I48", "I20", "I25", "I50;I11.0;J81X;I13.0", "I10X;I11.9", "D51-D52;D50.1;D50.8;D50.9"...
+#' $ secondary_diagnoses   <chr> NA, NA, NA, NA, NA, NA, "-D57", NA, NA, NA, NA, "J41-44;J47", NA
+#' $ procedures            <chr> NA, "-A-W;-X0-X5", "-A-W;-X0-X5", "-K0-K4;-K50;-K52;-K55-K57;-K60-61;-K67-69;-K71;-K73...
+#' $ prim_diag_regexp      <chr> "I48", "I20", "I25", "I50|I110|J81X|I130", "I10X|I119", "D5[12]|D50[189]", "B18[01]", ...
+#' $ proc_regex            <chr> NA, "[A-W]|X[0-5]", "[A-W]|X[0-5]", "K[0-4]|K5[025-7]|K6[016-9]|K7[134]", "K[0-4]|K5[0...
+#' $ sec_diag_regex        <chr> NA, NA, NA, NA, NA, NA, "-D57", NA, NA, NA, NA, "J4[12347]", NA
+#' $ condition_uid         <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+#' $ version               <chr> "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "c...
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::ac_conditions %>%
+#'     mutate_if(is.character, as.factor) %>%
+#'     select(-starts_with("condition_"), -starts_with("primary")) %>%
+#'     summary(16)
+#' }
+#'
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"ac_conditions"
+
+#' List of Ambulatory care sensitive conditions by version
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#'
+#' @format data frame with 13 rows and 2 fields
+#'
+#' \preformatted{
+#' Observations: 13
+#' Variables: 2
+#' $ version       <chr> "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_2...
+#' $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+#' }
+#'
+#' @examples
+#' if (isNamespaceLoaded("dplyr")) {
+#'   require("dplyr")
+#'
+#'   aafractions.ncc::ac_versions %>%
+#'     mutate_if(is.character, as.factor) %>%
+#'     select(-starts_with("condition_")) %>%
+#'     summary(16)
+#' }
+#'
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"ac_versions"
+
+#' List of Ambulatory care sensitive fractions by condition and age
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#'
+#' @format data frame with 13 rows and 3 fields
+#'
+#' \preformatted{
+#' Observations: 13
+#' Variables: 3
+#' $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+#' $ version       <chr> "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_2...
+#' $ ucs_af        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+#' }
+#'
+#' @examples
+#' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+#'   require("dplyr", warn.conflicts = FALSE)
+#'   require("reshape2", warn.conflicts = FALSE)
+#'
+#'   ac_attribution %>%
+#'     dcast(
+#'       condition_uid + condition_description ~ ab_ucs_explode
+#'       , value.var = "ucs_af", fill = 0
+#'     )
+#' }
+#'
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"ac_attribution"
+
+#' Lookup between Ambulatory care sensitive conditions and icd10 codes
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#' Primary condition: primary diagnosis codes.
+#'
+#' @format data frame with x rows and x fields
+#'
+#' \preformatted{
+#' }
+#'
+#' @examples
+#' if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
+#'   require("dplyr", warn.conflicts = FALSE)
+#'   require("reshape2", warn.conflicts = FALSE)
+#'
+#'   aafractions.ncc::lu_acc_icd10 %>%
+#'     merge(aafractions.ncc::ac_versions, by = "condition_uid", allow.cartesian = TRUE) %>%
+#'     dcast(... ~ version, value.var = "condition_uid", fun = paste, collapse = "|") %>%
+#'     arrange(icd10) %>%
+#'     head(16)
+#' }
+#'
+#' @examples
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"lu_acc_icd10"
+
+#' Lookup between Ambulatory care sensitive conditions and icd10 codes
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#' Secondary condition: secondary diagnosis codes.
+#'
+#' @format data frame with x rows and x fields
+#'
+#' \preformatted{
+#' }
+#'
+#' @examples
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"lu_acc_icd10_sec"
+
+#' Lookup between Ambulatory care sensitive conditions and icd10 codes
+#'
+#' Provides lookup tables for use with Ambulatory care sensitive analyses.
+#' Tertiary condition: procedure codes.
+#'
+#' @format data frame with x rows and x fields
+#'
+#' \preformatted{
+#' }
+#'
+#' @examples
+#'
+#' @family ambulatory care sensitive datasets
+#'
+"lu_acc_opcs"
