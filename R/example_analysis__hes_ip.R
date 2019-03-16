@@ -26,13 +26,18 @@ gen_codes <- function(len = c("len3", "len4", "len34")) {
         retval <- c(c3, c4)
     } else {
 
-    len <- as.numeric(substr(len, 4, 1))
+        len <- as.numeric(substr(len, 4, 4)) - 1
 
-    retval <- list(c = LETTERS, nn = seq(0, 10^(len - 1) - 1)) %>%
-        purrr::cross() %>%
-        purrr::map_chr(function(x) {
-            paste0(x$c, formatC(x$nn, flag = "0", width = len))
-        })
+        seq_end <- 10^(len - 1) - 1
+
+        if (seq_end < 1)
+            stop("unusual sequence end limit.")
+
+        retval <- list(c = LETTERS, nn = seq(0, seq_end)) %>%
+            purrr::cross() %>%
+            purrr::map_chr(function(x) {
+                paste0(x$c, formatC(x$nn, flag = "0", width = len))
+            })
     }
 
     retval
@@ -76,9 +81,9 @@ ilike <- function(vector, pattern) {
 ricd10 <- function(
     n = 1024
     , mix_type = c(
-        "5050aalen34mix", "5050salen34mix", "5050uclen34mix"
+        "5050aalen34mix", "5050salen34mix", "5050uclen34mix", "5050aclen34mix"
         , "len3", "len4", "len34"
-        , "aa_only", "sa_only", "uc_only"
+        , "aa_only", "sa_only", "uc_only", "ac_only"
     )
     , nmultiple = 1
 ) {
@@ -97,6 +102,9 @@ ricd10 <- function(
     } else if (mix_type %ilike% "uc") {
         # uc_only, 5050ucmix
         codes <- unique(aafractions.ncc::lu_ucc_icd10$icd10)
+    } else if (mix_type %ilike% "ac") {
+        # uc_only, 5050acmix
+        codes <- unique(aafractions.ncc::lu_acc_icd10$icd10)
     } else {
         stop("Should not reach here: Unknown mix_type.")
     }
@@ -160,7 +168,15 @@ create__dummy_hesip <- function(
         Generated_Record_Identifier = 1e6 + seq(1, n)
 
         , Admission_Method_Code = sample(
-            c(10, 20), n, replace = TRUE
+            c(11, 21, 31, 82, 99)
+            , prob = c(50, 50, 5, 2, 1)
+            , n, replace = TRUE
+        )
+
+        , ADMISORC = sample(
+            c(19, 29, 39, 49, 50, 69, 79, 89, 99)
+            , prob = c(100, 2, 2, 2, 2, 2, 2, 2, 1)
+            , n, replace = TRUE
         )
 
         , Diagnosis_ICD_1 = NA # aligned with concat later
@@ -216,19 +232,33 @@ create__dummy_hesip <- function(
             )
         )
 
+        , Procedure_OPCS_1 = NA # aligned with concat later
+        , Procedure_OPCS_Concatenated_D = ricd10(
+            n, mix_type = "len3", nmultiple = 24
+        )
+
         , stringsAsFactors = FALSE
     ) %>%
         mutate(
             Diagnosis_ICD_1 = data.table::tstrsplit(
                 Diagnosis_ICD_Concatenated_D, ";", keep = 1
             ) %>% unlist()
+
             , Age_On_Admission = Age_at_Start_of_Episode_D
+
             , Consultant_Episode_Start_Date =
                 Consultant_Episode_End_Date -
                 as.difftime(Episode_Duration_from_Grouper, units = "days")
+
             , GIS_LSOA_2011_D = ifelse(
-                Local_Authority_District == "E99999999", "E01999999", GIS_LSOA_2011_D
+                Local_Authority_District == "E99999999"
+                , "E01999999"
+                , GIS_LSOA_2011_D
             )
+
+            , Procedure_OPCS_1 = data.table::tstrsplit(
+                Procedure_OPCS_Concatenated_D, ";", keep = 1
+            ) %>% unlist()
         )
 
     ip
@@ -777,4 +807,147 @@ main__example_analysis__uc_morbidity <- function(
     )
 
     uc_methods
+}
+
+#' Example analysis
+#'
+#' Urgent care sensitive morbidity
+#'
+#' - suitable for vignette
+#'
+#' Methodology
+#'
+#' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1))
+#' Emergency admission - admeth %like% '^2'
+#'
+#' candidates: diagnosis
+#'
+#' @family examples_of_analysis
+#'
+main__example_analysis__ac_morbidity <- function(
+) {
+    ip <- create__dummy_hesip(mix_type = "5050aclen34mix")
+    # Split out diagnosis codes
+
+    tbl__AC__PHIT_IP__melt <- ip %>%
+        #
+        # Finished admission episodes
+        # EMERGENCY method
+        # not a transfer
+        #
+        filter(
+            Consultant_Episode_Number == 1
+            , Episode_Status == 3
+            , Patient_Classification %in% c(1)
+            , data.table::like(Admission_Method_Code, "^2")
+            , !(ADMISORC %in% c(51, 52, 53))
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , icd10 = Diagnosis_ICD_1
+            , icd10_sec = Diagnosis_ICD_Concatenated_D
+            , opcs_all = Procedure_OPCS_Concatenated_D
+        ) %>%
+        mutate(pos = 1) %>%
+        #
+        # First filter: check primary diagnoses
+        #
+        merge(
+            aafractions.ncc::lu_acc_icd10 %>%
+                merge(
+                    aafractions.ncc::ac_versions %>%
+                        filter(version == "ccg_ois_26")
+                    , by = "condition_uid"
+                )
+            , by.x = "icd10", by.y = "icd10"
+            , all.x = FALSE, all.y = FALSE
+        ) %>%
+        #
+        # Secondary filter: tag secondary diagnoses and procedures of relevance
+        #
+        merge(
+            aafractions.ncc::ac_conditions %>%
+                select(condition_uid, contains("_regexp"))
+            , by = "condition_uid"
+        ) %>%
+        mutate(
+            matches_sec_diag_include = mapply(
+                data.table::like, icd10_sec, sec_diag_include_regexp
+            )
+            , matches_sec_diag_exclude = mapply(
+                data.table::like, icd10_sec, sec_diag_exclude_regexp
+            )
+            , matches_proc_exclude = mapply(
+                data.table::like, opcs_all, proc_exclude_regexp
+            )
+            , to_include = mapply(
+                all
+                , matches_sec_diag_include
+                , !matches_sec_diag_exclude
+                , !matches_proc_exclude
+                , MoreArgs = list(na.rm = TRUE)
+            )
+        ) %>%
+        select(
+            -contains("regexp")
+            , -starts_with("matches")
+            , -contains("_sec")
+            , -contains("opcs")
+        ) %>%
+        #
+        # Secondary filter: filter on secondary diagnoses and procedures of
+        # relevance
+        #
+        filter(to_include == TRUE) %>%
+        select(-to_include) %>%
+        #
+        # Done
+        #
+        arrange(GRID, pos, icd10)
+
+
+    tbl__AC__PHIT_IP__melt <- ip %>%
+        filter(
+            Generated_Record_Identifier %in% unique(tbl__AC__PHIT_IP__melt$GRID)
+        ) %>%
+        #
+        # gather record meta data
+        #
+        mutate(
+            meta_calyear = as.integer(
+                lubridate::year(Consultant_Episode_Start_Date) # NOTE start
+            )
+        ) %>%
+        select(
+            GRID = Generated_Record_Identifier
+            , meta_lad = Local_Authority_District
+            , meta_calyear
+        ) %>%
+        merge(
+            tbl__AC__PHIT_IP__melt
+            , by = "GRID"
+            , all.x = TRUE, all.y = FALSE
+        ) %>%
+        #
+        # tag on attribution
+        #
+        # condition, age
+        #
+        merge(
+            aafractions.ncc::ac_attribution
+            , by.x = c("version", "condition_uid")
+            , by.y = c("version", "condition_uid")
+            , all.x = FALSE, all.y = FALSE
+        )
+
+    # Construct methods
+
+    methods__all <- tbl__AC__PHIT_IP__melt %>%
+        mutate(method = "ambulatory-care-sensitive")
+
+    ac_methods <- bind_rows(
+        methods__all
+    )
+
+    ac_methods
 }

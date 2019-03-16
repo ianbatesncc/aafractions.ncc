@@ -4,7 +4,6 @@
 
 # Create the lu__uid_cid table
 
-require("aafractions.ncc")
 require("dplyr")
 
 #' expand len3 icd10
@@ -98,6 +97,24 @@ seq_icd10 <- function(i1, i2, len = 3) {
         .$icd10
 }
 
+#' Truncate a string to a maximum length
+#'
+#' @param s (character, possibly vector) string(s) to manipulate
+#' @param n (integer) maximum length of string)
+#' @param suffix (character) truncation indicator
+#'
+ensure_max_len <- function(s, n = 80, suffix = " ...") {
+    nsuffix = nchar(suffix)
+
+    ns <- nchar(s)
+
+    is <- which(ns > n)
+
+    s[is] <- paste0(substr(s[is], 1, n - nsuffix), suffix)
+
+    s
+}
+
 #' Expand icd10 codes
 #'
 #' Expand a list of codes to individual rows.  Can be separated by semicolons,
@@ -132,18 +149,29 @@ expand_diagnoses <- function(
         mutate(
             # ", " separators to ";"
             c2 = gsub(", {1,}([A-Z])", ";\\1", codes)
+
             # "..[0-9][, ][A-Z]" separators to ";"
-            , c2 = gsub("([0-9]),? *([A-Z])", "\\1;\\2", c2)
+            # ... care about e.g. J81X;
+            # Xnnn,Ynnn -> Xnnn;Ynnn
+            # Xnnn Ynnn -> Xnnn;Ynnn
+            , c2 = gsub("([0-9]), *([A-Z])", "\\1;\\2", c2)
+            , c2 = gsub("([0-9]) {1,}([A-Z])", "\\1;\\2", c2)
+
             # "[0-9]{2}.[0-9]" remove "."
             , c2 = gsub("([0-9]{2})\\.([0-9])", "\\1\\2", c2)
+
             # Trailing "." (end of sentence not part of icd code)
             , c2 = gsub("\\.$", "", c2)
+
             # : 0.1-0.2 ->  (.1 - .2)
             , c2 = gsub(": 0(\\.[0-9]) *- *0(\\.[0-9])", " (\\1 -\\2)", c2)
+
             # V120-122 -> V120-V122
             , c2 = gsub("([A-Z])([0-9]{3})-([0-9]{3})", "\\1\\2-\\1\\3", c2)
+
             # " (excl. K854)" -> ;-K854
             , c2 = gsub(" \\(excl\\. ([A-Z][0-9]{2,3})\\)", ";-\\1", c2)
+
             # some remaining spaces : "; " -> ";"
             , c2 = gsub("; {1,}", ";", c2)
         )
@@ -179,8 +207,8 @@ expand_diagnoses <- function(
                 this_icd10 <- sub("^-", "", this_icd10)
             }
 
-            if (grepl("^[A-Z][0-9]{3}$", this_icd10)) {
-                # E244
+            if (grepl("^[A-Z][0-9]{2}[0-9X]$", this_icd10)) {
+                # E244, J81X
                 these_codes <- this_icd10
 
             } else if (grepl("^[A-Z][0-9]{2}$", this_icd10)) {
@@ -266,7 +294,12 @@ expand_diagnoses <- function(
             }
 
             if (torm == TRUE)
-                cat("INFO: to REMOVE:", this_cuid, paste(these_codes, sep = ", "), "\n")
+                cat(
+                    "INFO: to REMOVE:"
+                    , this_cuid
+                    , ensure_max_len(paste(these_codes, collapse = ";"))
+                    , "\n"
+                )
 
             data.frame(
                 condition_uid = this_cuid
@@ -323,40 +356,78 @@ expand_diagnoses <- function(
 }
 
 #' Do the business
-
+#'
+#' @param x (list) tables from extract_lus
+#' @param what (character vector) what to process
+#' @param bWriteCSV (logical) to save or not
+#'
+#' @return (list) lookup tables
+#'
 main__expand_diagnoses <- function(
-    bWriteCSV = TRUE
+    x
+    , what = c("aa", "sa", "uc", "ac")
+    , bWriteCSV = TRUE
 ) {
-    # bWriteCSV <- FALSE
+    what <- match.arg(what, several.ok = TRUE)
 
-    lu_aac_icd10 <- expand_diagnoses(
-        aafractions.ncc::aa_conditions %>%
-            select(condition_uid, codes)
-        , name = "lu_aac_icd10"
-        , suffix = NULL
-        , bWriteCSV = bWriteCSV
-    )
+    if (length(setdiff(what, names(x))) > 0)
+        stop("Expected names not found.")
 
-    lu_sac_icd10 <- expand_diagnoses(
-        aafractions.ncc::sa_conditions %>%
-            select(condition_uid, icd_10_code)
-        , name = "lu_sac_icd10"
-        , suffix = NULL
-        , bWriteCSV = bWriteCSV
-    )
+    rv <- list()
 
-    lu_ucc_icd10 <- expand_diagnoses(
-        aafractions.ncc::uc_conditions %>%
-            select(condition_uid, primary_diagnosis)
-        , name = "lu_ucc_icd10"
-        , suffix = NULL
-        , bWriteCSV = bWriteCSV
-    )
+    if ("aa" %in% what) {
+        rv[["aa"]] <- expand_diagnoses(
+            x$aa$aa_conditions %>%
+                select(condition_uid, codes)
+            , name = "lu_aac_icd10"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+    }
 
-    invisible(list(
-        aac = lu_aac_icd10
-        , sac = lu_sac_icd10
-        , ucc = lu_ucc_icd10
-    ))
+    if ("sa" %in% what) {
+        rv[["sa"]] <- expand_diagnoses(
+            x$sa$sa_conditions %>%
+                select(condition_uid, icd_10_code)
+            , name = "lu_sac_icd10"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+    }
+
+    if ("uc" %in% what) {
+        rv[["uc"]] <- expand_diagnoses(
+            x$uc$uc_conditions %>%
+                select(condition_uid, primary_diagnosis)
+            , name = "lu_ucc_icd10"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+    }
+
+    if ("ac" %in% what) {
+        rv[["ac_pri"]] <- expand_diagnoses(
+            x$ac$ac_conditions %>%
+                select(condition_uid, primary_diagnosis)
+            , name = "lu_acc_icd10"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+        rv[["ac_sec"]] <- expand_diagnoses(
+            x$ac$ac_conditions %>%
+                select(condition_uid, secondary_diagnoses)
+            , name = "lu_acc_icd10_sec"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+        rv[["ac_proc"]] <- expand_diagnoses(
+            x$ac$ac_conditions %>%
+                select(condition_uid, procedures)
+            , name = "lu_acc_opcs"
+            , suffix = NULL
+            , bWriteCSV = bWriteCSV
+        )
+    }
+
+    invisible(rv)
 }
-

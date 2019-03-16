@@ -8,7 +8,7 @@ Deep vein thrombosis,I80; I81; I82,All ages,I8[0-2],6,ccg_iaf_201617
 Cellulitis,L03,All ages,L03,7,ccg_iaf_201617
 Pyrexial child,R50,0 - 5 yrs,R50,8,ccg_iaf_201617
 "Blocked tubes, catheters and feeding tubes",T830,All ages,T830,9,ccg_iaf_201617
-Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,All ages,E1[0-5];E16[12],10,ccg_iaf_201617
+Hypoglycaemia,E10; E11; E12; E13; E14; E15; E161; E162,All ages,E1[0-5]|E16[12],10,ccg_iaf_201617
 Urinary tract infection,N390,All ages,N390,11,ccg_iaf_201617
 Angina,I20,All ages,I20,12,ccg_iaf_201617
 Epileptic fit,G40; G41,All ages,G4[01],13,ccg_iaf_201617
