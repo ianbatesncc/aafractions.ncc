@@ -840,7 +840,7 @@ main__example_analysis__ac_morbidity <- function(
             , Episode_Status == 3
             , Patient_Classification %in% c(1)
             , data.table::like(Admission_Method_Code, "^2")
-            , not(ADMISORC %in% c(51, 52, 53))
+            , !(ADMISORC %in% c(51, 52, 53))
         ) %>%
         select(
             GRID = Generated_Record_Identifier
@@ -871,9 +871,15 @@ main__example_analysis__ac_morbidity <- function(
             , by = "condition_uid"
         ) %>%
         mutate(
-            matches_sec_diag_include = mapply(like, icd10_sec, sec_diag_include_regexp)
-            , matches_sec_diag_exclude = mapply(like, icd10_sec, sec_diag_exclude_regexp)
-            , matches_proc_exclude = mapply(like, opcs_all, proc_exclude_regexp)
+            matches_sec_diag_include = mapply(
+                data.table::like, icd10_sec, sec_diag_include_regexp
+            )
+            , matches_sec_diag_exclude = mapply(
+                data.table::like, icd10_sec, sec_diag_exclude_regexp
+            )
+            , matches_proc_exclude = mapply(
+                data.table::like, opcs_all, proc_exclude_regexp
+            )
             , to_include = mapply(
                 all
                 , matches_sec_diag_include
