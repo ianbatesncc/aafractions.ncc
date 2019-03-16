@@ -5,8 +5,8 @@
 \title{Return a random icd10 code.}
 \usage{
 ricd10(n = 1024, mix_type = c("5050aalen34mix", "5050salen34mix",
-  "5050uclen34mix", "len3", "len4", "len34", "aa_only", "sa_only",
-  "uc_only"), nmultiple = 1)
+  "5050uclen34mix", "5050aclen34mix", "len3", "len4", "len34", "aa_only",
+  "sa_only", "uc_only", "ac_only"), nmultiple = 1)
 }
 \arguments{
 \item{n}{(integer) number of records to return}
@@ -38,6 +38,7 @@ Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{examples_of_analysis}},
   \code{\link{gen_codes}},
   \code{\link{main__example_analysis__aa_morbidity}},
+  \code{\link{main__example_analysis__ac_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{main__example_analysis__uc_morbidity}}
 }

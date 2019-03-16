@@ -452,10 +452,85 @@ extract_uc <- function(
     ))
 }
 
-#' do the business
+#' Extract Ambulatory Care Sensitive
+#'
+extract_ac <- function(
+    bWriteCSV = FALSE
+) {
+    # load tables as list of tables
+
+    this_wb = devtools::package_file("./data-raw/acs_lus.xlsx")
+
+    these_wss <- readxl::excel_sheets(path = this_wb)
+
+    these_sheets <- setdiff(these_wss, c("Overview", "ACS meta"))
+
+    wss <- these_sheets %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: reading sheet", x, "...", "\n")
+                readxl::read_excel(path = y, sheet = x, skip = 0, col_names = TRUE)
+            }, this_wb
+        )
+
+    names(wss) <- these_sheets
+
+    # conditions
+
+    ac_conditions <- lapply(
+        "ccg_ois_26"
+        , function(x, y) {
+            y[[x]] %>%
+                janitor::clean_names() %>%
+                mutate(
+                    condition_uid = row_number()
+                    , version = x
+                )
+        }
+        , y = wss
+    ) %>% bind_rows()
+
+    # versions
+
+    ac_versions <- ac_conditions %>%
+        select(version, condition_uid)
+
+    # attribution
+
+    ac_attribution <- ac_conditions %>%
+        select(contains("uid"), version) %>%
+        mutate(acs_af = 1L)
+
+    # save
+
+    if (bWriteCSV) {
+        data.table::fwrite(ac_conditions, "./data-raw/ac_conditions.csv")
+        usethis::use_data(ac_conditions, overwrite = TRUE)
+
+        data.table::fwrite(ac_versions, "./data-raw/ac_versions.csv")
+        usethis::use_data(ac_versions, overwrite = TRUE)
+
+        data.table::fwrite(ac_attribution, "./data-raw/ac_attribution.csv")
+        usethis::use_data(ac_attribution, overwrite = TRUE)
+    }
+
+    invisible(list(
+        ac_conditions = ac_conditions
+        , ac_versions = ac_versions
+        , ac_attribution = ac_attribution
+    ))
+}
+
+#' Do the business
+#'
+#' @param what (character vector) what to process
+#' @param bWriteCSV (logical) to save or not
+#'
+#' @return (list) lookup tables
+#'
 
 main__extract_lus <- function(
-    what = c("aa", "sa", "sp", "uc")
+    what = c("aa", "sa", "sp", "uc", "ac")
     , bWriteCSV = TRUE
 ) {
     what <- match.arg(what, several.ok = TRUE)
@@ -469,6 +544,7 @@ main__extract_lus <- function(
                 , sa = extract_sa
                 , sp = extract_sp
                 , uc = extract_uc
+                , ac = extract_ac
             )
             this_extract(y)
         }

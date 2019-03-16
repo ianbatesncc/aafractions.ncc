@@ -50,6 +50,7 @@ Other examples_of_analysis: \code{\link{create__dummy_hesip}},
   \code{\link{examples_of_analysis}},
   \code{\link{gen_codes}},
   \code{\link{main__example_analysis__aa_morbidity}},
+  \code{\link{main__example_analysis__ac_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{main__example_analysis__uc_morbidity}},
   \code{\link{ricd10}}
