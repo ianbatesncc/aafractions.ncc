@@ -24,6 +24,7 @@ globalVariables(c(
     , "Episode_Duration_from_Grouper"
     , "Local_Authority_District"
     , "GIS_LSOA_2011_D"
+    , "Procedure_OPCS_Concatenated_D"
     # create_lu_ageband : ab_labels_from_breaks
     , "from"
     , "to"
@@ -58,6 +59,19 @@ globalVariables(c(
     # example_analysis: main__example_analysis__uc_morbidity
     , "Admission_Method_Code"
     , "ab_uc"
+    # example_analysis: main__example_analysis__ac_morbidity
+    , "ADMISORC"
+    , "condition_uid"
+    , "icd10_sec"
+    , "sec_diag_include_regexp"
+    , "sec_diag_exclude_regexp"
+    , "opcs_all"
+    , "proc_exclude_regexp"
+    , "matches_sec_diag_include"
+    , "matches_sec_diag_exclude"
+    , "matches_proc_exclude"
+    , "to_include"
+    , "Consultant_Episode_Start_Date"
     # vignettes : counting_aa_events
     , "version"
 ))
