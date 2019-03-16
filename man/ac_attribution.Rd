@@ -11,7 +11,7 @@ Observations: 13
 Variables: 3
 $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 $ version       <chr> "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_2...
-$ ucs_af        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+$ acs_af        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 }}
 \usage{
 ac_attribution

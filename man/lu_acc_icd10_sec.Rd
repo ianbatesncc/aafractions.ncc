@@ -4,9 +4,13 @@
 \name{lu_acc_icd10_sec}
 \alias{lu_acc_icd10_sec}
 \title{Lookup between Ambulatory care sensitive conditions and icd10 codes}
-\format{data frame with x rows and x fields
+\format{data frame with 60 rows and 2 fields
 
 \preformatted{
+Observations: 60
+Variables: 2
+$ condition_uid <int> 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, ...
+$ icd10         <chr> "J410", "J411", "J412", "J413", "J414", "J415", "J416", "J417", "J418", "J419", "J41X", "J41", "J420", "...
 }}
 \usage{
 lu_acc_icd10_sec
@@ -16,6 +20,7 @@ Provides lookup tables for use with Ambulatory care sensitive analyses.
 Secondary condition: secondary diagnosis codes.
 }
 \examples{
+str(aafractions.ncc::lu_acc_icd10_sec)
 
 }
 \seealso{

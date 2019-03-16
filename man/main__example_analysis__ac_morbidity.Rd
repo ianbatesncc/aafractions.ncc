@@ -14,8 +14,10 @@ Urgent care sensitive morbidity
 
 Methodology
 
-Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
+Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1))
 Emergency admission - admeth %like% '^2'
+
+candidates: diagnosis
 }
 \seealso{
 Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},

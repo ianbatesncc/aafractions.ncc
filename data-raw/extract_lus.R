@@ -499,7 +499,7 @@ extract_ac <- function(
 
     ac_attribution <- ac_conditions %>%
         select(contains("uid"), version) %>%
-        mutate(ucs_af = 1L)
+        mutate(acs_af = 1L)
 
     # save
 

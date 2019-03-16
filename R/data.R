@@ -516,7 +516,7 @@ NULL
 #' Variables: 3
 #' $ condition_uid <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 #' $ version       <chr> "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_26", "ccg_ois_2...
-#' $ ucs_af        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+#' $ acs_af        <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 #' }
 #'
 #' @examples
@@ -563,6 +563,7 @@ NULL
 #' }
 #'
 #' @examples
+#' str(aafractions.ncc::lu_acc_icd10)
 #'
 #' @family ambulatory care sensitive datasets
 #'
@@ -573,12 +574,17 @@ NULL
 #' Provides lookup tables for use with Ambulatory care sensitive analyses.
 #' Secondary condition: secondary diagnosis codes.
 #'
-#' @format data frame with x rows and x fields
+#' @format data frame with 60 rows and 2 fields
 #'
 #' \preformatted{
+#' Observations: 60
+#' Variables: 2
+#' $ condition_uid <int> 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, ...
+#' $ icd10         <chr> "J410", "J411", "J412", "J413", "J414", "J415", "J416", "J417", "J418", "J419", "J41X", "J41", "J420", "...
 #' }
 #'
 #' @examples
+#' str(aafractions.ncc::lu_acc_icd10_sec)
 #'
 #' @family ambulatory care sensitive datasets
 #'
@@ -589,12 +595,17 @@ NULL
 #' Provides lookup tables for use with Ambulatory care sensitive analyses.
 #' Tertiary condition: procedure codes.
 #'
-#' @format data frame with x rows and x fields
+#' @format data frame with 0 rows and 2 fields
 #'
 #' \preformatted{
+#' Observations: 0
+#' Variables: 2
+#' $ condition_uid <int>
+#' $ icd10         <chr>
 #' }
 #'
 #' @examples
+#' str(aafractions.ncc::lu_acc_opcs)
 #'
 #' @family ambulatory care sensitive datasets
 #'

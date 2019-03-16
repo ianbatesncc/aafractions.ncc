@@ -31,6 +31,7 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
     head(16)
 }
 
+str(aafractions.ncc::lu_acc_icd10)
 
 }
 \seealso{

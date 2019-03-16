@@ -4,9 +4,13 @@
 \name{lu_acc_opcs}
 \alias{lu_acc_opcs}
 \title{Lookup between Ambulatory care sensitive conditions and icd10 codes}
-\format{data frame with x rows and x fields
+\format{data frame with 0 rows and 2 fields
 
 \preformatted{
+Observations: 0
+Variables: 2
+$ condition_uid <int>
+$ icd10         <chr>
 }}
 \usage{
 lu_acc_opcs
@@ -16,6 +20,7 @@ Provides lookup tables for use with Ambulatory care sensitive analyses.
 Tertiary condition: procedure codes.
 }
 \examples{
+str(aafractions.ncc::lu_acc_opcs)
 
 }
 \seealso{
