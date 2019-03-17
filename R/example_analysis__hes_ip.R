@@ -985,20 +985,21 @@ main__examples_analysis <- function(
 
     ip <- create__dummy_hesip(mix_type = "len3")
 
-    rv <- what %>% lapply(
-        function(x, y) {
-            cat("INFO: running example", x, "...", "\n")
-            this_example <- switch(
-                x
-                , aa = main__example_analysis__aa_morbidity
-                , sa = main__example_analysis__sa_morbidity
-                , uc = main__example_analysis__uc_morbidity
-                , ac = main__example_analysis__ac_morbidity
-            )
-            this_example(y)
-        }
-        , y = ip
-    )
+    rv <- what %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: running example", x, "...", "\n")
+                this_example <- switch(
+                    x
+                    , aa = main__example_analysis__aa_morbidity
+                    , sa = main__example_analysis__sa_morbidity
+                    , uc = main__example_analysis__uc_morbidity
+                    , ac = main__example_analysis__ac_morbidity
+                )
+                this_example(y)
+            }
+            , y = ip
+        )
     names(rv) <- what
 
     rv
