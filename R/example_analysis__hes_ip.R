@@ -1002,5 +1002,19 @@ main__examples_analysis <- function(
         )
     names(rv) <- what
 
-    rv
+    rv2 <- rv %>%
+        lapply(
+            rename_at, vars(ends_with("af")), function(x){"af"}
+        ) %>%
+        lapply(
+            select_at
+            , vars(
+                "method", "version", "GRID", "condition_uid", "af"
+                , starts_with("meta_")
+            )
+        ) %>%
+        lapply(mutate_if, is.factor, as.character) %>%
+        bind_rows()
+
+    rv2
 }
