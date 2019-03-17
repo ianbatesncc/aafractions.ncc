@@ -696,11 +696,6 @@ main__example_analysis__sa_morbidity <- function(
     # Construct methods
 
     methods__specific <- tbl__SA__PHIT_IP__melt %>%
-        #filter(saf > 0.99) %>%
-        #group_by(GRID) %>%
-        #mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
-        #ungroup() %>%
-        #filter(aa_rank_1_highest == 1) %>%
         mutate(method = "smoking-attributable")
 
     sa_methods <- bind_rows(
