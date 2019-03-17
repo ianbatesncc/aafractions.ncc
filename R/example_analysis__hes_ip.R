@@ -179,7 +179,8 @@ create__dummy_hesip <- function(
             , n, replace = TRUE
         )
 
-        , Diagnosis_ICD_1 = NA # aligned with concat later
+        # aligned with concat later
+        , Diagnosis_ICD_1 = NA
         , Diagnosis_ICD_Concatenated_D = ricd10(
             n, mix_type = mix_type, nmultiple = 20
         )
@@ -208,6 +209,7 @@ create__dummy_hesip <- function(
 
         , Ethnic_Category = "Ethnic Category Unknown"
 
+        # aligned with episode duration later
         , Consultant_Episode_Start_Date = NA
         , Episode_Duration_from_Grouper = sample(seq(0, 14), n, replace = TRUE)
 
@@ -232,7 +234,8 @@ create__dummy_hesip <- function(
             )
         )
 
-        , Procedure_OPCS_1 = NA # aligned with concat later
+        # aligned with concat later
+        , Procedure_OPCS_1 = NA
         , Procedure_OPCS_Concatenated_D = ricd10(
             n, mix_type = "len3", nmultiple = 24
         )
