@@ -506,7 +506,7 @@ main__example_analysis__aa_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_AA = ab_aaf
         ) %>%
         merge(
@@ -517,7 +517,7 @@ main__example_analysis__aa_morbidity <- function(
         merge(
             aafractions.ncc::aa_fractions %>%
                 filter(analysis_type == "morbidity")
-            , by.x = c("version", "condition_uid", "AgeBand_AA", "GenderC")
+            , by.x = c("version", "condition_uid", "AgeBand_AA", "meta_sex")
             , by.y = c("version", "condition_uid", "aa_ageband", "sex")
             , all.x = TRUE, all.y = FALSE
         )
@@ -635,7 +635,7 @@ main__example_analysis__sa_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_SA = ab_sa
             , meta_lad = Local_Authority_District
             , meta_calyear
@@ -654,7 +654,7 @@ main__example_analysis__sa_morbidity <- function(
         merge(
             aafractions.ncc::sa_relrisk %>%
                 filter(analysis_type == "morbidity")
-            , by.x = c("version", "condition_uid", "AgeBand_SA", "GenderC")
+            , by.x = c("version", "condition_uid", "AgeBand_SA", "meta_sex")
             , by.y = c("version", "condition_uid", "ab_sa_explode", "sex")
             , all.x = FALSE, all.y = FALSE
         ) %>%
@@ -672,7 +672,7 @@ main__example_analysis__sa_morbidity <- function(
                 mutate(sp = sp / multiplier) %>%
                 select(-multiplier) %>%
                 filter(calyear == 2017)
-            , by.x = c("GenderC", "smoking_status", "meta_lad") # , "meta_calyear")
+            , by.x = c("meta_sex", "smoking_status", "meta_lad") # , "meta_calyear")
             , by.y  = c("sex", "smoking_status", "area_code") # , "calyear")
             , all.x = TRUE, all.y = FALSE
         ) %>%
@@ -784,7 +784,7 @@ main__example_analysis__uc_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_UC = ab_uc
             , meta_lad = Local_Authority_District
             , meta_calyear
@@ -916,6 +916,7 @@ main__example_analysis__ac_morbidity <- function(
         #
         arrange(GRID, pos, icd10)
 
+    lu_sex <- create_lu_gender()
 
     tbl__AC__PHIT_IP__melt <- ip %>%
         filter(
@@ -924,6 +925,10 @@ main__example_analysis__ac_morbidity <- function(
         #
         # gather record meta data
         #
+        merge(
+            lu_sex
+            , by.x = "Gender", by.y = "gender"
+        ) %>%
         mutate(
             meta_calyear = as.integer(
                 lubridate::year(Consultant_Episode_Start_Date) # NOTE start
@@ -931,6 +936,7 @@ main__example_analysis__ac_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
+            , meta_sex = genderC
             , meta_lad = Local_Authority_District
             , meta_calyear
         ) %>%
