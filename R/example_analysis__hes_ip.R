@@ -445,8 +445,10 @@ gender,genderC,genderName
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050aa")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050aa")
 
     # Split out diagnosis codes
 
@@ -572,8 +574,10 @@ main__example_analysis__aa_morbidity <- function(
 #' @family examples_of_analysis
 #'
 main__example_analysis__sa_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050sa")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050sa")
 
     # Split out diagnosis codes
 
@@ -715,8 +719,10 @@ main__example_analysis__sa_morbidity <- function(
 #' @family examples_of_analysis
 #'
 main__example_analysis__uc_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050uc")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050uc")
 
     # Split out diagnosis codes
 
@@ -828,8 +834,10 @@ main__example_analysis__uc_morbidity <- function(
 #' @family examples_of_analysis
 #'
 main__example_analysis__ac_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050aclen34mix")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050ac")
     # Split out diagnosis codes
 
     tbl__AC__PHIT_IP__melt <- ip %>%
@@ -953,4 +961,34 @@ main__example_analysis__ac_morbidity <- function(
     )
 
     ac_methods
+}
+
+
+#' Pull all analysis types together
+#'
+#'
+main__examples_analysis <- function(
+    what = c("aa", "sa", "uc", "ac")
+) {
+    what <- match.arg(what, several.ok = TRUE)
+
+    ip <- create__dummy_hesip(mix_type = "len3")
+
+    rv <- what %>% lapply(
+        function(x, y) {
+            cat("INFO: running example", x, "...", "\n")
+            this_example <- switch(
+                x
+                , aa = main__example_analysis__aa_morbidity
+                , sa = main__example_analysis__sa_morbidity
+                , uc = main__example_analysis__uc_morbidity
+                , ac = main__example_analysis__ac_morbidity
+            )
+            this_example(y)
+        }
+        , y = ip
+    )
+    names(rv) <- what
+
+    rv
 }
