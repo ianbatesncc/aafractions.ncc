@@ -734,13 +734,13 @@ main__example_analysis__uc_morbidity <- function(
 
     tbl__UC__PHIT_IP__melt <- ip %>%
         #
-        # Finished admission episodes EMERGENCY method
+        # Finished admission episodes
+        # and ... EMERGENCY method ... to filter on actually ... meta_
         #
         filter(
             Consultant_Episode_Number == 1
             , Episode_Status == 3
             , Patient_Classification %in% c(1, 2, 5)
-            , data.table::like(Admission_Method_Code, "^2")
         ) %>%
         select(
             GRID = Generated_Record_Identifier
@@ -787,6 +787,7 @@ main__example_analysis__uc_morbidity <- function(
             meta_calyear = as.integer(
                 lubridate::year(Consultant_Episode_End_Date)
             )
+            , meta_admeth = substr(Admission_Method_Code, 1, 1)
         ) %>%
         select(
             GRID = Generated_Record_Identifier
@@ -794,6 +795,7 @@ main__example_analysis__uc_morbidity <- function(
             , AgeBand_UC = ab_uc
             , meta_lad = Local_Authority_District
             , meta_calyear
+            , meta_admeth
         ) %>%
         merge(
             tbl__UC__PHIT_IP__melt
@@ -844,6 +846,7 @@ main__example_analysis__ac_morbidity <- function(
 ) {
     if (missing(ip))
         ip <- create__dummy_hesip(mix_type = "5050ac")
+
     # Split out diagnosis codes
 
     tbl__AC__PHIT_IP__melt <- ip %>%
@@ -856,7 +859,6 @@ main__example_analysis__ac_morbidity <- function(
             Consultant_Episode_Number == 1
             , Episode_Status == 3
             , Patient_Classification %in% c(1)
-            , data.table::like(Admission_Method_Code, "^2")
             , !(ADMISORC %in% c(51, 52, 53))
         ) %>%
         select(
@@ -939,12 +941,14 @@ main__example_analysis__ac_morbidity <- function(
             meta_calyear = as.integer(
                 lubridate::year(Consultant_Episode_Start_Date) # NOTE start
             )
+            , meta_admeth = substr(Admission_Method_Code, 1, 1)
         ) %>%
         select(
             GRID = Generated_Record_Identifier
             , meta_sex = genderC
             , meta_lad = Local_Authority_District
             , meta_calyear
+            , meta_admeth
         ) %>%
         merge(
             tbl__AC__PHIT_IP__melt
