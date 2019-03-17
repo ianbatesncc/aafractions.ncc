@@ -504,10 +504,16 @@ main__example_analysis__aa_morbidity <- function(
             , by.x = "Gender"
             , by.y = "gender"
         ) %>%
+        mutate(
+            meta_calyear = as.integer(
+                lubridate::year(Consultant_Episode_End_Date)
+            )
+        ) %>%
         select(
             GRID = Generated_Record_Identifier
             , meta_sex = genderC
             , AgeBand_AA = ab_aaf
+            , meta_calyear
         ) %>%
         merge(
             tbl__AA__PHIT_IP__melt
