@@ -798,7 +798,6 @@ main__example_analysis__uc_morbidity <- function(
             GRID = Generated_Record_Identifier
             , meta_sex = genderC
             , AgeBand_UC = ab_uc
-            , meta_lad = Local_Authority_District
             , meta_calyear
             , meta_admeth
         ) %>%
@@ -955,7 +954,6 @@ main__example_analysis__ac_morbidity <- function(
         select(
             GRID = Generated_Record_Identifier
             , meta_sex = genderC
-            , meta_lad = Local_Authority_District
             , meta_calyear
             , meta_admeth
         ) %>%
