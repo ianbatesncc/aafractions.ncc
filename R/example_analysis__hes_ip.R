@@ -983,7 +983,15 @@ main__examples_analysis <- function(
 ) {
     what <- match.arg(what, several.ok = TRUE)
 
+    #
+    # Events table
+    #
+
     ip <- create__dummy_hesip(mix_type = "len3")
+
+    #
+    # apply the analysis
+    #
 
     rv <- what %>%
         lapply(
@@ -996,25 +1004,88 @@ main__examples_analysis <- function(
                     , uc = main__example_analysis__uc_morbidity
                     , ac = main__example_analysis__ac_morbidity
                 )
-                this_example(y)
+                this_example(y) %>%
+                    mutate(attribution_type = x)
             }
             , y = ip
         )
-    names(rv) <- what
 
-    rv2 <- rv %>%
+    #
+    # align the results
+    #
+
+    rv <- rv %>%
         lapply(
             rename_at, vars(ends_with("af")), function(x){"af"}
         ) %>%
         lapply(
             select_at
             , vars(
-                "method", "version", "GRID", "condition_uid", "af"
-                , starts_with("meta_")
+                "attribution_type", "method", "version"
+                , "GRID", "condition_uid", "af"
+                , "icd10"
             )
         ) %>%
         lapply(mutate_if, is.factor, as.character) %>%
         bind_rows()
+
+
+    #
+    # align conditions
+    #
+
+    rvc <- what %>%
+        lapply(
+            function(x) {
+                cat("INFO: loading conditions", x, "...", "\n")
+                this_condition <- switch(
+                    x
+                    , aa = aafractions.ncc::aa_conditions
+                    , sa = aafractions.ncc::sa_conditions
+                    , uc = aafractions.ncc::uc_conditions %>% mutate(cat1 = NA, cat2 = NA)
+                    , ac = aafractions.ncc::ac_conditions
+                )
+                these_newnames <- switch(
+                    x
+                    , aa = c(icd10_prim = "codes")
+                    , sa = c(icd10_prim = "icd_10_code", desc = "disease_category")
+                    , uc = c(icd10_prim = "primary_diagnosis", desc = "condition_description")
+                    , ac = c(icd10_prim = "primary_diagnosis", desc = "condition_description")
+                )
+                rename(this_condition, !!!these_newnames) %>%
+                    mutate(attribution_type = x)
+            }
+        ) %>%
+        lapply(mutate_if, is.factor, as.character) %>%
+        lapply(function(x) {
+            select(x, attribution_type, condition_uid, icd10_prim, cat1, cat2, desc)
+        }) %>%
+        bind_rows()
+
+    #
+    # Join attribution with condition description
+    #
+
+    rv2 <- rv %>%
+        merge(
+            rvc %>%
+                mutate(this_desc = ifelse(is.na(desc), cat2, desc)) %>%
+                select(attribution_type, condition_uid, this_desc)
+            , by = c("attribution_type", "condition_uid")
+            , all.x = TRUE, all.y = FALSE
+        )
+
+    # Inspect
+
+    rv2 %>%
+        select(-version, -af, -starts_with("meta_"), -icd10, -this_desc) %>%
+        dcast(
+            ... ~ attribution_type + method
+            , value.var = "condition_uid"
+            , fill = "."
+        )
+
+    # Done
 
     rv2
 }
