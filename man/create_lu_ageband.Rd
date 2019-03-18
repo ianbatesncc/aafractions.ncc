@@ -35,6 +35,7 @@ Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{main__example_analysis__ac_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{main__example_analysis__uc_morbidity}},
+  \code{\link{main__examples_analysis}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

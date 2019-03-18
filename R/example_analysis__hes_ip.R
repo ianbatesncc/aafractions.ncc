@@ -442,6 +442,10 @@ gender,genderC,genderName
 #'
 #' - suitable for vignette
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
+#'
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
@@ -576,6 +580,9 @@ main__example_analysis__aa_morbidity <- function(
 #'
 #' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
 #'
 #' @family examples_of_analysis
 #'
@@ -716,6 +723,9 @@ main__example_analysis__sa_morbidity <- function(
 #' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
 #' Emergency admission - admeth %like% '^2'
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
 #'
 #' @family examples_of_analysis
 #'
@@ -833,6 +843,10 @@ main__example_analysis__uc_morbidity <- function(
 #' Emergency admission - admeth %like% '^2'
 #'
 #' candidates: diagnosis
+#'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
 #'
 #' @family examples_of_analysis
 #'
@@ -977,6 +991,11 @@ main__example_analysis__ac_morbidity <- function(
 
 #' Pull all analysis types together
 #'
+#' @param what (character vector) what to process
+#'
+#' @return (data frame) attribution events
+#'
+#' @family examples_of_analysis
 #'
 main__examples_analysis <- function(
     what = c("aa", "sa", "uc", "ac")
