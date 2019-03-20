@@ -588,7 +588,8 @@ NULL
 #'
 #' @family ambulatory care sensitive datasets
 #'
-"lu_acc_icd10_sec"
+NULL
+# "lu_acc_icd10_sec"
 
 #' Lookup between Ambulatory care sensitive conditions and icd10 codes
 #'
@@ -609,4 +610,5 @@ NULL
 #'
 #' @family ambulatory care sensitive datasets
 #'
-"lu_acc_opcs"
+NULL
+# "lu_acc_opcs"
