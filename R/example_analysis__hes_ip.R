@@ -1059,7 +1059,7 @@ main__examples_analysis <- function(
                     x
                     , aa = aafractions.ncc::aa_conditions
                     , sa = aafractions.ncc::sa_conditions
-                    , uc = aafractions.ncc::uc_conditions %>% mutate(cat1 = NA, cat2 = NA)
+                    , uc = aafractions.ncc::uc_conditions
                     , ac = aafractions.ncc::ac_conditions
                 )
                 these_newnames <- switch(
@@ -1086,8 +1086,7 @@ main__examples_analysis <- function(
     rv2 <- rv %>%
         merge(
             rvc %>%
-                mutate(this_desc = ifelse(is.na(desc), cat2, desc)) %>%
-                select(attribution_type, condition_uid, this_desc)
+                select(attribution_type, condition_uid, cat1, cat2, desc)
             , by = c("attribution_type", "condition_uid")
             , all.x = TRUE, all.y = FALSE
         )
@@ -1095,7 +1094,7 @@ main__examples_analysis <- function(
     # Inspect
 
     rv2 %>%
-        select(-version, -af, -starts_with("meta_"), -icd10, -this_desc) %>%
+        select(-version, -af, -starts_with("meta_"), -icd10, -desc, -starts_with("cat")) %>%
         dcast(
             ... ~ attribution_type + method
             , value.var = "condition_uid"
