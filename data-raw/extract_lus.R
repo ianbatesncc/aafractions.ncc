@@ -62,7 +62,7 @@ extract_aa <- function(
     # generate key, sort, reorder key
 
     lus <- lus %>%
-        filter(!grepl("§", desc)) %>%
+        filter(!grepl("^\\[S", desc)) %>%
         mutate_if(is.character, as.factor) %>%
         mutate(
             condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)
