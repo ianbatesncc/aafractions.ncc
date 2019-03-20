@@ -311,17 +311,18 @@ NULL
 #'
 #' Provides lookup tables for use with Urgent care sensitive analyses.
 #'
-#' @format data frame with 14 rows and 6 fields
+#' @format data frame with 14 rows and 7 fields
 #'
 #' \preformatted{
 #' Observations: 14
-#' Variables: 6
+#' Variables: 7
 #' $ condition_description <chr> "COPD", "Acute mental health crisis", "Non-specific chest pain", "Falls", "Non-specific abdomin...
 #' $ primary_diagnosis     <chr> "J40; J41; J42; J43; J44", "F", "R072; R073; R074", "W0; W1-W19", "R10", "I80; I81; I82", "L03"...
 #' $ age                   <chr> "All ages", "All ages", "All ages", "75+ yrs", "All ages", "All ages", "All ages", "0 - 5 yrs",...
 #' $ primary_regex         <chr> "J4[0-4]", "F", "R07[2-4]", "W[01][0-9]", "R10", "I8[0-2]", "L03", "R50", "T830", "E1[0-5];E16[...
+#' $ cat1                  <chr> "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All"
+#' $ cat2                  <chr> "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All"
 #' $ condition_uid         <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
-#' $ version               <chr> "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_iaf_201617", "ccg_...
 #' }
 #'
 #' @examples
