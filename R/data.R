@@ -27,7 +27,7 @@ NULL
 NULL
 
 #
-# Alcohol
+# Alcohol ----
 #
 
 #' List of alcohol attributable conditions
@@ -153,7 +153,7 @@ NULL
 "lu_aac_icd10"
 
 #
-# Smoking
+# Smoking ----
 #
 
 #' List of smoking attributable conditions
@@ -304,7 +304,7 @@ NULL
 "sp"
 
 #
-# Urgent care sensitive
+# Urgent care sensitive ----
 #
 
 #' List of Urgent care sensitive conditions
@@ -437,7 +437,7 @@ NULL
 "lu_ucc_icd10"
 
 #
-# Ambulatory care sensitive emergency
+# Ambulatory care sensitive emergency ----
 #
 
 #' List of Ambulatory care sensitive conditions
