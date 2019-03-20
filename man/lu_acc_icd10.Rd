@@ -37,8 +37,7 @@ str(aafractions.ncc::lu_acc_icd10)
 \seealso{
 Other ambulatory care sensitive datasets: \code{\link{ac_attribution}},
   \code{\link{ac_conditions}}, \code{\link{ac_versions}},
-  \code{\link{acs_datasets}},
-  \code{\link{lu_acc_icd10_sec}}, \code{\link{lu_acc_opcs}}
+  \code{\link{acs_datasets}}
 }
 \concept{ambulatory care sensitive datasets}
 \keyword{datasets}
