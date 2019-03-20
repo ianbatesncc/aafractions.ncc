@@ -1026,6 +1026,7 @@ main__examples_analysis <- function(
             }
             , y = ip
         )
+    names(rv) <- what
 
     #
     # align the results
@@ -1065,9 +1066,15 @@ main__examples_analysis <- function(
                 these_newnames <- switch(
                     x
                     , aa = c(icd10_prim = "codes")
-                    , sa = c(icd10_prim = "icd_10_code", desc = "disease_category")
-                    , uc = c(icd10_prim = "primary_diagnosis", desc = "condition_description")
-                    , ac = c(icd10_prim = "primary_diagnosis", desc = "condition_description")
+                    , sa = c(
+                        icd10_prim = "icd_10_code"
+                        , desc = "disease_category"
+                    )
+                    , uc = c(
+                        icd10_prim = "primary_diagnosis"
+                        , desc = "condition_description"
+                    )
+                    , ac = c(icd10_prim = "primary_diagnosis")
                 )
                 rename(this_condition, !!!these_newnames) %>%
                     mutate(attribution_type = x)
