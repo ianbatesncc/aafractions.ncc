@@ -432,6 +432,10 @@ extract_uc <- function(
         select(contains("uid"), ab_ucs = age, ab_ucs_explode, version) %>%
         mutate(ucs_af = 1L)
 
+    # ... back to conditions
+
+    uc_conditions <- uc_conditions %>% select(-version)
+
     # save
 
     if (bWriteCSV) {
