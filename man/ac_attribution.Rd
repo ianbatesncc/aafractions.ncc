@@ -36,8 +36,7 @@ if (all(sapply(c("dplyr", "reshape2"), isNamespaceLoaded))) {
 \seealso{
 Other ambulatory care sensitive datasets: \code{\link{ac_conditions}},
   \code{\link{ac_versions}}, \code{\link{acs_datasets}},
-  \code{\link{lu_acc_icd10_sec}},
-  \code{\link{lu_acc_icd10}}, \code{\link{lu_acc_opcs}}
+  \code{\link{lu_acc_icd10}}
 }
 \concept{ambulatory care sensitive datasets}
 \keyword{datasets}

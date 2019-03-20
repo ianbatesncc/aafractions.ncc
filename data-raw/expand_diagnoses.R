@@ -413,20 +413,24 @@ main__expand_diagnoses <- function(
             , suffix = NULL
             , bWriteCSV = bWriteCSV
         )
-        rv[["ac_sec"]] <- expand_diagnoses(
-            x$ac$ac_conditions %>%
-                select(condition_uid, secondary_diagnoses)
-            , name = "lu_acc_icd10_sec"
-            , suffix = NULL
-            , bWriteCSV = bWriteCSV
-        )
-        rv[["ac_proc"]] <- expand_diagnoses(
-            x$ac$ac_conditions %>%
-                select(condition_uid, procedures)
-            , name = "lu_acc_opcs"
-            , suffix = NULL
-            , bWriteCSV = bWriteCSV
-        )
+
+        # Not needed as matches via regexp
+        if (FALSE) {
+            rv[["ac_sec"]] <- expand_diagnoses(
+                x$ac$ac_conditions %>%
+                    select(condition_uid, secondary_diagnoses)
+                , name = "lu_acc_icd10_sec"
+                , suffix = NULL
+                , bWriteCSV = bWriteCSV
+            )
+            rv[["ac_proc"]] <- expand_diagnoses(
+                x$ac$ac_conditions %>%
+                    select(condition_uid, procedures)
+                , name = "lu_acc_opcs"
+                , suffix = NULL
+                , bWriteCSV = bWriteCSV
+            )
+        }
     }
 
     invisible(rv)

@@ -1,14 +1,36 @@
-cat1,cat2,condition_description,age,primary_diagnosis,secondary_diagnoses,procedures,prim_diag_regexp,sec_diag_include_regexp,sec_diag_exclude_regexp,proc_exclude_regexp,condition_uid,version
-Cardiovascular diseases,Atrial Fibrillation,,All ages,I48,,,I48,,,,1,ccg_ois_26
-Cardiovascular diseases,Angina,,All ages,I20,,-A-W;-X0-X5,I20,,,[A-W]|X[0-5],2,ccg_ois_26
-Cardiovascular diseases,Chronic heart disease,,All ages,I25,,-A-W;-X0-X5,I25,,,[A-W]|X[0-5],3,ccg_ois_26
-Cardiovascular diseases,Congestive heart failure,,All ages,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134],4,ccg_ois_26
-Cardiovascular diseases,Hypertension,,All ages,I10X;I11.9,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I10X|I119,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134],5,ccg_ois_26
-Diseases of the blood,Iron deficiency anaemia,,All ages,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,,6,ccg_ois_26
-Infections,Chronic hepatitis B,,All ages,B18.0;B18.1,-D57,,B18[01],,D57,,7,ccg_ois_26
-Mental and behavioural disorders,Dementia,,All ages,F00-F03,,,F0[0123],,,,8,ccg_ois_26
-Neurological disorders,Epilepsy,,All ages,G40-G41,,,G4[01],,,,9,ccg_ois_26
-"Nutritional, endocrine and metabolic",Diabetes,,All ages,E10-E14,,,E1[01234],,,,10,ccg_ois_26
-Respiratory diseases,Asthma,,All ages,J45;J46X,,,J45|J46X,,,,11,ccg_ois_26
-Respiratory diseases,COPD (primary),,All ages,J20,J41-J44;J47,,J20,J4[12347],,,12,ccg_ois_26
-Respiratory diseases,COPD (secondary),,All ages,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,,13,ccg_ois_26
+cat1,cat2,condition_uid,desc,primary_diagnosis,primary_diagnosis_broad,secondary_diagnoses,procedures,prim_diag_regexp,sec_diag_include_regexp,sec_diag_exclude_regexp,proc_exclude_regexp
+Infections,Chronic hepatitis B,1,Chronic viral hepatitis B with delta-agent,B180,B18.0;B18.1,-D57,,B18[01],,D57,
+Infections,Chronic hepatitis B,2,Chronic viral hepatitis B without delta-agent,B181,B18.0;B18.1,-D57,,B18[01],,D57,
+Diseases of the blood,Iron deficiency anaemia,3,Sideropenic dysphagia,D501,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,
+Diseases of the blood,Iron deficiency anaemia,4,Other iron deficiency anaemias,D508,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,
+Diseases of the blood,Iron deficiency anaemia,5,"Iron deficiency anaemia, unspecified",D509,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,
+Diseases of the blood,Iron deficiency anaemia,6,Vitamin B12 deficiency anaemia,D51,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,
+Diseases of the blood,Iron deficiency anaemia,7,Folate deficiency anaemia,D52,D51-D52;D50.1;D50.8;D50.9,,,D5[12]|D50[189],,,
+"Nutritional, endocrine and metabolic",Diabetes,8,Type 1 diabetes mellitus,E10,E10-E14,,,E1[01234],,,
+"Nutritional, endocrine and metabolic",Diabetes,9,Type 2 diabetes mellitus,E11,E10-E14,,,E1[01234],,,
+"Nutritional, endocrine and metabolic",Diabetes,10,Malnutrition-related diabetes mellitus,E12,E10-E14,,,E1[01234],,,
+"Nutritional, endocrine and metabolic",Diabetes,11,Other specified diabetes mellitus,E13,E10-E14,,,E1[01234],,,
+"Nutritional, endocrine and metabolic",Diabetes,12,Unspecified diabetes mellitus,E14,E10-E14,,,E1[01234],,,
+Mental and behavioural disorders,Dementia,13,Dementia in Alzheimer disease,F00,F00-F03,,,F0[0123],,,
+Mental and behavioural disorders,Dementia,14,Vascular dementia,F01,F00-F03,,,F0[0123],,,
+Mental and behavioural disorders,Dementia,15,Dementia in other diseases classified elsewhere,F02,F00-F03,,,F0[0123],,,
+Mental and behavioural disorders,Dementia,16,Unspecified dementia,F03,F00-F03,,,F0[0123],,,
+Neurological disorders,Epilepsy,17,Epilepsy,G40,G40-G41,,,G4[01],,,
+Neurological disorders,Epilepsy,18,Status epilepticus,G41,G40-G41,,,G4[01],,,
+Cardiovascular diseases,Hypertension,19,Essential (primary) hypertension,I10X,I10X;I11.9,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I10X|I119,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
+Cardiovascular diseases,Congestive heart failure,20,Hypertensive heart disease with (congestive) heart failure,I110,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
+Cardiovascular diseases,Hypertension,21,Hypertensive heart disease without (congestive) heart failure,I119,I10X;I11.9,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I10X|I119,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
+Cardiovascular diseases,Congestive heart failure,22,Hypertensive heart and renal disease with (congestive) heart failure,I130,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
+Cardiovascular diseases,Angina,23,Angina pectoris,I20,I20,,-A-W;-X0-X5,I20,,,[A-W]|X[0-5]
+Cardiovascular diseases,Chronic heart disease,24,Chronic ischaemic heart disease,I25,I25,,-A-W;-X0-X5,I25,,,[A-W]|X[0-5]
+Cardiovascular diseases,Atrial Fibrillation,25,Atrial fibrillation and flutter,I48,I48,,,I48,,,
+Cardiovascular diseases,Congestive heart failure,26,Heart failure,I50,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
+Respiratory diseases,COPD (acute),27,Acute bronchitis,J20,J20,J41-J44;J47,,J20,J4[12347],,
+Respiratory diseases,COPD (chronic),28,Simple and mucopurulent chronic bronchitis,J41,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,
+Respiratory diseases,COPD (chronic),29,Unspecified chronic bronchitis,J42X,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,
+Respiratory diseases,COPD (chronic),30,Emphysema,J43,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,
+Respiratory diseases,COPD (chronic),31,Other chronic obstructive pulmonary disease,J44,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,
+Respiratory diseases,Asthma,32,Asthma,J45,J45;J46X,,,J45|J46X,,,
+Respiratory diseases,Asthma,33,Status asthmaticus,J46X,J45;J46X,,,J45|J46X,,,
+Respiratory diseases,COPD (chronic),34,Bronchiectasis,J47X,J41;J43-J44;J42X;J47X,,,J4[134]|J4[27]X,,,
+Cardiovascular diseases,Congestive heart failure,35,Pulmonary oedema,J81X,I50;I11.0;J81X;I13.0,,-K0-K4;-K50;-K52;-K55-K57;-K60-K61;-K67-K69;-K71;-K73-K74,I50|I110|J81X|I130,,,K[0-4]|K5[025-7]|K6[016-9]|K7[134]
