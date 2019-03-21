@@ -15,63 +15,89 @@
 #'
 NULL
 
-# TO keep check happy for field names
-globalVariables(c(
-    # create__dummy_hesip
-    "Diagnosis_ICD_Concatenated_D"
-    , "Age_at_Start_of_Episode_D"
-    , "Consultant_Episode_End_Date"
-    , "Episode_Duration_from_Grouper"
-    , "Local_Authority_District"
-    , "GIS_LSOA_2011_D"
-    , "Procedure_OPCS_Concatenated_D"
-    # create_lu_ageband : ab_labels_from_breaks
-    , "from"
-    , "to"
-    , "lab"
-    , "s_sta"
-    , "s_end"
-    # create_lu_ageband
-    , "age"
-    # example_analysis
-    , "Episode_Status"
-    , "Patient_Classification"
-    , "Generated_Record_Identifier"
-    , "."
-    , "GRID"
-    , "pos"
-    , "icd10"
-    , "genderC"
-    , "ab_aaf"
-    , "analysis_type"
-    , "aaf"
-    , "aa_rank_1_highest"
-    , "Consultant_Episode_Number"
-    , "aa_aa_rank_1_highest"
-    # example_analysis: main__example_analysis__sa_morbidity
-    , "Diagnosis_ICD_1"
-    , "ab_sa"
-    , "sp"
-    , "meta_calyear"
-    , "calyear"
-    , "multiplier"
-    , "srr"
-    # example_analysis: main__example_analysis__uc_morbidity
-    , "Admission_Method_Code"
-    , "ab_uc"
-    # example_analysis: main__example_analysis__ac_morbidity
-    , "ADMISORC"
-    , "condition_uid"
-    , "icd10_sec"
-    , "sec_diag_include_regexp"
-    , "sec_diag_exclude_regexp"
-    , "opcs_all"
-    , "proc_exclude_regexp"
-    , "matches_sec_diag_include"
-    , "matches_sec_diag_exclude"
-    , "matches_proc_exclude"
-    , "to_include"
-    , "Consultant_Episode_Start_Date"
-    # vignettes : counting_aa_events
-    , "version"
-))
+if (TRUE) {
+    # To keep check happy for field names
+    globalVariables(c(
+        "."
+        , "aa_rank_1_highest"
+        , "aaf"
+        , "ab_aaf"
+        , "ab_sa"
+        , "ab_uc"
+        , "ADMISORC"
+        , "Admission_Method_Code"
+        , "af"
+        , "age"
+        , "Age_at_Start_of_Episode_D"
+        , "analysis_type"
+        , "attribution_type"
+        , "calyear"
+        , "cat1"
+        , "cat2"
+        , "condition_uid"
+        , "Consultant_Episode_End_Date"
+        , "Consultant_Episode_Number"
+        , "Consultant_Episode_Start_Date"
+        , "dcast"
+        , "Diagnosis_ICD_1"
+        , "Diagnosis_ICD_Concatenated_D"
+        , "Episode_Duration_from_Grouper"
+        , "Episode_Status"
+        , "from"
+        , "genderC"
+        , "Generated_Record_Identifier"
+        , "GIS_LSOA_2011_D"
+        , "GRID"
+        , "icd10"
+        , "icd10_prim"
+        , "icd10_sec"
+        , "lab"
+        , "Local_Authority_District"
+        , "matches_proc_exclude"
+        , "matches_sec_diag_exclude"
+        , "matches_sec_diag_include"
+        , "meta_admeth"
+        , "meta_calyear"
+        , "multiplier"
+        , "opcs_all"
+        , "Patient_Classification"
+        , "pos"
+        , "proc_exclude_regexp"
+        , "Procedure_OPCS_Concatenated_D"
+        , "s_end"
+        , "s_sta"
+        , "sec_diag_exclude_regexp"
+        , "sec_diag_include_regexp"
+        , "sp"
+        , "srr"
+        , "to"
+        , "to_include"
+    ))
+}
+
+if (FALSE) {
+    # output from devtools::check()
+    strsplit(
+        gsub("\n", " ", "
+. ADMISORC Admission_Method_Code Age_at_Start_of_Episode_D
+Consultant_Episode_End_Date Consultant_Episode_Number
+Consultant_Episode_Start_Date Diagnosis_ICD_1
+Diagnosis_ICD_Concatenated_D Episode_Duration_from_Grouper
+Episode_Status GIS_LSOA_2011_D GRID Generated_Record_Identifier
+Local_Authority_District Patient_Classification
+Procedure_OPCS_Concatenated_D aa_rank_1_highest aaf ab_aaf ab_sa
+ab_uc af age analysis_type attribution_type calyear cat1 cat2
+condition_uid dcast from genderC icd10 icd10_prim icd10_sec lab
+matches_proc_exclude matches_sec_diag_exclude
+matches_sec_diag_include meta_admeth meta_calyear multiplier opcs_all
+pos proc_exclude_regexp s_end s_sta sec_diag_exclude_regexp
+sec_diag_include_regexp sp srr to to_include
+")
+        , split = c(" ", "\n")
+    ) %>%
+        unlist() %>%
+        unique() %>%
+        sort() %>%
+        lapply(function(x) {cat(paste0(", \"", x, "\""), "\n")}) %>%
+        invisible()
+}
