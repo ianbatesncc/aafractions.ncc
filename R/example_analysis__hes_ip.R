@@ -1102,7 +1102,7 @@ main__examples_analysis <- function(
 
     rv2 %>%
         select(-version, -af, -starts_with("meta_"), -icd10, -desc, -starts_with("cat")) %>%
-        dcast(
+        data.table::dcast(
             ... ~ attribution_type + method
             , value.var = "condition_uid"
             , fill = "."
