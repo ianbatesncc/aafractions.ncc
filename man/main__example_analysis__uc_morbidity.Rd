@@ -4,7 +4,13 @@
 \alias{main__example_analysis__uc_morbidity}
 \title{Example analysis}
 \usage{
-main__example_analysis__uc_morbidity()
+main__example_analysis__uc_morbidity(ip)
+}
+\arguments{
+\item{ip}{(data frame) raw ip table to process}
+}
+\value{
+(data frame) attributable events
 }
 \description{
 Urgent care sensitive morbidity
@@ -27,6 +33,7 @@ Other examples_of_analysis: \code{\link{ab_labels_from_breaks}},
   \code{\link{main__example_analysis__aa_morbidity}},
   \code{\link{main__example_analysis__ac_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
+  \code{\link{main__examples_analysis}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

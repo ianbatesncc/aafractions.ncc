@@ -179,7 +179,8 @@ create__dummy_hesip <- function(
             , n, replace = TRUE
         )
 
-        , Diagnosis_ICD_1 = NA # aligned with concat later
+        # aligned with concat later
+        , Diagnosis_ICD_1 = NA
         , Diagnosis_ICD_Concatenated_D = ricd10(
             n, mix_type = mix_type, nmultiple = 20
         )
@@ -208,6 +209,7 @@ create__dummy_hesip <- function(
 
         , Ethnic_Category = "Ethnic Category Unknown"
 
+        # aligned with episode duration later
         , Consultant_Episode_Start_Date = NA
         , Episode_Duration_from_Grouper = sample(seq(0, 14), n, replace = TRUE)
 
@@ -232,7 +234,8 @@ create__dummy_hesip <- function(
             )
         )
 
-        , Procedure_OPCS_1 = NA # aligned with concat later
+        # aligned with concat later
+        , Procedure_OPCS_1 = NA
         , Procedure_OPCS_Concatenated_D = ricd10(
             n, mix_type = "len3", nmultiple = 24
         )
@@ -439,11 +442,17 @@ gender,genderC,genderName
 #'
 #' - suitable for vignette
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
+#'
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050aa")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050aa")
 
     # Split out diagnosis codes
 
@@ -499,10 +508,16 @@ main__example_analysis__aa_morbidity <- function(
             , by.x = "Gender"
             , by.y = "gender"
         ) %>%
+        mutate(
+            meta_calyear = as.integer(
+                lubridate::year(Consultant_Episode_End_Date)
+            )
+        ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_AA = ab_aaf
+            , meta_calyear
         ) %>%
         merge(
             tbl__AA__PHIT_IP__melt
@@ -512,7 +527,7 @@ main__example_analysis__aa_morbidity <- function(
         merge(
             aafractions.ncc::aa_fractions %>%
                 filter(analysis_type == "morbidity")
-            , by.x = c("version", "condition_uid", "AgeBand_AA", "GenderC")
+            , by.x = c("version", "condition_uid", "AgeBand_AA", "meta_sex")
             , by.y = c("version", "condition_uid", "aa_ageband", "sex")
             , all.x = TRUE, all.y = FALSE
         )
@@ -565,12 +580,17 @@ main__example_analysis__aa_morbidity <- function(
 #'
 #' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
 #'
 #' @family examples_of_analysis
 #'
 main__example_analysis__sa_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050sa")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050sa")
 
     # Split out diagnosis codes
 
@@ -628,7 +648,7 @@ main__example_analysis__sa_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_SA = ab_sa
             , meta_lad = Local_Authority_District
             , meta_calyear
@@ -647,7 +667,7 @@ main__example_analysis__sa_morbidity <- function(
         merge(
             aafractions.ncc::sa_relrisk %>%
                 filter(analysis_type == "morbidity")
-            , by.x = c("version", "condition_uid", "AgeBand_SA", "GenderC")
+            , by.x = c("version", "condition_uid", "AgeBand_SA", "meta_sex")
             , by.y = c("version", "condition_uid", "ab_sa_explode", "sex")
             , all.x = FALSE, all.y = FALSE
         ) %>%
@@ -665,7 +685,7 @@ main__example_analysis__sa_morbidity <- function(
                 mutate(sp = sp / multiplier) %>%
                 select(-multiplier) %>%
                 filter(calyear == 2017)
-            , by.x = c("GenderC", "smoking_status", "meta_lad") # , "meta_calyear")
+            , by.x = c("meta_sex", "smoking_status", "meta_lad") # , "meta_calyear")
             , by.y  = c("sex", "smoking_status", "area_code") # , "calyear")
             , all.x = TRUE, all.y = FALSE
         ) %>%
@@ -683,11 +703,6 @@ main__example_analysis__sa_morbidity <- function(
     # Construct methods
 
     methods__specific <- tbl__SA__PHIT_IP__melt %>%
-        #filter(saf > 0.99) %>%
-        #group_by(GRID) %>%
-        #mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
-        #ungroup() %>%
-        #filter(aa_rank_1_highest == 1) %>%
         mutate(method = "smoking-attributable")
 
     sa_methods <- bind_rows(
@@ -708,24 +723,29 @@ main__example_analysis__sa_morbidity <- function(
 #' Finished Admission Episodes (epiorder = 1, epistat = 3, patclass (1, 2, 5))
 #' Emergency admission - admeth %like% '^2'
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
 #'
 #' @family examples_of_analysis
 #'
 main__example_analysis__uc_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050uc")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050uc")
 
     # Split out diagnosis codes
 
     tbl__UC__PHIT_IP__melt <- ip %>%
         #
-        # Finished admission episodes EMERGENCY method
+        # Finished admission episodes
+        # and ... EMERGENCY method ... to filter on actually ... meta_
         #
         filter(
             Consultant_Episode_Number == 1
             , Episode_Status == 3
             , Patient_Classification %in% c(1, 2, 5)
-            , data.table::like(Admission_Method_Code, "^2")
         ) %>%
         select(
             GRID = Generated_Record_Identifier
@@ -772,13 +792,14 @@ main__example_analysis__uc_morbidity <- function(
             meta_calyear = as.integer(
                 lubridate::year(Consultant_Episode_End_Date)
             )
+            , meta_admeth = substr(Admission_Method_Code, 1, 1)
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , GenderC = genderC
+            , meta_sex = genderC
             , AgeBand_UC = ab_uc
-            , meta_lad = Local_Authority_District
             , meta_calyear
+            , meta_admeth
         ) %>%
         merge(
             tbl__UC__PHIT_IP__melt
@@ -822,11 +843,18 @@ main__example_analysis__uc_morbidity <- function(
 #'
 #' candidates: diagnosis
 #'
+#' @param ip (data frame) raw ip table to process
+#'
+#' @return (data frame) attributable events
+#'
 #' @family examples_of_analysis
 #'
 main__example_analysis__ac_morbidity <- function(
+    ip
 ) {
-    ip <- create__dummy_hesip(mix_type = "5050aclen34mix")
+    if (missing(ip))
+        ip <- create__dummy_hesip(mix_type = "5050ac")
+
     # Split out diagnosis codes
 
     tbl__AC__PHIT_IP__melt <- ip %>%
@@ -839,7 +867,6 @@ main__example_analysis__ac_morbidity <- function(
             Consultant_Episode_Number == 1
             , Episode_Status == 3
             , Patient_Classification %in% c(1)
-            , data.table::like(Admission_Method_Code, "^2")
             , !(ADMISORC %in% c(51, 52, 53))
         ) %>%
         select(
@@ -905,6 +932,7 @@ main__example_analysis__ac_morbidity <- function(
         #
         arrange(GRID, pos, icd10)
 
+    lu_sex <- create_lu_gender()
 
     tbl__AC__PHIT_IP__melt <- ip %>%
         filter(
@@ -913,15 +941,21 @@ main__example_analysis__ac_morbidity <- function(
         #
         # gather record meta data
         #
+        merge(
+            lu_sex
+            , by.x = "Gender", by.y = "gender"
+        ) %>%
         mutate(
             meta_calyear = as.integer(
                 lubridate::year(Consultant_Episode_Start_Date) # NOTE start
             )
+            , meta_admeth = substr(Admission_Method_Code, 1, 1)
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , meta_lad = Local_Authority_District
+            , meta_sex = genderC
             , meta_calyear
+            , meta_admeth
         ) %>%
         merge(
             tbl__AC__PHIT_IP__melt
@@ -950,4 +984,131 @@ main__example_analysis__ac_morbidity <- function(
     )
 
     ac_methods
+}
+
+
+#' Pull all analysis types together
+#'
+#' @param what (character vector) what to process
+#'
+#' @return (data frame) attribution events
+#'
+#' @family examples_of_analysis
+#'
+main__examples_analysis <- function(
+    what = c("aa", "sa", "uc", "ac")
+) {
+    what <- match.arg(what, several.ok = TRUE)
+
+    #
+    # Events table
+    #
+
+    ip <- create__dummy_hesip(mix_type = "len3")
+
+    #
+    # apply the analysis
+    #
+
+    rv <- what %>%
+        lapply(
+            function(x, y) {
+                cat("INFO: running example", x, "...", "\n")
+                this_example <- switch(
+                    x
+                    , aa = main__example_analysis__aa_morbidity
+                    , sa = main__example_analysis__sa_morbidity
+                    , uc = main__example_analysis__uc_morbidity
+                    , ac = main__example_analysis__ac_morbidity
+                )
+                this_example(y) %>%
+                    mutate(attribution_type = x)
+            }
+            , y = ip
+        )
+    names(rv) <- what
+
+    #
+    # align the results
+    #
+
+    rv <- rv %>%
+        lapply(
+            rename_at, vars(ends_with("af")), function(x){"af"}
+        ) %>%
+        lapply(
+            select_at
+            , vars(
+                "attribution_type", "method", "version"
+                , "GRID", "condition_uid", "af"
+                , "icd10"
+            )
+        ) %>%
+        lapply(mutate_if, is.factor, as.character) %>%
+        bind_rows()
+
+
+    #
+    # align conditions
+    #
+
+    rvc <- what %>%
+        lapply(
+            function(x) {
+                cat("INFO: loading conditions", x, "...", "\n")
+                this_condition <- switch(
+                    x
+                    , aa = aafractions.ncc::aa_conditions
+                    , sa = aafractions.ncc::sa_conditions
+                    , uc = aafractions.ncc::uc_conditions
+                    , ac = aafractions.ncc::ac_conditions
+                )
+                these_newnames <- switch(
+                    x
+                    , aa = c(icd10_prim = "codes")
+                    , sa = c(
+                        icd10_prim = "icd_10_code"
+                        , desc = "disease_category"
+                    )
+                    , uc = c(
+                        icd10_prim = "primary_diagnosis"
+                        , desc = "condition_description"
+                    )
+                    , ac = c(icd10_prim = "primary_diagnosis")
+                )
+                rename(this_condition, !!!these_newnames) %>%
+                    mutate(attribution_type = x)
+            }
+        ) %>%
+        lapply(mutate_if, is.factor, as.character) %>%
+        lapply(function(x) {
+            select(x, attribution_type, condition_uid, icd10_prim, cat1, cat2, desc)
+        }) %>%
+        bind_rows()
+
+    #
+    # Join attribution with condition description
+    #
+
+    rv2 <- rv %>%
+        merge(
+            rvc %>%
+                select(attribution_type, condition_uid, cat1, cat2, desc)
+            , by = c("attribution_type", "condition_uid")
+            , all.x = TRUE, all.y = FALSE
+        )
+
+    # Inspect
+
+    rv2 %>%
+        select(-version, -af, -starts_with("meta_"), -icd10, -desc, -starts_with("cat")) %>%
+        dcast(
+            ... ~ attribution_type + method
+            , value.var = "condition_uid"
+            , fill = "."
+        )
+
+    # Done
+
+    rv2
 }
