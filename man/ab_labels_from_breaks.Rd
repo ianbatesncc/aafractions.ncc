@@ -53,6 +53,7 @@ Other examples_of_analysis: \code{\link{create__dummy_hesip}},
   \code{\link{main__example_analysis__ac_morbidity}},
   \code{\link{main__example_analysis__sa_morbidity}},
   \code{\link{main__example_analysis__uc_morbidity}},
+  \code{\link{main__examples_analysis}},
   \code{\link{ricd10}}
 }
 \concept{examples_of_analysis}

@@ -62,7 +62,7 @@ extract_aa <- function(
     # generate key, sort, reorder key
 
     lus <- lus %>%
-        filter(!grepl("§", desc)) %>%
+        filter(!grepl("^\\[S", desc)) %>%
         mutate_if(is.character, as.factor) %>%
         mutate(
             condition_fuid = interaction(cat1, cat2, desc, codes, drop = TRUE)
@@ -432,6 +432,10 @@ extract_uc <- function(
         select(contains("uid"), ab_ucs = age, ab_ucs_explode, version) %>%
         mutate(ucs_af = 1L)
 
+    # ... back to conditions
+
+    uc_conditions <- uc_conditions %>% select(-version)
+
     # save
 
     if (bWriteCSV) {
@@ -470,15 +474,17 @@ extract_ac <- function(
             function(x, y) {
                 cat("INFO: reading sheet", x, "...", "\n")
                 readxl::read_excel(path = y, sheet = x, skip = 0, col_names = TRUE)
-            }, this_wb
+            }
+            , y = this_wb
         )
 
     names(wss) <- these_sheets
 
     # conditions
 
-    ac_conditions <- lapply(
-        "ccg_ois_26"
+    ac_conditions_all <- lapply(
+        #"ccg_ois_26"
+        these_sheets
         , function(x, y) {
             y[[x]] %>%
                 janitor::clean_names() %>%
@@ -488,7 +494,37 @@ extract_ac <- function(
                 )
         }
         , y = wss
-    ) %>% bind_rows()
+    ) # %>% bind_rows()
+    names(ac_conditions_all) <- these_sheets
+
+    #
+    # Add sub-detail to general lookup
+    #
+    # conditions still 'broad'
+    # detail an extra step if needed
+    #
+
+    lu1 <- ac_conditions_all[[1]] %>%
+        select(
+            desc = condition_description
+            , primary_diagnosis = primary_diagnosis_detail
+            , condition_uid
+        ) %>%
+        mutate(primary_diagnosis = gsub("\\.", "", primary_diagnosis))
+
+    lu2 <- ac_conditions_all[[2]] %>%
+        select(
+            -condition_description
+            , -condition_uid
+            , primary_diagnosis_broad = primary_diagnosis
+        )
+
+    ac_conditions <- merge(lu2, lu1) %>%
+        mutate(is_match = mapply(grepl, prim_diag_regexp, primary_diagnosis)) %>%
+        filter(is_match == TRUE) %>%
+        select(-is_match) %>%
+        arrange(condition_uid, primary_diagnosis) %>%
+        select(cat1, cat2, condition_uid, desc, primary_diagnosis, everything())
 
     # versions
 
@@ -500,6 +536,10 @@ extract_ac <- function(
     ac_attribution <- ac_conditions %>%
         select(contains("uid"), version) %>%
         mutate(acs_af = 1L)
+
+    # ... back to conditions
+
+    ac_conditions <- ac_conditions %>% select(-version)
 
     # save
 
