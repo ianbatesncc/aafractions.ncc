@@ -19,6 +19,7 @@ Suggests:
     , rmarkdown
     , reshape2
     , testthat
+    , tidyr
     , readxl
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
