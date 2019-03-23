@@ -446,8 +446,6 @@ gender,genderC,genderName
 #'
 #' @return (data frame) attributable events
 #'
-#' @importFrom tidyr separate_rows
-#'
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
