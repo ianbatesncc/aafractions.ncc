@@ -539,9 +539,9 @@ main__example_analysis__aa_morbidity <- function(
     methods__broad <- tbl__AA__PHIT_IP__melt %>%
         filter(aaf > 0) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-related (broad)")
 
     methods__narrow <- tbl__AA__PHIT_IP__melt %>%
@@ -550,24 +550,24 @@ main__example_analysis__aa_morbidity <- function(
             , (pos == 1) | (data.table::like(icd10, "^[VWXY]"))
         ) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-related (narrow)")
 
     methods__specific <- tbl__AA__PHIT_IP__melt %>%
         filter(aaf > 0.99) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-specific")
 
     aa_methods <- bind_rows(
         methods__broad
         , methods__narrow
         , methods__specific
-    ) %>% select(-aa_rank_1_highest)
+    ) %>% select(-rank_1_highest)
 
     aa_methods
 }
