@@ -446,6 +446,8 @@ gender,genderC,genderName
 #'
 #' @return (data frame) attributable events
 #'
+#' @importFrom tidyr separate_rows
+#'
 #' @family examples_of_analysis
 #'
 main__example_analysis__aa_morbidity <- function(
@@ -749,9 +751,20 @@ main__example_analysis__uc_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , icd10 = Diagnosis_ICD_1
+            , icd10_sec = Diagnosis_ICD_Concatenated_D
         ) %>%
-        mutate(pos = 1) %>%
+        #
+        # separate
+        #
+        tidyr::separate_rows(icd10_sec, sep = ";") %>%
+        rename(icd10 = "icd10_sec") %>%
+        filter(nchar(icd10) > 0) %>%
+        group_by(GRID) %>%
+        mutate(pos = row_number()) %>%
+        ungroup() %>%
+        #
+        #
+        #
         merge(
             aafractions.ncc::lu_ucc_icd10 %>%
                 merge(
@@ -821,6 +834,11 @@ main__example_analysis__uc_morbidity <- function(
     # Construct methods
 
     methods__all <- tbl__UC__PHIT_IP__melt %>%
+        filter((pos == 1) | (data.table::like(icd10, "^[VWXY]"))) %>%
+        group_by(GRID) %>%
+        mutate(rank_1_highest = order(order(pos))) %>%
+        ungroup() %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "urgent-care-sensitive")
 
     uc_methods <- bind_rows(
