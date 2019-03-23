@@ -466,16 +466,18 @@ main__example_analysis__aa_morbidity <- function(
             GRID = Generated_Record_Identifier
             , Diag_Concat_adj = Diagnosis_ICD_Concatenated_D
         ) %>%
-        split(.$GRID) %>%
-        purrr::map_dfr(function(x) {
-            these_codes <- strsplit(x$Diag_Concat_adj, ";")
-            data.frame(
-                GRID = x$GRID
-                , icd10 = these_codes[[1]]
-                , pos = seq_along(these_codes[[1]])
-                , stringsAsFactors = FALSE
-            )
-        }) %>%
+        #
+        # separate
+        #
+        tidyr::separate_rows(Diag_Concat_adj, sep = ";") %>%
+        rename(icd10 = "Diag_Concat_adj") %>%
+        filter(nchar(icd10) > 0) %>%
+        group_by(GRID) %>%
+        mutate(pos = row_number()) %>%
+        ungroup() %>%
+        #
+        # tag condition
+        #
         merge(
             aafractions.ncc::lu_aac_icd10 %>%
                 merge(
@@ -537,9 +539,9 @@ main__example_analysis__aa_morbidity <- function(
     methods__broad <- tbl__AA__PHIT_IP__melt %>%
         filter(aaf > 0) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-related (broad)")
 
     methods__narrow <- tbl__AA__PHIT_IP__melt %>%
@@ -548,24 +550,24 @@ main__example_analysis__aa_morbidity <- function(
             , (pos == 1) | (data.table::like(icd10, "^[VWXY]"))
         ) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-related (narrow)")
 
     methods__specific <- tbl__AA__PHIT_IP__melt %>%
         filter(aaf > 0.99) %>%
         group_by(GRID) %>%
-        mutate(aa_rank_1_highest = order(order(desc(aaf), pos))) %>%
+        mutate(rank_1_highest = order(order(desc(aaf), pos))) %>%
         ungroup() %>%
-        filter(aa_rank_1_highest == 1) %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "alcohol-specific")
 
     aa_methods <- bind_rows(
         methods__broad
         , methods__narrow
         , methods__specific
-    ) %>% select(-aa_rank_1_highest)
+    ) %>% select(-rank_1_highest)
 
     aa_methods
 }
@@ -749,9 +751,20 @@ main__example_analysis__uc_morbidity <- function(
         ) %>%
         select(
             GRID = Generated_Record_Identifier
-            , icd10 = Diagnosis_ICD_1
+            , icd10_sec = Diagnosis_ICD_Concatenated_D
         ) %>%
-        mutate(pos = 1) %>%
+        #
+        # separate
+        #
+        tidyr::separate_rows(icd10_sec, sep = ";") %>%
+        rename(icd10 = "icd10_sec") %>%
+        filter(nchar(icd10) > 0) %>%
+        group_by(GRID) %>%
+        mutate(pos = row_number()) %>%
+        ungroup() %>%
+        #
+        # tag condition
+        #
         merge(
             aafractions.ncc::lu_ucc_icd10 %>%
                 merge(
@@ -821,6 +834,11 @@ main__example_analysis__uc_morbidity <- function(
     # Construct methods
 
     methods__all <- tbl__UC__PHIT_IP__melt %>%
+        filter((pos == 1) | (data.table::like(icd10, "^[VWXY]"))) %>%
+        group_by(GRID) %>%
+        mutate(rank_1_highest = order(order(pos))) %>%
+        ungroup() %>%
+        filter(rank_1_highest == 1) %>%
         mutate(method = "urgent-care-sensitive")
 
     uc_methods <- bind_rows(
