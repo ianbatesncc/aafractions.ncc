@@ -468,16 +468,18 @@ main__example_analysis__aa_morbidity <- function(
             GRID = Generated_Record_Identifier
             , Diag_Concat_adj = Diagnosis_ICD_Concatenated_D
         ) %>%
-        split(.$GRID) %>%
-        purrr::map_dfr(function(x) {
-            these_codes <- strsplit(x$Diag_Concat_adj, ";")
-            data.frame(
-                GRID = x$GRID
-                , icd10 = these_codes[[1]]
-                , pos = seq_along(these_codes[[1]])
-                , stringsAsFactors = FALSE
-            )
-        }) %>%
+        #
+        # separate
+        #
+        tidyr::separate_rows(Diag_Concat_adj, sep = ";") %>%
+        rename(icd10 = "Diag_Concat_adj") %>%
+        filter(nchar(icd10) > 0) %>%
+        group_by(GRID) %>%
+        mutate(pos = row_number()) %>%
+        ungroup() %>%
+        #
+        # tag condition
+        #
         merge(
             aafractions.ncc::lu_aac_icd10 %>%
                 merge(
@@ -763,7 +765,7 @@ main__example_analysis__uc_morbidity <- function(
         mutate(pos = row_number()) %>%
         ungroup() %>%
         #
-        #
+        # tag condition
         #
         merge(
             aafractions.ncc::lu_ucc_icd10 %>%
